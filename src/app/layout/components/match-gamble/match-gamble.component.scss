@@ -1,0 +1,257 @@
+.match-container {
+    width: 280px;
+    padding: 0;
+}
+
+/* date match*/
+.date {
+    padding: 0;
+    margin: 0;
+}
+
+.date p {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    opacity: 0.5;
+    margin-bottom: 5px;
+}
+
+/* teams container */
+.teams {
+    display: inline-flex;
+    background-color: #414347;
+    padding: 10px 20px 0 20px;
+    border-radius: 25px;
+    margin: 0;
+}
+
+.save {
+    background-color: #3f7a2b;
+}
+
+.teams p {
+    margin-top: 8px;
+}
+
+.teams-font {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 0;
+}
+
+.teams img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px 0 10px;
+
+}
+
+.separator {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 0;
+}
+
+.home-score, .visit-score {
+    margin-top: 0;
+    background-color: #232529;
+
+    padding: 3px 5px 2px 5px;
+    border-radius: 5px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+
+}
+
+/* gamble container */
+.gamble {
+    display: flex;
+    justify-content: center;
+}
+
+.score-gamble {
+    width: 20%;
+    border-bottom-left-radius: 25px;
+    text-align: center;
+    background-color: #000;
+    padding: 2px 5px 2px 0;
+    margin: 0;
+}
+
+.score-win {
+    width: 20%;
+    border-bottom-right-radius: 25px;
+    text-align: center;
+    background-color: #27AE60;
+    padding: 2px 0 2px 5px;
+    margin: 0;
+}
+
+.score-win p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 16px;
+    margin: 0 3px 3px 0;
+    padding: 0;
+}
+
+.score-gamble p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 16px;
+    margin: 0 0 3px 3px;
+    padding: 0;
+}
+
+
+/* --- Match Score --- */
+.formScore {
+    width: 40px;
+    background-color: #2E3035;
+    color: #fff;
+    border: 0;
+    border-radius: 10px;
+    padding: 0;
+    margin-top: -5px;
+    margin-bottom: 5px;
+}
+
+.formScore:active {
+    border: 0;
+}
+
+.formScore:after {
+    border: 0;
+}
+
+.btn-save {
+    margin: 0 0 10px 50px;
+    font-size: 12px;
+    line-height: 12px;
+    background-color: #FDA328;
+    border-radius: 25px;
+    padding: 0 30px 0 30px;
+}
+
+
+/*******************/
+/*  Medium styles  */
+
+.match-container {
+    width: 480px;
+}
+
+/* date match*/
+.date {
+    padding: 0;
+    margin: 0;
+}
+
+.date p {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    opacity: 0.5;
+    margin-bottom: 5px;
+}
+
+/* teams container */
+.medium-container-teams {
+    background-color: #414347;
+    padding: 10px 20px 10px 20px;
+    border-radius: 25px;
+    margin: 0;
+}
+
+.medium-teams {
+    display: inline-flex;
+    }
+
+.save {
+    background-color: #3f7a2b;
+}
+
+.medium-teams p {
+    margin-top: 8px;
+}
+
+.teams-font {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 0;
+}
+
+.medium-teams img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px 0 10px;
+
+}
+
+.medium-separator {
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 0;
+}
+
+/* -- teams radio button --*/
+.teams-options {
+    display: inline-flex;
+}
+
+.mat-radio-button {
+    margin: 0 35px 0 35px;
+}
+
+[type="mat-radio-button"]:not(:checked) {
+    background-color: #4f4f4f;
+    border: none;
+    margin: 0 20px 0 20px;
+}
+
+[type="mat-radio-button"]:checked {
+    background-color: #FDA328;
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+}
+
+
+.btn-save {
+    margin: 0 0 10px 50px;
+    font-size: 12px;
+    line-height: 12px;
+    background-color: #FDA328;
+    border-radius: 25px;
+    padding: 0 30px 0 30px;
+}

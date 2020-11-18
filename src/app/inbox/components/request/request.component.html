@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <p class="section-title">Solicitudes</p>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <ng-container *ngIf="request$ | async as request">
+                <ul>
+                    <li *ngFor="let req of request | filterMakerId:user.uid | filterStatus:'1'">
+
+                        <ng-container *ngIf="penkas$ | async as penkas">
+
+                            <div *ngFor="let penka of penkas | filterCodePenka:req.codePenka; let i=index">
+                                <div *ngIf="i <= 0">
+                                    <div class="container-request">
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <div class="box">
+                                                    <img src="{{req.userPhoto}}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <div class="box">
+                                                    <p class="request-incoming">
+                                                        {{req.userName}}, solicita entrar a tu penka, <span
+                                                        class="penka-name">{{penka.name}}.</span>
+                                                    </p>
+                                                    <p><small class="text-help">Hace 1 dia</small></p>
+                                                    <div class="container-buttons">
+                                                        <button mat-button type="button" id="btn-agree"
+                                                                (click)="agree(req.id, penka.id, req.codePenka, req.userId, req.userName, req.userEmail, req.userPhoto, penka.formatName, penka.visibility, penka.bet)">
+                                                            Aceptar
+                                                        </button>
+                                                        <button mat-button type="button" id="btn-reject"
+                                                                (click)="reject(req.id)">
+                                                            Rechazar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </ng-container>
+
+
+                        <!-- <ng-template #outComing>
+                            <div class="container-request">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="box">
+                                            <img src="../../../../assets/images/icons/clock.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <div class="box">
+                                            <p class="request-incoming">
+                                                Solicitud pendiente de aprobacion, a la penka de <span class="penka-name"> Herbert Pro</span>
+                                            </p>
+                                            <p><small class="text-help">Hace 1 dia</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template> -->
+                    </li>
+                </ul>
+            </ng-container>
+        </div>
+    </div>
+</div>

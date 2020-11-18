@@ -1,0 +1,137 @@
+<div class="row header-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <span class="header-page-title">Organiza una Penka</span>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="row">
+                            <div class="col-lg-12" style="padding-top: 10px">
+                                <span class="labelSteps">PASO</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span class="stepNumber">2</span>
+                                <span class="stepTotal"> de 4</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container">
+    <app-back-space></app-back-space>
+    <br>
+    <ng-container *ngIf="type === 'templates'">
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <span class="section-title">Selecciona el template que deseas jugar:</span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <div class="box">
+                        <ng-container *ngIf="templates$ | async as templates">
+                            <ul *ngIf="templates.length > 0" class="mat-nav-list">
+                                <li *ngFor="let template of templates | filterStatus:'0' | filterPublish:true"
+                                    class="mat-list-item">
+                                    <mat-drawer-container autosize
+                                                          style="background-image: url('{{template.bannerUrl}}');">
+                                        <div class="content">
+                                            <a [routerLink]="['/penka/new3/template', template.codeTemplate]"
+                                               class="btn-template" mat-button
+                                               type="button">
+                                                {{template.name}}
+                                            </a>
+                                        </div>
+                                    </mat-drawer-container>
+                                </li>
+                            </ul>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="type === 'singleMatches'">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <span class="section-title">Selecciona los partidos que deseas jugar:</span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <ng-container *ngIf="matchesPicked">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="box">
+                        <ng-container *ngIf="listMatches$ | async as listMatches">
+                            <ng-container
+                                *ngFor="let lm of listMatches | filterUserId:user.uid | filterStatus:'0'; let c = count, let i = index">
+                                <ng-container *ngIf="i <= 0">
+                                    <p class="counterPicks"><span>{{c}}</span> partidos seleccionados.</p>
+                                </ng-container>
+                            </ng-container>
+                            <ul class="listPickMatches">
+                                <li class="itemPickMatches"
+                                    *ngFor="let lm of listMatches | filterUserId:user.uid | filterStatus:'0'">
+                                    <div class="containerPick">
+                                        <div class="matchPick">
+                                            <img class="teamPick" src="{{lm.homeTeamFlag}}" alt="">
+                                            <p class="separator">:</p>
+                                            <img class="teamPick" src="{{lm.visitTeamFlag}}" alt="">
+                                        </div>
+                                        <div class="delPick">
+                                            <p (click)="delPick(lm.id)" class="btn-delPick">
+                                                x
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <ng-container *ngIf="singleMatches$ | async as singleMatches">
+                        <ul class="listSingleMatches" *ngIf="singleMatches.length > 0">
+                            <li class="itemSingleMatches"
+                                *ngFor="let sm of singleMatches | filterStatus:'0' | filterPublish:true"
+                                (click)="pickTeam(sm)">
+                                <app-match-singlematch [match]="sm"></app-match-singlematch>
+                            </li>
+                        </ul>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <button mat-button (click)="makePenka()" class="btn-makePenka">
+                        Continuar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </ng-container>
+
+
+</div>

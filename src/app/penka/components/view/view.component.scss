@@ -1,0 +1,119 @@
+/* -------------------------- */
+/* ------ 1920 x 1080  ------- */
+@media (min-width: 1900px) {
+
+    /* ---- Card Information ---- */
+    .card-information {
+        padding: 0;
+        border-radius: 25px;
+        background-color: transparent;
+    }
+    .card-information-header {
+        padding: 15px 0 5px 10px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        background-color: #424448;
+    }
+    .card-information-content {
+        height: 300px;
+        background-color: #2E3035;
+        padding: 20px 0 0 40px;
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+    }
+
+    /* ---- Card Score ---- */
+    .card-score {
+        padding: 0;
+        border-radius: 25px;
+        background-color: transparent;
+    }
+    .card-score-header {
+        padding: 15px 0 5px 10px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        background-color: #424448;
+    }
+    .card-score-content {
+        height: 300px;
+        background-color: #2E3035;
+        padding: 20px 0 0 40px;
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+    }
+    .list-participants {
+        list-style-type: none;
+        padding: 0 50px 0 0;
+    }
+    .list-participants-item {
+        padding: 0 5px 0 0;
+        border-bottom: 1px solid #515151;
+    }
+    .btn-grid-participants{
+         border-radius: 25px;
+        border: 2px solid #737171;
+        float: right;
+        margin-bottom: 20px;
+        margin-right: 20px;
+    }
+
+    /* adjust margin */
+    .participant-font {
+        margin: 5px 0 5px 0;
+    }
+
+    /* ---- Card Gamble ---- */
+    .card-gamble {
+        padding: 0;
+        border-radius: 25px;
+        background-color: transparent;
+    }
+    .card-gamble-header {
+        padding: 15px 0 5px 10px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        background-color: #424448;
+    }
+    .card-gamble-content {
+        height: 280px;
+        background-color: #2E3035;
+        padding: 10px 0 10px 10px;
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+    }
+    /* ---- Card Next Matches ---- */
+    .card-nextMatches {
+        padding: 0;
+        border-radius: 25px;
+        background-color: transparent;
+    }
+    .card-nextMatches-header {
+        padding: 15px 0 5px 10px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        background-color: #792fe8;
+    }
+    .btn-goGamble{
+        background-color: #FDA328;
+        border-radius: 25px;
+        padding: 0 20px 0 20px;
+    }
+    .card-nextMatches-content {
+        height: 280px;
+        background-color: #2E3035;
+        padding: 10px 0 10px 10px;
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+    }
+
+    /* List */
+    ul {
+        padding: 0;
+
+    }
+    li {
+        margin-left:20px;
+        padding: 0;
+    }
+
+}

@@ -1,0 +1,29 @@
+<div class="match-container">
+    <!-- date -->
+    <div class="date">
+        <p>{{match.startDate}}&nbsp;{{match.startTime}}</p>
+    </div>
+    <div class="teams">
+        <p class="teams-font">{{match.homeTeamAlias}}</p>
+        <img class="home-flag-team" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
+        <!-- Home Team Score -->
+        <ng-container *ngIf="match.homeTeamScore >= 0; else noHomeScore">
+            <p class="home-score">{{match.homeTeamScore}}</p>
+        </ng-container>
+        <ng-template #noHomeScore>
+            <p class="home-score">-</p>
+        </ng-template>
+        <!----->
+        <p class="separator">:</p>
+        <!-- Visit Team Score --->
+        <ng-container *ngIf="match.visitTeamScore >=0; else noVisitScore">
+            <p class="visit-score">{{match.visitTeamScore}}</p>
+        </ng-container>
+        <ng-template #noVisitScore>
+            <p class="home-score">-</p>
+        </ng-template>
+        <!---->
+        <img class="visit-flag-team" src="{{match.visitTeamFlag}}" alt="{{match.visitTeamName}}">
+        <p class="teams-font">{{match.visitTeamAlias}}</p>
+    </div>
+</div>

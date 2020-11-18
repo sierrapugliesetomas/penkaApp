@@ -1,0 +1,98 @@
+<div class="card">
+    <!-- Header -->
+    <div class="card-header">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="box">
+                    <p class="card-header-title">{{penka.name}}</p>
+                    <p class="card-header-subTitle">{{penka.makerName}}</p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="box">
+                    <button mat-stroked-button class="btn-watch">
+                        Ver mas
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Body -->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box nMatches">
+                    <p class="nMatches-font">10 partidos</p>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="box">
+
+                    <ng-container *ngIf="penka.typePenka === 'template'">
+                        <div *ngIf="listMatches$ | async as listMatches">
+                            <ul>
+                                <li *ngFor="let lm of listMatches | filterCodeTemplate:penka.codeTemplate | filterStatus:'1'; let i=index">
+                                    <div *ngIf="i <= 3">
+                                        <app-match-mini
+                                            [matchDate]="lm.startDate"
+                                            [homeTeamFlag]="lm.homeTeamFlag"
+                                            [visitTeamFlag]="lm.visitTeamFlag"
+                                        ></app-match-mini>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="penka.typePenka === 'singleMatches'">
+                        <div *ngIf="listMatches$ | async as listMatches">
+                            <ul>
+                                <li *ngFor="let lm of listMatches | filterCodePenka:penka.codePenka | filterStatus:'1'; let i=index">
+                                    <div *ngIf="i <= 3">
+                                        <app-match-mini
+                                            [matchDate]="lm.startDate"
+                                            [homeTeamFlag]="lm.homeTeamFlag"
+                                            [visitTeamFlag]="lm.visitTeamFlag"
+                                        ></app-match-mini>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </ng-container>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-lg-4">
+                <p class="label">Participantes</p>
+                <p class="limitData"><span
+                    class="currentData">{{penka.nParticipants}}</span>/{{penka.limitParticipants}}</p>
+            </div>
+            <div class="col-lg-4">
+                <p class="label">Fecha limite</p>
+                <p class="limitData">{{penka.date}}</p>
+            </div>
+            <div class="col-lg-4">
+                <p class="label">Formato</p>
+                <p class="limitData">{{penka.formatName}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <p class="label">Entrada: &nbsp;<span class="bet">${{penka.bet}}</span></p>
+            </div>
+            <div class="col-lg-6">
+                <p class="label">pozo: &nbsp; <span class="currentData">${{penka.accumulatedBet}}</span><span
+                    class="limitData">/{{penka.bet * penka.limitParticipants}}</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<button class="btn-join" mat-raised-button
+        (click)="join(penka.id, penka.codePenka, penka.name, penka.makerId, penka.makerName, penka.makerEmail, penka.makerPhoto)">
+    Jugar
+</button>

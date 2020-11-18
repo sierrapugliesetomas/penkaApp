@@ -1,0 +1,73 @@
+/* ---- List ---- */
+ul {
+    list-style-type: none;
+    padding: 0 50px 0 0;
+}
+li{
+    margin-bottom: 20px;
+}
+
+/* ---- Container request ---- */
+.container-request {
+    background-color: #2E3035;
+    border-radius: 25px;
+    padding: 10px;
+}
+.container-request:hover{
+    border: 2px solid #FDA328;
+    padding:  8px;
+}
+
+.container-request p {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+    margin: 10px 0 10px 0;
+}
+
+.container-request img {
+    margin: 15px 0 10px 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+}
+
+.penka-name {
+    color: #FDA328;
+}
+.text-help{
+    color: #737171;
+}
+/* ---- Container buttons ---- */
+#btn-agree{
+    background-color: #54a554;
+    border-radius: 20px;
+    padding: 0 20px 0 20px;
+    visibility: hidden;
+    margin-right: 20px;
+}
+#btn-reject{
+    background-color: #de2525;
+    border-radius: 20px;
+    padding: 0 20px 0 20px;
+    visibility: hidden;
+}
+.container-buttons{
+    text-align: right;
+    margin-top: -25px;
+}
+.container-buttons:hover #btn-agree{
+    visibility: visible;
+}
+.container-buttons:hover #btn-reject{
+    visibility: visible;
+}
+
+
+
+
+
+

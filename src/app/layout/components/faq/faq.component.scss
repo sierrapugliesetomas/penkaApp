@@ -1,0 +1,94 @@
+@media (min-width: 1900px) {
+    .countries {
+        display: inline-flex;
+    }
+    .countries p {
+        margin-top: 10px;
+        margin-right: 20px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .countries img {
+        margin-right: 10px;
+        width: 40px;
+        height: auto;
+    }
+
+    .rules {
+
+    }
+
+    .nOrder {
+        font-family: 'Poppins', sans-serif;
+        color: #FDA328;
+        font-size: 20px;
+        line-height: 30px;
+        letter-spacing: 0.75px;
+    }
+
+    .rules p {
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+
+    }
+
+    .text-help {
+        padding: 0;
+        margin-top: -15px;
+        opacity: 0.5;
+    }
+
+    .distribution {
+        width: 400px;
+        background-color: #4C4E52;
+        border-radius: 25px;
+        display: inline-flex;
+        text-align: center;
+        padding-left: 20px;
+        margin-bottom: 15px;
+    }
+
+    .distribution p {
+        margin: 5px 0 5px 20px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    /* ----- Formats ----- */
+    .btn {
+        border-radius: 25px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 30px;
+        padding: 5px 20px 5px 20px;
+        margin-right: 20px;
+    }
+
+    .active {
+        background-color: #FDA328;
+    }
+
+    .disable {
+        background-color: #737171;
+    }
+
+    ul {
+        list-style-type: disc;
+    }
+
+    li {
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 30px;
+    }
+
+}

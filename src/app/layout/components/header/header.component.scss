@@ -1,0 +1,73 @@
+/* -------------------------- */
+/* ------ 1920 x 1080  ------- */
+@media (min-width: 1900px) {
+
+    .mat-toolbar {
+        width: 100% !important;
+        padding: 5px 0 0 0;
+    }
+
+    .logo-img {
+        width: 53px;
+    }
+
+    .user-img {
+        width: 27px;
+        height: 27px;
+        border-radius: 50%;
+    }
+
+    .btn-session {
+        color: #FDA328;
+        margin-left: 10px;
+        border: 2px solid #FDA328;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+    }
+
+    .mat-button:hover {
+        border-radius: 0;
+        padding-top: 2px;
+        border-bottom: 2px solid #FDA328;
+    }
+
+    /* list notifications */
+    ul {
+        list-style-type: none;
+        padding: 0 10px 0 10px;
+    }
+    li {
+        margin-bottom: 10px;
+        padding: 20px;
+    }
+    li:hover {
+        background-color: #4f4f4f;
+        padding: 20px;
+        border-radius: 25px;
+    }
+
+    .notification-font {
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        font-weight: normal;
+        font-style: normal;
+        font-size: 14px;
+        line-height: 16px;
+        color: white;
+    }
+    .user-request {
+        color: #FDA328;
+    }
+
+    /* --- Notification --- */
+    #btn-agree {
+        background-color: #FDA328;
+        border-radius: 20px;
+        padding: 0 20px 0 20px;
+        margin-right: 20px;
+    }
+    #btn-reject {
+        background-color: #2E3035;
+        border-radius: 20px;
+        padding: 0 20px 0 20px;
+    }
+}

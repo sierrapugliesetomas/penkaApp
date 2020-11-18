@@ -1,0 +1,115 @@
+<div class="row header-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <p class="header-page-title">Participa de una Penka</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="box">
+                <input
+                    type="text"
+                    class="searchByCode"
+                    placeholder="Ingresa aqui el codigo"
+                    [(ngModel)]="codePenka"
+                >
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="box">
+                <input
+                    type="text"
+                    class="searchByName"
+                    placeholder="Buscar por nombre de Penka u Organizador"
+                    [(ngModel)]="penkaName"
+                >
+            </div>
+        </div>
+    </div>
+    <br>
+    <ng-container *ngIf="penkas$ | async as penkas">
+
+        <ng-container *ngIf="codePenka">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="box">
+                        <p>Resultado:</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngFor="let penka of penkas | filterCodePenka:codePenka">
+                <div class="col-lg-4">
+                    <div class="box results">
+                        <app-home-pop [penka]="penka"></app-home-pop>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <app-penka-information-card [penka]="penka"></app-penka-information-card>
+                </div>
+            </div>
+            <br>
+        </ng-container>
+
+        <ng-container *ngIf="penkaName">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="box">
+                        <p>Resultado:</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngFor="let penka of penkas | filterPenkaName:penkaName">
+                <div class="col-lg-4">
+                    <ul class="box results">
+                        <li>
+                            <app-home-pop [penka]="penka"></app-home-pop>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <app-penka-information-card [penka]="penka"></app-penka-information-card>
+                </div>
+            </div>
+            <br>
+        </ng-container>
+
+    </ng-container>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- PENKAS POP -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box row between-lg">
+                <p class="section-title">Penkas Recomendadas</p>
+                <a mat-button routerLink="/penka/pop">
+                    Ver Todos
+                    <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box">
+                <ng-container *ngIf="penkas$ | async as penkas">
+                    <ul class="mat-nav-list">
+                        <li class="mat-list-item" *ngFor="let p of penkas">
+                            <app-home-pop [penka]="p"></app-home-pop>
+                        </li>
+                    </ul>
+                </ng-container>
+
+            </div>
+        </div>
+    </div>
+</div>

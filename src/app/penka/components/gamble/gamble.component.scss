@@ -1,0 +1,38 @@
+.card-gamble {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    border-radius: 25px;
+}
+
+.card-gamble-content {
+    height: 500px;
+    padding: 15px 0 5px 20px;
+    border: 0;
+    overflow-x: auto;
+    background-color: transparent;
+}
+
+/* List */
+ul {
+    padding: 0;
+}
+
+li {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.card-gamble-footer {
+    background-color: transparent;
+    border: 0;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.btn-save {
+    background-color: #FDA328;
+    border-radius: 25px;
+    padding: 0 40px 0 40px;
+}

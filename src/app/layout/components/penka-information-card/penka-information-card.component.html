@@ -1,0 +1,51 @@
+<mat-card class="card-information">
+    <mat-card-header class="card-information-header">
+        <p class="card-header-title">Informacion</p>
+    </mat-card-header>
+    <mat-card-content class="card-information-content">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="box">
+                    <div class="card-information-item">
+                        <p class="card-label-content">Organizador</p>
+                        <p class="card-info-content">{{penka.makerName}}</p>
+                    </div>
+                    <div class="card-information-item">
+                        <p class="card-label-content">Fecha de creacion</p>
+                        <p class="card-info-content">{{penka.date}}</p>
+                    </div>
+                    <div class="card-information-item">
+                        <p class="card-label-content">Formato</p>
+                        <p class="card-info-content">{{penka.formatName}}</p>
+                    </div>
+                    <div class="card-information-item">
+                        <p class="card-label-content">Participantes</p>
+                        <p class="card-info-content">{{penka.nParticipants}}
+                            / {{penka.limitParticipants}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="box">
+                    <div class="card-information-item">
+                        <p class="card-label-content">Apuesta</p>
+                        <p class="card-info-content">${{penka.bet}}</p>
+                    </div>
+                    <div class="card-information-item">
+                        <p class="card-label-content">Pozo</p>
+                        <p class="card-info-content">${{penka.accumulatedBet}}
+                            / {{ penka.bet * penka.limitParticipants}}</p>
+                    </div>
+                    <div class="card-information-item">
+                        <p class="card-label-content">Distribucion</p>
+                        <p class="card-info-content">{{penka.distributionBet}}</p>
+                    </div>
+                    <div class="card-information-item">
+                        <p class="card-label-content">Codigo de penka</p>
+                        <p class="card-info-content">{{penka.codePenka}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

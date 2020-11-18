@@ -1,0 +1,216 @@
+<ng-container *ngIf="auth.user$ | async; then authenticated else guess"></ng-container>
+
+<ng-template #authenticated>
+    <div class="container">
+        <br>
+        <!-- PENKAS PLAYING -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <p class="section-title">Pencas en Juego</p>
+                </div>
+            </div>
+        </div>
+        <ng-container *ngIf="penkas$ | async as penkas">
+            <app-home-penka-viewer [penkas]="penkas"></app-home-penka-viewer>
+        </ng-container>
+        <br>
+        <br>
+        <!-- PENKAS POP -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box row between-lg">
+                    <p class="section-title">Pencas Populares</p>
+                    <a mat-button routerLink="/penka/pop">
+                        Ver Todos
+                        <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <ng-container *ngIf="penkas$ | async as penkas">
+                        <ul class="mat-nav-list">
+                            <li class="mat-list-item" *ngFor="let p of penkas">
+                                <app-home-pop [penka]="p"></app-home-pop>
+                            </li>
+                        </ul>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <!-- TEMPLATES -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <p class="section-title">Templates</p>
+                </div>
+                <div class="box row between-lg">
+                    <p class="section-subTitle">Selecciona un template para organizar una penka.</p>
+                    <a mat-button routerLink="/penka/templates">
+                        Ver Todos
+                        <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <ng-container *ngIf="templates$ | async as templates">
+                        <ul *ngIf="templates.length > 0" class="mat-nav-list">
+                            <li *ngFor="let template of templates | filterStatus:'0' | filterPublish:true"
+                                class="mat-list-item">
+                                <app-home-templates [template]="template"></app-home-templates>
+                            </li>
+                        </ul>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <!-- SINGLE MATCHES -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <p class="section-title">Partidos Disponibles</p>
+
+                </div>
+                <div class="box row between-lg">
+                    <p class="section-subTitle">Selecciona los partidos que desees jugar.</p>
+                    <a mat-button routerLink="/penka/templates">
+                        Ver Todos
+                        <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <ng-container *ngIf="singleMatches$ | async as singleMatches">
+                        <ul class="mat-nav-list single-matches-list">
+                            <li *ngFor="let match of singleMatches | filterPublish:true | filterStatus:'0'; let i = index"
+                                class="mat-list-item">
+                                <ng-container *ngIf="i < match.length">
+                                    <app-home-single-matches [match]="match"></app-home-single-matches>
+                                </ng-container>
+
+                            </li>
+                        </ul>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+</ng-template>
+
+<ng-template #guess>
+    <app-banner class="banner-home"></app-banner>
+    <br>
+    <br>
+    <app-bar-button-desktop></app-bar-button-desktop>
+    <br>
+    <br>
+    <div class="container">
+        <!-- PENKAS POP -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box row between-lg">
+                    <p class="section-title">Penkas Populares</p>
+                    <a mat-button routerLink="/penka/pop">
+                        Ver Todos
+                        <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <ng-container *ngIf="penkas$ | async as penkas">
+                        <ul class="mat-nav-list">
+                            <li class="mat-list-item" *ngFor="let p of penkas">
+                                <app-home-pop [penka]="p"></app-home-pop>
+                            </li>
+                        </ul>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <!-- TEMPLATES -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <p class="section-title">Templates</p>
+                </div>
+                <div class="box row between-lg">
+                    <p class="section-subTitle">Selecciona un template para organizar una penka.</p>
+                    <a mat-button routerLink="/penka/templates">
+                        Ver Todos
+                        <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <ng-container *ngIf="templates$ | async as templates">
+                        <ul *ngIf="templates.length > 0" class="mat-nav-list">
+                            <li *ngFor="let template of templates | filterStatus:'0' | filterPublish:true"
+                                class="mat-list-item">
+                                <app-home-templates [template]="template"></app-home-templates>
+                            </li>
+                        </ul>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <!-- SINGLE MATCHES -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <p class="section-title">Partidos Disponibles</p>
+                </div>
+                <div class="box row between-lg">
+                    <p class="section-subTitle">Selecciona los partidos que desees jugar.</p>
+                    <a mat-button routerLink="/penka/templates">
+                        Ver Todos
+                        <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <ng-container *ngIf="singleMatches$ | async as singleMatches">
+                        <ul *ngIf="singleMatches.length" class="mat-nav-list smList">
+                            <li *ngFor="let match of singleMatches | filterStatus:'0' | filterPublish:true"
+                                class="mat-list-item">
+                                <app-home-single-matches [match]="match"></app-home-single-matches>
+                            </li>
+                        </ul>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+

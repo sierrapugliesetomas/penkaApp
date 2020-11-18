@@ -1,0 +1,22 @@
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 60px;
+}
+
+.cb-status {
+    margin-top: 10px;
+    float: right;
+    background-color: #2E3035;
+    border: 0;
+    border-radius: 25px;
+    padding: 10px 10px 10px 25px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    color: white;
+}

@@ -1,0 +1,189 @@
+/* ------ 1920 x 1080  ------- */
+@media (min-width: 1900px) {
+    /*//// exclusive classes */
+    .stepNumber {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        font-size: 28px;
+        font-style: normal;
+        line-height: 35px;
+
+    }
+
+    .stepTotal {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        font-size: 16px;
+        font-style: normal;
+        color: gray;
+        line-height: 25px;
+    }
+
+    .labelSteps {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 12px;
+        font-style: normal;
+        line-height: 22px;
+        letter-spacing: 2.2px;
+    }
+
+    /* ----  CodePenka ----- */
+    .codePenka {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 16px;
+        color: #FDA328;
+    }
+    /* --------- Cards ---------- */
+    /* ---- Card Information ---- */
+    .card-information {
+        padding: 0;
+        border-radius: 25px;
+        background-color: transparent;
+    }
+    .card-information-header {
+        padding: 15px 0 15px 10px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        background-color: #424448;
+    }
+    .card-information-content {
+        background-color: #2E3035;
+        padding: 20px 0 50px 50px;
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+    }
+    .label-information {
+        color: gray;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        font-style: normal;
+        line-height: 24px;
+    }
+    .data-information {
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        font-style: normal;
+        line-height: 24px;
+    }
+    /* ---- Card Matches---- */
+    .card-match {
+        padding: 0;
+        border-radius: 25px;
+        background-color: transparent;
+    }
+
+    .card-match-header {
+        background-color: #792fe8;
+        border-top-right-radius: 25px;
+        border-top-left-radius: 25px;
+        padding: 15px 0 15px 10px;
+    }
+
+    .card-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+    }
+    .card-match-content {
+        background-color: #2E3035;
+        padding: 20px 0 50px 0;
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+    }
+
+    /* ---- List ---- */
+    ul {
+        list-style-type: none;
+        padding: 0;
+        text-align: center;
+    }
+
+    ul > li {
+        background-color: transparent;
+        border: 0;
+        margin: 10px 20px 0 0;
+        padding: 0;
+    }
+
+    ul > li:hover {
+        background-color: transparent;
+    }
+
+    /* ---- Match ---- */
+
+    .containerMatch {
+        display: inline-grid;
+        padding: 10px;
+    }
+
+    .match {
+        background-color: #414347;
+        border-radius: 20px;
+        display: inline-flex;
+        padding: 5px 20px 5px 20px;
+        margin: 0;
+    }
+    .team {
+        padding-top: 0;
+        margin-top: 5px;
+        margin-right: 15px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 14px;
+    }
+    .teamFlag {
+        width: 30px;
+        height: 30px;
+        margin-right: 15px;
+    }
+
+    .separator {
+        margin-right: 15px;
+        margin-top: 5px;
+    }
+
+
+    .dateMatch {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+
+    .dateMatch p {
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        font-style: normal;
+        color: gray;
+        margin: 0;
+    }
+
+    /* ---- Buttons ---- */
+    .btn-play {
+        background-color: #FDA328;
+        border-radius: 25px;
+        padding: 2px 30px 2px 30px;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+    }
+    .btn-whatsapp {
+        color: #FDA328;
+    }
+
+    .gambleModal {
+        .mat-dialog-container {
+            padding: 0;
+        }
+    }
+
+
+}

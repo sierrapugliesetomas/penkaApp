@@ -1,0 +1,36 @@
+<br>
+<div class="row">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <p class="header-page-title">Mis Penkas</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <select [(ngModel)]="status" class="cb-status" (change)="changeStatus(status)">
+                            <option value="1">Penkas en Juego</option>
+                            <option value="2">Penkas Terminadas</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box">
+                <ng-container *ngIf="participants$ | async as participants">
+                    <ul>
+                        <li *ngFor="let part of participants | filterUserId:user.uid | filterStatus:status">
+                            <app-view-mini [codePenka]="part.codePenka" [status]="status"></app-view-mini>
+                        </li>
+                    </ul>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

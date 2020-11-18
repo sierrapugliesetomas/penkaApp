@@ -1,0 +1,92 @@
+/* -------------------------- */
+/* ------ 1280 x 720  ------- */
+@media (min-width: 1280px) and (max-width: 1900px) {
+
+    /*///// List - Scroll //*/
+    .mat-nav-list {
+        display: flex;
+        padding: 10px 0 10px 0;
+        list-style-type: none;
+        overflow-x: auto;
+    }
+
+    .mat-nav-list::-webkit-scrollbar {
+        height: 10px;
+    }
+
+    .mat-nav-list::-webkit-scrollbar-thumb {
+        background-color: #2E3035;
+        border-radius: 10px;
+    }
+
+    .mat-nav-list::-webkit-scrollbar-thumb:active {
+        background-color: #737171;
+    }
+
+    .mat-nav-list::-webkit-scrollbar-thumb:hover {
+        background-color: #792fe8;
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    }
+    .mat-list-item {
+        margin-right: 20px;
+        background-color: transparent;
+        border: 0;
+    }
+    .mat-list-item:hover {
+        background-color: transparent;
+    }
+    /*///////////////////////////////////*/
+    /*////  Single Match List Grid //////*/
+    .single-matches-list {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 10px;
+    }
+
+}
+
+/* -------------------------- */
+/* ------ 1920 x 1080  ------- */
+@media (min-width: 1900px) {
+
+    /*///// List - Scroll //*/
+    .mat-nav-list {
+        display: flex;
+        padding: 10px 0 10px 0;
+        list-style-type: none;
+        overflow-x: auto;
+    }
+
+    .mat-nav-list::-webkit-scrollbar {
+        height: 10px;
+    }
+
+    .mat-nav-list::-webkit-scrollbar-thumb {
+        background-color: #2E3035;
+        border-radius: 10px;
+    }
+
+    .mat-nav-list::-webkit-scrollbar-thumb:active {
+        background-color: #737171;
+    }
+
+    .mat-nav-list::-webkit-scrollbar-thumb:hover {
+        background-color: #792fe8;
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    }
+    .mat-list-item {
+        margin-right: 20px;
+        background-color: transparent;
+        border: 0;
+    }
+    .mat-list-item:hover {
+        background-color: transparent;
+    }
+    /*///////////////////////////////////*/
+    /*////  Single Match List Grid //////*/
+    .single-matches-list {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 10px;
+    }
+}

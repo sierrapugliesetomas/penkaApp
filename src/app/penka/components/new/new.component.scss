@@ -1,0 +1,70 @@
+/* -------------------------- */
+/* ------ 1280 x 720  ------- */
+@media (min-width: 1280px) and (max-width: 1900px) {
+  /*//// exclusive classes */
+  .stepNumber {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    font-style: normal;
+    line-height: 35px;
+  }
+
+  .stepTotal {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    font-style: normal;
+    color: gray;
+    line-height: 25px;
+  }
+
+  .labelSteps {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    font-style: normal;
+    line-height: 22px;
+    letter-spacing: 2.2px;
+  }
+
+  .tournament {
+    width: 350px;
+  }
+}
+
+/* -------------------------- */
+/* ------ 1920 x 1080  ------- */
+@media (min-width: 1900px) {
+  /*//// exclusive classes */
+  .stepNumber {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    font-style: normal;
+    line-height: 35px;
+
+  }
+
+  .stepTotal {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    font-style: normal;
+    color: gray;
+    line-height: 25px;
+  }
+
+  .labelSteps {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    font-style: normal;
+    line-height: 22px;
+    letter-spacing: 2.2px;
+  }
+
+  .tournament {
+    width: 350px;
+  }
+}
