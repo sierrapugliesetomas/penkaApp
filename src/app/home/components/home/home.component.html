@@ -11,8 +11,8 @@
                 </div>
             </div>
         </div>
-        <ng-container *ngIf="penkas$ | async as penkas">
-            <app-home-penka-viewer [penkas]="penkas"></app-home-penka-viewer>
+        <ng-container>
+            <app-home-penka-viewer></app-home-penka-viewer>
         </ng-container>
         <br>
         <br>
@@ -31,10 +31,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="box">
-                    <ng-container *ngIf="penkas$ | async as penkas">
+                    <ng-container *ngIf="participants.length > 0">
                         <ul class="mat-nav-list">
-                            <li class="mat-list-item" *ngFor="let p of penkas">
-                                <app-home-pop [penka]="p"></app-home-pop>
+                            <li class="mat-list-item" *ngFor="let p of participants">
+                                <app-home-pop [codePenka]="p.codePenka"></app-home-pop>
                             </li>
                         </ul>
                     </ng-container>
@@ -61,10 +61,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="box">
-                    <ng-container *ngIf="templates$ | async as templates">
-                        <ul *ngIf="templates.length > 0" class="mat-nav-list">
-                            <li *ngFor="let template of templates | filterStatus:'0' | filterPublish:true"
-                                class="mat-list-item">
+                    <ng-container *ngIf="templates.length > 0">
+                        <ul class="mat-nav-list">
+                            <li *ngFor="let template of templates" class="mat-list-item">
                                 <app-home-templates [template]="template"></app-home-templates>
                             </li>
                         </ul>
@@ -93,14 +92,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="box">
-                    <ng-container *ngIf="singleMatches$ | async as singleMatches">
-                        <ul class="mat-nav-list single-matches-list">
-                            <li *ngFor="let match of singleMatches | filterPublish:true | filterStatus:'0'; let i = index"
+                    <ng-container *ngIf="singleMatches.length > 0">
+                        <ul class="mat-nav-list smList">
+                            <li *ngFor="let match of singleMatches"
                                 class="mat-list-item">
-                                <ng-container *ngIf="i < match.length">
-                                    <app-home-single-matches [match]="match"></app-home-single-matches>
-                                </ng-container>
-
+                                <app-home-single-matches [match]="match"></app-home-single-matches>
                             </li>
                         </ul>
                     </ng-container>
@@ -137,10 +133,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="box">
-                    <ng-container *ngIf="penkas$ | async as penkas">
+                    <ng-container *ngIf="participants.length > 0">
                         <ul class="mat-nav-list">
-                            <li class="mat-list-item" *ngFor="let p of penkas">
-                                <app-home-pop [penka]="p"></app-home-pop>
+                            <li class="mat-list-item" *ngFor="let p of participants">
+                                <app-home-pop [codePenka]="p.codePenka"></app-home-pop>
                             </li>
                         </ul>
                     </ng-container>
@@ -167,10 +163,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="box">
-                    <ng-container *ngIf="templates$ | async as templates">
-                        <ul *ngIf="templates.length > 0" class="mat-nav-list">
-                            <li *ngFor="let template of templates | filterStatus:'0' | filterPublish:true"
-                                class="mat-list-item">
+                    <ng-container *ngIf="templates.length > 0">
+                        <ul class="mat-nav-list">
+                            <li *ngFor="let template of templates" class="mat-list-item">
                                 <app-home-templates [template]="template"></app-home-templates>
                             </li>
                         </ul>
@@ -198,9 +193,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="box">
-                    <ng-container *ngIf="singleMatches$ | async as singleMatches">
-                        <ul *ngIf="singleMatches.length" class="mat-nav-list smList">
-                            <li *ngFor="let match of singleMatches | filterStatus:'0' | filterPublish:true"
+                    <ng-container *ngIf="singleMatches.length > 0">
+                        <ul class="mat-nav-list smList">
+                            <li *ngFor="let match of singleMatches"
                                 class="mat-list-item">
                                 <app-home-single-matches [match]="match"></app-home-single-matches>
                             </li>

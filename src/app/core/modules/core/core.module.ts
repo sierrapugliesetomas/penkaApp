@@ -9,6 +9,8 @@ import {FilterPenkaNamePipe} from '../../pipes/filter-penka-name.pipe';
 import {FilterMakerIdPipe} from '../../pipes/filter-maker-id.pipe';
 import {FilterSingleMatchIdPipe} from '../../pipes/filter-single-match-id.pipe';
 import {FilterIdPipe} from '../../pipes/filter-id.pipe';
+import {FilterTempPipe} from '../../pipes/filter-temp.pipe';
+import {FilterNoMakerPipe} from '../../pipes/filter-no-maker.pipe';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import {FilterIdPipe} from '../../pipes/filter-id.pipe';
         FilterMakerIdPipe,
         FilterSingleMatchIdPipe,
         FilterIdPipe,
+        FilterTempPipe,
+        FilterNoMakerPipe,
 
     ],
     imports: [
@@ -36,7 +40,9 @@ import {FilterIdPipe} from '../../pipes/filter-id.pipe';
         FilterPenkaNamePipe,
         FilterMakerIdPipe,
         FilterSingleMatchIdPipe,
-        FilterIdPipe
+        FilterIdPipe,
+        FilterTempPipe,
+        FilterNoMakerPipe,
 
     ]
 })

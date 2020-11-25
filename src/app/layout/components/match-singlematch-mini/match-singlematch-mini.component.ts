@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-match-singlematch-mini',
-  templateUrl: './match-singlematch-mini.component.html',
-  styleUrls: ['./match-singlematch-mini.component.scss']
+    selector: 'app-match-singlematch-mini',
+    templateUrl: './match-singlematch-mini.component.html',
+    styleUrls: ['./match-singlematch-mini.component.scss']
 })
 export class MatchSinglematchMiniComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }

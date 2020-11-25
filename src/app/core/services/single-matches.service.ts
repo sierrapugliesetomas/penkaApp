@@ -27,6 +27,19 @@ export class SingleMatchesService {
         return this.singleMatches;
     }
 
+    /* get matches on status 0 and publish true */
+    getSingleMatchesPublic(): any {
+        return this.afs.collection<SingleMatch>('singleMatches', ref => ref.where('status', '==', '0')
+            .where('publish', '==', true).limit(10)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as SingleMatch;
+                const id = a.payload.doc.id;
+                return {id, ...data};
+            }))
+        );
+    }
+
+
     getSingleMatchById(id) {
         return this.afs.collection('singleMatches').doc(id).valueChanges();
     }

@@ -4,22 +4,22 @@ import {Competition} from '../../../core/interfaces/competition';
 import {CompetitionsService} from '../../../core/services/competitions.service';
 
 @Component({
-  selector: 'app-match-singlematch',
-  templateUrl: './match-singlematch.component.html',
-  styleUrls: ['./match-singlematch.component.scss']
+    selector: 'app-match-singlematch',
+    templateUrl: './match-singlematch.component.html',
+    styleUrls: ['./match-singlematch.component.scss']
 })
 export class MatchSinglematchComponent implements OnInit {
 
-  @Input() match;
+    @Input() match;
 
-  competition$: Observable<Competition>;
+    competition$: Observable<Competition>;
 
-  constructor(
-      private competitionsService: CompetitionsService) {
+    constructor(
+        private competitionsService: CompetitionsService) {
 
-  }
+    }
 
-  ngOnInit(): void {
-    this.competition$ = this.competitionsService.getCompetitionById(this.match.competition);
-  }
+    ngOnInit(): void {
+        this.competition$ = this.competitionsService.getCompetitionById(this.match.competition);
+    }
 }

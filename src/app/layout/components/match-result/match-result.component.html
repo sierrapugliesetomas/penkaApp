@@ -1,16 +1,29 @@
 <div class="match-container">
-    <!-- date -->
+    <!---------------------------->
+    <!-- Date Container         -->
     <div class="date">
-        <p>{{singleMatch.startDate}}&nbsp;{{singleMatch.startTime}}</p>
+        <p>{{match.startDate}}&nbsp;{{match.startTime}}</p>
     </div>
-    <div class="teams">
-        <p class="teams-font">{{singleMatch.homeTeamAlias}}</p>
-        <img class="home-flag-team" src="{{singleMatch.homeTeamFlag}}" alt="{{singleMatch.homeTeamName}}">
 
-        <!-- My Gamble -->
-        <ng-container *ngIf="gambles$ | async as gambles">
-            <ng-container
-                *ngFor="let g of gambles | filterUserId:user.uid | filterSingleMatchId:match.singleMatchId | filterCodePenka:codePenka">
+    <!---------------------------->
+    <!---------------------------->
+    <!-- Teams Container        -->
+    <div class="teams">
+
+        <!-- Local Team -->
+        <p class="teams-font">{{match.homeTeamAlias}}</p>
+        <img class="home-flag-team" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
+
+        <!---------------------------->
+        <!-- Gambles Score          -->
+
+        <ng-container
+            *ngFor="let g of gamble">
+
+            <!---------------------------->
+            <!-- Format Penka PRO       -->
+            <ng-container *ngIf="g.penkaFormat === 'PRO'">
+
                 <!-- Home Team Score -->
                 <ng-container *ngIf="g.homeTeamScore; else noHomeScore">
                     <p class="home-score">{{g.homeTeamScore}}</p>
@@ -18,8 +31,11 @@
                 <ng-template #noHomeScore>
                     <p class="home-score">-</p>
                 </ng-template>
-                <!----->
+
+                <!---->
                 <p class="separator">:</p>
+                <!---->
+
                 <!-- Visit Team Score --->
                 <ng-container *ngIf="g.visitTeamScore; else noVisitScore">
                     <p class="visit-score">{{g.visitTeamScore}}</p>
@@ -27,20 +43,66 @@
                 <ng-template #noVisitScore>
                     <p class="home-score">-</p>
                 </ng-template>
+
             </ng-container>
+
+            <!---------------------------->
+            <!-- Format Penka MEDIUM       -->
+            <ng-container *ngIf="g.penkaFormat === 'MEDIUM'">
+
+                <!-- Match Draw -->
+                <ng-container *ngIf="g.draw === true">
+                    <img src="../../../../assets/images/match/matchDraw.png" alt="" class="img-match-result">
+                    <!---->
+                    <p class="separator">&nbsp;</p>
+                    <!---->
+                    <img src="../../../../assets/images/match/matchDraw.png" alt="" class="img-match-result">
+                </ng-container>
+
+                <!-- Match Win Home Team -->
+                <ng-container *ngIf="g.homeTeamId === g.winnerTeamId">
+                    <img src="../../../../assets/images/match/matchWinner.png" alt="" class="img-match-result">
+                    <!---->
+                    <p class="separator">&nbsp;</p>
+                    <!---->
+                    <img src="../../../../assets/images/match/matchLoser.png" alt="" class="img-match-result">
+                </ng-container>
+
+                <!-- Match Win Visit Team -->
+                <ng-container *ngIf="g.visitTeamId === g.winnerTeamId">
+                    <img src="../../../../assets/images/match/matchLoser.png" alt="" class="img-match-result">
+                    <!---->
+                    <p class="separator">&nbsp;</p>
+                    <!---->
+                    <img src="../../../../assets/images/match/matchWinner.png" alt="" class="img-match-result">
+                </ng-container>
+
+            </ng-container>
+
         </ng-container>
+
         <!---->
-        <img class="visit-flag-team" src="{{singleMatch.visitTeamFlag}}" alt="{{singleMatch.visitTeamName}}">
-        <p class="teams-font">{{singleMatch.visitTeamAlias}}</p>
+        <img class="visit-flag-team" src="{{match.visitTeamFlag}}" alt="{{match.visitTeamName}}">
+        <p class="teams-font">{{match.visitTeamAlias}}</p>
     </div>
 
-    <ng-container *ngIf="gambles$ | async as gambles">
-        <div class="gamble">
-            <div class="score-gamble">
+    <!---------------------------->
+    <!---------------------------->
+    <!-- Real Results Container -->
+    <div class="real">
+
+        <!---------------------------->
+        <!-- Real Score             -->
+        <ng-container *ngIf="singleMatch.homeTeamScore; else noScoreYet">
+            <div class="score-real">
                 <p>{{singleMatch.homeTeamScore}}&nbsp;-&nbsp;{{singleMatch.visitTeamScore}}</p>
             </div>
+
+            <!---------------------------->
+            <!-- Score Gamble           -->
+
             <ng-container
-                *ngFor="let g of gambles | filterUserId:user.uid | filterSingleMatchId:match.singleMatchId | filterCodePenka:codePenka">
+                *ngFor="let g of gamble">
 
                 <ng-container *ngIf="g.scoreAchieved >= 3">
                     <div class="score-win">
@@ -67,8 +129,12 @@
                 </ng-container>
 
             </ng-container>
+        </ng-container>
 
-        </div>
-    </ng-container>
 
+        <ng-template #noScoreYet>
+        </ng-template>
+
+
+    </div>
 </div>

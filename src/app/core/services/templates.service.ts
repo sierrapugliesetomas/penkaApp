@@ -27,6 +27,18 @@ export class TemplatesService {
         return this.templates;
     }
 
+    /* Get templates on status 0 and publish true */
+    getTemplatesPublic(): any {
+        return this.afs.collection<Template>('templates', ref => ref.where('status', '==', '0')
+            .where('publish', '==', true))
+            .snapshotChanges().pipe(map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Template;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
     getTemplatesById(id) {
         return this.afs.collection('templates').doc(id).valueChanges();
     }

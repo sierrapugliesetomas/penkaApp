@@ -102,59 +102,56 @@
             </div>
             <div class="teams-options">
 
-                <ng-container *ngIf="gambles$ | async as gambles">
-                    <ng-container
-                        *ngFor="let g of gambles | filterCodePenka:codePenka | filterUserId:user.uid | filterSingleMatchId:match.singleMatchId">
+                <ng-container *ngIf="gamble.length > 0; else noGamblesYet">
 
-                        <ng-container *ngIf="g; else emptyGamble">
+                    <ng-container *ngFor="let g of gamble">
 
-                            <div *ngIf="g.winnerTeamId === match.homeTeamId">
-                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
-                                    <mat-radio-button [checked]="g.isDefault"
-                                                      value="{{match.homeTeamId}}"></mat-radio-button>
-                                    <mat-radio-button value="draw"></mat-radio-button>
-                                    <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
-                                </mat-radio-group>
-                            </div>
-
-                            <div *ngIf="g.winnerTeamId === match.visitTeamId">
-                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
-                                    <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
-                                    <mat-radio-button value="draw"></mat-radio-button>
-                                    <mat-radio-button [checked]="g.isDefault"
-                                                      value="{{match.visitTeamId}}"></mat-radio-button>
-                                </mat-radio-group>
-                            </div>
-
-                            <div *ngIf="g.draw === true">
-                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
-                                    <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
-                                    <mat-radio-button [checked]="g.isDefault" value="draw"></mat-radio-button>
-                                    <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
-                                </mat-radio-group>
-                            </div>
+                        <!-- Match Draw -->
+                        <ng-container *ngIf="g.draw === true">
+                            <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                                <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
+                                <mat-radio-button value="draw">
+                                    <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                         height="20">
+                                </mat-radio-button>
+                                <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
+                            </mat-radio-group>
                         </ng-container>
 
-                        <ng-template #emptyGamble>
+                        <!-- Match Win Home -->
+                        <ng-container *ngIf="g.homeTeamId === g.winnerTeamId">
+                            <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                                <mat-radio-button value="{{match.homeTeamId}}">
+                                    <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                         height="20">
+                                </mat-radio-button>
+                                <mat-radio-button value="draw">
+                                </mat-radio-button>
+                                <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
+                            </mat-radio-group>
+                        </ng-container>
+
+                        <!-- Match Win Visit -->
+                        <ng-container *ngIf="g.visitTeamId === g.winnerTeamId">
                             <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
                                 <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
                                 <mat-radio-button value="draw"></mat-radio-button>
-                                <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
+                                <mat-radio-button value="{{match.visitTeamId}}">
+                                    <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                         height="20">
+                                </mat-radio-button>
                             </mat-radio-group>
-                        </ng-template>
-
-
-                        <!-- <div *ngIf="g.winnerTeamId === match.homeTeamId">
-                            <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
-                                <mat-radio-button [checked]="g.isDefault" value="{{match.homeTeamId}}"></mat-radio-button>
-                                <mat-radio-button value="draw"></mat-radio-button>
-                                <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
-                            </mat-radio-group>
-                        </div> -->
-
+                        </ng-container>
                     </ng-container>
-                </ng-container>
 
+                </ng-container>
+                <ng-template #noGamblesYet>
+                    <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                        <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
+                        <mat-radio-button value="draw"></mat-radio-button>
+                        <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
+                    </mat-radio-group>
+                </ng-template>
             </div>
         </div>
     </div>

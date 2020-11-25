@@ -1,6 +1,7 @@
 export interface Gamble {
     id?: string;
     codePenka?: string;
+    penkaFormat?: string;
     singleMatchId?: string;
     tournamentId?: string;
     tournamentName?: string;
@@ -39,4 +40,5 @@ export interface Gamble {
     save?: boolean;
     scoreAchieved?: number;
     isDefault: boolean;
+    status?: string;
 }

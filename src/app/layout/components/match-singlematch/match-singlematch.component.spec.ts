@@ -1,25 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MatchSinglematchComponent } from './match-singlematch.component';
+import {MatchSinglematchComponent} from './match-singlematch.component';
 
 describe('MatchSinglematchComponent', () => {
-  let component: MatchSinglematchComponent;
-  let fixture: ComponentFixture<MatchSinglematchComponent>;
+    let component: MatchSinglematchComponent;
+    let fixture: ComponentFixture<MatchSinglematchComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ MatchSinglematchComponent ]
-    })
-    .compileComponents();
-  });
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [MatchSinglematchComponent]
+        })
+            .compileComponents();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MatchSinglematchComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(MatchSinglematchComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

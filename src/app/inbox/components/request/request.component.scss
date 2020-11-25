@@ -3,7 +3,8 @@ ul {
     list-style-type: none;
     padding: 0 50px 0 0;
 }
-li{
+
+li {
     margin-bottom: 20px;
 }
 
@@ -13,9 +14,10 @@ li{
     border-radius: 25px;
     padding: 10px;
 }
-.container-request:hover{
+
+.container-request:hover {
     border: 2px solid #FDA328;
-    padding:  8px;
+    padding: 8px;
 }
 
 .container-request p {
@@ -38,31 +40,37 @@ li{
 .penka-name {
     color: #FDA328;
 }
-.text-help{
+
+.text-help {
     color: #737171;
 }
+
 /* ---- Container buttons ---- */
-#btn-agree{
+#btn-agree {
     background-color: #54a554;
     border-radius: 20px;
     padding: 0 20px 0 20px;
     visibility: hidden;
     margin-right: 20px;
 }
-#btn-reject{
+
+#btn-reject {
     background-color: #de2525;
     border-radius: 20px;
     padding: 0 20px 0 20px;
     visibility: hidden;
 }
-.container-buttons{
+
+.container-buttons {
     text-align: right;
     margin-top: -25px;
 }
-.container-buttons:hover #btn-agree{
+
+.container-buttons:hover #btn-agree {
     visibility: visible;
 }
-.container-buttons:hover #btn-reject{
+
+.container-buttons:hover #btn-reject {
     visibility: visible;
 }
 

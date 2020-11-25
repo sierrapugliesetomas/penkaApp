@@ -10,9 +10,10 @@ import {ListMatches} from '../../../core/interfaces/list-matches';
 import {FirebaseApp} from '@angular/fire';
 import {AuthService} from '../../../core/services/auth.service';
 import {User} from '../../../core/interfaces/user';
-import {LoginComponent} from '../../../home/components/login/login.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ParticipantsComponent} from '../participants/participants.component';
+import {Gamble} from '../../../core/interfaces/gamble';
+import {GambleService} from '../../../core/services/gamble.service';
 
 @Component({
     selector: 'app-view',
@@ -25,9 +26,12 @@ export class ViewComponent implements OnInit {
     penka$: Observable<Penka>;
     participants$: Observable<Participant[]>;
     listMatches$: Observable<ListMatches[]>;
-
     newParticipant = {} as Participant;
     user = {} as User;
+
+
+    gambles = [] as Gamble[];
+    myGambles = [] as Gamble[];
 
     constructor(
         public firebase: FirebaseApp,
@@ -37,7 +41,8 @@ export class ViewComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private penkasService: PenkasService,
         private participantsService: ParticipantsService,
-        private listMatchesService: ListMatchesService) {
+        private listMatchesService: ListMatchesService,
+        private gambleService: GambleService) {
 
     }
 
@@ -53,15 +58,21 @@ export class ViewComponent implements OnInit {
         this.penka$ = this.penkasService.getPenkaById(this.penkaId);
         this.participants$ = this.participantsService.getParticipants();
         this.listMatches$ = this.listMatchesService.getMatches();
+
+
+        this.gambleService.getGamble().subscribe(
+            res => this.gambles = res,
+            error => console.log(error));
     }
 
     // tslint:disable-next-line:typedef
-    modalParticipants() {
-        const dialogRef = this.dialog.open(ParticipantsComponent, {
+    modalParticipants(codePenka) {
+        /*const dialogRef = this.dialog.open(ParticipantsComponent, {
             width: '1000px',
             height: '500px',
-        });
-      }
+        });*/
+        this.router.navigate(['/penka/participants/' + codePenka]).then();
+    }
 
     // tslint:disable-next-line:typedef
     playGamble(penka) {
@@ -93,6 +104,7 @@ export class ViewComponent implements OnInit {
                     const today = new Date();
                     this.newParticipant.date = today.getDate() + ' de ' + months[today.getMonth()] + ' de ' + today.getFullYear();
                     this.participantsService.addParticipant(this.newParticipant);
+
 
                     this.router.navigate(['/penka/gamble/' + this.penkaId]).catch(error => console.log(error));
                 }

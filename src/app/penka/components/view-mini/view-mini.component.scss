@@ -1,4 +1,4 @@
-.card-penka{
+.card-penka {
     padding: 0;
     background-color: transparent;
     border: 0;
@@ -6,16 +6,18 @@
 }
 
 /* Header */
-.card-penka-header{
+.card-penka-header {
     background-color: #792fe8;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     padding: 10px 20px 5px 10px;
 }
-.card-header-subTitle{
+
+.card-header-subTitle {
     margin-top: -5px;
 }
-.btn-watch{
+
+.btn-watch {
     float: right;
     border-radius: 25px;
     border: 2px solid white;
@@ -23,7 +25,7 @@
 
 
 /* Body */
-.card-penka-content{
+.card-penka-content {
     background-color: #2E3035;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
@@ -44,6 +46,7 @@
     padding: 10px 10px 0 10px;
     height: 300px;
 }
+
 .list-participants {
     list-style-type: none;
 }
@@ -130,6 +133,7 @@ hr {
     color: gray;
     margin: 0;
 }
+
 .btn-goGamble {
     float: right;
     margin-right: 30px;

@@ -1,11 +1,11 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
-  name: 'filterUserId'
+    name: 'filterUserId'
 })
 export class FilterUserIdPipe implements PipeTransform {
 
-  transform(items: Array<any>, userId: string): any {
-    return items.filter(item => item.userId === userId);
-  }
+    transform(items: Array<any>, userId: string): any {
+        return items.filter(item => item.userId === userId);
+    }
 }

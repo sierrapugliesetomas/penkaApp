@@ -64,7 +64,7 @@ export class ListMatchesService {
             );
     }
 
-    // tslint:disable-next-line:typedef
+    // tslint:disable-next-line:typedef max-line-length
     addMatch(singleMatchId, codePenka, codeTemplate, userId, userName, userEmail, userPhoto, date, homeTeamId, homeTeamName, homeTeamAlias, homeTeamFlag, visitTeamId, visitTeamName, visitTeamAlias, visitTeamFlag, startDate, startTime, status) {
         this.listMatchesCollection.add({
             singleMatchId,
@@ -89,10 +89,12 @@ export class ListMatchesService {
         }).catch(error => console.log(error));
     }
 
+    // tslint:disable-next-line:typedef
     addMatchByCodePenka(listMatch: ListMatches) {
         this.listMatchesCollection.add(listMatch).catch(error => console.log(error));
     }
 
+    // tslint:disable-next-line:typedef
     deleteMatch(id: string) {
         this.listMatchesCollection.doc(id).delete().catch(error => console.log(error));
     }

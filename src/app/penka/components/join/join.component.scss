@@ -6,17 +6,20 @@
     border: 2px solid #4C4E52;
     padding: 3px 0 5px 18px;
 }
-.searchByCode{
+
+.searchByCode {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-weight: normal;
     font-style: normal;
     font-size: 14px;
     line-height: 20px;
 }
+
 .searchByCode::placeholder {
     color: white;
 }
-.searchByCode::content{
+
+.searchByCode::content {
     color: white;
 }
 
@@ -32,6 +35,7 @@
     border-radius: 25px;
     padding: 3px 0 5px 18px;
 }
+
 .searchByName {
     background-color: #2E3035;
     border-radius: 25px;
@@ -40,17 +44,20 @@
     border: 2px solid #4C4E52;
     padding: 3px 0 5px 18px;
 }
-.searchByName{
+
+.searchByName {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-weight: normal;
     font-style: normal;
     font-size: 14px;
     line-height: 20px;
 }
+
 .searchByName::placeholder {
     color: white;
 }
-.searchByName::content{
+
+.searchByName::content {
     color: white;
 }
 
@@ -67,7 +74,7 @@
     padding: 3px 0 5px 18px;
 }
 
-.results{
+.results {
     padding-left: 0;
 }
 
@@ -97,11 +104,13 @@
     background-color: #792fe8;
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
 }
+
 .mat-list-item {
     margin-right: 20px;
     background-color: transparent;
     border: 0;
 }
+
 .mat-list-item:hover {
     background-color: transparent;
 }

@@ -39,16 +39,17 @@ export class GambleService {
             );
     }
 
-    // get gamble by code penka
-    getGBU(codePenka, userId) {
+    // get gamble by code penka and UserId
+    // tslint:disable-next-line:typedef
+    getMatch(codePenka, userId, singleMatchId) {
         return this.afs.collection<Gamble>('gambles', ref => ref.where('codePenka', '==', codePenka)
-            .where('userId', '==', userId)).snapshotChanges().pipe(
-            map(actions => actions.map(a => {
-                const data = a.payload.doc.data() as Gamble;
-                const id = a.payload.doc.id;
-                return {id, ...data};
-            }))
-        );
+            .where('userId', '==', userId).where('singleMatchId', '==', singleMatchId))
+            .snapshotChanges().pipe(map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Gamble;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
     }
 
     addGamble(gamble: Gamble) {

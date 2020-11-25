@@ -16,9 +16,10 @@ import {AuthService} from '../../../core/services/auth.service';
 export class MatchResultComponent implements OnInit {
     @Input() match;
     @Input() codePenka;
+    @Input() userId;
 
     singleMatch = [] as SingleMatch;
-    gambles$: Observable<Gamble[]>;
+    gamble = [] as Gamble[];
     user = {} as User;
 
     constructor(
@@ -30,11 +31,14 @@ export class MatchResultComponent implements OnInit {
 
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
+
         this.singleMatchService.getSingleMatchById(this.match.singleMatchId).subscribe(
             res => this.singleMatch = res,
             error => console.log(error));
 
-        this.gambles$ = this.gambleService.getGamble();
+        this.gambleService.getMatch(this.codePenka, this.userId, this.match.singleMatchId).subscribe(
+            res => this.gamble = res,
+            error => console.log(error));
     }
 
 }

@@ -1,25 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PenkaInformationCardComponent } from './penka-information-card.component';
+import {PenkaInformationCardComponent} from './penka-information-card.component';
 
 describe('PenkaInformationCardComponent', () => {
-  let component: PenkaInformationCardComponent;
-  let fixture: ComponentFixture<PenkaInformationCardComponent>;
+    let component: PenkaInformationCardComponent;
+    let fixture: ComponentFixture<PenkaInformationCardComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ PenkaInformationCardComponent ]
-    })
-    .compileComponents();
-  });
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [PenkaInformationCardComponent]
+        })
+            .compileComponents();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PenkaInformationCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(PenkaInformationCardComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

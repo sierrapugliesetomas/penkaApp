@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Penka} from '../../../core/interfaces/penka';
 import {ListMatchesService} from '../../../core/services/list-matches.service';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {ListMatches} from '../../../core/interfaces/list-matches';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -11,23 +11,35 @@ import {AuthService} from '../../../core/services/auth.service';
 import {FirebaseApp} from '@angular/fire';
 import {User} from '../../../core/interfaces/user';
 import {PenkaRequestService} from '../../../core/services/penka-request.service';
+import {takeUntil} from 'rxjs/operators';
+import {PenkasService} from '../../../core/services/penkas.service';
 
 @Component({
     selector: 'app-home-pop',
     templateUrl: './home-pop.component.html',
     styleUrls: ['./home-pop.component.scss']
 })
-export class HomePopComponent implements OnInit {
+export class HomePopComponent implements OnInit, OnDestroy {
 
-    @Input() penka: Penka;
+    /* Get codePenka from HomeComponent */
+    @Input() codePenka: string;
+
+    /* Array Penka */
+    penkas = [] as Penka[];
+
+    /* User Object */
+    user = {} as User;
+
     listMatches$: Observable<ListMatches[]>;
     newPenkaRequest = {} as PenkaRequest;
-    user = {} as User;
+
+    private unsubscribe$ = new Subject<void>();
 
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
         private router: Router,
+        private penkasService: PenkasService,
         private listMatchesService: ListMatchesService,
         private penkasRequestService: PenkaRequestService,
         // tslint:disable-next-line:variable-name
@@ -37,6 +49,21 @@ export class HomePopComponent implements OnInit {
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
         this.listMatches$ = this.listMatchesService.getMatches();
+
+        /* Get Participation */
+        this.penkasService.getPenkaByCodePenka(this.codePenka)
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
+            res => {
+                this.penkas = res;
+            });
+        /*************************/
+    }
+
+    ngOnDestroy(): void {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 
     // tslint:disable-next-line:typedef

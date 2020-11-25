@@ -1,15 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {User} from '../../../core/interfaces/user';
 import {FirebaseApp} from '@angular/fire';
 import {AuthService} from '../../../core/services/auth.service';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs';
+import {Subject} from 'rxjs';
 import {SingleMatch} from '../../../core/interfaces/single-match';
 import {SingleMatchesService} from '../../../core/services/single-matches.service';
 import {Template} from '../../../core/interfaces/template';
 import {TemplatesService} from '../../../core/services/templates.service';
-import {PenkasService} from '../../../core/services/penkas.service';
-import {Penka} from '../../../core/interfaces/penka';
+import {takeUntil} from 'rxjs/operators';
+import {ParticipantsService} from '../../../core/services/participants.service';
+import {Participant} from '../../../core/interfaces/participant';
 
 
 @Component({
@@ -18,13 +19,18 @@ import {Penka} from '../../../core/interfaces/penka';
     styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
-    singleMatches$: Observable<SingleMatch[]>;
-    templates$: Observable<Template[]>;
-    penkas$: Observable<Penka[]>;
-
+    /* Array single matches */
+    singleMatches = [] as SingleMatch[];
+    /* Array templates */
+    templates = [] as Template[];
+    /* Array participation */
+    participants = [] as Participant[];
+    /* User Object */
     user = {} as User;
+
+    private unsubscribe$ = new Subject<void>();
 
     constructor(
         public firebase: FirebaseApp,
@@ -32,16 +38,46 @@ export class HomeComponent implements OnInit {
         private router: Router,
         private singleMatchesService: SingleMatchesService,
         private templateService: TemplatesService,
-        private penkasService: PenkasService) {
+        private participantsService: ParticipantsService) {
     }
 
     ngOnInit(): void {
-        this.singleMatches$ = this.singleMatchesService.getSingleMatches();
 
-        this.templates$ = this.templateService.getTemplates();
-
-        this.penkas$ = this.penkasService.getPenkas();
-
+        /* user data */
         this.user = this.firebase.auth().currentUser;
+
+        /**************/
+        /* Get Single Matches public */
+        this.singleMatchesService.getSingleMatchesPublic()
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
+            res => {
+                this.singleMatches = res;
+            });
+        /*************************/
+        /* Get Templates */
+        this.templateService.getTemplatesPublic()
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
+            res => {
+                this.templates = res;
+            });
+        /*************************/
+        /* Get Participation */
+        this.participantsService.getParticipantsPublic()
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
+            res => {
+                this.participants = res;
+            });
+        /*************************/
+    }
+
+    ngOnDestroy(): void {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 }

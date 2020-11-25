@@ -79,7 +79,7 @@
                     <div class="box">
                         <ng-container *ngIf="listMatches$ | async as listMatches">
                             <ng-container
-                                *ngFor="let lm of listMatches | filterUserId:user.uid | filterStatus:'0'; let c = count, let i = index">
+                                *ngFor="let lm of listMatches  | filterUserId:user.uid | filterStatus:'0'; let c = count, let i = index">
                                 <ng-container *ngIf="i <= 0">
                                     <p class="counterPicks"><span>{{c}}</span> partidos seleccionados.</p>
                                 </ng-container>

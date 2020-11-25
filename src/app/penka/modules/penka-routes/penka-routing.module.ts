@@ -33,7 +33,7 @@ const routes: Routes = [
     {path: 'templates/view/:templateId', component: ViewTemplateComponent},
 
     {path: 'singleMatches', component: SingleMatchesComponent, canActivate: [AuthGuard]},
-    {path: 'participants', component: ParticipantsComponent, canActivate: [AuthGuard]},
+    {path: 'participants/:codePenka', component: ParticipantsComponent, canActivate: [AuthGuard]},
     {path: 'gamble/:id', component: GambleComponent, canActivate: [AuthGuard]},
     {path: 'join', component: JoinComponent, canActivate: [AuthGuard]},
     {path: 'pop', component: PopComponent, canActivate: [AuthGuard]}

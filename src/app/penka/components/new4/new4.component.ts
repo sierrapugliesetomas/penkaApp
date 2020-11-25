@@ -48,10 +48,12 @@ export class New4Component implements OnInit {
                 this.codePenka = params.codePenka;
             }
         );
+
         this.penkas$ = this.penkasService.getPenkaByCodePenka(this.codePenka);
         this.listMatches$ = this.listMatchesService.getMatches();
     }
 
+    // tslint:disable-next-line:typedef
     modalGamble(penka: Penka) {
         this.dialog.open(GambleComponent, {
             panelClass: 'gambleModal',

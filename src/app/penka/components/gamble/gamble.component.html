@@ -36,7 +36,8 @@
                                 <ul>
                                     <li *ngFor="let lm of listMatches | filterCodePenka:penka.codePenka | filterStatus:'1'">
                                         <app-match-gamble [match]="lm" [codePenka]="penka.codePenka"
-                                                          [format]="penka.formatName"></app-match-gamble>
+                                                          [format]="penka.formatName"
+                                                          [userId]="user.uid"></app-match-gamble>
                                     </li>
                                 </ul>
                             </div>

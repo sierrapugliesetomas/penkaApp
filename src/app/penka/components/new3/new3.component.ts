@@ -10,6 +10,8 @@ import {User} from '../../../core/interfaces/user';
 import {Participant} from '../../../core/interfaces/participant';
 import {ParticipantsService} from '../../../core/services/participants.service';
 import {PenkasService} from '../../../core/services/penkas.service';
+import {Gamble} from '../../../core/interfaces/gamble';
+import {GambleService} from '../../../core/services/gamble.service';
 
 @Component({
     selector: 'app-new3',
@@ -28,7 +30,7 @@ export class New3Component implements OnInit {
     newPenka = {} as Penka;
     user = {} as User;
     participant = {} as Participant;
-    listMatch = {} as ListMatches;
+    newGamble = {} as Gamble;
 
     constructor(
         public firebase: FirebaseApp,
@@ -37,7 +39,8 @@ export class New3Component implements OnInit {
         private activatedRoute: ActivatedRoute,
         private listMatchesService: ListMatchesService,
         private participantService: ParticipantsService,
-        private penkasService: PenkasService) {
+        private penkasService: PenkasService,
+        private gambleService: GambleService) {
     }
 
     ngOnInit(): void {
@@ -176,10 +179,7 @@ export class New3Component implements OnInit {
             this.participant.status = '1';
             this.participantService.addParticipant(this.participant);
 
-            this.newPenka = {} as Penka;
-            this.participant = {} as Participant;
-
-            /* Update list matches */
+            /* Update list matches and add gambles */
             let listMatches = [];
             this.listMatchesService.getMBCP(this.codePenka).subscribe(
                 res => {
@@ -191,6 +191,9 @@ export class New3Component implements OnInit {
                 },
                 error => console.log(error));
             /***********************/
+
+            this.newPenka = {} as Penka;
+            this.participant = {} as Participant;
 
             this.route.navigate(['/penka/new4/' + this.codePenka]).catch(error => console.log(error));
         }

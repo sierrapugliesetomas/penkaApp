@@ -62,7 +62,7 @@ export class New2Component implements OnInit {
     pickTeam(sm) {
         const codeTemplate = '';
         const status = '0';
-        const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         const today = new Date();
         const date = today.getDate() + ' de ' + months[today.getMonth()] + ' de ' + today.getFullYear();
 
@@ -85,9 +85,7 @@ export class New2Component implements OnInit {
             sm.visitTeamFlag,
             sm.startDate,
             sm.startTime,
-            status
-        );
-
+            status);
     }
 
     // tslint:disable-next-line:typedef

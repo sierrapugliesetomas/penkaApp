@@ -20,7 +20,6 @@ import {FormsModule} from '@angular/forms';
 // COMPONENTS
 import {AppComponent} from './app.component';
 
-
 @NgModule({
     declarations: [
         AppComponent,

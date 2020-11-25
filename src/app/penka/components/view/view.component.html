@@ -82,15 +82,20 @@
                         </mat-card-header>
                         <mat-card-content class="card-score-content">
                             <ng-container *ngIf="participants$ | async as participants">
-                                <ul class="list-participants" *ngFor="let part of participants | filterCodePenka:penka.codePenka">
+                                <ul class="list-participants">
                                     <li class="list-participants-item row between-lg"
-                                        *ngFor="let part of participants | filterCodePenka:penka.codePenka">
-                                        <p class="participant-font">{{part.userName}}</p>
-                                        <p class="participant-font">{{part.accumulatedScore}}</p>
+                                        *ngFor="let part of participants | filterCodePenka:penka.codePenka; let i = index, let c = count">
+
+                                        <ng-container *ngIf="c">
+                                            <p class="participant-font">{{part.userName}}</p>
+                                            <p class="participant-font">{{part.accumulatedScore}}</p>
+                                        </ng-container>
+
                                     </li>
                                 </ul>
                             </ng-container>
-                            <button mat-stroked-button (click)="modalParticipants()" class="btn-grid-participants">
+                            <button mat-stroked-button (click)="modalParticipants(penka.codePenka)"
+                                    class="btn-grid-participants">
                                 Ver tabla de resultados
                             </button>
                         </mat-card-content>
@@ -116,7 +121,8 @@
                                     <ng-container *ngIf="listMatches$ | async as listMatches">
                                         <ul *ngFor="let lm of listMatches | filterCodeTemplate:penka.codeTemplate | filterStatus:'1'; let i = index">
                                             <li *ngIf=" i <= 3">
-                                                <app-match-result [match]="lm" [codePenka]="penka.codePenka"></app-match-result>
+                                                <app-match-result [match]="lm"
+                                                                  [codePenka]="penka.codePenka"></app-match-result>
                                             </li>
                                         </ul>
                                     </ng-container>
@@ -126,7 +132,8 @@
                                     <ng-container *ngIf="listMatches$ | async as listMatches">
                                         <ul *ngFor="let lm of listMatches | filterCodePenka:penka.codePenka | filterStatus:'1'; let i = index">
                                             <li *ngIf=" i <= 3">
-                                                <app-match-result [match]="lm" [codePenka]="penka.codePenka"></app-match-result>
+                                                <app-match-result [match]="lm" [userId]="user.uid"
+                                                                  [codePenka]="penka.codePenka"></app-match-result>
                                             </li>
                                         </ul>
                                     </ng-container>
@@ -145,18 +152,18 @@
 
                     <mat-card class="card-nextMatches">
                         <mat-card-header class="card-nextMatches-header">
-                           <div class="container">
-                               <div class="row">
-                                   <div class="col-lg-8">
-                                       <p class="card-header-title">Proximas Jugadas</p>
-                                   </div>
-                                   <div class="col-lg-4 row middle-lg">
-                                       <button mat-button class="btn-goGamble" (click)="playGamble(penka)">
-                                           Llenar Resultados
-                                       </button>
-                                   </div>
-                               </div>
-                           </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <p class="card-header-title">Proximas Jugadas</p>
+                                    </div>
+                                    <div class="col-lg-4 row middle-lg">
+                                        <button mat-button class="btn-goGamble" (click)="playGamble(penka)">
+                                            Llenar Resultados
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </mat-card-header>
                         <mat-card-content class="card-nextMatches-content">
                             <div class="row">

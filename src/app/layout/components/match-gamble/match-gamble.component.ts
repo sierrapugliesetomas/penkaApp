@@ -20,13 +20,14 @@ export class MatchGambleComponent implements OnInit {
     @Input() match;
     @Input() codePenka;
     @Input() format;
+    @Input() userId;
 
     save: string;
 
     newGamble = {} as Gamble;
     user = {} as User;
 
-    gambles$: Observable<Gamble[]>;
+    gamble = [] as Gamble[];
 
     constructor(
         public firebase: FirebaseApp,
@@ -38,7 +39,10 @@ export class MatchGambleComponent implements OnInit {
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
 
-        this.gambles$ = this.gambleService.getGamble();
+        this.gambleService.getMatch(this.codePenka, this.userId, this.match.singleMatchId).subscribe(
+            res => this.gamble = res,
+            error => console.log(error));
+
     }
 
 
@@ -124,6 +128,7 @@ export class MatchGambleComponent implements OnInit {
 
                         // Save collection gamble
                         this.newGamble.codePenka = this.codePenka;
+                        this.newGamble.penkaFormat = 'PRO';
                         this.newGamble.singleMatchId = match.singleMatchId;
                         this.newGamble.userId = this.user.uid;
                         this.newGamble.userName = this.user.displayName;
@@ -134,6 +139,8 @@ export class MatchGambleComponent implements OnInit {
                         this.newGamble.date = today.getDate() + ' de ' + months[today.getMonth()] + ' de ' + today.getFullYear();
                         this.newGamble.winnerTeamId = winnerId;
                         this.newGamble.draw = draw;
+                        this.newGamble.status = '1';
+                        this.newGamble.scoreAchieved = 0;
 
                         this.gambleService.addGamble(this.newGamble);
 
@@ -201,6 +208,7 @@ export class MatchGambleComponent implements OnInit {
 
                         // Save collection gamble
                         this.newGamble.codePenka = this.codePenka;
+                        this.newGamble.penkaFormat = 'MEDIUM';
                         this.newGamble.singleMatchId = match.singleMatchId;
                         this.newGamble.userId = this.user.uid;
                         this.newGamble.userName = this.user.displayName;
@@ -209,6 +217,8 @@ export class MatchGambleComponent implements OnInit {
                         const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
                         const today = new Date();
                         this.newGamble.date = today.getDate() + ' de ' + months[today.getMonth()] + ' de ' + today.getFullYear();
+                        this.newGamble.status = '1';
+                        this.newGamble.scoreAchieved = 0;
 
                         this.gambleService.addGamble(this.newGamble);
 

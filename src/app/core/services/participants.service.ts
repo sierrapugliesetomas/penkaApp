@@ -27,6 +27,17 @@ export class ParticipantsService {
         return this.participants;
     }
 
+    /* Get participants on status 1 */
+    getParticipantsPublic(): any {
+        return this.afs.collection<Participant>('participants', ref => ref.where('status', '==', '1'))
+            .snapshotChanges().pipe(map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Participant;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
     getParticipantByUserAndCodePenka(userId, codePenka) {
         return this.afs.collection<Participant>('participants', ref => ref.where('userId', '==', userId)
             .where('codePenka', '==', codePenka)).snapshotChanges().pipe(
