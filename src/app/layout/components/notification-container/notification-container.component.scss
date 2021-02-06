@@ -1,0 +1,44 @@
+/* MOBILE */
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+  .list {
+    padding: 0 0 0 20px;
+  }
+  .item {
+
+  }
+  .notification-font {
+    font-size: 12px;
+  }
+  a {
+    color: white;
+  }
+  ::ng-deep .cdk-overlay-pane .notification-menu {
+    min-width:200px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+  }
+}
+
+/* DESKTOP */
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .list {
+
+  }
+  .item {
+
+  }
+  ::ng-deep .mat-menu {
+    width: 500px;
+  }
+  a {
+    color: white;
+  }
+  ::ng-deep .cdk-overlay-pane .notification-menu {
+    min-width: 450px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+  }
+}
+

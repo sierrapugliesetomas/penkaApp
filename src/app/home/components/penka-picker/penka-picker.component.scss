@@ -1,0 +1,56 @@
+/* MOBILE 300p */
+@media only screen and (min-width: 300px) and (orientation: portrait) {
+  .selectPicker {
+    width: 100%;
+    margin: 0 0 10px 0;
+    padding: 10px;
+    background-color: #FDA328;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+  }
+}
+
+/* MOBILE 350p */
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+
+  .selectPicker {
+    width: 100%;
+    margin: 0 0 10px 0;
+    padding: 10px;
+    background-color: #FDA328;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+  }
+}
+
+/* DESKTOP 720p */
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .list-buttons {
+    padding: 0;
+    margin: 0;
+  }
+  .item-buttons {
+    padding: 0;
+    margin: 0 0 10px 0;
+  }
+}
+
+/* DESKTOP 1080p */
+@media only screen and (min-width: 1900px) and (orientation: landscape) {
+  .list-buttons {
+    padding: 0;
+    margin: 0;
+  }
+  .item-buttons {
+    padding: 0;
+    margin: 0 0 10px 0;
+  }
+}

@@ -19,7 +19,7 @@ export interface Penka {
     distributionBet?: string;
     accumulatedBet?: number;
     limitParticipants?: number;
-    date?: string;
-    dateLimit?: string;
+    date?: Date;
+    dateLimit?: Date;
     status?: string;
 }

@@ -1,211 +1,36 @@
-<ng-container *ngIf="auth.user$ | async; then authenticated else guess"></ng-container>
-
-<ng-template #authenticated>
+<ng-container *ngIf="auth.user$ | async; else guess">
     <div class="container">
         <br>
-        <!-- PENKAS PLAYING -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="box">
-                    <p class="section-title">Pencas en Juego</p>
-                </div>
-            </div>
-        </div>
-        <ng-container>
-            <app-home-penka-viewer></app-home-penka-viewer>
-        </ng-container>
+        <!-- home/penka-viewer -->
+        <app-penka-viewer></app-penka-viewer>
         <br>
         <br>
-        <!-- PENKAS POP -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="box row between-lg">
-                    <p class="section-title">Pencas Populares</p>
-                    <a mat-button routerLink="/penka/pop">
-                        Ver Todos
-                        <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="box">
-                    <ng-container *ngIf="participants.length > 0">
-                        <ul class="mat-nav-list">
-                            <li class="mat-list-item" *ngFor="let p of participants">
-                                <app-home-pop [codePenka]="p.codePenka"></app-home-pop>
-                            </li>
-                        </ul>
-                    </ng-container>
-                </div>
-            </div>
-        </div>
+        <!-- home/pop-penkas-container -->
+        <app-pop-penkas-container></app-pop-penkas-container>
         <br>
+        <!-- home/templates-container -->
+        <app-templates-container></app-templates-container>
         <br>
-        <!-- TEMPLATES -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="box">
-                    <p class="section-title">Templates</p>
-                </div>
-                <div class="box row between-lg">
-                    <p class="section-subTitle">Selecciona un template para organizar una penka.</p>
-                    <a mat-button routerLink="/penka/templates">
-                        Ver Todos
-                        <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="box">
-                    <ng-container *ngIf="templates.length > 0">
-                        <ul class="mat-nav-list">
-                            <li *ngFor="let template of templates" class="mat-list-item">
-                                <app-home-templates [template]="template"></app-home-templates>
-                            </li>
-                        </ul>
-                    </ng-container>
-                </div>
-            </div>
-        </div>
+        <!-- home/single-matches-container -->
+        <app-single-matches-container></app-single-matches-container>
         <br>
-        <br>
-        <!-- SINGLE MATCHES -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="box">
-                    <p class="section-title">Partidos Disponibles</p>
-
-                </div>
-                <div class="box row between-lg">
-                    <p class="section-subTitle">Selecciona los partidos que desees jugar.</p>
-                    <a mat-button routerLink="/penka/templates">
-                        Ver Todos
-                        <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="box">
-                    <ng-container *ngIf="singleMatches.length > 0">
-                        <ul class="mat-nav-list smList">
-                            <li *ngFor="let match of singleMatches"
-                                class="mat-list-item">
-                                <app-home-single-matches [match]="match"></app-home-single-matches>
-                            </li>
-                        </ul>
-                    </ng-container>
-                </div>
-            </div>
-        </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-</ng-template>
+</ng-container>
 
 <ng-template #guess>
-    <app-banner class="banner-home"></app-banner>
+    <!-- home/main-banner -->
+    <app-main-banner></app-main-banner>
     <br>
-    <br>
-    <app-bar-button-desktop></app-bar-button-desktop>
+    <!-- home/secondary-banners -->
+    <app-secondary-banners></app-secondary-banners>
     <br>
     <br>
     <div class="container">
-        <!-- PENKAS POP -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="box row between-lg">
-                    <p class="section-title">Penkas Populares</p>
-                    <a mat-button routerLink="/penka/pop">
-                        Ver Todos
-                        <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="box">
-                    <ng-container *ngIf="participants.length > 0">
-                        <ul class="mat-nav-list">
-                            <li class="mat-list-item" *ngFor="let p of participants">
-                                <app-home-pop [codePenka]="p.codePenka"></app-home-pop>
-                            </li>
-                        </ul>
-                    </ng-container>
-                </div>
-            </div>
-        </div>
+        <!-- home/templates-container -->
+        <app-templates-container></app-templates-container>
         <br>
+        <!-- home/single-matches-container -->
+        <app-single-matches-container></app-single-matches-container>
         <br>
-        <!-- TEMPLATES -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="box">
-                    <p class="section-title">Templates</p>
-                </div>
-                <div class="box row between-lg">
-                    <p class="section-subTitle">Selecciona un template para organizar una penka.</p>
-                    <a mat-button routerLink="/penka/templates">
-                        Ver Todos
-                        <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="box">
-                    <ng-container *ngIf="templates.length > 0">
-                        <ul class="mat-nav-list">
-                            <li *ngFor="let template of templates" class="mat-list-item">
-                                <app-home-templates [template]="template"></app-home-templates>
-                            </li>
-                        </ul>
-                    </ng-container>
-                </div>
-            </div>
-        </div>
-        <br>
-        <br>
-        <!-- SINGLE MATCHES -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="box">
-                    <p class="section-title">Partidos Disponibles</p>
-                </div>
-                <div class="box row between-lg">
-                    <p class="section-subTitle">Selecciona los partidos que desees jugar.</p>
-                    <a mat-button routerLink="/penka/templates">
-                        Ver Todos
-                        <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="box">
-                    <ng-container *ngIf="singleMatches.length > 0">
-                        <ul class="mat-nav-list smList">
-                            <li *ngFor="let match of singleMatches"
-                                class="mat-list-item">
-                                <app-home-single-matches [match]="match"></app-home-single-matches>
-                            </li>
-                        </ul>
-                    </ng-container>
-                </div>
-            </div>
-        </div>
     </div>
 </ng-template>
-
-
-

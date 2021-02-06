@@ -1,0 +1,226 @@
+/* MOBILE 300p */
+@media only screen and (min-width: 300px) and (orientation: portrait) {
+  .card {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .header {
+    background-color: #792fe8;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 10px 20px 5px 20px;
+  }
+  .title {
+    width: 100%;
+    padding: 0;
+    display: inline-block;
+  }
+  .title p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  .maker {
+    width: 70%;
+    padding: 0;
+    display: inline-block;
+  }
+
+  .maker p {
+    font-size: 11px;
+    margin: 0;
+  }
+  .btn-watch {
+    font-size: 10px;
+    line-height: 12px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border: 1px solid white;
+    padding: 0 10px 0 10px;
+    margin-top: -10px;
+  }
+  .body {
+    background-color: #2E3035;
+    padding: 20px 0 10px 0;
+  }
+  .list-participants {
+    height: 190px;
+    border-right: 1px solid #4C4E52;
+  }
+  .list-matches-done {
+    height: 190px;
+    border-right: 1px solid #4C4E52;
+  }
+  .list-matches-wait {
+    height: 190px;
+  }
+  .footer {
+    background-color: #2E3035;
+    padding: 20px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    text-align: right;
+  }
+  .btn-gambles {
+    font-size: 10px;
+    border-radius: 25px;
+    background-color: #FDA328;
+  }
+}
+
+/* MOBILE 350p */
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+
+  .card {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .header {
+    background-color: #792fe8;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 10px 20px 5px 20px;
+  }
+  .title {
+    width: 100%;
+    padding: 0;
+    display: inline-block;
+  }
+  .title p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .maker {
+    width: 70%;
+    padding: 0;
+    display: inline-block;
+  }
+
+  .maker p {
+    font-size: 12px;
+    margin: 0;
+  }
+  .btn-watch {
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border: 1px solid white;
+    padding: 0 20px 0 20px;
+    margin-top: -10px;
+  }
+  .body {
+    background-color: #2E3035;
+    padding: 20px 0 10px 0;
+  }
+  .list-participants {
+    height: 190px;
+    border-right: 1px solid #4C4E52;
+  }
+  .list-matches-done {
+    height: 190px;
+    border-right: 1px solid #4C4E52;
+  }
+  .list-matches-wait {
+    height: 190px;
+  }
+  .footer {
+    background-color: #2E3035;
+    padding: 20px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    text-align: right;
+  }
+  .btn-gambles {
+    font-size: 12px;
+    border-radius: 25px;
+    background-color: #FDA328;
+  }
+
+}
+
+/* DESKTOP 720P and 1080p */
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .card {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .status-ended-false {
+    background-color: #792fe8;
+  }
+  .status-ended-true {
+    background-color: #737171;
+  }
+  .header {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 10px 20px 5px 20px;
+  }
+  .title {
+    width: 85%;
+    padding: 0;
+    display: inline-block;
+  }
+  .title p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .maker {
+    width: 85%;
+    padding: 0;
+    display: inline-block;
+  }
+
+  .maker p {
+    font-size: 14px;
+    margin: 0;
+  }
+  .btn-watch {
+    float: right;
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border: 1px solid white;
+    padding: 0 20px 0 20px;
+    margin-top: -10px;
+  }
+  .body {
+    background-color: #2E3035;
+    padding: 20px 0 10px 0;
+  }
+  .list-participants {
+    height: 190px;
+    border-right: 1px solid #4C4E52;
+  }
+  .list-matches-done {
+    height: 190px;
+    border-right: 1px solid #4C4E52;
+  }
+  .list-matches-wait {
+    height: 190px;
+  }
+  .footer {
+    background-color: #2E3035;
+    padding: 20px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    text-align: right;
+  }
+  .btn-gambles {
+    font-size: 14px;
+    border-radius: 25px;
+    background-color: #FDA328;
+  }
+}

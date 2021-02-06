@@ -7,7 +7,7 @@ export interface ListMatches {
     userName?: string;
     userEmail?: string;
     userPhoto?: string;
-    date?: string;
+    date?: Date;
     homeTeamId?: string;
     homeTeamName?: string;
     homeTeamAlias?: string;
@@ -16,8 +16,8 @@ export interface ListMatches {
     visitTeamName?: string;
     visitTeamAlias?: string;
     visitTeamFlag?: string;
-    startDate?: string;
-    startTime?: string;
+    startDate?: Date;
+    limitDate?: Date;
     status?: string;
 }
 

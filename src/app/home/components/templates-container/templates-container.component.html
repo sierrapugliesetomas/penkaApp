@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-xs-9 col-lg-10">
+        <div class="box">
+            <p class="section-title">Templates</p>
+        </div>
+    </div>
+    <div class="col-xs-3 col-lg-2">
+        <div class="box">
+            <a mat-button [routerLink]="['/penka/new2', 'templates']" class="arrow-watch-all">
+                Ver Todos
+                <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-lg-12">
+        <div class="box">
+            <p class="section-subTitle">Selecciona un template para organizar una penka.</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-lg-12">
+        <div class="box">
+            <ul class="list-horizontal">
+                <li *ngFor="let template of templates"
+                    class="item-horizontal">
+                    <app-template [template]="template"></app-template>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

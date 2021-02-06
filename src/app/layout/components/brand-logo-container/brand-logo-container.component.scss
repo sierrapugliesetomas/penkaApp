@@ -1,0 +1,27 @@
+/* MOBILE 300P */
+@media only screen and (min-width: 300px) and (orientation: portrait) {
+  .logo {
+    width: 30px;
+  }
+}
+
+/* MOBILE 350P */
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+  .logo {
+    width: 40px;
+  }
+}
+
+/* DESKTOP 720P */
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .logo {
+    width: 40px;
+  }
+}
+
+/* DESKTOP 1080P */
+@media only screen and (min-width: 1900px) and (orientation: landscape) {
+  .logo {
+    width: 40px;
+  }
+}

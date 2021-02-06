@@ -1,0 +1,10 @@
+<div class="match">
+    <div class="teams">
+        <img class="teamPick" src="{{match.homeTeamFlag}}" alt="">
+        <p class="separator">:</p>
+        <img class="teamPick" src="{{match.visitTeamFlag}}" alt="">
+    </div>
+    <div class="deleted">
+        <p (click)="delPick(match.id)" class="btn-delPick">x</p>
+    </div>
+</div>

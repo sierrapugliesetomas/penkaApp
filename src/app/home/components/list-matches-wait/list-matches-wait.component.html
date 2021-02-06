@@ -1,0 +1,13 @@
+<p class="title">Partidos por Jugar</p>
+<ng-container *ngFor="let g of gambles | filterStatus:'1'; let i = index, let c = count">
+    <ng-container *ngIf="i < 1">
+        <p class="text-help">{{c}}&nbsp;partidos.</p>
+    </ng-container>
+</ng-container>
+<ul class="list-matches">
+    <li class="item-matches" *ngFor="let match of gambles | filterStatus:'1'; let x=index">
+        <ng-container *ngIf="x <= 3">
+            <app-match-mini-gamble [match]="match"></app-match-mini-gamble>
+        </ng-container>
+    </li>
+</ul>

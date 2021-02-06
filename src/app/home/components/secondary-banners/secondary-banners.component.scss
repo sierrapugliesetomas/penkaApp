@@ -1,0 +1,139 @@
+/* common */
+.makePenka {
+  background-image: url("../../../../assets/images/home/buttonBar/join_newPenkas.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
+}
+
+.joinPenka {
+  background-image: url("../../../../assets/images/home/buttonBar/join_popPenkas.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
+}
+
+.faqPenka {
+  background-image: url("../../../../assets/images/home/buttonBar/join_faq.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
+}
+
+/* MOBILE 300p */
+@media only screen and (min-width: 300px) and (orientation: portrait) {
+  .makePenka {
+    height: 160px;
+  }
+
+  .joinPenka {
+    height: 160px;
+  }
+
+  .faqPenka {
+    height: 160px;
+  }
+  .banner {
+    width: 50%;
+    padding: 80px 0 0 20px;
+  }
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+/* MOBILE 350p */
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+  .makePenka {
+    height: 180px;
+  }
+
+  .joinPenka {
+    height: 180px;
+  }
+
+  .faqPenka {
+    height: 180px;
+  }
+  .banner {
+    width: 50%;
+    padding: 100px 0 0 20px;
+  }
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 16px;
+  }
+}
+
+/* DESKTOP 720P */
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .makePenka {
+    height: 180px;
+  }
+  .makePenka:hover {
+    cursor: pointer;
+  }
+
+  .joinPenka {
+    height: 180px;
+  }
+  .joinPenka:hover {
+    cursor: pointer;
+  }
+
+  .faqPenka {
+    height: 180px;
+  }
+  .faqPenka:hover {
+    cursor: pointer;
+  }
+  .banner {
+    width: 50%;
+    padding: 100px 0 0 20px;
+  }
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 18px;
+  }
+}
+
+/* DESKTOP 1080p */
+@media only screen and (min-width: 1900px) and (orientation: landscape) {
+  .makePenka {
+    height: 180px;
+  }
+  .makePenka:hover {
+    cursor: pointer;
+  }
+
+  .joinPenka {
+    height: 180px;
+  }
+  .joinPenka:hover {
+    cursor: pointer;
+  }
+
+  .faqPenka {
+    height: 180px;
+  }
+  .faqPenka:hover {
+    cursor: pointer;
+  }
+  .banner {
+    width: 50%;
+    padding: 90px 0 0 20px;
+  }
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+  }
+}

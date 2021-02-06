@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-header">
+        <p class="date">{{match.startDate.toDate() | date:'MMM dd'}} - {{match.startDate.toDate() | date:'HH:mm'}}</p>
+    </div>
+    <div class="card-body">
+        <div class="team">
+            <img class="team-flag" alt="{{match.homeTeamAlias}}" src="{{match.homeTeamFlag}}">
+            <p class="team-alias">{{match.homeTeamAlias}}</p>
+        </div>
+        <div class="vs">
+            <p>VS</p>
+        </div>
+        <div class="team">
+            <img class="team-flag" alt="{{match.visitTeamAlias}}" src="{{match.visitTeamFlag}}">
+            <p class="team-alias">{{match.visitTeamAlias}}</p>
+        </div>
+    </div>
+    <div class="card-footer">
+        <ng-container *ngFor="let c of competition">
+            <div class="competition-logo">
+                <img class="img-logo" alt="{{c.name}}" src="{{c.flagUrl}}">
+            </div>
+            <div class="competition-name">
+                <p class="p-name">{{c.name}}</p>
+            </div>
+        </ng-container>
+    </div>
+</div>

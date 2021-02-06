@@ -1,0 +1,15 @@
+<div class="match-container">
+    <!-- date -->
+    <div class="date-container">
+        <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp; - &nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+    </div>
+    <div class="teams-container">
+        <p class="teams-alias">{{match.homeTeamAlias}}</p>
+        <img class="team-flag" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
+        <!----->
+        <p class="separator">:</p>
+        <!---->
+        <img class="team-flag" src="{{match.visitTeamFlag}}" alt="{{match.visitTeamName}}">
+        <p class="teams-alias">{{match.visitTeamAlias}}</p>
+    </div>
+</div>

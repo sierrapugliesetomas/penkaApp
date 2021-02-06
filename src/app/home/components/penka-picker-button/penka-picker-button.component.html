@@ -1,0 +1,7 @@
+<ng-container *ngFor="let p of penka; let i = index">
+    <ng-container *ngIf="i === 0">
+        <button mat-button class="btn-penka" (click)="pick(p.codePenka)">
+            {{p.name}}&nbsp;-&nbsp;{{p.accumulatedBet}}$
+        </button>
+    </ng-container>
+</ng-container>

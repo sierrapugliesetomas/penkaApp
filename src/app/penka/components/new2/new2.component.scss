@@ -1,162 +1,241 @@
-/* -------------------------- */
-/* ------ 1920 x 1080  ------- */
-@media (min-width: 1900px) {
-    /*//// exclusive classes */
-    .stepNumber {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 800;
-        font-size: 28px;
-        font-style: normal;
-        line-height: 35px;
+/* Common */
+.counterPicks span {
+  color: #FDA328;
+}
 
-    }
+/* MOBILE 300p */
+@media only screen and (min-width: 300px) and (orientation: portrait) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: inline;
+  }
+  .list-vertical {
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 280px;
+  }
+  .item-vertical {
+    width: 80%;
+    text-align: center;
+    margin: 0 0 20px 50px;
+  }
+  .list-horizontal{
+    margin: 0;
+  }
+  /* Counter Matches Picked */
+  .counterPicks {
+    font-size: 12px;
+    line-height: 12px;
+    color: white;
+  }
+  .btn-continue {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 10px;
+    float: right;
+    background-color: #FDA328;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+  }
+  .search-match {
+    background-color: #2E3035;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    width: 180px;
+    height: 30px;
+    font-size: 10px;
+    padding-left: 10px;
+  }
+  .search-match::placeholder {
+    color: white;
+  }
+  .search-match::content {
+    color: white;
+  }
+  .search-match:hover {
+    border: 2px solid #FDA328;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+  }
+  .search-match[type=text]:focus {
+    outline: none;
+    border: 2px solid #FDA328;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+  }
+}
 
-    .stepTotal {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 800;
-        font-size: 16px;
-        font-style: normal;
-        color: gray;
-        line-height: 25px;
-    }
+/* MOBILE 350p */
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: inline;
+  }
+  .list-vertical {
+    padding: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 400px;
+  }
+  .item-vertical {
+    width: 80%;
+    margin: 0 0 20px auto;
+  }
+  /* Counter Matches Picked */
+  .counterPicks {
+    font-size: 12px;
+    line-height: 12px;
+    color: white;
+  }
+  .btn-continue {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 10px;
+    float: right;
+    background-color: #FDA328;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+  }
+  .search-match {
+    background-color: #2E3035;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    width: 180px;
+    height: 30px;
+    font-size: 10px;
+    padding-left: 10px;
+  }
+  .search-match::placeholder {
+    color: white;
+  }
+  .search-match::content {
+    color: white;
+  }
+  .search-match:hover {
+    border: 2px solid #FDA328;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+  }
+  .search-match[type=text]:focus {
+    outline: none;
+    border: 2px solid #FDA328;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+  }
+}
 
-    .labelSteps {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        font-size: 12px;
-        font-style: normal;
-        line-height: 22px;
-        letter-spacing: 2.2px;
-    }
+/* DESKTOP 720P */
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .desktop {
+    display: inline;
+  }
+  .mobile {
+    display: none;
+  }
+  .counterPicks {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .counterPicks span {
+    color: #FDA328;
+  }
+  .btn-continue {
+    background-color: #FDA328;
+    padding: 0 20px 0 20px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    margin-right: 20px;
+    float: right;
+  }
+  .search-match {
+    background-color: #2E3035;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    width: 300px;
+    height: 30px;
+    font-size: 12px;
+    padding-left: 20px;
+  }
+  .search-match::placeholder {
+    color: white;
+  }
+  .search-match::content {
+    color: white;
+  }
+  .search-match:hover {
+    border: 2px solid #FDA328;
+    border-radius: 25px;
+  }
+  .search-match[type=text]:focus {
+    outline: none;
+    border: 2px solid #FDA328;
+    border-radius: 25px;
 
-    .tournament {
-        width: 350px;
-    }
+  }
+}
 
-    .mat-drawer-container {
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 100%;
-        width: 320px;
-        height: 220px;
-        border: 1px solid rgba(0, 0, 0, 0.5);
-        border-radius: 15px;
-        -webkit-border-radius: 15px;
-    }
+/* DESKTOP 1080P */
+@media only screen and (min-width: 1900px) and (orientation: landscape) {
+  .desktop {
+    display: inline;
+  }
+  .mobile {
+    display: none;
+  }
+  .counterPicks {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .counterPicks span {
+    color: #FDA328;
+  }
+  .btn-continue {
+    background-color: #FDA328;
+    padding: 0 20px 0 20px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    margin-right: 20px;
+    float: right;
+  }
+  .search-match {
+    background-color: #2E3035;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    width: 300px;
+    height: 30px;
+    font-size: 12px;
+    padding-left: 20px;
+  }
+  .search-match::placeholder {
+    color: white;
+  }
+  .search-match::content {
+    color: white;
+  }
+  .search-match:hover {
+    border: 2px solid #FDA328;
+    border-radius: 25px;
+  }
+  .search-match[type=text]:focus {
+    outline: none;
+    border: 2px solid #FDA328;
+    border-radius: 25px;
 
-    .btn-template {
-        color: #252526;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 400;
-        font-size: 20px;
-        background-color: #FDA328;
-        opacity: 0.5;
-    }
-
-    .btn-template:hover {
-        background-color: #FDA328;
-        opacity: 1;
-    }
-
-    .content {
-        display: flex;
-        height: 100%;
-        align-items: center;
-        justify-content: center;
-        overflow-x: hidden;
-    }
-    .mat-nav-list {
-        list-style-type: none;
-        padding-left: 0;
-    }
-
-    .mat-list-item {
-        margin-right: 20px;
-        padding-left: 10px;
-        background-color: transparent;
-        border: 0;
-    }
-
-    .mat-list-item:hover {
-        background-color: transparent;
-    }
-
-    /* --- List Single Matches */
-    .listSingleMatches {
-        list-style-type: none;
-        padding: 0;
-    }
-    .itemSingleMatches {
-        display: inline-grid;
-        margin-right: 40px;
-        margin-bottom: 40px;
-    }
-    .itemSingleMatches:hover {
-        cursor: pointer;
-    }
-
-    /* --- Pick Matches --- */
-    .listPickMatches {
-        list-style-type: none;
-        padding: 0;
-    }
-    .itemPickMatches {
-        display: inline-grid;
-        margin: 0 20px 20px 0;
-    }
-    .counterPicks {
-        font-family: Roboto, "Helvetica Neue", sans-serif;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 23px;
-        color: white;
-    }
-    .counterPicks span {
-        color: #FDA328;
-    }
-    .containerPick {
-        display: inline-flex;
-        width: 120px;
-        height: 35px;
-    }
-    .matchPick {
-        display: inline-flex;
-        width: 80px;
-        padding: 5px 10px 0 10px;
-        background-color: #737171;
-        border-top-left-radius: 25px;
-        border-bottom-left-radius: 25px;
-    }
-    .delPick {
-        width: 30px;
-        background-color: #792fe8;
-        border-top-right-radius: 25px;
-        border-bottom-right-radius: 25px;
-    }
-    .teamPick {
-        width: 25px;
-        height: 25px;
-        margin: 0;
-    }
-    .separator {
-        margin: 0 10px 0 10px;
-    }
-    .btn-delPick {
-        padding: 0;
-        margin: 6px;
-        background-color: transparent;
-    }
-    .btn-delPick:hover {
-        cursor: pointer;
-    }
-    .btn-makePenka {
-        background-color: #FDA328;
-        padding: 0 20px 0 20px;
-        border-radius: 25px;
-        margin-right: 20px;
-    }
-
+  }
 }
 
 

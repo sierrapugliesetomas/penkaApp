@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-xs-9 col-lg-10">
+        <div class="box">
+            <p class="section-title">Partidos Disponibles</p>
+        </div>
+    </div>
+    <div class="col-xs-3 col-lg-2">
+        <div class="box">
+            <a mat-button [routerLink]="['/penka/new2', 'singleMatches']" class="arrow-watch-all">
+                Ver Todos
+                <mat-icon fontSet="material-icons-outlined">arrow_right_alt</mat-icon>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-lg-12">
+        <div class="box">
+            <p class="section-subTitle">Selecciona los partidos que desees jugar.</p>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="listMatches.length > 0;">
+    <div class="row">
+        <div class="col-xs-8 col-lg-10">
+            <div class="box">
+                <p class="counterPicks"><span>{{listMatches.length}}</span> partidos seleccionados.</p>
+            </div>
+        </div>
+        <div class="col-xs-4 col-lg-2">
+            <div class="box">
+                <button mat-button (click)="makePenka()" class="btn-continue">
+                    Continuar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-lg-12">
+            <div class="box">
+                <ul class="list-horizontal">
+                    <li class="item-horizontal"
+                        *ngFor="let match of listMatches">
+                        <app-single-match-picked [match]="match"></app-single-match-picked>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<div class="row">
+    <div class="col-xs-12 col-lg-12">
+        <div class="box">
+            <ul class="list-horizontal">
+                <li *ngFor="let match of singleMatches"
+                    class="item-horizontal" (click)="pickTeam(match)">
+                    <app-single-match [match]="match"></app-single-match>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

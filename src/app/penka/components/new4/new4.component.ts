@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ListMatchesService} from '../../../core/services/list-matches.service';
-import {Observable} from 'rxjs';
+import {Subject} from 'rxjs';
 import {ListMatches} from '../../../core/interfaces/list-matches';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {PenkasService} from '../../../core/services/penkas.service';
@@ -13,21 +13,30 @@ import {Participant} from '../../../core/interfaces/participant';
 import {Gamble} from '../../../core/interfaces/gamble';
 import {MatDialog} from '@angular/material/dialog';
 import {GambleComponent} from '../gamble/gamble.component';
+import {GambleService} from '../../../core/services/gamble.service';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
     selector: 'app-new4',
     templateUrl: './new4.component.html',
     styleUrls: ['./new4.component.scss']
 })
-export class New4Component implements OnInit {
-
+export class New4Component implements OnInit, OnDestroy {
+    title = 'Penca creada!';
+    stepNumber = '4';
+    stepTotal = '4';
     codePenka: string;
-    listMatches$: Observable<ListMatches[]>;
-    penkas$: Observable<Penka[]>;
+
+    /* Array ListMatches */
+    listMatches = [] as ListMatches[];
+    /* Array Penka */
+    penka = [];
 
     user = {} as User;
     newParticipant = {} as Participant;
     newGamble = {} as Gamble;
+
+    private unsubscribe$ = new Subject<void>();
 
     constructor(
         public firebase: FirebaseApp,
@@ -37,20 +46,43 @@ export class New4Component implements OnInit {
         private activatedRoute: ActivatedRoute,
         private penkasService: PenkasService,
         private participantsService: ParticipantsService,
+        private gambleService: GambleService,
         public dialog: MatDialog) {
     }
 
     ngOnInit(): void {
+        /* User */
         this.user = this.firebase.auth().currentUser;
-
+        /* Get CodePenka */
         this.activatedRoute.params.subscribe(
             (params: Params) => {
                 this.codePenka = params.codePenka;
             }
         );
+        /* Get Penka */
+        this.penkasService.getPenkaByCodePenka(this.codePenka)
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
+            res => {
+                this.penka = res;
+            }
+        );
+        /*******************/
+        /* Get ListMatches */
+        this.listMatchesService.getListMatches()
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
+            res => {
+                this.listMatches = res;
+            });
+        /*******************/
+    }
 
-        this.penkas$ = this.penkasService.getPenkaByCodePenka(this.codePenka);
-        this.listMatches$ = this.listMatchesService.getMatches();
+    ngOnDestroy(): void {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 
     // tslint:disable-next-line:typedef
@@ -64,45 +96,15 @@ export class New4Component implements OnInit {
     }
 
 
-    // tslint:disable-next-line:typedef
-    playGamble(penka) {
-        let participant = [];
-        this.participantsService.getParticipantByUserAndCodePenka(this.user.uid, penka.codePenka).subscribe(
-            res => {
-                participant = res;
-
-                if (participant.length > 0) {
-
-                    this.router.navigate(['/penka/gamble/' + penka.id]).catch(error => console.log(error));
-
-                } else {
-
-                    const totalBet: number = penka.accumulatedBet + penka.bet;
-                    const totalParticipants: number = penka.nParticipants + 1;
-                    this.penkasService.updatePenka(penka.id, totalParticipants, totalBet);
-
-                    /// Save collection participants
-                    this.newParticipant.codePenka = penka.codePenka;
-                    this.newParticipant.userId = this.user.uid;
-                    this.newParticipant.userName = this.user.displayName;
-                    this.newParticipant.userEmail = this.user.email;
-                    this.newParticipant.formatName = penka.formatName;
-                    this.newParticipant.bet = penka.bet;
-                    this.newParticipant.accumulatedScore = 0;
-
-                    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-                    const today = new Date();
-                    this.newParticipant.date = today.getDate() + ' de ' + months[today.getMonth()] + ' de ' + today.getFullYear();
-                    this.participantsService.addParticipant(this.newParticipant);
-
-                    this.router.navigate(['/penka/gamble/' + penka.id]).catch(error => console.log(error));
-                }
-
-            },
-            error => console.log(error));
+    playGamble(codePenka): void {
+        this.router.navigate(['/penka/gamble/' + codePenka]).catch(error => console.log(error));
     }
 
-    sendInvitation(codePenka) {
+    goWatch(penkaId): void {
+        this.router.navigate(['/penka/dashboard/' + penkaId]).catch(error => console.log(error));
+    }
+
+    sendInvitation(codePenka): void {
         const url = 'https://penkapro.com/penka/found';
         const msg = encodeURIComponent('Unete a la nueva penka de ' + this.user.displayName + '. Solo copia este codigo Penka ' + codePenka + ' e ingresa Aqui! ' + url);
         window.location.href = 'whatsapp://send?text=' + msg;

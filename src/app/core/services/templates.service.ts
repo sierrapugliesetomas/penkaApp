@@ -13,7 +13,7 @@ export class TemplatesService {
     templates: Observable<Template[]>;
 
     constructor(private afs: AngularFirestore) {
-        this.templatesCollection = afs.collection<Template>('templates', ref => ref.orderBy('date', 'asc'));
+        this.templatesCollection = afs.collection<Template>('templates');
         this.templates = this.templatesCollection.snapshotChanges().pipe(
             map(actions => actions.map(a => {
                 const data = a.payload.doc.data() as Template;
@@ -23,15 +23,13 @@ export class TemplatesService {
         );
     }
 
-    getTemplates() {
-        return this.templates;
-    }
-
-    /* Get templates on status 0 and publish true */
-    getTemplatesPublic(): any {
-        return this.afs.collection<Template>('templates', ref => ref.where('status', '==', '0')
-            .where('publish', '==', true))
-            .snapshotChanges().pipe(map(actions => actions.map(a => {
+    getTemplatesPublicLimit(): any { /* checked */
+        return this.afs.collection<Template>('templates', ref => ref
+            .where('publish', '==', true)
+            .where('status', '==', '1')
+            .limit(10))
+            .snapshotChanges().pipe(
+                map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as Template;
                     const id = a.payload.doc.id;
                     return {id, ...data};
@@ -39,9 +37,25 @@ export class TemplatesService {
             );
     }
 
-    getTemplatesById(id) {
+    getTemplatesPublic(): any { /* checked */
+        return this.afs.collection<Template>('templates', ref => ref
+            .where('publish', '==', true)
+            .where('status', '==', '1'))
+            .snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Template;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
+    getTemplatesById(id): any {
         return this.afs.collection('templates').doc(id).valueChanges();
     }
 
+    inactivated(id): any {
+        this.templatesCollection.doc(id).update({status: '2'}).catch();
+    }
 
 }

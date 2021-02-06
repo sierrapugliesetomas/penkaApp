@@ -24,30 +24,20 @@ export class PenkasService {
         );
     }
 
-    getPenkas() {
+    getPenkas(): any {
         return this.penkas;
     }
 
-    getPenkaById(id) {
+    getPenkaById(id): any {
         return this.penkasCollection.doc(id).valueChanges();
     }
 
-    getPenkasPop() {
-        return this.afs.collection<Penka>('penkas', ref => ref.where('visibility', '==', 'PUBLICA')
-            .where('status', '==', '1')).snapshotChanges().pipe(
-            map(actions => actions.map(a => {
-                const data = a.payload.doc.data() as Penka;
-                const id = a.payload.doc.id;
-                return {id, ...data};
-            }))
-        );
-    }
-
-    /* Get penkas by codePenka and status 1 */
     getPenkaByCodePenka(codePenka): any {
-        return this.afs.collection<Penka>('penkas', ref => ref.where('codePenka', '==', codePenka)
-            .where('status', '==', '1')).snapshotChanges()
-            .pipe(map(actions => actions.map(a => {
+        return this.afs.collection<Penka>('penkas', ref => ref
+            .where('codePenka', '==', codePenka)
+            .where('status', 'in', ['1', '2', '9'])
+            .orderBy('dateLimit', 'asc'))
+            .snapshotChanges().pipe(map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as Penka;
                     const id = a.payload.doc.id;
                     return {id, ...data};
@@ -55,16 +45,30 @@ export class PenkasService {
             );
     }
 
+    getAllPenkasByCodePenka(codePenka): any {
+        return this.afs.collection<Penka>('penkas', ref => ref
+            .where('codePenka', '==', codePenka)
+            .where('status', 'in', ['1', '2', '9'])
+            .orderBy('dateLimit', 'asc'))
+            .snapshotChanges().pipe(map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Penka;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
 
-    addPenka(penka: Penka) {
+    addPenka(penka: Penka): any {
         this.penkasCollection.add(penka).catch(error => console.log(error));
     }
 
-    updatePenka(id, nParticipants: number, accumulatedBet: number) {
+    updatePenka(id, nParticipants: number, accumulatedBet: number): any {
         this.penkasCollection.doc(id).update({nParticipants, accumulatedBet}).catch(error => console.log(error));
     }
 
+    // tslint:disable-next-line:typedef
     updateStatus(id, status) {
         this.penkasCollection.doc(id).update({status}).catch(error => console.log(error));
     }
+
 }

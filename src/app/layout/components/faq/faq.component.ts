@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent implements OnInit {
+    title = 'Reglamento';
     estilo: string;
     mediumValue = true;
     proValue = false;
@@ -18,7 +19,7 @@ export class FaqComponent implements OnInit {
 
     }
 
-    junior() {
+    junior(): void {
         this.juniorValue = true;
         this.mediumValue = false;
         this.proValue = false;

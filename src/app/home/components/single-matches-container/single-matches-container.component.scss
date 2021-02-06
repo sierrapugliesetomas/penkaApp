@@ -1,0 +1,58 @@
+/* common */
+.counterPicks span {
+  color: #FDA328;
+}
+
+.btn-continue {
+  line-height: 20px;
+  background-color: #FDA328;
+  padding: 5px 15px 5px 15px;
+  border-radius: 25px;
+  float: right;
+}
+
+/* MOBILE 300p */
+@media only screen and (min-width: 300px) and (orientation: portrait) {
+  .counterPicks {
+    font-size: 12px;
+    line-height: 12px;
+  }
+  .btn-continue {
+    font-size: 12px;
+  }
+}
+
+/* MOBILE 350p */
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+  .counterPicks {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .btn-continue {
+    font-size: 12px;
+  }
+}
+
+/* DESKTOP 720p */
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .counterPicks {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .btn-continue {
+    font-size: 14px;
+  }
+}
+
+/* DESKTOP 1080p */
+@media only screen and (min-width: 1900px) and (orientation: landscape) {
+  .counterPicks {
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  .btn-continue {
+    font-size: 16px;
+  }
+}

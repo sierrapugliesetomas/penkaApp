@@ -1,0 +1,306 @@
+/********** MOBILE *************/
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: inline;
+  }
+  /** Card Container **/
+  .card-mobile {
+    padding: 0;
+    border: 0;
+    overflow-x: auto;
+  }
+  .card-mobile::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  .card-mobile::-webkit-scrollbar-thumb {
+    background-color: #2E3035;
+    border-radius: 10px;
+  }
+
+  .card-mobile::-webkit-scrollbar-thumb:active {
+    background-color: #737171;
+  }
+
+  .card-mobile::-webkit-scrollbar-thumb:hover {
+    background-color: #792fe8;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  /**** Header ****/
+  .header-mobile {
+    background-color: #792fe8;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 0;
+    margin-bottom: 0;
+    display: inline-flex;
+  }
+
+  .header-table {
+    list-style-type: none;
+    display: inline-flex;
+    padding: 0;
+  }
+
+  .header-participants {
+    width: 180px;
+    padding: 0 0 0 5px;
+  }
+
+  .header-scores {
+    width: 20px;
+    text-align: center;
+    margin-right: 50px;
+  }
+
+  .header-matches {
+    width: 100px;
+    padding: 0;
+    margin-right: 20px;
+    text-align: center;
+
+  }
+
+  /********************/
+  /******* Fonts ******/
+  .header-font {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 12px;
+  }
+
+  .score-font {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 12px;
+    color: #FDA328;
+  }
+
+  /********************/
+  /*** Card Content ***/
+  .body-mobile {
+    display: inline-flex;
+    margin-top: 0;
+    background-color: #2E3035;
+    padding: 0;
+  }
+
+  .list-participants {
+    list-style-type: none;
+    padding: 5px;
+  }
+
+  .item-participants {
+    padding: 10px 0 0 0;
+    display: inline-flex;
+    border-bottom: 1px solid #737171;
+  }
+
+  .container-participant {
+    width: 180px;
+    padding: 0 0 0 5px;
+    margin-right: 20px;
+  }
+
+  .container-participant p {
+    font-size: 14px;
+    line-height: 14px;
+    padding: 0;
+  }
+
+  .me {
+    color: #FDA328;
+  }
+
+  .container-score {
+    text-align: center;
+    margin-right: 30px;
+    padding: 0;
+  }
+
+  .container-score p {
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  .list-gamble {
+    list-style-type: none;
+    display: inline-flex;
+    padding: 0;
+  }
+
+  .item-gamble {
+    padding: 0;
+    width: 100px;
+    margin-right: 20px;
+    text-align: center;
+  }
+
+  .score-achieved {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 14px;
+    color: #737171;
+  }
+}
+
+/************* DESKTOP ***************/
+@media only screen and (min-width: 720px) and (orientation: landscape) {
+  .desktop {
+    display: inline;
+  }
+  .mobile {
+    display: none;
+  }
+  /** Card Container **/
+  .card-participants {
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+  }
+
+  /*********************/
+  /**** Card Header ****/
+  .card-header {
+    background-color: #792fe8;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 0 20px 0 20px;
+  }
+
+  .header-table {
+    list-style-type: none;
+    display: inline-flex;
+    padding: 0;
+  }
+
+  .header-participants {
+    width: 200px;
+    margin-right: 20px;
+  }
+
+  .header-scores {
+    width: 100px;
+    text-align: center;
+    margin-right: 20px;
+  }
+
+  .header-matches {
+    width: 100px;
+    padding: 0;
+    margin-right: 20px;
+    text-align: center;
+  }
+
+  /********************/
+  /******* Fonts ******/
+  .header-font {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  .score-font {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 16px;
+    color: #FDA328;
+  }
+
+  /********************/
+  /*** Card Content ***/
+  .card-content {
+    background-color: #2E3035;
+    padding: 0 20px 40px 20px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+  }
+
+  .list-participants {
+    list-style-type: none;
+    padding: 20px;
+  }
+
+  .item-participants {
+    width: 100%;
+    padding: 20px 0 0 0;
+    display: inline-flex;
+    border-bottom: 1px solid #737171;
+  }
+
+  .participant-name {
+    width: 220px;
+    height: 20px;
+    display: inline-block;
+    padding: 10px 0 0 0;
+    margin-right: 20px;
+  }
+
+  .participant-name p {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: normal;
+    padding: 0;
+  }
+
+  .me {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: normal;
+    padding: 0;
+    color: #FDA328;
+  }
+
+  .participant-score {
+    width: 90px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 20px;
+    padding: 10px 0 0 0;
+  }
+
+  .participant-score p {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: normal;
+  }
+
+  .list-gamble {
+    list-style-type: none;
+    display: inline-flex;
+    padding: 0;
+  }
+
+  .item-gamble {
+    padding: 0;
+    width: 100px;
+    margin-right: 20px;
+    text-align: center;
+  }
+
+  .score-achieved {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 14px;
+    color: #737171;
+  }
+}

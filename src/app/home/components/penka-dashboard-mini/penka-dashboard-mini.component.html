@@ -1,0 +1,113 @@
+<!-- DESKTOP -->
+<div class="desktop">
+    <ng-container *ngFor="let p of penka; let i = index">
+        <ng-container *ngIf="i === 0">
+
+            <div class="card">
+
+                <ng-container *ngIf="p.status === '1'; else ended">
+                    <div class="header status-ended-false">
+                        <div class="title">
+                            <p>{{p.name}}&nbsp;&nbsp;-&nbsp;&nbsp;Pozo:&nbsp;${{p.accumulatedBet}}</p>
+                        </div>
+                        <div class="maker">
+                            <p>{{p.makerName}}</p>
+                        </div>
+                        <button mat-stroked-button class="btn-watch" (click)="goWatch(p.codePenka)">
+                            Ver mas
+                        </button>
+                    </div>
+                </ng-container>
+
+                <ng-template #ended>
+                    <div class="header status-ended-true">
+                        <div class="title">
+                            <p>{{p.name}}&nbsp;&nbsp;-&nbsp;&nbsp;Pozo:&nbsp;${{p.accumulatedBet}}</p>
+                        </div>
+                        <div class="maker">
+                            <p>{{p.makerName}}</p>
+                        </div>
+                        <button mat-stroked-button class="btn-watch" (click)="goWatch(p.codePenka)">
+                            Ver mas
+                        </button>
+                    </div>
+                </ng-template>
+
+
+                <div class="body">
+                    <div class="row">
+                        <div class="col-lg-4 list-participants">
+                            <app-list-participants [codePenka]="p.codePenka" (selectedUser)="selectParticipant($event)">
+                            </app-list-participants>
+                        </div>
+                        <div class="col-lg-4 list-matches-done">
+                            <app-list-matches-done [codePenka]="p.codePenka"
+                                                   [selectedParticipant]="selectedParticipant">
+                            </app-list-matches-done>
+                        </div>
+                        <div class="col-lg-4 list-matches-wait">
+                            <app-list-matches-wait [codePenka]="p.codePenka"></app-list-matches-wait>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-8">
+                            <button mat-button class="btn-gambles" (click)="playGamble(p.codePenka)">
+                                Llenar resultados
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+</div>
+
+
+<!-- MOBILE -->
+<div class="mobile">
+    <ng-container *ngFor="let p of penka; let i = index">
+        <ng-container *ngIf="i === 0">
+
+            <div class="card">
+                <div class="header">
+                    <div class="title">
+                        <p>{{p.name}}&nbsp;&nbsp;-&nbsp;&nbsp;Pozo:&nbsp;${{p.accumulatedBet}}</p>
+                    </div>
+                    <div class="maker">
+                        <p>{{p.makerName}}</p>
+                    </div>
+                    <button mat-stroked-button class="btn-watch" (click)="goWatch(p.id)">
+                        Ver mas
+                    </button>
+                </div>
+                <div class="body">
+                    <div class="row">
+                        <div class="col-xs-12 list-participants">
+                            <app-list-participants [codePenka]="p.codePenka" (selectedUser)="selectParticipant($event)">
+                            </app-list-participants>
+                        </div>
+                        <div class="col-xs-12 list-matches-done">
+                            <app-list-matches-done [codePenka]="p.codePenka"
+                                                   [selectedParticipant]="selectedParticipant">
+                            </app-list-matches-done>
+                        </div>
+                        <div class="col-xs-12 list-matches-wait">
+                            <app-list-matches-wait [codePenka]="p.codePenka"></app-list-matches-wait>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button mat-button class="btn-gambles" (click)="playGamble(p.codePenka)">
+                                Llenar resultados
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+</div>

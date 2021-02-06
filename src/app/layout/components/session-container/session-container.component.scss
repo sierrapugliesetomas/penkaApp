@@ -1,0 +1,77 @@
+/* MOBILE 300p */
+@media only screen and (min-width: 300px) and (orientation: portrait) {
+  .mobile {
+    display: inline;
+      }
+  .desktop {
+    display: none;
+  }
+  .user-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+  }
+  .btn-session {
+    font-size: 12px;
+    line-height: 25px;
+    padding: 0 15px 0 15px;
+    margin: 0;
+    background-color: #FDA328;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+  }
+}
+
+/* MOBILE 350p */
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+  .mobile {
+    display: inline;
+  }
+  .desktop {
+    display: none;
+  }
+  .user-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+  }
+  .btn-session {
+    font-size: 12px;
+    line-height: 35px;
+    padding: 0 15px 0 15px;
+    margin: 0;
+    background-color: #FDA328;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+  }
+}
+
+/* DESKTOP */
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: inline;
+  }
+  .user-img {
+    margin-top: -10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+  }
+  .btn-session {
+    background-color: #FDA328;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+  }
+}
+

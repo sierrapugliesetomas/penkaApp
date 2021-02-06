@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-xs-12 col-lg-12">
+        <div class="box">
+            <p class="section-title">Penkas en Juego</p>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="myParticipations.length > 0; else noParticipantions">
+
+    <!-- DESKTOP -->
+    <div class="desktop">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="box">
+                    <ng-container *ngIf="codePenkaSelected; else noSelected">
+                        <!-- home/penka-dashboard-mini -->
+                        <app-penka-dashboard-mini [codePenka]="codePenkaSelected"></app-penka-dashboard-mini>
+                    </ng-container>
+
+                    <ng-template #noSelected>
+                        <ng-container *ngFor="let p of myParticipations; let i = index">
+                            <ng-container *ngIf="i === 0">
+                                <!-- home/penka-dashboard-mini -->
+                                <app-penka-dashboard-mini [codePenka]="p.codePenka"></app-penka-dashboard-mini>
+                            </ng-container>
+                        </ng-container>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="box">
+                    <!-- home/penka-picker -->
+                    <app-penka-picker (pickedPenka)="getPicked($event)"></app-penka-picker>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBILE -->
+    <div class="mobile">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <!-- home/penka-picker -->
+                    <app-penka-picker (pickedPenka)="getPicked($event)"></app-penka-picker>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <ng-container *ngIf="codePenkaSelected; else noSelected">
+                        <!-- home/penka-dashboard-mini -->
+                        <app-penka-dashboard-mini [codePenka]="codePenkaSelected"></app-penka-dashboard-mini>
+                    </ng-container>
+
+                    <ng-template #noSelected>
+                        <ng-container *ngFor="let p of myParticipations; let i = index">
+                            <ng-container *ngIf="i === 0">
+                                <!-- home/penka-dashboard-mini -->
+                                <app-penka-dashboard-mini [codePenka]="p.codePenka"></app-penka-dashboard-mini>
+                            </ng-container>
+                        </ng-container>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #noParticipantions>
+    <div class="row">
+        <div class="col-xs-12 col-lg-12">
+            <div class="box">
+                <p class="section-subTitle">No tienes penkas en juego aun.</p>
+            </div>
+        </div>
+    </div>
+</ng-template>

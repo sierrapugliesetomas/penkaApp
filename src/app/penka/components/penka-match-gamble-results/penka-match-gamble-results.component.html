@@ -1,0 +1,120 @@
+<div class="match-container">
+
+    <!-- date -->
+    <div class="date">
+        <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp; - &nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+    </div>
+
+    <!-- teams -->
+    <div class="teams">
+
+        <!-- home team -->
+        <p class="teams-font">{{match.homeTeamAlias}}</p>
+        <img class="home-flag-team" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
+
+        <!-- gambles Score -->
+        <ng-container *ngFor="let g of gamble">
+
+            <!-- format PRO -->
+            <ng-container *ngIf="g.penkaFormat === 'PRO'">
+                <!-- Home Team Score -->
+                <ng-container *ngIf="g.homeTeamScore; else noHomeScore">
+                    <p class="home-score">{{g.homeTeamScore}}</p>
+                </ng-container>
+                <ng-template #noHomeScore>
+                    <p class="home-score">-</p>
+                </ng-template>
+                <!---->
+                <p class="separator">:</p>
+                <!---->
+                <!-- Visit Team Score --->
+                <ng-container *ngIf="g.visitTeamScore; else noVisitScore">
+                    <p class="visit-score">{{g.visitTeamScore}}</p>
+                </ng-container>
+                <ng-template #noVisitScore>
+                    <p class="home-score">-</p>
+                </ng-template>
+            </ng-container>
+
+            <!-- format MEDIUM -->
+            <ng-container *ngIf="g.penkaFormat === 'MEDIUM'">
+                <!-- Match Draw -->
+                <ng-container *ngIf="g.draw === true">
+                    <img src="../../../../assets/images/match/matchDraw.png" alt="" class="img-match-result">
+                    <!---->
+                    <p class="separator">:</p>
+                    <!---->
+                    <img src="../../../../assets/images/match/matchDraw.png" alt="" class="img-match-result">
+                </ng-container>
+                <!-- Match Win Home Team -->
+                <ng-container *ngIf="g.homeTeamId === g.winnerTeamId">
+                    <img src="../../../../assets/images/match/matchWinner.png" alt="" class="img-match-result">
+                    <!---->
+                    <p class="separator">:</p>
+                    <!---->
+                    <img src="../../../../assets/images/match/matchLoser.png" alt="" class="img-match-result">
+                </ng-container>
+                <!-- Match Win Visit Team -->
+                <ng-container *ngIf="g.visitTeamId === g.winnerTeamId">
+                    <img src="../../../../assets/images/match/matchLoser.png" alt="" class="img-match-result">
+                    <!---->
+                    <p class="separator">:</p>
+                    <!---->
+                    <img src="../../../../assets/images/match/matchWinner.png" alt="" class="img-match-result">
+                </ng-container>
+                <ng-container *ngIf="g.draw === null">
+                    <p class="separator">:</p>
+                </ng-container>
+            </ng-container>
+
+        </ng-container>
+
+        <!-- visit team -->
+        <img class="visit-flag-team" src="{{match.visitTeamFlag}}" alt="{{match.visitTeamName}}">
+        <p class="teams-font">{{match.visitTeamAlias}}</p>
+    </div>
+
+    <!-- real results -->
+    <div class="real">
+
+        <!-- real Score -->
+        <ng-container *ngIf="singleMatch.homeTeamScore; else noScoreYet">
+            <div class="score-real">
+                <p>{{singleMatch.homeTeamScore}}&nbsp;-&nbsp;{{singleMatch.visitTeamScore}}</p>
+            </div>
+
+            <!-- Score Gamble -->
+            <ng-container
+                *ngFor="let g of gamble">
+
+                <ng-container *ngIf="g.scoreAchieved >= 3">
+                    <div class="score-win">
+                        <p class="score-fonts">+{{g.scoreAchieved}}</p>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="g.scoreAchieved == 1">
+                    <div class="score-draw">
+                        <p class="score-fonts">+{{g.scoreAchieved}}</p>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="g.scoreAchieved == 0">
+                    <div class="score-loss">
+                        <p class="score-fonts">{{g.scoreAchieved}}</p>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="g.scoreAchieved == null">
+                    <div class="score-waiting">
+                        <p class="score-fonts">-</p>
+                    </div>
+                </ng-container>
+
+            </ng-container>
+        </ng-container>
+
+        <ng-template #noScoreYet>
+        </ng-template>
+    </div>
+</div>

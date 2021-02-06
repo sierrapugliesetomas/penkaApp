@@ -1,0 +1,28 @@
+<ng-container *ngIf="penkaRequest.length > 0; else none">
+
+    <!-- counter notification icon -->
+    <a mat-button [matMenuTriggerFor]="beforeMenu" matBadge="{{penkaRequest.length}}" matBadgeColor="warn">
+        <mat-icon fontSet="material-icons-outlined">notifications</mat-icon>
+    </a>
+
+    <!-- show notifications -->
+    <mat-menu #beforeMenu="matMenu" xPosition="before" class="notification-menu">
+        <ul class="list">
+            <li class="item" *ngFor="let pr of penkaRequest">
+                <a routerLink="/inbox">
+                    <p class="notification-font">Solicitud pendiente de aprobacion, de
+                        <span class="user-request">{{pr.userName}}</span>
+                    </p>
+                </a>
+                <app-button-notification [codePenka]="pr.codePenka" [request]="pr"></app-button-notification>
+            </li>
+        </ul>
+    </mat-menu>
+</ng-container>
+
+<ng-template #none>
+    <!-- counter notification icon -->
+    <a mat-button>
+        <mat-icon fontSet="material-icons-outlined">notifications</mat-icon>
+    </a>
+</ng-template>

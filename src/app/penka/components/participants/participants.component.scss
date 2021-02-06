@@ -1,21 +1,104 @@
-.table-header {
-    background-color: #792fe8;
-    color: white;
-    padding: 0;
-}
-
-.th {
-    border: 0;
-    padding-right: 20px;
-}
-
-ul {
+/********* MOBILE **********/
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+  .list-participant {
     list-style-type: none;
     padding: 0;
+  }
+
+  .item-participant {
+    background-color: red;
+    padding: 10px 0 0 0;
+    margin: 0;
+    border-bottom: 1px solid #4C4E52;
+  }
+
+  /* Users */
+  .container-user {
+    display: inline-block;
+    width: 80%;
+    height: 14px;
+  }
+
+  .container-score {
+    display: inline-block;
+    width: 20%;
+    height: 14px;
+    text-align: right;
+  }
+
+  .me {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    color: #FDA328;
+  }
+
+  .user {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    color: white;
+  }
 }
 
-li {
-    display: inline-table;
-    text-align: center;
+/* DESKTOP 720 */
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .list-participant {
     padding: 0;
+  }
+  .item-participant {
+    padding: 0;
+    margin: 0 0 20px 0;
+    height: 30px;
+  }
+
+  .container-user {
+    display: inline-block;
+    width: 40%;
+    height: 20px;
+  }
+
+  .container-score {
+    display: inline-block;
+    width: 20%;
+    height: 20px;
+    text-align: right;
+  }
+  .container-place {
+    margin-left: 20px;
+    display: inline;
+    height: 20px;
+    text-align: right;
+    padding: 0;
+  }
+  .select_place {
+    background-color: #4C4E52;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    font-size: 14px;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    margin: 0 0 0 10px;
+  }
+  .medal {
+    width: 25px;
+    height: 25px;
+    margin: 0;
+  }
+
+
+  .me {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    color: #FDA328;
+  }
+
+  .user {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    color: white;
+  }
 }

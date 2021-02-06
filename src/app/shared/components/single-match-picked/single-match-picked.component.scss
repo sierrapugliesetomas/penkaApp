@@ -1,0 +1,41 @@
+.match {
+  display: inline-flex;
+  width: 120px;
+  height: 35px;
+}
+
+.teams {
+  display: inline-flex;
+  width: 80px;
+  padding: 5px 10px 0 10px;
+  background-color: #737171;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.teamPick {
+  width: 25px;
+  height: 25px;
+  margin: 0;
+}
+
+.separator {
+  margin: 0 10px 0 10px;
+}
+
+.deleted {
+  width: 30px;
+  background-color: #792fe8;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.btn-delPick {
+  padding: 0;
+  margin: 6px;
+  background-color: transparent;
+}
+
+.btn-delPick:hover {
+  cursor: pointer;
+}

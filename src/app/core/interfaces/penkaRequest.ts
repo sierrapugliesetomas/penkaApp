@@ -11,6 +11,6 @@ export interface PenkaRequest {
     userEmail?: string;
     userPhoto?: string;
     message?: string;
-    date?: string;
+    date?: Date;
     status?: string;
 }

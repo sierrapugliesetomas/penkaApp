@@ -1,0 +1,597 @@
+<div class="desktop">
+    <!----------------- Gambles PRO ----------------------->
+    <ng-container *ngIf="match.penkaFormat === 'PRO'">
+        <!-- Gambles Wait - status 1 -->
+        <ng-container *ngIf="match.status === '1'">
+            <div class="match-container-desktop">
+                <!-- Date and Time -->
+                <div class="date-desktop">
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+                </div>
+                <!-- Teams -->
+                <div class="teams-desktop">
+                    <!-- Alias Home Team -->
+                    <p class="teams-font-desktop">{{match.homeTeamAlias}}</p>
+                    <!-- Flag Home Team -->
+                    <img class="team-flag-desktop" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
+                    <!-- Home Team Score -->
+                    <select class="formScore-desktop" (change)="homeTeam($event.target, match)">
+                        <option value="{{match.homeTeamScore}}" selected>{{match.homeTeamScore}}</option>
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                    <!-- Separator -->
+                    <p class="separator-desktop">:</p>
+                    <!-- Visit Team Score --->
+                    <select class="formScore-desktop" (change)="visitTeam($event.target, match)">
+                        <option value="{{match.visitTeamScore}}" selected>{{match.visitTeamScore}}</option>
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                    <!-- Flag Visit Team -->
+                    <img class="team-flag-desktop" src="{{match.visitTeamFlag}}" alt="{{match.visitTeamName}}">
+                    <!-- Alias Visit Team -->
+                    <p class="teams-font-desktop">{{match.visitTeamAlias}}</p>
+                    <!-- Button Save -->
+                    <ng-container *ngIf="match.saved === false">
+                        <button mat-button (click)="saveGamblePro(match)" class="btn-save-desktop">
+                            Guardar
+                        </button>
+                    </ng-container>
+                    <ng-container *ngIf="match.saved === true">
+                        <button mat-button class="btn-saved-desktop">
+                            Guardado
+                        </button>
+                    </ng-container>
+
+                </div>
+            </div>
+        </ng-container>
+        <!-- Gambles Done - Status 2 -->
+        <ng-container *ngIf="match.status === '2'">
+            <div class="match-container-desktop">
+                <!-- Date and Time -->
+                <div class="date-desktop">
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+                </div>
+                <!-- Teams -->
+                <div class="teams-disable-desktop">
+                    <!-- Alias Home Team -->
+                    <p class="teams-font-desktop">{{match.homeTeamAlias}}</p>
+                    <!-- Flag Home Team -->
+                    <img class="team-flag-desktop" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
+                    <!-- Home Team Score -->
+                    <select class="formScore-desktop" (change)="homeTeam($event.target, match)" disabled>
+                        <option value="{{match.homeTeamScore}}" selected>{{match.homeTeamScore}}</option>
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                    <!-- Separator -->
+                    <p class="separator-desktop">:</p>
+                    <!-- Visit Team Score --->
+                    <select class="formScore-desktop" (change)="visitTeam($event.target, match)" disabled>
+                        <option value="{{match.visitTeamScore}}" selected>{{match.visitTeamScore}}</option>
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                    <!-- Flag Visit Team -->
+                    <img class="team-flag-desktop" src="{{match.visitTeamFlag}}" alt="{{match.visitTeamName}}">
+                    <!-- Alias Visit Team -->
+                    <p class="teams-font-desktop">{{match.visitTeamAlias}}</p>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+    <!-------------------------------------------------->
+    <!-------------------------------------------------->
+    <!---------------- Gambles MEDIUM ------------------>
+    <ng-container *ngIf="match.penkaFormat === 'MEDIUM'">
+        <!----------------------------->
+        <!-- Gambles Wait - status 1 -->
+        <ng-container *ngIf="match.status === '1'">
+            <div class="match-container-desktop">
+                <!-- date -->
+                <div class="date-desktop">
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+                </div>
+
+                <div class="medium-container-teams-desktop">
+                    <div class="medium-teams-desktop">
+                        <!-- Alias Home Team -->
+                        <p class="teams-font">{{match.homeTeamAlias}}</p>
+                        <!-- Flag Home Team -->
+                        <img class="home-flag-team" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
+                        <!-- Draw -->
+                        <p class="medium-separator">Empate</p>
+                        <!-- Flag Visit Team -->
+                        <img class="visit-flag-team" src="{{match.visitTeamFlag}}" alt="{{match.visitTeamName}}">
+                        <!-- Alias Visit Team -->
+                        <p class="teams-font">{{match.visitTeamAlias}}</p>
+                        <!-- Button Save -->
+                        <ng-container *ngIf="match.saved === false">
+                            <button mat-button (click)="saveGambleMedium(match)" class="btn-save-medium-desktop">
+                                Guardar
+                            </button>
+                        </ng-container>
+                        <ng-container *ngIf="match.saved === true">
+                            <button mat-button class="btn-saved-medium-desktop">
+                                Guardado
+                            </button>
+                        </ng-container>
+
+                    </div>
+                    <div class="teams-options-desktop">
+                        <ng-container *ngIf="match.winnerTeamId !== '' || match.draw === true; else noGamblesYet">
+                            <!-- Match Draw -->
+                            <ng-container *ngIf="match.draw === true">
+                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                                    <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
+                                    <mat-radio-button value="draw">
+                                        <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                             height="20">
+                                    </mat-radio-button>
+                                    <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
+                                </mat-radio-group>
+                            </ng-container>
+
+                            <!-- Match Win Home -->
+                            <ng-container *ngIf="match.homeTeamId === match.winnerTeamId">
+                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                                    <mat-radio-button value="{{match.homeTeamId}}">
+                                        <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                             height="20">
+                                    </mat-radio-button>
+                                    <mat-radio-button value="draw">
+                                    </mat-radio-button>
+                                    <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
+                                </mat-radio-group>
+                            </ng-container>
+
+                            <!-- Match Win Visit -->
+                            <ng-container *ngIf="match.visitTeamId === match.winnerTeamId">
+                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                                    <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
+                                    <mat-radio-button value="draw"></mat-radio-button>
+                                    <mat-radio-button value="{{match.visitTeamId}}">
+                                        <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                             height="20">
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </ng-container>
+                            <ng-container *ngIf="match.saved === true">
+                                <button mat-button class="btn-edit-medium-desktop" (click)="enableGamble(match.id)">
+                                    Editar
+                                </button>
+                            </ng-container>
+                        </ng-container>
+
+                        <ng-template #noGamblesYet>
+                            <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                                <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
+                                <mat-radio-button value="draw"></mat-radio-button>
+                                <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
+                            </mat-radio-group>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <!----------------------------->
+        <!-- Gambles Done - Status 2 -->
+        <ng-container *ngIf="match.status === '2'">
+            <div class="match-container-desktop">
+                <!-- date -->
+                <div class="date-desktop">
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+                </div>
+
+                <div class="medium-container-teams-disable-desktop {{save}}">
+                    <div class="medium-teams-desktop">
+                        <!-- Alias Home Team -->
+                        <p class="teams-font">{{match.homeTeamAlias}}</p>
+                        <!-- Flag Home Team -->
+                        <img class="home-flag-team" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
+                        <!-- Draw -->
+                        <p class="medium-separator">Empate</p>
+                        <!-- Flag Visit Team -->
+                        <img class="visit-flag-team" src="{{match.visitTeamFlag}}" alt="{{match.visitTeamName}}">
+                        <!-- Alias Visit Team -->
+                        <p class="teams-font">{{match.visitTeamAlias}}</p>
+                    </div>
+                    <div class="teams-options">
+
+                        <ng-container *ngIf="match.winnerTeamId !== '' || match.draw === true; else noGamblesYet">
+
+                            <!-- Match Draw -->
+                            <ng-container *ngIf="match.draw === true">
+                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                                    <mat-radio-button value="{{match.homeTeamId}}" disabled></mat-radio-button>
+                                    <mat-radio-button value="draw" disabled>
+                                        <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                             height="20">
+                                    </mat-radio-button>
+                                    <mat-radio-button value="{{match.visitTeamId}}" disabled></mat-radio-button>
+                                </mat-radio-group>
+                            </ng-container>
+
+                            <!-- Match Win Home -->
+                            <ng-container *ngIf="match.homeTeamId === match.winnerTeamId">
+                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                                    <mat-radio-button value="{{match.homeTeamId}}" disabled>
+                                        <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                             height="20">
+                                    </mat-radio-button>
+                                    <mat-radio-button value="draw" disabled>
+                                    </mat-radio-button>
+                                    <mat-radio-button value="{{match.visitTeamId}}" disabled></mat-radio-button>
+                                </mat-radio-group>
+                            </ng-container>
+
+                            <!-- Match Win Visit -->
+                            <ng-container *ngIf="match.visitTeamId === match.winnerTeamId">
+                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                                    <mat-radio-button value="{{match.homeTeamId}}" disabled></mat-radio-button>
+                                    <mat-radio-button value="draw" disabled></mat-radio-button>
+                                    <mat-radio-button value="{{match.visitTeamId}}" disabled>
+                                        <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                             height="20">
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </ng-container>
+
+                        </ng-container>
+
+                        <ng-template #noGamblesYet>
+                            <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                                <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
+                                <mat-radio-button value="draw"></mat-radio-button>
+                                <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
+                            </mat-radio-group>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+</div>
+<!--------------------->
+<!------ MOBILE ------->
+<div class="mobile">
+    <!----------------- Gambles PRO ----------------------->
+    <ng-container *ngIf="match.penkaFormat === 'PRO'">
+        <!-- Gambles Wait - status 1 -->
+        <ng-container *ngIf="match.status === '1'">
+            <div class="match-container-mobile">
+                <!-- Date and Time -->
+                <div class="date-mobile">
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+                </div>
+                <!-- Teams -->
+                <div class="teams-mobile">
+                    <!-- Alias Home Team -->
+                    <p class="teams-font-mobile">{{match.homeTeamAlias}}</p>
+                    <!-- Flag Home Team -->
+                    <img class="team-flag-mobile" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
+                    <!-- Home Team Score -->
+                    <select class="formScore-mobile" (change)="homeTeam($event.target, match)">
+                        <option value="{{match.homeTeamScore}}" selected>{{match.homeTeamScore}}</option>
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                    <!-- Separator -->
+                    <p class="separator-mobile">:</p>
+                    <!-- Visit Team Score --->
+                    <select class="formScore-mobile" (change)="visitTeam($event.target, match)">
+                        <option value="{{match.visitTeamScore}}" selected>{{match.visitTeamScore}}</option>
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                    <!-- Flag Visit Team -->
+                    <img class="team-flag-mobile" src="{{match.visitTeamFlag}}" alt="{{match.visitTeamName}}">
+                    <!-- Alias Visit Team -->
+                    <p class="teams-font-mobile">{{match.visitTeamAlias}}</p>
+                </div>
+                <!-- Button Save -->
+                <div class="container-button-mobile">
+                    <ng-container *ngIf="match.saved === false">
+                        <button mat-button (click)="saveGamblePro(match)" class="btn-save">
+                            Guardar
+                        </button>
+                    </ng-container>
+                    <ng-container *ngIf="match.saved === true">
+                        <button mat-button class="btn-saved">
+                            Guardado
+                        </button>
+                    </ng-container>
+                </div>
+            </div>
+        </ng-container>
+        <!-- Gambles Done - Status 2 -->
+        <ng-container *ngIf="match.status === '2'">
+            <div class="match-container-mobile">
+                <!-- Date and Time -->
+                <div class="date-mobile">
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+                </div>
+                <!-- Teams -->
+                <div class="teams-mobile">
+                    <!-- Alias Home Team -->
+                    <p class="teams-font-mobile">{{match.homeTeamAlias}}</p>
+                    <!-- Flag Home Team -->
+                    <img class="team-flag-mobile" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
+                    <!-- Home Team Score -->
+                    <select class="formScore-mobile" (change)="homeTeam($event.target, match)" disabled>
+                        <option value="{{match.homeTeamScore}}" selected>{{match.homeTeamScore}}</option>
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                    <!-- Separator -->
+                    <p class="separator-mobile">:</p>
+                    <!-- Visit Team Score --->
+                    <select class="formScore-mobile" (change)="visitTeam($event.target, match)" disabled>
+                        <option value="{{match.visitTeamScore}}" selected>{{match.visitTeamScore}}</option>
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                    <!-- Flag Visit Team -->
+                    <img class="team-flag-mobile" src="{{match.visitTeamFlag}}" alt="{{match.visitTeamName}}">
+                    <!-- Alias Visit Team -->
+                    <p class="teams-font-mobile">{{match.visitTeamAlias}}</p>
+                </div>
+
+            </div>
+        </ng-container>
+    </ng-container>
+    <!-------------------------------------------------->
+    <!-------------------------------------------------->
+    <!---------------- Gambles MEDIUM ------------------>
+    <ng-container *ngIf="match.penkaFormat === 'MEDIUM'">
+        <!----------------------------->
+        <!-- Gambles Wait - status 1 -->
+        <ng-container *ngIf="match.status === '1'">
+            <div class="match-container-medium-mobile">
+                <!-- date -->
+                <div class="container-date">
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+                </div>
+                <!-- Teams -->
+                <div class="container-teams">
+                    <!-- Teams -->
+                    <div class="teams">
+                        <!-- Alias Home Team -->
+                        <p class="team-alias">{{match.homeTeamAlias}}</p>
+                        <!-- Flag Home Team -->
+                        <img class="team-flag" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
+                        <!-- Draw -->
+                        <p class="separator">Empate</p>
+                        <!-- Flag Visit Team -->
+                        <img class="team-flag" src="{{match.visitTeamFlag}}"
+                             alt="{{match.visitTeamName}}">
+                        <!-- Alias Visit Team -->
+                        <p class="team-alias">{{match.visitTeamAlias}}</p>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="options">
+                        <ng-container *ngIf="match.winnerTeamId !== '' || match.draw === true; else noGamblesYet">
+                            <!-- Match Draw -->
+                            <ng-container *ngIf="match.draw === true">
+                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                                    <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
+                                    <mat-radio-button value="draw">
+                                        <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                             height="20">
+                                    </mat-radio-button>
+                                    <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
+                                </mat-radio-group>
+                            </ng-container>
+
+                            <!-- Match Win Home -->
+                            <ng-container *ngIf="match.homeTeamId === match.winnerTeamId">
+                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                                    <mat-radio-button value="{{match.homeTeamId}}">
+                                        <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                             height="20">
+                                    </mat-radio-button>
+                                    <mat-radio-button value="draw">
+                                    </mat-radio-button>
+                                    <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
+                                </mat-radio-group>
+                            </ng-container>
+
+                            <!-- Match Win Visit -->
+                            <ng-container *ngIf="match.visitTeamId === match.winnerTeamId">
+                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                                    <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
+                                    <mat-radio-button value="draw"></mat-radio-button>
+                                    <mat-radio-button value="{{match.visitTeamId}}">
+                                        <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                             height="20">
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </ng-container>
+                        </ng-container>
+
+                        <ng-template #noGamblesYet>
+                            <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                                <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
+                                <mat-radio-button value="draw"></mat-radio-button>
+                                <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
+                            </mat-radio-group>
+                        </ng-template>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="buttons">
+                        <!-- Button Save -->
+                        <ng-container *ngIf="match.saved === false">
+                            <button mat-button (click)="saveGambleMedium(match)" class="btn-save">
+                                Guardar
+                            </button>
+                        </ng-container>
+                        <ng-container *ngIf="match.saved === true">
+                            <button mat-button class="btn-saved">
+                                Guardado
+                            </button>
+                        </ng-container>
+                        <ng-container *ngIf="match.saved === true">
+                            <button mat-button class="btn-edit" (click)="enableGamble(match.id)">
+                                Editar
+                            </button>
+                        </ng-container>
+                    </div>
+
+                </div>
+            </div>
+        </ng-container>
+        <!----------------------------->
+        <!-- Gambles Done - Status 2 -->
+        <ng-container *ngIf="match.status === '2'">
+            <div class="match-container-medium-mobile">
+                <!-- date -->
+                <div class="container-date">
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+                </div>
+                <!-- Teams -->
+                <div class="container-teams">
+                    <!-- Teams -->
+                    <div class="teams">
+                        <!-- Alias Home Team -->
+                        <p class="team-alias">{{match.homeTeamAlias}}</p>
+                        <!-- Flag Home Team -->
+                        <img class="team-flag" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
+                        <!-- Draw -->
+                        <p class="separator">Empate</p>
+                        <!-- Flag Visit Team -->
+                        <img class="team-flag" src="{{match.visitTeamFlag}}"
+                             alt="{{match.visitTeamName}}">
+                        <!-- Alias Visit Team -->
+                        <p class="team-alias">{{match.visitTeamAlias}}</p>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="options">
+                        <ng-container *ngIf="match.winnerTeamId !== '' || match.draw === true; else noGamblesYet">
+                            <!-- Match Draw -->
+                            <ng-container *ngIf="match.draw === true">
+                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()" disabled>
+                                    <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
+                                    <mat-radio-button value="draw">
+                                        <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                             height="20">
+                                    </mat-radio-button>
+                                    <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
+                                </mat-radio-group>
+                            </ng-container>
+
+                            <!-- Match Win Home -->
+                            <ng-container *ngIf="match.homeTeamId === match.winnerTeamId">
+                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()" disabled>
+                                    <mat-radio-button value="{{match.homeTeamId}}">
+                                        <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                             height="20">
+                                    </mat-radio-button>
+                                    <mat-radio-button value="draw">
+                                    </mat-radio-button>
+                                    <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
+                                </mat-radio-group>
+                            </ng-container>
+
+                            <!-- Match Win Visit -->
+                            <ng-container *ngIf="match.visitTeamId === match.winnerTeamId">
+                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()" disabled>
+                                    <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
+                                    <mat-radio-button value="draw"></mat-radio-button>
+                                    <mat-radio-button value="{{match.visitTeamId}}">
+                                        <img src="../../../../assets/images/match/matchWinner.png" alt="" width="20"
+                                             height="20">
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </ng-container>
+                        </ng-container>
+
+                        <ng-template #noGamblesYet>
+                            <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()" disabled>
+                                <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
+                                <mat-radio-button value="draw"></mat-radio-button>
+                                <mat-radio-button value="{{match.visitTeamId}}"></mat-radio-button>
+                            </mat-radio-group>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+</div>

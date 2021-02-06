@@ -1,0 +1,35 @@
+/* MOBILE 300p */
+@media only screen and (min-width: 300px) and (orientation: portrait) {
+  .mobile {
+    display: inline;
+  }
+  .desktop {
+    display: none;
+  }
+}
+/* MOBILE 350p */
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+  .mobile {
+    display: inline;
+  }
+  .desktop {
+    display: none;
+  }
+}
+
+/* DESKTOP */
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: inline;
+  }
+  .nav {
+    text-align: right;
+  }
+  a:hover{
+    margin-top: 4px;
+    border-bottom: 2px solid #FDA328;
+  }
+}

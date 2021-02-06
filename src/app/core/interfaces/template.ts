@@ -2,8 +2,9 @@ export interface Template {
     id?: string;
     name?: string;
     codePenka?: string;
-    status?: string; /*/  0 === ready, 1 === end  /*/
+    status?: string;
     publish?: boolean;
-    date?: string;
+    date?: Date;
     bannerUrl?: string;
+    limitDate?: Date;
 }

@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Subject} from 'rxjs';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ListMatches} from '../../../core/interfaces/list-matches';
 import {ListMatchesService} from '../../../core/services/list-matches.service';
@@ -12,25 +12,31 @@ import {ParticipantsService} from '../../../core/services/participants.service';
 import {PenkasService} from '../../../core/services/penkas.service';
 import {Gamble} from '../../../core/interfaces/gamble';
 import {GambleService} from '../../../core/services/gamble.service';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
     selector: 'app-new3',
     templateUrl: './new3.component.html',
     styleUrls: ['./new3.component.scss']
 })
-export class New3Component implements OnInit {
-
+export class New3Component implements OnInit, OnDestroy {
+    title = 'Organiza una Penka';
+    stepNumber = '3';
+    stepTotal = '4';
     codeTemplate: string;
     codePenka: string;
-
     codePenkaForTemplate: string;
 
-    listMatches$: Observable<ListMatches[]>;
+    listMatchesForSingleMatches = [];
+    listMatchesForTemplate = [];
 
     newPenka = {} as Penka;
     user = {} as User;
     participant = {} as Participant;
     newGamble = {} as Gamble;
+    newListMatch = {} as ListMatches;
+
+    private unsubscribe$ = new Subject<void>();
 
     constructor(
         public firebase: FirebaseApp,
@@ -45,27 +51,46 @@ export class New3Component implements OnInit {
 
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
-
         this.activatedRoute.params.subscribe(
             (params: Params) => {
                 this.codeTemplate = params.codeTemplate;
                 this.codePenka = params.codePenka;
             }
         );
-
-        this.listMatches$ = this.listMatchesService.getMatches();
-
         this.codePenkaForTemplate = '';
         const characters = 'KvWxYz0123456789';
         const charactersLength = characters.length;
         for (let i = 0; i < charactersLength; i++) {
             this.codePenkaForTemplate += characters.charAt(Math.floor(Math.random() * charactersLength));
         }
+        if (this.codePenka) {
+            this.listMatchesService.getListMatchesTempByCodePenka(this.codePenka)
+                .pipe(
+                    takeUntil(this.unsubscribe$)
+                ).subscribe(
+                res => {
+                    this.listMatchesForSingleMatches = res;
+                });
+        }
+        if (this.codeTemplate) {
+            this.listMatchesService.getListMatchesByCodeTemplate(this.codeTemplate)
+                .pipe(
+                    takeUntil(this.unsubscribe$)
+                ).subscribe(
+                res => {
+                    this.listMatchesForTemplate = res;
+                });
+        }
     }
 
-    // tslint:disable-next-line:typedef
-    addPenkaFromTemplate() {
+    ngOnDestroy(): void {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
+    }
 
+    addPenkaFromTemplate(): void {
+        const today = new Date();
+        const penkaFormat = this.newPenka.formatName;
         if (!this.newPenka.name) {
             alert('Debes poner un nombre para la penka');
 
@@ -99,9 +124,7 @@ export class New3Component implements OnInit {
             this.newPenka.bet = bet;
             this.newPenka.status = '1';
             this.newPenka.accumulatedBet = bet;
-            const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-            const today = new Date();
-            this.newPenka.date = today.getDate() + ' de ' + months[today.getMonth()] + ' de ' + today.getFullYear();
+            this.newPenka.date = today;
             this.penkasService.addPenka(this.newPenka);
 
             this.participant.codePenka = this.codePenkaForTemplate;
@@ -113,20 +136,62 @@ export class New3Component implements OnInit {
             this.participant.bet = bet;
             this.participant.visibility = this.newPenka.visibility;
             this.participant.accumulatedScore = 0;
-            this.participant.date = today.getDate() + ' de ' + months[today.getMonth()] + ' de ' + today.getFullYear();
+            this.participant.date = today;
             this.participant.status = '1';
             this.participantService.addParticipant(this.participant);
+
+            /* Update list matches and add gambles */
+            let listMatches = [];
+            this.listMatchesService.getListMatchesByCodeTemplate(this.codeTemplate)
+                .pipe(
+                    takeUntil(this.unsubscribe$)
+                ).subscribe(
+                res => {
+                    listMatches = res;
+                    // tslint:disable-next-line:prefer-for-of
+                    for (let i = 0; i < listMatches.length; i++) {
+                        /**************/
+                        /* New Gamble */
+                        this.newGamble.codePenka = this.codePenkaForTemplate;
+                        this.newGamble.penkaFormat = penkaFormat;
+                        this.newGamble.singleMatchId = listMatches[i].singleMatchId;
+                        this.newGamble.userId = this.user.uid;
+                        this.newGamble.userName = this.user.displayName;
+                        this.newGamble.userEmail = this.user.email;
+                        this.newGamble.userPhoto = this.user.photoURL;
+                        this.newGamble.homeTeamId = listMatches[i].homeTeamId;
+                        this.newGamble.homeTeamName = listMatches[i].homeTeamName;
+                        this.newGamble.homeTeamAlias = listMatches[i].homeTeamAlias;
+                        this.newGamble.homeTeamFlag = listMatches[i].homeTeamFlag;
+                        this.newGamble.visitTeamId = listMatches[i].visitTeamId;
+                        this.newGamble.visitTeamName = listMatches[i].visitTeamName;
+                        this.newGamble.visitTeamAlias = listMatches[i].visitTeamAlias;
+                        this.newGamble.visitTeamFlag = listMatches[i].visitTeamFlag;
+                        this.newGamble.date = today;
+                        this.newGamble.winnerTeamId = '';
+                        this.newGamble.draw = null;
+                        this.newGamble.status = '1';
+                        this.newGamble.saved = false;
+                        this.newGamble.scoreAchieved = 0;
+                        this.newGamble.startDate = listMatches[i].startDate;
+                        this.gambleService.addGamble(this.newGamble);
+                        this.newGamble = {} as Gamble;
+                    }
+                }
+            );
+            /***********************/
 
             this.newPenka = {} as Penka;
             this.participant = {} as Participant;
 
             this.route.navigate(['/penka/new4/' + this.codePenkaForTemplate]).catch(error => console.log(error));
         }
-
     }
 
     // tslint:disable-next-line:typedef
     addPenkaFromSingleMatches() {
+        const today = new Date();
+        const penkaFormat = this.newPenka.formatName;
 
         if (!this.newPenka.name) {
             alert('Debes poner un nombre para la penka');
@@ -161,9 +226,7 @@ export class New3Component implements OnInit {
             this.newPenka.bet = bet;
             this.newPenka.status = '1';
             this.newPenka.accumulatedBet = bet;
-            const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-            const today = new Date();
-            this.newPenka.date = today.getDate() + ' de ' + months[today.getMonth()] + ' de ' + today.getFullYear();
+            this.newPenka.date = today;
             this.penkasService.addPenka(this.newPenka);
 
             this.participant.codePenka = this.codePenka;
@@ -175,21 +238,73 @@ export class New3Component implements OnInit {
             this.participant.bet = bet;
             this.participant.visibility = this.newPenka.visibility;
             this.participant.accumulatedScore = 0;
-            this.participant.date = today.getDate() + ' de ' + months[today.getMonth()] + ' de ' + today.getFullYear();
+            this.participant.date = today;
             this.participant.status = '1';
             this.participantService.addParticipant(this.participant);
 
             /* Update list matches and add gambles */
             let listMatches = [];
-            this.listMatchesService.getMBCP(this.codePenka).subscribe(
+            this.listMatchesService.getListMatchesTempByCodePenka(this.codePenka)
+                .pipe(
+                    takeUntil(this.unsubscribe$)
+                ).subscribe(
                 res => {
                     listMatches = res;
                     // tslint:disable-next-line:prefer-for-of
                     for (let i = 0; i < listMatches.length; i++) {
-                        this.listMatchesService.updateStatus(listMatches[i].id, '1');
+                        /**************/
+                        /* New Gamble */
+                        this.newGamble.codePenka = this.codePenka;
+                        this.newGamble.penkaFormat = penkaFormat;
+                        this.newGamble.singleMatchId = listMatches[i].singleMatchId;
+                        this.newGamble.userId = this.user.uid;
+                        this.newGamble.userName = this.user.displayName;
+                        this.newGamble.userEmail = this.user.email;
+                        this.newGamble.userPhoto = this.user.photoURL;
+                        this.newGamble.homeTeamId = listMatches[i].homeTeamId;
+                        this.newGamble.homeTeamName = listMatches[i].homeTeamName;
+                        this.newGamble.homeTeamAlias = listMatches[i].homeTeamAlias;
+                        this.newGamble.homeTeamFlag = listMatches[i].homeTeamFlag;
+                        this.newGamble.visitTeamId = listMatches[i].visitTeamId;
+                        this.newGamble.visitTeamName = listMatches[i].visitTeamName;
+                        this.newGamble.visitTeamAlias = listMatches[i].visitTeamAlias;
+                        this.newGamble.visitTeamFlag = listMatches[i].visitTeamFlag;
+                        this.newGamble.date = today;
+                        this.newGamble.winnerTeamId = '';
+                        this.newGamble.draw = null;
+                        this.newGamble.status = '1';
+                        this.newGamble.saved = false;
+                        this.newGamble.scoreAchieved = 0;
+                        this.newGamble.startDate = listMatches[i].startDate;
+
+                        /* New List Match */
+                        this.newListMatch.singleMatchId = listMatches[i].singleMatchId;
+                        this.newListMatch.codePenka = this.codePenka;
+                        this.newListMatch.userId = this.user.uid;
+                        this.newListMatch.userName = this.user.displayName;
+                        this.newListMatch.userEmail = this.user.email;
+                        this.newListMatch.userPhoto = this.user.photoURL;
+                        this.newListMatch.date = today;
+                        this.newListMatch.homeTeamId = listMatches[i].homeTeamId;
+                        this.newListMatch.homeTeamName = listMatches[i].homeTeamName;
+                        this.newListMatch.homeTeamAlias = listMatches[i].homeTeamAlias;
+                        this.newListMatch.homeTeamFlag = listMatches[i].homeTeamFlag;
+                        this.newListMatch.visitTeamId = listMatches[i].visitTeamId;
+                        this.newListMatch.visitTeamName = listMatches[i].visitTeamName;
+                        this.newListMatch.visitTeamAlias = listMatches[i].visitTeamAlias;
+                        this.newListMatch.visitTeamFlag = listMatches[i].visitTeamFlag;
+                        this.newListMatch.startDate = listMatches[i].startDate;
+                        this.newListMatch.limitDate = listMatches[i].limitDate;
+                        this.newListMatch.status = '1';
+
+                        this.gambleService.addGamble(this.newGamble);
+                        this.listMatchesService.addMatchFromSingleMatch(this.newListMatch);
+
+                        this.newGamble = {} as Gamble;
+                        this.newListMatch = {} as ListMatches;
                     }
-                },
-                error => console.log(error));
+                }
+            );
             /***********************/
 
             this.newPenka = {} as Penka;

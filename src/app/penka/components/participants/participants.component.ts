@@ -1,51 +1,59 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
-import {ListMatches} from '../../../core/interfaces/list-matches';
-import {SingleMatchesService} from '../../../core/services/single-matches.service';
-import {ListMatchesService} from '../../../core/services/list-matches.service';
-import {SingleMatch} from '../../../core/interfaces/single-match';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {Router} from '@angular/router';
 import {ParticipantsService} from '../../../core/services/participants.service';
 import {Participant} from '../../../core/interfaces/participant';
+import {User} from '../../../core/interfaces/user';
+import {Subject} from 'rxjs';
+import {FirebaseApp} from '@angular/fire';
+import {AuthService} from '../../../core/services/auth.service';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
     selector: 'app-participants',
     templateUrl: './participants.component.html',
     styleUrls: ['./participants.component.scss']
 })
-export class ParticipantsComponent implements OnInit {
-
-    codePenka: string;
-    listMatches = [] as ListMatches[];
-    singleMatches = [] as SingleMatch[];
+export class ParticipantsComponent implements OnInit, OnChanges, OnDestroy {
+    @Input() makerId: string;
+    @Input() codePenka: string;
     participants = [] as Participant[];
+    user = {} as User;
+    private unsubscribe$ = new Subject<void>();
 
     constructor(
+        public firebase: FirebaseApp,
+        public auth: AuthService,
         private router: Router,
-        private activatedRoute: ActivatedRoute,
-        private singleMatchesService: SingleMatchesService,
-        private listMatchesService: ListMatchesService,
-        private participantService: ParticipantsService) {
-
+        private participantsService: ParticipantsService) {
     }
 
     ngOnInit(): void {
-        this.activatedRoute.params.subscribe(
-            (params: Params) => {
-                this.codePenka = params.codePenka;
-            }
-        );
+        this.user = this.firebase.auth().currentUser;
+    }
 
-        this.singleMatchesService.getSingleMatches().subscribe(
-            res => this.singleMatches = res,
-            error => console.log(error));
+    ngOnChanges(changes: SimpleChanges): void {
+        /* Get Participants by codePenka */
+        this.participantsService.getParticipantByCodePenka(this.codePenka)
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
+            res => {
+                this.participants = res;
+            });
 
-        this.listMatchesService.getMBCP(this.codePenka).subscribe(
-            res => this.listMatches = res,
-            error => console.log(error));
+    }
 
-        this.participantService.getParticipants().subscribe(
-            res => this.participants = res,
-            error => console.log(error));
+    ngOnDestroy(): void {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
+    }
+
+    updatePlace(event, id, userName): void {
+        if (confirm('Desea seleccionar el ' + event.value + ' lugar para: ' + userName)) {
+            this.participantsService.updatePlace(id, event.value);
+        } else {
+            this.ngOnInit();
+        }
     }
 
 }

@@ -21,9 +21,9 @@ export interface SingleMatch {
     loserName?: string;
     loserFlag?: string;
     draw?: boolean;
-    startDate?: string;
-    startTime?: string;
     status?: string;
     selected?: string;
     publish?: boolean;
+    startDate?: Date;
+    limitDate?: Date;
 }

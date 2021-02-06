@@ -33,6 +33,18 @@ export class CompetitionsService {
         return this.competitionsCollection.doc(id).valueChanges();
     }
 
+    getCompetitionsByName(name): any {
+        return this.afs.collection<Competition>('competitions', ref => ref
+            .where('name', '==', name))
+            .snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Competition;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
     // tslint:disable-next-line:typedef
     addCompetition(competition: Competition) {
         this.competitionsCollection.add(competition).catch(error => console.log(error));

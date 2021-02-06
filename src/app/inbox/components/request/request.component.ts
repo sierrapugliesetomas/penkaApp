@@ -66,10 +66,7 @@ export class RequestComponent implements OnInit {
             error => console.log(error));
 
         // get date
-        const months = ['Jan', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         const today = new Date();
-        const date = today.getDate() + ' de ' + months[today.getMonth()] + ' de ' + today.getFullYear();
-
         this.newParticipant.codePenka = codePenka;
         this.newParticipant.userId = userId;
         this.newParticipant.userName = userName;
@@ -79,7 +76,7 @@ export class RequestComponent implements OnInit {
         this.newParticipant.visibility = visibility;
         this.newParticipant.bet = bet;
         this.newParticipant.accumulatedScore = 0;
-        this.newParticipant.date = date;
+        this.newParticipant.date = today;
         this.newParticipant.status = '1';
         this.participantsService.addParticipant(this.newParticipant);
         this.penkasRequestService.agreePenkaRequest(requestId);

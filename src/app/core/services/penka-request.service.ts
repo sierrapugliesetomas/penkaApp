@@ -27,8 +27,25 @@ export class PenkaRequestService {
         return this.penkaRequest;
     }
 
-    getPenkaRequestByMaker(makerId) {
-        return this.afs.collection<PenkaRequest>('penkaRequest', ref => ref.where('makerId', '==', makerId))
+    getPenkaRequestByMaker(makerId): any {
+        return this.afs.collection<PenkaRequest>('penkaRequest', ref => ref
+            .where('makerId', '==', makerId)
+            .where('status', '==', '1')
+            .orderBy('date', 'asc'))
+            .snapshotChanges().pipe(map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as PenkaRequest;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
+    getPenkaByUserAndCodePenka(userId, codePenka): any {
+        return this.afs.collection<PenkaRequest>('penkaRequest', ref => ref
+            .where('userId', '==', userId)
+            .where('codePenka', '==', codePenka)
+            .where('status', '==', '1')
+            .orderBy('date', 'asc'))
             .snapshotChanges().pipe(map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as PenkaRequest;
                     const id = a.payload.doc.id;

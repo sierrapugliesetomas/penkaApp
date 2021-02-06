@@ -1,0 +1,43 @@
+<ng-container *ngIf="auth.user$ | async; then authenticated else guess"></ng-container>
+
+<ng-template #authenticated>
+    <!-- DESKTOP -->
+    <div class="desktop" *ngIf="auth.user$ | async as user">
+        <button mat-icon-button [matMenuTriggerFor]="session" aria-label="Example icon-button with a menu">
+            <mat-icon>
+                <img alt="" class="user-img" src="{{user.photoURL}}">
+            </mat-icon>
+        </button>
+        <mat-menu #session="matMenu">
+            <a mat-menu-item (click)="auth.signOut()">
+                <mat-icon fontSet="material-icons-outlined">logout</mat-icon>
+                Cerrar Sesión
+            </a>
+        </mat-menu>
+    </div>
+    <!-- MOBILE -->
+    <div class="mobile" *ngIf="auth.user$ | async as user">
+        <button mat-icon-button [matMenuTriggerFor]="session" aria-label="Example icon-button with a menu">
+            <img alt="" class="user-img" src="{{user.photoURL}}">
+        </button>
+        <mat-menu #session="matMenu">
+            <a mat-menu-item (click)="auth.signOut()">
+                <mat-icon fontSet="material-icons-outlined">logout</mat-icon>
+                Cerrar Sesión
+            </a>
+        </mat-menu>
+    </div>
+</ng-template>
+
+<ng-template #guess>
+    <!-- DESKTOP -->
+    <div class="desktop">
+        <button (click)="modalLogin()" class="btn-session" mat-stroked-button>Iniciar Sesion</button>
+    </div>
+    <!-- MOBILE -->
+    <div class="mobile">
+        <button (click)="modalLogin()" class="btn-session" mat-stroked-button>Iniciar Sesion</button>
+    </div>
+</ng-template>
+
+

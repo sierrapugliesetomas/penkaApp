@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "target": "app",
+    "public": "dist/penkaAPP",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

@@ -1,49 +1,65 @@
-import {Component, OnInit} from '@angular/core';
-import {ListMatchesService} from '../../../core/services/list-matches.service';
-import {Observable} from 'rxjs';
-import {ListMatches} from '../../../core/interfaces/list-matches';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Subject} from 'rxjs';
+import {ActivatedRoute, Params} from '@angular/router';
 import {FirebaseApp} from '@angular/fire';
 import {AuthService} from '../../../core/services/auth.service';
 import {User} from '../../../core/interfaces/user';
-import {PenkasService} from '../../../core/services/penkas.service';
-import {Penka} from '../../../core/interfaces/penka';
+import {takeUntil} from 'rxjs/operators';
+import {GambleService} from '../../../core/services/gamble.service';
+import {Gamble} from '../../../core/interfaces/gamble';
+import {Location} from '@angular/common';
 
 @Component({
     selector: 'app-gamble',
     templateUrl: './gamble.component.html',
     styleUrls: ['./gamble.component.scss']
 })
-export class GambleComponent implements OnInit {
-
-    penkaId: string;
-    ListMatches$: Observable<ListMatches[]>;
-    penka = [] as Penka;
+export class GambleComponent implements OnInit, OnDestroy {
+    title = 'Mis Jugadas';
+    /* Get Penka from Penka/View */
+    codePenka: string;
+    /* Array Gambles */
+    gambles = [] as Gamble[];
     user = {} as User;
 
+    private unsubscribe$ = new Subject<void>();
+
     constructor(
+        private _location: Location,
         public firebase: FirebaseApp,
         public auth: AuthService,
-        private router: Router,
         private activatedRoute: ActivatedRoute,
-        private listMatchesService: ListMatchesService,
-        private penkasService: PenkasService) {
+        private gambleService: GambleService) {
     }
 
     ngOnInit(): void {
+        /* User */
         this.user = this.firebase.auth().currentUser;
-
+        /* Get Code Penka */
         this.activatedRoute.params.subscribe(
             (params: Params) => {
-                this.penkaId = params.id;
+                this.codePenka = params.codePenka;
             }
         );
+        /* Get Gambles */
+        this.gambleService.getGambleByCodePenkaAndUserId(this.user.uid, this.codePenka)
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            )
+            .subscribe(
+                res => {
+                    this.gambles = res;
+                });
+    }
 
-        this.ListMatches$ = this.listMatchesService.getMatches();
+    ngOnDestroy(): void {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
+    }
 
-        this.penkasService.getPenkaById(this.penkaId).subscribe(
-            res => this.penka = res,
-            error => console.log(error));
+    // tslint:disable-next-line:typedef
+    back() {
+        this._location.back();
     }
 
 }

@@ -13,7 +13,7 @@ export class ParticipantsService {
     participants: Observable<Participant[]>;
 
     constructor(private afs: AngularFirestore) {
-        this.participantsCollection = afs.collection<Participant>('participants', ref => ref.orderBy('accumulatedScore', 'desc'));
+        this.participantsCollection = afs.collection<Participant>('participants');
         this.participants = this.participantsCollection.snapshotChanges().pipe(
             map(actions => actions.map(a => {
                 const data = a.payload.doc.data() as Participant;
@@ -23,13 +23,14 @@ export class ParticipantsService {
         );
     }
 
-    getParticipants() {
+    getParticipants(): any {
         return this.participants;
     }
 
-    /* Get participants on status 1 */
     getParticipantsPublic(): any {
-        return this.afs.collection<Participant>('participants', ref => ref.where('status', '==', '1'))
+        return this.afs.collection<Participant>('participants', ref => ref
+            .where('status', '==', '1')
+            .orderBy('accumulatedScore', 'desc'))
             .snapshotChanges().pipe(map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as Participant;
                     const id = a.payload.doc.id;
@@ -38,19 +39,25 @@ export class ParticipantsService {
             );
     }
 
-    getParticipantByUserAndCodePenka(userId, codePenka) {
-        return this.afs.collection<Participant>('participants', ref => ref.where('userId', '==', userId)
-            .where('codePenka', '==', codePenka)).snapshotChanges().pipe(
-            map(actions => actions.map(a => {
-                const data = a.payload.doc.data() as Participant;
-                const id = a.payload.doc.id;
-                return {id, ...data};
-            }))
-        );
+    getParticipantByCodePenka(codePenka): any { /* participant.ts */
+        return this.afs.collection<Participant>('participants', ref => ref
+            .where('codePenka', '==', codePenka)
+            .where('status', 'in', ['1', '2', '9'])
+            .orderBy('accumulatedScore', 'desc'))
+            .snapshotChanges()
+            .pipe(map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Participant;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
     }
 
-    getParticipantByUser(userId) {
-        return this.afs.collection<Participant>('participants', ref => ref.where('userId', '==', userId))
+    getParticipantByUserId(userId): any {
+        return this.afs.collection<Participant>('participants', ref => ref
+            .where('userId', '==', userId)
+            .where('status', 'in', ['1', '2'])
+            .orderBy('date', 'asc'))
             .snapshotChanges().pipe(map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as Participant;
                     const id = a.payload.doc.id;
@@ -59,24 +66,62 @@ export class ParticipantsService {
             );
     }
 
-    getParticipantPop(userId) {
-        return this.afs.collection<Participant>('participants', ref => ref.where('status', '==', '1')
-            .where('userId', '==', userId)).snapshotChanges().pipe(
-            map(actions => actions.map(a => {
-                const data = a.payload.doc.data() as Participant;
-                const id = a.payload.doc.id;
-                return {id, ...data};
-            }))
-        );
+    getAllParticipantByUserId(userId): any {
+        return this.afs.collection<Participant>('participants', ref => ref
+            .where('userId', '==', userId)
+            .where('status', 'in', ['1', '2', '9'])
+            .orderBy('date', 'desc'))
+            .snapshotChanges().pipe(map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Participant;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
     }
 
-    addParticipant(participant: Participant) {
+    getParticipantLimitByUserId(userId): any {
+        return this.afs.collection<Participant>('participants', ref => ref
+            .where('userId', '==', userId)
+            .where('status', 'in', ['1', '2'])
+            .orderBy('date', 'asc')
+            .limit(4))
+            .snapshotChanges().pipe(map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Participant;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
+    getParticipantByUserAndCodePenka(userId, codePenka): any {
+        return this.afs.collection<Participant>('participants', ref => ref
+            .where('userId', '==', userId)
+            .where('codePenka', '==', codePenka)
+            .where('status', '==', '1'))
+            .snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Participant;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
+
+    addParticipant(participant: Participant): void {
         this.participantsCollection.add(participant)
             .catch(error => console.log(error));
     }
 
-    updateParticipants(id, participant: Participant) {
-        this.participantsCollection.doc(id).update(participant)
-            .catch(error => console.log(error));
+    updateAccumulatedScore(id, accumulatedScore): void {
+        this.participantsCollection.doc(id).update({accumulatedScore}).then();
+    }
+
+    updatePlace(id, place): void {
+        this.participantsCollection.doc(id).update({place}).catch();
+    }
+
+    updateParticipation(id, status): any {
+        this.participantsCollection.doc(id).update({status}).catch();
     }
 }

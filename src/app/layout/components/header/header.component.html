@@ -1,130 +1,111 @@
-<ng-container *ngIf="auth.user$ | async; then authenticated else none"></ng-container>
+<ng-container *ngIf="auth.user$ | async; then authenticated else guess"></ng-container>
 
 <ng-template #authenticated>
-    <mat-toolbar *ngIf="auth.user$ | async as user" color="dark">
-        <mat-toolbar-row>
-            <div class="container">
-                <div class="row between-xs middle-xs">
-                    <a routerLink="/home">
-                        <img alt="" src="../../../../assets/images/header/logo.png" class="logo-img">
-                    </a>
-                    <nav>
-                        <a mat-button routerLink="home">
-                            <mat-icon fontSet="material-icons-outlined">home</mat-icon>
-                            Home
-                        </a>
-                        <a mat-button routerLink="penka/new">
-                            <mat-icon fontSet="material-icons-outlined">addchart</mat-icon>
-                            Organizar
-                        </a>
-                        <a mat-button routerLink="penka/join">
-                            <mat-icon fontSet="material-icons-outlined">emoji_events</mat-icon>
-                            Participa
-                        </a>
-                        <a mat-button routerLink="penka/list">
-                            <mat-icon fontSet="material-icons-outlined">format_list_bulleted</mat-icon>
-                            Mis Penkas
-                        </a>
-                        <a mat-button routerLink="layout/faq">
-                            <mat-icon fontSet="material-icons-outlined">sports</mat-icon>
-                            Reglamento
-                        </a>
-                        <a mat-button routerLink="/inbox">
-                            <mat-icon fontSet="material-icons-outlined">inbox</mat-icon>
-                            Inbox
-                        </a>
-                        <ng-container *ngIf="request$ | async as requests">
-                            <ng-container
-                                *ngFor="let req of requests | filterMakerId:user.uid | filterStatus:'1'; let i=index; count as c">
-                                <ng-container *ngIf="i <= 0">
-                                    <a
-                                        mat-button [matMenuTriggerFor]="beforeMenu" matBadge="{{c}}"
-                                        matBadgeColor="warn"
-                                        (click)="getNotification()">
-                                        <mat-icon fontSet="material-icons-outlined">notifications</mat-icon>
-                                    </a>
-                                    <mat-menu #beforeMenu="matMenu" xPosition="before">
-                                        <ul>
-                                            <li *ngFor="let r of requests | filterMakerId:user.uid | filterStatus:'1';">
-                                                <a routerLink="/inbox">
-                                                    <p class="notification-font">Solicitud pendiente de aprobacion, de
-                                                        <span
-                                                            class="user-request">{{r.userName}}</span></p>
-                                                </a>
-                                                <ng-container *ngIf="penkas$ | async as penkas">
-                                                    <div
-                                                        *ngFor="let penka of penkas | filterCodePenka:r.codePenka; let i=index">
-                                                        <div *ngIf="i <= 0">
-                                                            <button mat-flat-button type="button" id="btn-agree"
-                                                                    (click)="agree(r.id, penka.id, r.codePenka, r.userId, r.userName, r.userEmail, r.userPhoto, penka.formatName, penka.visibility, penka.bet)">
-                                                                Aceptar
-                                                            </button>
-                                                            <button mat-flat-button type="button" id="btn-reject"
-                                                                    (click)="reject(r.id)">
-                                                                Rechazar
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </ng-container>
-                                            </li>
-                                        </ul>
-                                    </mat-menu>
-                                </ng-container>
-                            </ng-container>
-                        </ng-container>
 
-                        <a mat-button>
-                            <mat-icon><img alt="" src="../../../../assets/images/header/spain.svg"></mat-icon>
-                            ES
-                        </a>
-                        <a mat-button>
-                            <mat-icon><img alt="" class="user-img" height="16" src="{{user.photoURL}}" width="16">
-                            </mat-icon>
-                        </a>
-                        <button (click)="auth.signOut()" class="btn-session" mat-stroked-button>Cerrar Sesion</button>
-                    </nav>
+    <!-- DESKTOP -->
+    <div class="desktop">
+        <mat-toolbar *ngIf="auth.user$ | async as user" color="dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <mat-toolbar-row>
+                            <div class="brand">
+                                <app-brand-logo-container></app-brand-logo-container>
+                            </div>
+
+                            <div class="menu">
+                                <app-menu-container></app-menu-container>
+                            </div>
+
+                            <div class="session">
+                                <app-notification-container [user]="user.uid"></app-notification-container>
+                                <app-session-container></app-session-container>
+                            </div>
+                        </mat-toolbar-row>
+                    </div>
                 </div>
             </div>
-        </mat-toolbar-row>
-    </mat-toolbar>
+        </mat-toolbar>
+    </div>
+
+    <!-- MOBILE -->
+    <div class="mobile">
+        <mat-toolbar *ngIf="auth.user$ | async as user" color="dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <mat-toolbar-row>
+                            <div class="brand">
+                                <app-brand-logo-container></app-brand-logo-container>
+                            </div>
+
+                            <div class="session">
+                                <app-notification-container [user]="user.uid"></app-notification-container>
+                                <app-session-container></app-session-container>
+                            </div>
+
+                            <div class="menu">
+                                <app-menu-container></app-menu-container>
+                            </div>
+                        </mat-toolbar-row>
+                    </div>
+                </div>
+            </div>
+        </mat-toolbar>
+    </div>
 </ng-template>
 
-<ng-template #none>
-    <mat-toolbar color="dark">
-        <mat-toolbar-row>
+<ng-template #guess>
+    <!-- DESKTOP -->
+    <div class="desktop">
+        <mat-toolbar color="dark">
             <div class="container">
-                <div class="row between-xs middle-xs">
-                    <a routerLink="/home">
-                        <img alt="" src="../../../../assets/images/header/logo.png" class="logo-img">
-                    </a>
-                    <nav>
-                        <a mat-button routerLink="home">
-                            <mat-icon fontSet="material-icons-outlined">home</mat-icon>
-                            Home
-                        </a>
-                        <a mat-button routerLink="penka/new">
-                            <mat-icon fontSet="material-icons-outlined">addchart</mat-icon>
-                            Organizar
-                        </a>
-                        <a mat-button routerLink="penka/join">
-                            <mat-icon fontSet="material-icons-outlined">emoji_events</mat-icon>
-                            Participa
-                        </a>
-                        <a mat-button routerLink="layout/faq">
-                            <mat-icon fontSet="material-icons-outlined">sports</mat-icon>
-                            Reglamento
-                        </a>
-                        <a mat-button>
-                            <mat-icon fontSet="material-icons-outlined"><img
-                                alt="" src="../../../../assets/images/header/spain.svg"></mat-icon>
-                            ES
-                        </a>
-                        <button (click)="modalLogin()" class="btn-session" mat-stroked-button>Iniciar Sesion</button>
-                    </nav>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <mat-toolbar-row>
+                            <div class="brand">
+                                <app-brand-logo-container></app-brand-logo-container>
+                            </div>
+
+                            <div class="menu">
+                                <app-menu-container></app-menu-container>
+                            </div>
+
+                            <div class="session">
+                                <app-session-container></app-session-container>
+                            </div>
+                        </mat-toolbar-row>
+                    </div>
                 </div>
             </div>
-        </mat-toolbar-row>
-    </mat-toolbar>
+        </mat-toolbar>
+    </div>
+
+    <!-- MOBILE -->
+    <div class="mobile">
+        <mat-toolbar color="dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <mat-toolbar-row>
+                            <div class="brand">
+                                <app-brand-logo-container></app-brand-logo-container>
+                            </div>
+
+                            <div class="session">
+                                <app-session-container></app-session-container>
+                            </div>
+
+                            <div class="menu">
+                                <app-menu-container></app-menu-container>
+                            </div>
+                        </mat-toolbar-row>
+                    </div>
+                </div>
+            </div>
+        </mat-toolbar>
+    </div>
 </ng-template>
 
 

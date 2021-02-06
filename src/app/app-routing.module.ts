@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
-import {NotFoundComponent} from './layout/components/not-found/not-found.component';
-import {LoginComponent} from './home/components/login/login.component';
+import {LoginComponent} from './layout/components/login/login.component';
 
 const routes: Routes = [
     // LOGIN
@@ -11,32 +10,33 @@ const routes: Routes = [
     // HOME
     {
         path: 'home',
-        loadChildren: () => import('./home/modules/home-module/home-module.module').then(m => m.HomeModuleModule)
+        loadChildren: () => import('./home/modules/home.module').then(m => m.HomeModule)
     },
     // INBOX
     {
         path: 'inbox',
-        loadChildren: () => import('./inbox/modules/inbox-module/inbox-module.module').then(m => m.InboxModuleModule)
+        loadChildren: () => import('./inbox/modules/inbox.module').then(m => m.InboxModule)
     },
     // PENKA
     {
         path: 'penka',
-        loadChildren: () => import('./penka/modules/penka-module/penka-module.module').then(m => m.PenkaModuleModule)
+        loadChildren: () => import('./penka/modules/penka.module').then(m => m.PenkaModule)
     },
     // LAYOUT
     {
         path: 'layout',
-        loadChildren: () => import('./layout/modules/layout-module/layout-module.module').then(m => m.LayoutModuleModule)
+        loadChildren: () => import('./layout/modules/layout.module').then(m => m.LayoutModule)
     },
     // NOT FOUND
     {path: '', redirectTo: '/home', pathMatch: 'full'},
-    {path: '**', component: NotFoundComponent}
+    /*{path: '**', component: NotFoundComponent}*/
 
 
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, {
+    imports: [
+        RouterModule.forRoot(routes, {
         preloadingStrategy: PreloadAllModules
     })],
     exports: [RouterModule]

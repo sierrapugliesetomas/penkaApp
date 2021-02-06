@@ -1,51 +1,86 @@
-<div class="row header-page">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <p class="header-page-title">Participantes</p>
+<ul class="list-participant">
+    <li class="item-participant" *ngFor="let p of participants; let i = index">
+
+        <ng-container *ngIf="i < 5">
+            <div class="container-user">
+                <ng-container *ngIf="p.userId === user.uid">
+                    <p>{{i + 1}}.&nbsp;&nbsp;
+                        <span class="me">{{p.userName}}</span>
+                    </p>
+                </ng-container>
+                <ng-container *ngIf="p.userId !== user.uid">
+                    <p>{{i + 1}}.&nbsp;&nbsp;<span
+                        class="user">{{p.userName}}</span></p>
+                </ng-container>
             </div>
-        </div>
-    </div>
-</div>
-<br>
-<div class="container">
-    <div class="row">
-        <div class="col-lgl-12">
-            <div class="box">
-                <table class="table">
-                    <thead class="table-header">
-                    <tr>
-                        <th scope="col" class="th"></th>
-                        <th scope="col" class="th">Puntos</th>
 
-                        <ng-container *ngIf="listMatches">
-                            <ul>
-                                <li *ngFor="let lm of listMatches">
-                                    <th scope="col" class="th">
+            <div class="container-score">
+                <ng-container *ngIf="p.userId === user.uid">
+                    <p class="me">{{p.accumulatedScore}} pt</p>
+                </ng-container>
+                <ng-container *ngIf="p.userId !== user.uid">
+                    <p class="user">{{p.accumulatedScore}} pt</p>
+                </ng-container>
+            </div>
 
-                                        <ng-container *ngFor="let sm of singleMatches | filterId:lm.singleMatchId">
-                                            <p>{{sm.homeTeamAlias}} &nbsp; - &nbsp; {{sm.visitTeamAlias}}</p>
-                                            <p>{{sm.homeTeamScore}} &nbsp; - &nbsp; {{sm.visitTeamScore}}</p>
-                                        </ng-container>
-                                    </th>
-                                </li>
-                            </ul>
-                        </ng-container>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    <ng-container *ngIf="participants">
-                        <ul>
-                            <li *ngFor="let p of participants | filterCodePenka:codePenka">
-                                {{p.userName}}
-                            </li>
-                        </ul>
+            <ng-container *ngIf="makerId === user.uid">
+                <div class="container-place">
+                    <!-- if participation is still in game and penka no finish yet  -->
+                    <ng-container *ngIf="p.status === '1'">
+                        <select class="select_place" disabled>
+                            <option value="">Seleccionar Posicion</option>
+                        </select>
                     </ng-container>
 
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+                    <!-- if participation is done and penka is ended -->
+                    <ng-container *ngIf="p.status === '9'">
+                        <ng-container *ngIf="p.place === 'primero'">
+                            <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
+                        </ng-container>
+                        <ng-container *ngIf="p.place === 'segundo'">
+                            <img class="medal" src="../../../../assets/images/medals/medal-silver.png" alt="Segundo">
+                        </ng-container>
+                        <ng-container *ngIf="p.place === 'tercero'">
+                            <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercero">
+                        </ng-container>
+                        <select class="select_place" disabled>
+                            <option value="">{{p.place}}</option>
+                        </select>
+                    </ng-container>
+
+                    <ng-container *ngIf="p.status === '2'">
+                        <ng-container *ngIf="p.place === 'primero'">
+                            <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
+                        </ng-container>
+                        <ng-container *ngIf="p.place === 'segundo'">
+                            <img class="medal" src="../../../../assets/images/medals/medal-silver.png" alt="Segundo">
+                        </ng-container>
+                        <ng-container *ngIf="p.place === 'tercero'">
+                            <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercero">
+                        </ng-container>
+
+                        <select class="select_place" (change)="updatePlace($event.target, p.id, p.userName)">
+
+                            <ng-container *ngIf="p.place; else selectPlace">
+                                <option value="{{p.place}}">{{p.place}}</option>
+                                <option value="primero">Primero</option>
+                                <option value="segundo">Segundo</option>
+                                <option value="tercero">Tercero</option>
+                            </ng-container>
+
+                            <ng-template #selectPlace>
+                                <option value="null">Selecciona Posicion</option>
+                                <option value="primero">Primero</option>
+                                <option value="segundo">Segundo</option>
+                                <option value="tercero">Tercero</option>
+                            </ng-template>
+
+                        </select>
+                    </ng-container>
+
+                </div>
+            </ng-container>
+
+        </ng-container>
+    </li>
+</ul>

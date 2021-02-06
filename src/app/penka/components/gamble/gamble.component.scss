@@ -1,38 +1,106 @@
-.card-gamble {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    background-color: transparent;
-    border-radius: 25px;
+/******* MOBILE *********/
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: inline;
+    }
+    .container-button-mobile {
+        padding-top: 50px;
+        text-align: center;
+    }
+    .container-gambles-mobile {
+        width: 100%;
+        border: 0;
+        overflow-y: auto;
+        background-color: transparent;
+    }
+
+    /* List */
+    .list-mobile {
+        padding: 0;
+    }
+
+    .list-item-mobile {
+        margin-bottom: 20px;
+    }
+    /* Buttons */
+    .btn-ready {
+        background-color: #792fe8;
+        border-radius: 25px;
+        padding: 0 60px 0 60px;
+    }
 }
 
-.card-gamble-content {
-    height: 500px;
-    padding: 15px 0 5px 20px;
-    border: 0;
-    overflow-x: auto;
-    background-color: transparent;
-}
+/****** DESKTOP *******/
+@media only screen and (min-width: 720px) and (orientation: landscape) {
+    .desktop {
+        display: inline;
+    }
+    .mobile {
+        display: none;
+    }
+    .card-gamble {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background-color: transparent;
+        border-radius: 25px;
+    }
 
-/* List */
-ul {
-    padding: 0;
-}
+    .card-gamble-content {
+        height: 400px;
+        padding: 0 0 5px 20px;
+        border: 0;
+        overflow-y: auto;
+        background-color: transparent;
+    }
 
-li {
-    padding-left: 20px;
-    margin-bottom: 20px;
-}
+    .card-gamble-content::-webkit-scrollbar {
+        width: 10px;
+    }
 
-.card-gamble-footer {
-    background-color: transparent;
-    border: 0;
-    text-align: center;
-    padding-top: 20px;
-}
+    .card-gamble-content::-webkit-scrollbar-thumb {
+        background-color: #2E3035;
+        border-radius: 10px;
+    }
 
-.btn-save {
-    background-color: #FDA328;
-    border-radius: 25px;
-    padding: 0 40px 0 40px;
+    .card-gamble-content::-webkit-scrollbar-thumb:active {
+        background-color: #737171;
+    }
+
+    .card-gamble-content::-webkit-scrollbar-thumb:hover {
+        background-color: #792fe8;
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    /* List */
+    ul {
+        padding: 0;
+    }
+
+    li {
+        padding-left: 20px;
+        margin-bottom: 30px;
+    }
+
+    .card-gamble-footer {
+        background-color: transparent;
+        border: 0;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .btn-save {
+        background-color: #FDA328;
+        border-radius: 25px;
+        padding: 0 40px 0 40px;
+    }
+
+    .btn-ready {
+        background-color: #792fe8;
+        border-radius: 25px;
+        padding: 0 60px 0 60px;
+    }
 }

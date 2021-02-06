@@ -1,0 +1,105 @@
+/* common */
+.banner {
+  background-image: url("../../../../assets/images/home/banner/banner-1.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
+  border-top: 3px solid #FDA328;
+}
+/* MOBILE 300p */
+@media only screen and (min-width: 300px) and (orientation: portrait) {
+  .banner {
+    height: 100px;
+  }
+  .container-button {
+    margin: 10px 0 0 55%;
+    width: 40%;
+  }
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .btn-banner {
+    padding: 5px 15px 5px 15px;
+    background-color: #FDA328;
+    border-radius: 25px;
+    font-size: 8px;
+    line-height: 10px;
+  }
+}
+
+/* MOBILE 350p */
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+  .banner {
+    height: 120px;
+  }
+  .container-button {
+    margin: 10px 0 0 55%;
+    width: 40%;
+  }
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .btn-banner {
+    padding: 5px 15px 5px 15px;
+    background-color: #FDA328;
+    border-radius: 25px;
+    font-size: 10px;
+    line-height: 14px;
+  }
+}
+
+/* DESKTOP 720P */
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .banner {
+    height: 380px;
+  }
+  .container-button {
+    margin: 10% 0 0 55%;
+    width: 40%;
+  }
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 50px;
+    line-height: 60px;
+  }
+  .btn-banner {
+    margin-top: 10px;
+    padding: 5px 30px 5px 30px;
+    background-color: #FDA328;
+    border-radius: 25px;
+    font-size: 16px;
+    line-height:30px;
+  }
+}
+
+/* DESKTOP 1080P */
+@media only screen and (min-width: 1900px) and (orientation: landscape) {
+  .banner {
+    height: 520px;
+  }
+  .container-button {
+    margin: 10% 0 0 55%;
+    width: 60%;
+  }
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 60px;
+    line-height: 70px;
+  }
+  .btn-banner {
+    margin-top: 10px;
+    padding: 8px 30px 8px 30px;
+    background-color: #FDA328;
+    border-radius: 25px;
+    font-size: 20px;
+    line-height:30px;
+  }
+}

@@ -1,201 +1,264 @@
-<ng-container *ngIf="penka$ | async as penka">
-    <div class="row header-page">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="box">
-                        <p class="header-page-title">{{penka.name}}</p>
+<app-page-header [title]="penka.name"></app-page-header>
+<br>
+<!-- DESKTOP -->
+<div class="desktop">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="box">
+                    <app-back-space></app-back-space>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="box">
+                    <!-- Card Information -->
+                    <div class="card">
+                        <div class="card-header">
+                            <p class="card-title">
+                                Informacion
+                            </p>
+                        </div>
+                        <div class="card-body card-information">
+                            <div class="row">
+                                <div class=" col-lg-6">
+                                    <div class="box">
+                                        <div>
+                                            <p class="label-card">Organizador</p>
+                                            <p class="item-card">{{penka.makerName}}</p>
+                                        </div>
+                                        <div>
+                                            <p class="label-card">Fecha de creacion</p>
+                                            <p class="item-card">{{penka.date.toDate() | date:'mediumDate'}}</p>
+                                        </div>
+                                        <div>
+                                            <p class="label-card">Formato</p>
+                                            <p class="item-card">{{penka.formatName}}</p>
+                                        </div>
+                                        <div>
+                                            <p class="label-card">Participantes</p>
+                                            <p class="item-card">{{penka.nParticipants}}
+                                                / {{penka.limitParticipants}}</p>
+                                        </div>
+                                        <div>
+                                            <p class="label-card">Estado</p>
+                                            <p class="item-card">
+                                                <ng-container *ngIf="penka.status === '1'">
+                                                    En Juego
+                                                </ng-container>
+                                                <ng-container *ngIf="penka.status === '2'">
+                                                    Terminada
+                                                </ng-container>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="box">
+                                        <div>
+                                            <p class="label-card">Apuesta</p>
+                                            <p class="item-card">${{penka.bet}}</p>
+                                        </div>
+                                        <div>
+                                            <p class="label-card">Pozo</p>
+                                            <p class="item-card">${{penka.accumulatedBet}}
+                                                / {{ penka.bet * penka.limitParticipants}}</p>
+                                        </div>
+                                        <div>
+                                            <p class="label-card">Distribucion</p>
+                                            <p class="item-card">{{penka.distributionBet}}</p>
+                                        </div>
+                                        <div>
+                                            <p class="label-card">Codigo de penka</p>
+                                            <p class="item-card">{{penka.codePenka}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- Card Participants -->
+                    <div class="card">
+                        <div class="card-header">
+                            <p class="card-title">
+                                Participantes
+                            </p>
+                        </div>
+                        <div class="card-body card-participants">
+                            <app-participants [codePenka]="penka.codePenka"></app-participants>
+                        </div>
+                        <div class="card-footer">
+                            <button mat-button (click)="join()" class="btn-join">
+                                Jugar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="box">
+                    <!-- Card List Matches -->
+                    <div class="card">
+                        <div class="card-header special-background">
+                            <p class="card-title">
+                                Partidos a Jugar
+                            </p>
+                        </div>
+                        <div class="card-body card-matches">
+                            <ul class="list-vertical">
+                                <li class="item-vertical"
+                                    *ngFor="let match of listMatches | filterCodePenka:penka.codePenka">
+                                    <app-penka-match [match]="match"></app-penka-match>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <br>
-    <div class="container">
-        <app-back-space></app-back-space>
-        <br>
-        <div class="row">
-            <div class="col-lg-5 col-lg-offset-1">
-                <div class="box">
-                    <!---------------------->
-                    <!-- Card Information -->
-                    <mat-card class="card-information">
-                        <mat-card-header class="card-information-header">
-                            <p class="card-header-title">Informacion</p>
-                        </mat-card-header>
-                        <mat-card-content class="card-information-content">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="box">
-                                        <div class="card-information-item">
-                                            <p class="card-label-content">Organizador</p>
-                                            <p class="card-info-content">{{penka.makerName}}</p>
-                                        </div>
-                                        <div class="card-information-item">
-                                            <p class="card-label-content">Fecha de creacion</p>
-                                            <p class="card-info-content">{{penka.date}}</p>
-                                        </div>
-                                        <div class="card-information-item">
-                                            <p class="card-label-content">Formato</p>
-                                            <p class="card-info-content">{{penka.formatName}}</p>
-                                        </div>
-                                        <div class="card-information-item">
-                                            <p class="card-label-content">Participantes</p>
-                                            <p class="card-info-content">{{penka.nParticipants}}
-                                                / {{penka.limitParticipants}}</p>
-                                        </div>
+</div>
+
+<!-- MOBILE -->
+<div class="mobile">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <!----------------------------->
+                <!------ Information ---------->
+                <mat-accordion>
+                    <mat-expansion-panel [expanded]="false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Informacion
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div>
+                                        <p class="label-mobile">Organizador</p>
+                                        <p class="item-mobile">{{penka.makerName}}</p>
                                     </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="box">
-                                        <div class="card-information-item">
-                                            <p class="card-label-content">Apuesta</p>
-                                            <p class="card-info-content">${{penka.bet}}</p>
-                                        </div>
-                                        <div class="card-information-item">
-                                            <p class="card-label-content">Pozo</p>
-                                            <p class="card-info-content">${{penka.accumulatedBet}}
-                                                / {{ penka.bet * penka.limitParticipants}}</p>
-                                        </div>
-                                        <div class="card-information-item">
-                                            <p class="card-label-content">Distribucion</p>
-                                            <p class="card-info-content">{{penka.distributionBet}}</p>
-                                        </div>
-                                        <div class="card-information-item">
-                                            <p class="card-label-content">Codigo de penka</p>
-                                            <p class="card-info-content">{{penka.codePenka}}</p>
-                                        </div>
+                                    <div>
+                                        <p class="label-mobile">Fecha de creacion</p>
+                                        <p class="item-mobile">{{penka.date.toDate() | date:'mediumDate'}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="label-mobile">Formato</p>
+                                        <p class="item-mobile">{{penka.formatName}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="label-mobile">Participantes</p>
+                                        <p class="item-mobile">{{penka.nParticipants}}
+                                            / {{penka.limitParticipants}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="label-mobile">Estado</p>
+                                        <p class="item-mobile">
+                                            <ng-container *ngIf="penka.status === '1'">
+                                                En Juego
+                                            </ng-container>
+                                            <ng-container *ngIf="penka.status === '2'">
+                                                Terminada
+                                            </ng-container>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-            </div>
-            <!---------------->
-            <!---- Scores ---->
-            <div class="col-lg-5">
-                <div class="box">
-                    <mat-card class="card-score">
-                        <mat-card-header class="card-score-header">
-                            <p class="card-header-title">Puntajes</p>
-                        </mat-card-header>
-                        <mat-card-content class="card-score-content">
-                            <ng-container *ngIf="participants$ | async as participants">
-                                <ul class="list-participants">
-                                    <li class="list-participants-item row between-lg"
-                                        *ngFor="let part of participants | filterCodePenka:penka.codePenka; let i = index, let c = count">
-
-                                        <ng-container *ngIf="c">
-                                            <p class="participant-font">{{part.userName}}</p>
-                                            <p class="participant-font">{{part.accumulatedScore}}</p>
-                                        </ng-container>
-
-                                    </li>
-                                </ul>
-                            </ng-container>
-                            <button mat-stroked-button (click)="modalParticipants(penka.codePenka)"
-                                    class="btn-grid-participants">
-                                Ver tabla de resultados
-                            </button>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="box">
-                    <!--------------------->
-                    <!----- My gamble ----->
-                    <mat-card class="card-gamble">
-                        <mat-card-header class="card-gamble-header">
-                            <p class="card-header-title">Mis Jugadas</p>
-                        </mat-card-header>
-                        <mat-card-content class="card-gamble-content">
-                            <div class="row">
-
-                                <ng-container *ngIf="penka.typePenka === 'template'">
-                                    <ng-container *ngIf="listMatches$ | async as listMatches">
-                                        <ul *ngFor="let lm of listMatches | filterCodeTemplate:penka.codeTemplate | filterStatus:'1'; let i = index">
-                                            <li *ngIf=" i <= 3">
-                                                <app-match-result [match]="lm"
-                                                                  [codePenka]="penka.codePenka"></app-match-result>
-                                            </li>
-                                        </ul>
-                                    </ng-container>
-                                </ng-container>
-
-                                <ng-container *ngIf="penka.typePenka === 'singleMatches'">
-                                    <ng-container *ngIf="listMatches$ | async as listMatches">
-                                        <ul *ngFor="let lm of listMatches | filterCodePenka:penka.codePenka | filterStatus:'1'; let i = index">
-                                            <li *ngIf=" i <= 3">
-                                                <app-match-result [match]="lm" [userId]="user.uid"
-                                                                  [codePenka]="penka.codePenka"></app-match-result>
-                                            </li>
-                                        </ul>
-                                    </ng-container>
-                                </ng-container>
-
-
-                            </div>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-            </div>
-            <!-------------------->
-            <!--- Next Matches --->
-            <div class="col-lg-6">
-                <div class="box">
-
-                    <mat-card class="card-nextMatches">
-                        <mat-card-header class="card-nextMatches-header">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <p class="card-header-title">Proximas Jugadas</p>
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div>
+                                        <p class="label-mobile">Apuesta</p>
+                                        <p class="item-mobile">${{penka.bet}}</p>
                                     </div>
-                                    <div class="col-lg-4 row middle-lg">
-                                        <button mat-button class="btn-goGamble" (click)="playGamble(penka)">
-                                            Llenar Resultados
-                                        </button>
+                                    <div>
+                                        <p class="label-mobile">Pozo</p>
+                                        <p class="item-mobile">${{penka.accumulatedBet}}
+                                            / {{ penka.bet * penka.limitParticipants}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="label-mobile">Distribucion</p>
+                                        <p class="item-mobile">{{penka.distributionBet}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="label-mobile">Codigo de penka</p>
+                                        <p class="item-mobile">{{penka.codePenka}}</p>
                                     </div>
                                 </div>
                             </div>
-                        </mat-card-header>
-                        <mat-card-content class="card-nextMatches-content">
-                            <div class="row">
-
-                                <ng-container *ngIf="penka.typePenka === 'template'">
-                                    <ng-container *ngIf="listMatches$ | async as listMatches">
-                                        <ul *ngFor="let lm of listMatches | filterCodeTemplate:penka.codeTemplate | filterStatus:'1'; let i = index">
-                                            <li *ngIf=" i <= 3">
-                                                <app-match [match]="lm"></app-match>
-                                            </li>
-                                        </ul>
-                                    </ng-container>
-                                </ng-container>
-
-                                <ng-container *ngIf="penka.typePenka === 'singleMatches'">
-                                    <ng-container *ngIf="listMatches$ | async as listMatches">
-                                        <ul *ngFor="let lm of listMatches | filterCodePenka:penka.codePenka | filterStatus:'1'; let i = index">
-                                            <li *ngIf=" i <= 3">
-                                                <app-match [match]="lm"></app-match>
-                                            </li>
-                                        </ul>
-                                    </ng-container>
-                                </ng-container>
-
-
-                            </div>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
             </div>
         </div>
     </div>
     <br>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+
+                <!-- Participants -->
+                <mat-accordion>
+                    <mat-expansion-panel [expanded]="true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Participantes
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <app-participants [codePenka]="penka.codePenka"></app-participants>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <br>
+                                    <div class="container-button-mobile">
+                                        <button class="btn-grid-mobile" mat-button
+                                                (click)="join()">
+                                            Jugar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+    </div>
     <br>
-</ng-container>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <!------------------------------>
+                <!------ Next Matches ---------->
+                <mat-accordion>
+                    <mat-expansion-panel [expanded]="false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Partidos a Jugar
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <ul class="list-vertical">
+                                        <li class="item-vertical"
+                                            *ngFor="let match of listMatches | filterCodePenka:penka.codePenka">
+                                            <app-penka-match [match]="match"></app-penka-match>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>

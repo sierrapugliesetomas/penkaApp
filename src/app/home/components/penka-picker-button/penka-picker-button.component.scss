@@ -1,0 +1,43 @@
+/* MOBILE 300p */
+@media only screen and (min-width: 300px) and (orientation: portrait) {
+
+}
+
+/* MOBILE 350p */
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+
+}
+
+/* DESKTOP 720p */
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .btn-penka {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    font-size: 14px;
+    line-height: 80px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    background-color: #FDA328;
+  }
+}
+
+/* DESKTOP 1080p */
+@media only screen and (min-width: 1900px) and (orientation: landscape) {
+  .btn-penka {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    font-size: 14px;
+    line-height: 80px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    background-color: #FDA328;
+  }
+}

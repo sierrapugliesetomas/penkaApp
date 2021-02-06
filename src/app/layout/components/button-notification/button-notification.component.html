@@ -1,0 +1,23 @@
+<ng-container *ngFor="let p of penkas">
+    <button mat-flat-button type="button" id="btn-agree"
+            (click)="agree
+            (request.id,
+             p.id,
+             p.typePenka,
+             p.codePenka,
+             p.codeTemplate,
+             request.userId,
+             request.userName,
+             request.userEmail,
+             request.userPhoto,
+             p.formatName,
+             p.visibility,
+             p.bet
+             )">
+        Aceptar
+    </button>
+    <button mat-flat-button type="button" id="btn-reject"
+            (click)="reject(request.id)">
+        Rechazar
+    </button>
+</ng-container>

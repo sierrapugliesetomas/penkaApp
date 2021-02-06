@@ -9,6 +9,7 @@ export interface Participant {
     visibility?: string;
     bet?: number;
     accumulatedScore?: number;
-    date?: string;
+    date?: Date;
     status?: string;
+    place?: string;
 }
