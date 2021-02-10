@@ -5,7 +5,29 @@
 
 /* DESKTOP 350p */
 @media only screen and (min-width: 350px) and (orientation: portrait) {
-
+  label {
+    font-size: 14px;
+  }
+  .cb-penkas {
+    background-color: #FDA328;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    line-height: 30px;
+    padding: 5px 20px 5px 20px;
+  }
+  .list-penkas {
+    display: grid;
+    padding: 0;
+    overflow-y: auto;
+    grid-template-columns: repeat(3, 3fr);
+  }
+  .item-penkas {
+    margin: 0 0 50px 0;
+  }
 }
 
 /* DESKTOP 720p */

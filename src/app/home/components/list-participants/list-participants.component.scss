@@ -134,15 +134,17 @@
 
 /* DESKTOP 720P */
 @media only screen and (min-width: 1280px) and (orientation: landscape) {
-  .title-section {
+  .title {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 16px;
-    font-style: normal;
-    line-height: 24px;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    margin: 0;
+  }
+  .text-help {
     text-align: center;
   }
-
   .list-participant {
     list-style-type: none;
   }
@@ -200,72 +202,3 @@
     height: 20px;
   }
 }
-
-/* DESKTOP 1080p */
-@media only screen and (min-width: 1900px) and (orientation: landscape) {
-  .title-section {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    font-style: normal;
-    line-height: 24px;
-    text-align: center;
-  }
-
-  .list-participant {
-    list-style-type: none;
-  }
-
-  .list-item {
-    padding: 0;
-    border-bottom: 1px solid gray;
-    margin-bottom: 10px;
-  }
-
-  .userName {
-    display: inline-block;
-    width: 80%;
-    height: 16px;
-    margin: 0;
-    padding: 0;
-  }
-
-  .userScore {
-    display: inline-block;
-    width: 20%;
-    height: 16px;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-  }
-
-  .me {
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 14px;
-    color: #FDA328;
-    margin: 0;
-    padding: 0;
-    line-height: 14px;
-  }
-
-  .user {
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 14px;
-    line-height: 14px;
-    color: white;
-    margin: 0;
-    padding: 0;
-  }
-
-  .pickUser {
-    cursor: pointer;
-  }
-  .medal {
-    height: 20px;
-  }
-}
-

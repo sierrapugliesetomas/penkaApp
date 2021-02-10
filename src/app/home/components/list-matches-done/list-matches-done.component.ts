@@ -17,21 +17,17 @@ export class ListMatchesDoneComponent implements OnInit, OnDestroy {
 
     @Input() codePenka: string;
     @Input() selectedParticipant: string;
-
-    gambles = [] as Gamble[];
+    gambles = [];
     user = {} as User;
     private unsubscribe$ = new Subject<void>();
-
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
         private router: Router,
         private gambleService: GambleService) {
     }
-
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
-        /* Get gambles by code Penka */
         this.gambleService.getGambleByCodePenka(this.codePenka)
             .pipe(
                 takeUntil(this.unsubscribe$)
@@ -39,7 +35,6 @@ export class ListMatchesDoneComponent implements OnInit, OnDestroy {
             res => {
                 this.gambles = res;
             });
-        /*************************/
     }
 
     ngOnDestroy(): void {

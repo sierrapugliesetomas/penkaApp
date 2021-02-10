@@ -24,6 +24,6 @@ export class SecondaryBannersComponent implements OnInit {
     }
 
     goRulesPenka(): void {
-        this.router.navigate(['penka/faq']).catch();
+        this.router.navigate(['layout/faq']).catch();
     }
 }

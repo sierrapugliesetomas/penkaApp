@@ -118,6 +118,7 @@
     letter-spacing: 0.75px;
   }
 }
+
 /* MOBILE 350p */
 @media only screen and (min-width: 350px) and (orientation: portrait) {
   .match-container {
@@ -243,16 +244,18 @@
 @media only screen and (min-width: 1280px) and (orientation: landscape) {
   .match-container {
     padding: 0;
+    width: 80%;
+    margin-left: 10%;
   }
   .date-container {
-    width: 85%;
     text-align: center;
     margin-bottom: 0;
+    width: 100%;
   }
   .date {
     color: gray;
-    font-size: 12px;
-    line-height: 12px;
+    font-size: 11px;
+    line-height: 11px;
     padding: 0;
     margin-bottom: 5px;
   }
@@ -260,24 +263,25 @@
     background-color: #414347;
     border-radius: 20px;
     display: inline-flex;
-    padding: 5px;
-    margin-bottom: 0;
+    padding: 5px 5% 5px 5%;
+    width: 90%;
   }
   .team-flag {
     width: 25px;
     height: 25px;
-    margin: 0 5px 0 5px;
+    margin: 0 auto;
   }
   .team-score {
     background-color: #000;
-    margin: 2px 1px 3px 1px;
+    margin: 2px 0;
     border-radius: 5px;
     padding: 4px 3px 1px 3px;
+    font-size: 12px;
     line-height: 12px;
   }
   .separator {
     font-size: 12px;
-    margin: 0 2px 0 2px;
+    margin: 0 auto;
     padding: 0;
   }
   .gamble-container {

@@ -29,15 +29,21 @@ import {FilterTempPipe} from '../pipes/filter-temp.pipe';
 import {FilterTeamNamePipe} from '../pipes/filter-team-name.pipe';
 import {FilterDuplicatesPipe} from '../pipes/filter-duplicates.pipe';
 import {ConvertToDatePipe} from '../pipes/convert-to-date.pipe';
+import {PenkaPopComponent} from '../components/penka-pop/penka-pop.component';
+import {MatchMiniContainerComponent} from '../components/match-mini-container/match-mini-container.component';
+import {MatchMiniCounterComponent} from '../components/match-mini-counter/match-mini-counter.component';
 
 @NgModule({
     declarations: [
         BackSpaceComponent,
         MatchMiniComponent,
+        MatchMiniContainerComponent,
+        MatchMiniCounterComponent,
         MatchMiniGambleComponent,
         PageHeaderComponent,
         PageHeaderStepsComponent,
         PenkaComponent,
+        PenkaPopComponent,
         SingleMatchComponent,
         SingleMatchPickedComponent,
         TemplateComponent,
@@ -65,10 +71,13 @@ import {ConvertToDatePipe} from '../pipes/convert-to-date.pipe';
     exports: [
         BackSpaceComponent,
         MatchMiniComponent,
+        MatchMiniContainerComponent,
+        MatchMiniCounterComponent,
         MatchMiniGambleComponent,
         PageHeaderComponent,
         PageHeaderStepsComponent,
         PenkaComponent,
+        PenkaPopComponent,
         SingleMatchComponent,
         SingleMatchPickedComponent,
         TemplateComponent,

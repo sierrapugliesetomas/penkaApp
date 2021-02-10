@@ -53,9 +53,11 @@
                 <div class="footer">
                     <div class="row">
                         <div class="col-lg-4 col-lg-offset-8">
-                            <button mat-button class="btn-gambles" (click)="playGamble(p.codePenka)">
-                                Llenar resultados
-                            </button>
+                            <ng-container *ngIf="p.status === '1'">
+                                <button mat-button class="btn-gambles" (click)="playGamble(p.codePenka)">
+                                    Llenar resultados
+                                </button>
+                            </ng-container>
                         </div>
                     </div>
                 </div>

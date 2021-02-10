@@ -65,6 +65,33 @@ export class GambleService {
             );
     }
 
+    getGamblesWait(userId, codePenka): any {
+        return this.afs.collection<Gamble>('gambles', ref => ref
+            .where('userId', '==', userId)
+            .where('codePenka', '==', codePenka)
+            .where('status', '==', '1')
+            .orderBy('startDate', 'asc'))
+            .snapshotChanges().pipe(map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Gamble;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
+    getGamblesDone(codePenka): any {
+        return this.afs.collection<Gamble>('gambles', ref => ref
+            .where('codePenka', '==', codePenka)
+            .where('status', '==', '2')
+            .orderBy('startDate', 'asc'))
+            .snapshotChanges().pipe(map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Gamble;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
     getGambleByGetScore(userId, codePenka): any {
         return this.afs.collection<Gamble>('gambles', ref => ref
             .where('userId', '==', userId)

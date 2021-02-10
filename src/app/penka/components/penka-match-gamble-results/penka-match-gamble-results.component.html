@@ -40,27 +40,27 @@
             <ng-container *ngIf="g.penkaFormat === 'MEDIUM'">
                 <!-- Match Draw -->
                 <ng-container *ngIf="g.draw === true">
-                    <img src="../../../../assets/images/match/matchDraw.png" alt="" class="img-match-result">
+                    <img  class="img-gamble" src="../../../../assets/images/match/matchDraw.png" alt="">
                     <!---->
                     <p class="separator">:</p>
                     <!---->
-                    <img src="../../../../assets/images/match/matchDraw.png" alt="" class="img-match-result">
+                    <img  class="img-gamble" src="../../../../assets/images/match/matchDraw.png" alt="">
                 </ng-container>
                 <!-- Match Win Home Team -->
                 <ng-container *ngIf="g.homeTeamId === g.winnerTeamId">
-                    <img src="../../../../assets/images/match/matchWinner.png" alt="" class="img-match-result">
+                    <img class="img-gamble" src="../../../../assets/images/match/matchWinner.png" alt="">
                     <!---->
                     <p class="separator">:</p>
                     <!---->
-                    <img src="../../../../assets/images/match/matchLoser.png" alt="" class="img-match-result">
+                    <img class="img-gamble" src="../../../../assets/images/match/matchLoser.png" alt="">
                 </ng-container>
                 <!-- Match Win Visit Team -->
                 <ng-container *ngIf="g.visitTeamId === g.winnerTeamId">
-                    <img src="../../../../assets/images/match/matchLoser.png" alt="" class="img-match-result">
+                    <img class="img-gamble" src="../../../../assets/images/match/matchLoser.png" alt="">
                     <!---->
                     <p class="separator">:</p>
                     <!---->
-                    <img src="../../../../assets/images/match/matchWinner.png" alt="" class="img-match-result">
+                    <img class="img-gamble" src="../../../../assets/images/match/matchWinner.png" alt="">
                 </ng-container>
                 <ng-container *ngIf="g.draw === null">
                     <p class="separator">:</p>

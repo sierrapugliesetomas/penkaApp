@@ -56,11 +56,41 @@ export class ListMatchesService {
             );
     }
 
+    getListMatchesByCodePenkaLimit4(codePenka): any { /* Checked */
+        return this.afs.collection<ListMatches>('listMatches', ref => ref
+            .where('codePenka', '==', codePenka)
+            .where('status', '==', '1')
+            .orderBy('startDate', 'asc')
+            .limit(4))
+            .snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as ListMatches;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
     getListMatchesByCodeTemplate(codeTemplate): any {
         return this.afs.collection<ListMatches>('listMatches', ref => ref
             .where('codeTemplate', '==', codeTemplate)
             .where('status', '==', '1')
             .orderBy('startDate', 'asc'))
+            .snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as ListMatches;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
+    getListMatchesByCodeTemplateLimit4(codeTemplate): any {
+        return this.afs.collection<ListMatches>('listMatches', ref => ref
+            .where('codeTemplate', '==', codeTemplate)
+            .where('status', '==', '1')
+            .orderBy('startDate', 'asc')
+            .limit(4))
             .snapshotChanges().pipe(
                 map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as ListMatches;

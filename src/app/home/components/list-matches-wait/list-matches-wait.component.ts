@@ -1,5 +1,4 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Gamble} from '../../../core/interfaces/gamble';
 import {User} from '../../../core/interfaces/user';
 import {Subject} from 'rxjs';
 import {FirebaseApp} from '@angular/fire';
@@ -16,7 +15,7 @@ import {takeUntil} from 'rxjs/operators';
 export class ListMatchesWaitComponent implements OnInit, OnDestroy {
 
     @Input() codePenka: string;
-    gambles = [] as Gamble[];
+    gambles = [];
     user = {} as User;
     private unsubscribe$ = new Subject<void>();
 
@@ -29,8 +28,7 @@ export class ListMatchesWaitComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
-        /* Get gambles by code Penka and User Id */
-        this.gambleService.getGambleByCodePenkaAndUserId(this.user.uid, this.codePenka)
+        this.gambleService.getGamblesWait(this.user.uid, this.codePenka)
             .pipe(
                 takeUntil(this.unsubscribe$)
             ).subscribe(

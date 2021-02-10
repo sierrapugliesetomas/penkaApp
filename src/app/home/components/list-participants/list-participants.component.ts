@@ -23,6 +23,7 @@ export class ListParticipantsComponent implements OnInit, OnDestroy {
 
     /* Array Gamble Accumulated Score */
     gambles = [] as Gamble[];
+    listParticipants = [];
     participants = [] as Participant[];
     user = {} as User;
     counter = 1;
@@ -40,7 +41,13 @@ export class ListParticipantsComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
-        /* Get Participants by codePenka */
+        this.participantsService.getParticipantByCodePenkaLimit4(this.codePenka)
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
+            res => {
+                this.listParticipants = res;
+            });
         this.participantsService.getParticipantByCodePenka(this.codePenka)
             .pipe(
                 takeUntil(this.unsubscribe$)

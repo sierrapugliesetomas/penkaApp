@@ -45,6 +45,7 @@ export class New2Component implements OnInit, OnDestroy {
                 this.type = params.type;
             }
         );
+        this.codePenka = '';
         const characters = 'KvWxYz0123456789';
         const charactersLength = characters.length;
         for (let i = 0; i < charactersLength; i++) {

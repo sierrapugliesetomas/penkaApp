@@ -1,20 +1,58 @@
 <ng-container *ngFor="let p of penkas">
 
     <div class="card">
-        <!-- Card Header -->
-        <div class="header">
-            <div class="container-title">
-                <p class="title">{{p.name}}</p>
+        <!-- Card Header penka in game -->
+        <ng-container *ngIf="p.status === '1'">
+            <div class="header penka-in-game">
+                <div class="container-title">
+                    <p class="title">{{p.name}}</p>
+                </div>
+                <div class="container-maker">
+                    <p class="subTitle">{{p.makerName}}</p>
+                </div>
+                <div class="container-button">
+                    <button mat-stroked-button class="btn-watch" (click)="goWatch(p.codePenka)">
+                        Ver más
+                    </button>
+                </div>
             </div>
-            <div class="container-maker">
-                <p class="subTitle">{{p.makerName}}</p>
+        </ng-container>
+
+        <!-- Card Header penka done -->
+        <ng-container *ngIf="p.status === '2'">
+            <div class="header penka-done">
+                <div class="container-title">
+                    <p class="title">{{p.name}}</p>
+                </div>
+                <div class="container-maker">
+                    <p class="subTitle">{{p.makerName}}</p>
+                </div>
+                <div class="container-button">
+                    <button mat-stroked-button class="btn-watch" (click)="goWatch(p.codePenka)">
+                        Ver más
+                    </button>
+                </div>
             </div>
-            <div class="container-button">
-                <button mat-stroked-button class="btn-watch" (click)="goWatch(p.id)">
-                    Ver más
-                </button>
+        </ng-container>
+
+        <!-- Card Header penka filed -->
+        <ng-container *ngIf="p.status === '9'">
+            <div class="header penka-done">
+                <div class="container-title">
+                    <p class="title">{{p.name}}</p>
+                </div>
+                <div class="container-maker">
+                    <p class="subTitle">{{p.makerName}}</p>
+                </div>
+                <div class="container-button">
+                    <button mat-stroked-button class="btn-watch" (click)="goWatch(p.codePenka)">
+                        Ver más
+                    </button>
+                </div>
             </div>
-        </div>
+        </ng-container>
+
+
 
         <!-- Card Body -->
         <div class="body">
@@ -96,8 +134,4 @@
             </div>
         </div>
     </div>
-    <button class="btn-join" mat-raised-button
-            (click)="join(p.id, user.uid, p.codePenka, p.name, p.makerId, p.makerName, p.makerEmail, p.makerPhoto)">
-        Jugar
-    </button>
 </ng-container>

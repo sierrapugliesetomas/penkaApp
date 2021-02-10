@@ -1,0 +1,71 @@
+<ng-container *ngFor="let p of penka">
+
+    <div class="card">
+        <!-- Card Header -->
+        <div class="header">
+            <div class="container-title">
+                <p class="title">{{p.name}}</p>
+            </div>
+            <div class="container-maker">
+                <p class="subTitle">{{p.makerName}}</p>
+            </div>
+            <div class="container-button">
+                <button mat-stroked-button class="btn-watch" (click)="goWatch(p.id)">
+                    Ver más
+                </button>
+            </div>
+        </div>
+
+        <!-- Card Body -->
+        <div class="body">
+
+            <!-- MATCHES FROM TEMPLATES -->
+            <ng-container *ngIf="p.typePenka === 'template'">
+                <div class="container-matches">
+                    <app-match-mini-counter [codeTemplate]="p.codeTemplate"></app-match-mini-counter>
+                </div>
+                <app-match-mini-container [codeTemplate]="p.codeTemplate"></app-match-mini-container>
+            </ng-container>
+
+            <!-- MATCHES FROM SINGLE MATCHES -->
+            <ng-container *ngIf="p.typePenka === 'singleMatches'">
+                <div class="container-matches">
+                    <app-match-mini-counter [codePenka]="p.codePenka"></app-match-mini-counter>
+                </div>
+                <app-match-mini-container [codePenka]="p.codePenka"></app-match-mini-container>
+            </ng-container>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="row">
+                <div class="col-xs-4 col-lg-4">
+                    <p class="label">Participantes</p>
+                    <p class="limitData"><span
+                        class="currentData">{{p.nParticipants}}</span>/{{p.limitParticipants}}</p>
+                </div>
+                <div class="col-xs-4 col-lg-4">
+                    <p class="label">Fecha limite</p>
+                    <p class="limitData">{{p.dateLimit.toDate() | date:'MMM dd'}}</p>
+                </div>
+                <div class="col-xs-4 col-lg-4">
+                    <p class="label">Formato</p>
+                    <p class="limitData">{{p.formatName}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-lg-6">
+                    <p class="label">Entrada: &nbsp;<span class="bet">${{p.bet}}</span></p>
+                </div>
+                <div class="col-xs-6 col-lg-6">
+                    <p class="label">pozo: &nbsp; <span class="currentData">${{p.accumulatedBet}}</span><span
+                        class="limitData">/{{p.bet * p.limitParticipants}}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn-join" mat-raised-button
+            (click)="join(p.id, user.uid, p.codePenka, p.name, p.makerId, p.makerName, p.makerEmail, p.makerPhoto)">
+        Jugar
+    </button>
+</ng-container>

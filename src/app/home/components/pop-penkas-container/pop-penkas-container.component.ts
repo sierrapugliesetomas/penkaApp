@@ -29,9 +29,7 @@ export class PopPenkasContainerComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        /* User */
         this.user = this.firebase.auth().currentUser;
-        /* Get my Participation */
         this.participantsService.getParticipantByUserId(this.user.uid)
             .pipe(
                 takeUntil(this.unsubscribe$)
@@ -39,7 +37,6 @@ export class PopPenkasContainerComponent implements OnInit, OnDestroy {
             res => {
                 this.myParticipants = res;
             });
-        /* Get Participants */
         this.participantsService.getParticipantsPublic()
             .pipe(
                 takeUntil(this.unsubscribe$)
@@ -49,7 +46,6 @@ export class PopPenkasContainerComponent implements OnInit, OnDestroy {
                 this.filterParticipants = this.participants.filter(item => {
                     return item.userId !== this.user.uid;
                 });
-
                 // tslint:disable-next-line:prefer-for-of
                 for (let i = 0; i < this.myParticipants.length; i++) {
                     this.filterParticipants = this.filterParticipants.filter(item => {

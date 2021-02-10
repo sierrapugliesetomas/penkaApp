@@ -1,0 +1,9 @@
+<ul class="list-matches">
+    <li class="item-matches" *ngFor="let lm of listMatches">
+        <app-match-mini
+            [matchDate]="lm.startDate"
+            [homeTeamFlag]="lm.homeTeamFlag"
+            [visitTeamFlag]="lm.visitTeamFlag"
+        ></app-match-mini>
+    </li>
+</ul>
