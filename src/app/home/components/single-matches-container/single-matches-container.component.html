@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-xs-8 col-lg-10">
             <div class="box">
-                <p class="counterPicks"><span>{{listMatches.length}}</span> partidos seleccionados.</p>
+                <p class="counterPicks"><span>{{listMatches.length}}</span> Partidos seleccionados.</p>
             </div>
         </div>
         <div class="col-xs-4 col-lg-2">
@@ -37,26 +37,26 @@
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-xs-12 col-lg-12">
             <div class="box">
                 <ul class="list-horizontal">
-                    <li class="item-horizontal"
-                        *ngFor="let match of listMatches">
+                    <li class="item-horizontal" *ngFor="let match of listMatches">
                         <app-single-match-picked [match]="match"></app-single-match-picked>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
+
 </ng-container>
 
 <div class="row">
     <div class="col-xs-12 col-lg-12">
         <div class="box">
             <ul class="list-horizontal">
-                <li *ngFor="let match of singleMatches"
-                    class="item-horizontal" (click)="pickTeam(match)">
+                <li class="item-horizontal" *ngFor="let match of singleMatches" (click)="pickTeam(match)">
                     <app-single-match [match]="match"></app-single-match>
                 </li>
             </ul>

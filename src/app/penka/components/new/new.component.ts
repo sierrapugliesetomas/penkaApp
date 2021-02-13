@@ -8,7 +8,7 @@ import {Component, OnInit} from '@angular/core';
 export class NewComponent implements OnInit {
     stepNumber = '1';
     stepTotal = '4';
-    title = 'Organiza una Penca';
+    title = 'Organiza una Penka';
 
     constructor() {
     }

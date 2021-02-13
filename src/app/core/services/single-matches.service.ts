@@ -8,12 +8,16 @@ import {map} from 'rxjs/operators';
     providedIn: 'root'
 })
 export class SingleMatchesService {
-    singleMatchesCollection: AngularFirestoreCollection<SingleMatch>;
-    singleMatches: Observable<SingleMatch[]>;
+    matches: Observable<SingleMatch[]>;
+    matchesCollection: AngularFirestoreCollection<SingleMatch>;
 
-    constructor(private afs: AngularFirestore) {
-        this.singleMatchesCollection = afs.collection<SingleMatch>('singleMatches');
-        this.singleMatches = this.singleMatchesCollection.snapshotChanges().pipe(
+    constructor(private readonly afs: AngularFirestore) {
+        this.matchesCollection = afs.collection<SingleMatch>('singleMatches', ref => ref
+            .orderBy('startDate', 'asc'));
+    }
+
+    getMatches(): void {
+        this.matches = this.matchesCollection.snapshotChanges().pipe(
             map(actions => actions.map(a => {
                 const data = a.payload.doc.data() as SingleMatch;
                 const id = a.payload.doc.id;
@@ -22,12 +26,22 @@ export class SingleMatchesService {
         );
     }
 
-    getSingleMatches(): any { /* checked */
-        return this.singleMatches;
+    getMatchesPublic(): any {
+        return this.matches = this.afs.collection<SingleMatch>('singleMatches', ref => ref
+            .where('publish', '==', true)
+            .where('status', '==', '1')
+            .orderBy('startDate', 'asc'))
+            .snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as SingleMatch;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
     }
 
-    getSingleMatchesPublicLimit(): any { /* checked */
-        return this.afs.collection<SingleMatch>('singleMatches', ref => ref
+    getMatchesPublicLimit(): any {
+        return this.matches = this.afs.collection<SingleMatch>('singleMatches', ref => ref
             .where('publish', '==', true)
             .where('status', '==', '1')
             .orderBy('startDate', 'asc')
@@ -41,26 +55,11 @@ export class SingleMatchesService {
             );
     }
 
-    getSingleMatchesPublic(): any { /* checked */
-        return this.afs.collection<SingleMatch>('singleMatches', ref => ref
-            .where('publish', '==', true)
-            .where('status', '==', '1')
-            .orderBy('startDate', 'asc'))
-            .snapshotChanges().pipe(
-                map(actions => actions.map(a => {
-                    const data = a.payload.doc.data() as SingleMatch;
-                    const id = a.payload.doc.id;
-                    return {id, ...data};
-                }))
-            );
+    getMatchById(id: string): any {
+        return this.matchesCollection.doc(id).valueChanges();
     }
 
-    getSingleMatchById(id): any { /* checked */
-        return this.singleMatchesCollection.doc(id).valueChanges();
+    changeMatchState(id: string, status: string): any {
+        this.matchesCollection.doc(id).update({status}).then();
     }
-
-    inactivated(id): any { /* checked */
-        this.singleMatchesCollection.doc(id).update({status: '2'}).catch();
-    }
-
 }

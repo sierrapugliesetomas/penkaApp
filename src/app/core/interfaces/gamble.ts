@@ -36,9 +36,9 @@ export interface Gamble {
     visitTeamScore?: number;
     winnerTeamId?: string;
     draw?: boolean;
-    date?: Date;
+    date: Date;
     saved?: boolean;
     scoreAchieved?: number;
     status?: string;
-    startDate?: Date;
+    startDate: Date;
 }

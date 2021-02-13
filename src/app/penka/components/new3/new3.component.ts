@@ -57,6 +57,8 @@ export class New3Component implements OnInit, OnDestroy {
                 this.codePenka = params.codePenka;
             }
         );
+
+
         this.codePenkaForTemplate = '';
         const characters = 'KvWxYz0123456789';
         const charactersLength = characters.length;

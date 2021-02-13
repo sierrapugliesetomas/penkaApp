@@ -4,16 +4,10 @@ import {Subject} from 'rxjs';
 import {ListMatches} from '../../../core/interfaces/list-matches';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {PenkasService} from '../../../core/services/penkas.service';
-import {Penka} from '../../../core/interfaces/penka';
-import {ParticipantsService} from '../../../core/services/participants.service';
 import {User} from '../../../core/interfaces/user';
 import {AuthService} from '../../../core/services/auth.service';
 import {FirebaseApp} from '@angular/fire';
-import {Participant} from '../../../core/interfaces/participant';
 import {Gamble} from '../../../core/interfaces/gamble';
-import {MatDialog} from '@angular/material/dialog';
-import {GambleComponent} from '../gamble/gamble.component';
-import {GambleService} from '../../../core/services/gamble.service';
 import {takeUntil} from 'rxjs/operators';
 
 @Component({
@@ -22,44 +16,30 @@ import {takeUntil} from 'rxjs/operators';
     styleUrls: ['./new4.component.scss']
 })
 export class New4Component implements OnInit, OnDestroy {
-    title = 'Penca creada!';
+    title = 'Tu Penka ha sido creada!';
     stepNumber = '4';
     stepTotal = '4';
     codePenka: string;
-
-    /* Array ListMatches */
-    listMatches = [] as ListMatches[];
-    /* Array Penka */
+    listMatches = [];
     penka = [];
-
     user = {} as User;
-    newParticipant = {} as Participant;
-    newGamble = {} as Gamble;
-
     private unsubscribe$ = new Subject<void>();
-
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
-        private listMatchesService: ListMatchesService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
-        private penkasService: PenkasService,
-        private participantsService: ParticipantsService,
-        private gambleService: GambleService,
-        public dialog: MatDialog) {
+        private listMatchesService: ListMatchesService,
+        private penkasService: PenkasService) {
     }
 
     ngOnInit(): void {
-        /* User */
         this.user = this.firebase.auth().currentUser;
-        /* Get CodePenka */
         this.activatedRoute.params.subscribe(
             (params: Params) => {
                 this.codePenka = params.codePenka;
             }
         );
-        /* Get Penka */
         this.penkasService.getPenkaByCodePenka(this.codePenka)
             .pipe(
                 takeUntil(this.unsubscribe$)
@@ -68,8 +48,6 @@ export class New4Component implements OnInit, OnDestroy {
                 this.penka = res;
             }
         );
-        /*******************/
-        /* Get ListMatches */
         this.listMatchesService.getListMatches()
             .pipe(
                 takeUntil(this.unsubscribe$)
@@ -77,24 +55,12 @@ export class New4Component implements OnInit, OnDestroy {
             res => {
                 this.listMatches = res;
             });
-        /*******************/
     }
 
     ngOnDestroy(): void {
         this.unsubscribe$.next();
         this.unsubscribe$.complete();
     }
-
-    // tslint:disable-next-line:typedef
-    modalGamble(penka: Penka) {
-        this.dialog.open(GambleComponent, {
-            panelClass: 'gambleModal',
-            width: '400px',
-            height: '600px',
-            data: penka
-        });
-    }
-
 
     playGamble(codePenka): void {
         this.router.navigate(['/penka/gamble/' + codePenka]).catch(error => console.log(error));

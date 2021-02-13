@@ -8,6 +8,7 @@ import {FirebaseApp} from '@angular/fire';
 import {AuthService} from '../../../core/services/auth.service';
 import {ListMatchesService} from '../../../core/services/list-matches.service';
 import {takeUntil} from 'rxjs/operators';
+import {CodePenkaService} from '../../../core/services/code-penka.service';
 
 @Component({
     selector: 'app-new2',
@@ -20,7 +21,7 @@ export class New2Component implements OnInit, OnDestroy {
     stepTotal = '4';
     term: string;
     type: string;
-    codePenka: string;
+    generateCodePenka: string;
     templates = [];
     singleMatches = [];
     listMatches = [];
@@ -35,23 +36,19 @@ export class New2Component implements OnInit, OnDestroy {
         private activatedRoute: ActivatedRoute,
         private singleMatchesService: SingleMatchesService,
         private templateService: TemplatesService,
-        private listMatchesService: ListMatchesService) {
+        private listMatchesService: ListMatchesService,
+        private codePenkaService: CodePenkaService) {
+        this.user = this.firebase.auth().currentUser;
+        this.generateCodePenka = this.codePenkaService.codePenka;
     }
 
     ngOnInit(): void {
-        this.user = this.firebase.auth().currentUser;
         this.activatedRoute.params.subscribe(
             (params: Params) => {
                 this.type = params.type;
             }
         );
-        this.codePenka = '';
-        const characters = 'KvWxYz0123456789';
-        const charactersLength = characters.length;
-        for (let i = 0; i < charactersLength; i++) {
-            this.codePenka += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        this.singleMatchesService.getSingleMatchesPublic()
+        this.singleMatchesService.getMatchesPublic()
             .pipe(
                 takeUntil(this.unsubscribe$)
             ).subscribe(
@@ -59,7 +56,7 @@ export class New2Component implements OnInit, OnDestroy {
                 this.singleMatches = res;
                 this.singleMatches.forEach(item => {
                     if (this.today >= item.limitDate.toDate()) {
-                        this.singleMatchesService.inactivated(item.id);
+                        this.singleMatchesService.changeMatchState(item.id, '2');
                     }
                 });
             });
@@ -75,7 +72,7 @@ export class New2Component implements OnInit, OnDestroy {
                     }
                 });
             });
-        this.listMatchesService.getListMatchesTempByCodePenka(this.codePenka)
+        this.listMatchesService.getListMatchesTempByCodePenka(this.generateCodePenka)
             .pipe(
                 takeUntil(this.unsubscribe$)
             ).subscribe(
@@ -95,14 +92,14 @@ export class New2Component implements OnInit, OnDestroy {
         const today = new Date();
         let response = [];
         let counter = 0;
-        this.listMatchesService.verifiedIfExist(this.user.uid, sm.id, this.codePenka).subscribe(
+        this.listMatchesService.verifiedIfExist(this.user.uid, sm.id, this.generateCodePenka).subscribe(
             res => {
                 response = res;
                 if (counter < 1) {
                     if (response.length === 0) {
                         this.listMatchesService.addMatch(
                             sm.id,
-                            this.codePenka,
+                            this.generateCodePenka,
                             codeTemplate,
                             this.user.uid,
                             this.user.displayName,
@@ -127,7 +124,7 @@ export class New2Component implements OnInit, OnDestroy {
     }
 
     makePenka(): void {
-        this.router.navigate(['/penka/new3/singleMatches/' + this.codePenka]).catch();
+        this.router.navigate(['/penka/new3/singleMatches/' + this.generateCodePenka]).catch();
     }
 
 }

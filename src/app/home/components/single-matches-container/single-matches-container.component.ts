@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {SingleMatchesService} from '../../../core/services/single-matches.service';
 import {ListMatchesService} from '../../../core/services/list-matches.service';
 import {takeUntil} from 'rxjs/operators';
+import {CodePenkaService} from '../../../core/services/code-penka.service';
 
 @Component({
     selector: 'app-single-matches-container',
@@ -14,29 +15,25 @@ import {takeUntil} from 'rxjs/operators';
     styleUrls: ['./single-matches-container.component.scss']
 })
 export class SingleMatchesContainerComponent implements OnInit, OnDestroy {
-    codePenka: string;
+    generateCodePenka: string;
     singleMatches = [];
     listMatches = [];
     user = {} as User;
     private unsubscribe$ = new Subject<void>();
     today = new Date();
-
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
         private router: Router,
         private singleMatchesService: SingleMatchesService,
-        private listMatchesService: ListMatchesService) {
+        private listMatchesService: ListMatchesService,
+        private codePenkaService: CodePenkaService) {
         this.user = this.firebase.auth().currentUser;
+        this.generateCodePenka = this.codePenkaService.codePenka;
     }
 
     ngOnInit(): void {
-        const characters = 'KvWxYz0123456789';
-        const charactersLength = characters.length;
-        for (let i = 0; i < charactersLength; i++) {
-            this.codePenka += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        this.singleMatchesService.getSingleMatchesPublicLimit()
+        this.singleMatchesService.getMatchesPublicLimit()
             .pipe(
                 takeUntil(this.unsubscribe$)
             ).subscribe(
@@ -44,11 +41,11 @@ export class SingleMatchesContainerComponent implements OnInit, OnDestroy {
                 this.singleMatches = res;
                 this.singleMatches.forEach(item => {
                     if (this.today >= item.limitDate.toDate()) {
-                        this.singleMatchesService.inactivated(item.id);
+                        this.singleMatchesService.changeMatchState(item.id, '2');
                     }
                 });
             });
-        this.listMatchesService.getListMatchesTempByCodePenka(this.codePenka)
+        this.listMatchesService.getListMatchesTempByCodePenka(this.generateCodePenka)
             .pipe(
                 takeUntil(this.unsubscribe$)
             ).subscribe(
@@ -57,19 +54,24 @@ export class SingleMatchesContainerComponent implements OnInit, OnDestroy {
             });
     }
 
+    ngOnDestroy(): void {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
+    }
+
     pickTeam(match): any {
         const codeTemplate = '';
         const status = '0';
         let response = [];
         let counter = 0;
-        this.listMatchesService.verifiedIfExist(this.user.uid, match.id, this.codePenka).subscribe(
+        this.listMatchesService.verifiedIfExist(this.user.uid, match.id, this.generateCodePenka).subscribe(
             res => {
                 response = res;
                 if (counter < 1) {
                     if (response.length === 0) {
                         this.listMatchesService.addMatch(
                             match.id,
-                            this.codePenka,
+                            this.generateCodePenka,
                             codeTemplate,
                             this.user.uid,
                             this.user.displayName,
@@ -94,11 +96,6 @@ export class SingleMatchesContainerComponent implements OnInit, OnDestroy {
     }
 
     makePenka(): any {
-        this.router.navigate(['/penka/new3/singleMatches/' + this.codePenka]).catch();
-    }
-
-    ngOnDestroy(): void {
-        this.unsubscribe$.next();
-        this.unsubscribe$.complete();
+        this.router.navigate(['/penka/new3/singleMatches/' + this.generateCodePenka]).catch();
     }
 }
