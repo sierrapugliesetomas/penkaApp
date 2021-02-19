@@ -5,215 +5,170 @@
     <br>
     <div class="container">
         <div class="row">
-              <div class="col-lg-5 col-lg-offset-1">
+            <div class="col-lg-3 col-lg-offset-9">
                 <div class="box">
-                    <div class="card-form">
+                    <ng-container *ngIf="codePenka">
+                        <button (click)="addPenkaFromSingleMatches()" class="btn-submit" mat-button>
+                            Crear Penka
+                        </button>
+                    </ng-container>
 
-                        <!-- NAME PENKA -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <p class="label-form">Nombre de Penka</p>
-                                </div>
+                    <ng-container *ngIf="codeTemplate">
+                        <button (click)="addPenkaFromTemplate()" class="btn-submit" mat-button>
+                            Crear Penka
+                        </button>
+                    </ng-container>
+
+                    <app-button-back></app-button-back>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-1">
+                <div class="box">
+                    <div class="card">
+                        <div class="card-header">
+                            <p class="title">Datos de la Penka</p>
+                        </div>
+
+                        <div class="card-body">
+                            <!-- NAME PENKA -->
+                            <div class="container-field">
+                                <p class="label">Nombre de Penka</p>
+                                <mat-form-field appearance="fill">
+                                    <label>
+                                        <input [(ngModel)]="newPenka.name" matInput
+                                               placeholder="Escribe el nombre de tu Penka."
+                                               maxlength="25">
+                                    </label>
+                                </mat-form-field>
                             </div>
-                            <div class="col-lg-12">
-                                <div class="box">
+
+                            <!-- FORMAT -->
+                            <div class="container-field">
+                                <p class="label">Formato </p>
+                                <mat-button-toggle-group [(ngModel)]="newPenka.formatName" aria-label="Font Style"
+                                                         name="fontStyle">
+                                    <mat-button-toggle value="PRO">PRO</mat-button-toggle>
+                                    <mat-button-toggle value="MEDIUM">MEDIUM</mat-button-toggle>
+                                </mat-button-toggle-group>
+                            </div>
+                            <div class="container-field">
+                                <p class="text-help text-help-size">Resultado Exacto.</p>
+                                <p class="text-help text-help-size">Ganador o Empate.</p>
+                            </div>
+
+                            <!-- MODE -->
+                            <div class="container-field">
+                                <p class="label">Modalidad</p>
+                                <mat-button-toggle-group [(ngModel)]="newPenka.visibility" aria-label="Font Style"
+                                                         name="fontStyle">
+                                    <mat-button-toggle value="abierta">ABIERTA</mat-button-toggle>
+                                    <mat-button-toggle value="privada">PRIVADA</mat-button-toggle>
+                                </mat-button-toggle-group>
+                            </div>
+                            <div class="container-field">
+                                <p class="text-help text-help-size">Para amigos.</p>
+                                <p class="text-help text-help-size">Solo con código.</p>
+                            </div>
+
+                            <!-- BET -->
+                            <div class="container-field">
+                                <p class="label">Monto de inscripción.</p>
+                                <div class="container-divisor">
                                     <mat-form-field appearance="fill">
-                                        <label>
-                                            <input [(ngModel)]="newPenka.name" matInput placeholder="Ingrese aqui..."
-                                                   maxlength="25">
-                                        </label>
+                                        <mat-select>
+                                            <mat-option value="uss">USD</mat-option>
+                                            <mat-option value="pen">PEN</mat-option>
+                                            <mat-option value="pesos">PESOS</mat-option>
+                                        </mat-select>
                                     </mat-form-field>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- FORMAT -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <p class="label-form">Formato </p>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <mat-button-toggle-group [(ngModel)]="newPenka.formatName" aria-label="Font Style"
-                                                             name="fontStyle">
-                                        <mat-button-toggle value="PRO">PRO</mat-button-toggle>
-                                        <mat-button-toggle value="MEDIUM">MEDIUM
-                                        </mat-button-toggle>
-                                    </mat-button-toggle-group>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <p class="label-form-help">
-                                        En formato PRO apuestas al resultado exacto,
-                                        en formato MEDIUM apuestas al ganador.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- TYPE -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <p class="label-form">Modalidad</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <mat-button-toggle-group [(ngModel)]="newPenka.visibility" aria-label="Font Style"
-                                                             name="fontStyle">
-                                        <mat-button-toggle value="PUBLICA">PUBLICA</mat-button-toggle>
-                                        <mat-button-toggle value="PRIVADA">PRIVADA</mat-button-toggle>
-                                    </mat-button-toggle-group>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-
-                        <!-- BET -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <p class="label-form">Monto de Inscripcion</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <mat-form-field appearance="fill">
-                                                <mat-select>
-                                                    <mat-option value="option">USD</mat-option>
-                                                </mat-select>
-                                            </mat-form-field>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <mat-form-field appearance="fill">
-                                                <mat-select [(ngModel)]="newPenka.bet">
-                                                    <mat-option value="5">5</mat-option>
-                                                    <mat-option value="10">10</mat-option>
-                                                    <mat-option value="20">20</mat-option>
-                                                    <mat-option value="50">50</mat-option>
-                                                    <mat-option value="100">100</mat-option>
-                                                </mat-select>
-                                            </mat-form-field>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ACCUMULATED BET -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <p class="label-form">Distribucion del Pozo</p>
-                                    <p class="label-form-help">1er Puesto - 2do Puesto - 3er Puesto.</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="box">
+                                &nbsp;
+                                <div class="container-divisor">
                                     <mat-form-field appearance="fill">
-                                        <mat-select [(ngModel)]="newPenka.distributionBet">
-                                            <mat-option value="100% - 0% - 0%">100% - 0% - 0%</mat-option>
-                                            <mat-option value="80% - 20% - 0%">80% - 20% - 0%</mat-option>
-                                            <mat-option value="70% - 20% - 10%">70% - 20% - 10%</mat-option>
+                                        <mat-select [(ngModel)]="newPenka.bet">
+                                            <mat-option value="5">5</mat-option>
+                                            <mat-option value="10">10</mat-option>
+                                            <mat-option value="20">20</mat-option>
+                                            <mat-option value="50">50</mat-option>
+                                            <mat-option value="100">100</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
                             </div>
+
+
+                            <!-- ACCUMULATED BET -->
+                            <div class="container-field">
+                                <p class="label">Distribución del Pozo.</p>
+                                <mat-form-field appearance="fill">
+                                    <mat-select [(ngModel)]="newPenka.distributionBet">
+                                        <mat-option value="100% - 0% - 0%">100% - 0% - 0%</mat-option>
+                                        <mat-option value="80% - 20% - 0%">80% - 20% - 0%</mat-option>
+                                        <mat-option value="70% - 20% - 10%">70% - 20% - 10%</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <p class="text-help">1er Puesto - 2do Puesto - 3er Puesto.</p>
+                            </div>
+
+
+                            <!-- LIMIT PARTICIPANTS -->
+                            <div class="container-field">
+                                <p class="label">Número máximo de participantes.</p>
+                                <mat-form-field appearance="fill">
+                                    <label>
+                                        <input type="number" [(ngModel)]="newPenka.limitParticipants" matInput
+                                               placeholder="Escribe aquí el número de participantes.">
+                                    </label>
+                                </mat-form-field>
+                            </div>
+
+
+                            <!-- DATE LIMIT -->
+                            <div class="container-field">
+                                <p class="label">Fecha límite de inscripción.</p>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Elije una fecha:</mat-label>
+                                    <input matInput [(ngModel)]="newPenka.dateLimit" [matDatepicker]="picker">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
                         </div>
 
-                        <!-- LIMIT PARTICIPANTS -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <p class="label-form">Num. maximo de participantes</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <mat-form-field appearance="fill">
-                                        <label>
-                                            <input type="number" [(ngModel)]="newPenka.limitParticipants" matInput>
-                                        </label>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- DATE LIMIT -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <p class="label-form">Fecha limite de inscripcion</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="box">
-                                    <mat-form-field appearance="fill">
-                                        <mat-label>Elije una fecha</mat-label>
-                                        <input matInput [(ngModel)]="newPenka.dateLimit" [matDatepicker]="picker">
-                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                        <mat-datepicker #picker></mat-datepicker>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5">
+
+            <div class="col-lg-4">
                 <div class="box">
 
-                    <ng-container *ngIf="codeTemplate">
-                        <div class="card">
-                            <!-- Header -->
-                            <div class="card-header">
-                                <p class="title">Partidos a Jugar</p>
-                            </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <p class="title">Partidos a Jugar</p>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-vertical">
 
-                            <!-- Body -->
-                            <div class="card-body">
-                                <ul class="list-matches">
-                                    <li class="item-matches" *ngFor="let match of listMatchesForTemplate">
+                                <!-- From Template -->
+                                <ng-container *ngIf="codeTemplate">
+                                    <li class="item-vertical" *ngFor="let match of listMatchesForTemplate">
                                         <app-penka-match [match]="match"></app-penka-match>
                                     </li>
-                                </ul>
-                            </div>
+                                </ng-container>
 
-                            <!-- Footer -->
-                            <div class="card-footer">
-                                <button (click)="addPenkaFromTemplate()" class="btn-submit" mat-button>
-                                    Crear Penka
-                                </button>
-                            </div>
-                        </div>
-                    </ng-container>
-                    <!-- List matches from single matches -->
-                    <ng-container *ngIf="codePenka">
-                        <div class="card">
-                            <div class="card-header">
-                                <p class="title">Partidos a Jugar</p>
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-matches">
-                                    <li class="item-matches" *ngFor="let match of listMatchesForSingleMatches">
+                                <!-- From Single Matches -->
+                                <ng-container *ngIf="codePenka">
+                                    <li class="item-vertical" *ngFor="let match of listMatchesForSingleMatches">
                                         <app-penka-match [match]="match"></app-penka-match>
                                     </li>
-                                </ul>
-                            </div>
-                            <div class="card-footer">
-                                <button (click)="addPenkaFromSingleMatches()" class="btn-submit" mat-button>
-                                    Crear Penka
-                                </button>
-                            </div>
+                                </ng-container>
+
+                            </ul>
                         </div>
-                    </ng-container>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -239,7 +194,8 @@
                             <div class="col-xs-12">
                                 <div class="box">
                                     <mat-form-field appearance="fill">
-                                        <input [(ngModel)]="newPenka.name" matInput placeholder="Ingrese aqui..."
+                                        <input [(ngModel)]="newPenka.name" matInput
+                                               placeholder="Escribe el nombre de tu Penka."
                                                maxlength="25">
                                     </mat-form-field>
                                 </div>
@@ -258,17 +214,24 @@
                                     <mat-button-toggle-group [(ngModel)]="newPenka.formatName" aria-label="Font Style"
                                                              name="fontStyle">
                                         <mat-button-toggle value="PRO">PRO</mat-button-toggle>
-                                        <mat-button-toggle value="MEDIUM">MEDIUM
-                                        </mat-button-toggle>
+                                        <mat-button-toggle value="MEDIUM">MEDIUM</mat-button-toggle>
                                     </mat-button-toggle-group>
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="box">
-                                    <p class="label-form-help">
-                                        En formato PRO apuestas al resultado exacto,
-                                        en formato MEDIUM apuestas al ganador.
-                                    </p>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <p class="label-form-help">
+                                                Resultado Exacto.
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p class="label-form-help">
+                                                Ganador o Empate.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -284,9 +247,25 @@
                                 <div class="box">
                                     <mat-button-toggle-group [(ngModel)]="newPenka.visibility" aria-label="Font Style"
                                                              name="fontStyle">
-                                        <mat-button-toggle value="PUBLICA">PUBLICA</mat-button-toggle>
-                                        <mat-button-toggle value="PRIVADA">PRIVADA</mat-button-toggle>
+                                        <mat-button-toggle value="abierta">ABIERTA</mat-button-toggle>
+                                        <mat-button-toggle value="privada">PRIVADA</mat-button-toggle>
                                     </mat-button-toggle-group>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="box">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <p class="label-form-help">
+                                                Para amigos.
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p class="label-form-help">
+                                                Solo con código.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -296,7 +275,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="box">
-                                    <p class="label-form">Monto de Inscripcion</p>
+                                    <p class="label-form">Monto de inscripción.</p>
                                 </div>
                             </div>
                             <div class="col-xs-12">
@@ -305,7 +284,9 @@
                                         <div class="col-xs-4">
                                             <mat-form-field appearance="fill">
                                                 <mat-select>
-                                                    <mat-option value="option">USD</mat-option>
+                                                    <mat-option value="uss">USD</mat-option>
+                                                    <mat-option value="pen">PEN</mat-option>
+                                                    <mat-option value="pesos">PESOS</mat-option>
                                                 </mat-select>
                                             </mat-form-field>
                                         </div>
@@ -329,7 +310,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="box">
-                                    <p class="label-form">Distribucion del Pozo</p>
+                                    <p class="label-form">Distribución del Pozo.</p>
                                 </div>
                             </div>
                             <div class="col-xs-12">
@@ -354,7 +335,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="box">
-                                    <p class="label-form">Num. maximo de participantes</p>
+                                    <p class="label-form">Número máximo de participantes.</p>
                                 </div>
                             </div>
                             <div class="col-xs-12">
@@ -370,7 +351,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="box">
-                                    <p class="label-form">Fecha limite de inscripcion</p>
+                                    <p class="label-form">Fecha límite de inscripción.</p>
                                 </div>
                             </div>
                             <div class="col-xs-12">
@@ -410,7 +391,7 @@
                             <!-- Footer -->
                             <div class="card-footer">
                                 <button (click)="addPenkaFromTemplate()" class="btn-submit" mat-button>
-                                    Crear Penka
+                                    Continuar
                                 </button>
                             </div>
                         </div>
@@ -431,7 +412,7 @@
                             </div>
                             <div class="card-footer">
                                 <button (click)="addPenkaFromSingleMatches()" class="btn-submit" mat-button>
-                                    Crear Penka
+                                    Continuar
                                 </button>
                             </div>
                         </div>

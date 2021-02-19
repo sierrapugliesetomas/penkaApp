@@ -6,11 +6,7 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent implements OnInit {
-    title = 'Reglamento';
-    estilo: string;
-    mediumValue = true;
-    proValue = false;
-    juniorValue = false;
+    title = 'Preguntas Frecuentes';
 
     constructor() {
     }
@@ -18,24 +14,4 @@ export class FaqComponent implements OnInit {
     ngOnInit(): void {
 
     }
-
-    junior(): void {
-        this.juniorValue = true;
-        this.mediumValue = false;
-        this.proValue = false;
-
-    }
-
-    medium() {
-        this.juniorValue = false;
-        this.mediumValue = true;
-        this.proValue = false;
-    }
-
-    pro() {
-        this.juniorValue = false;
-        this.mediumValue = false;
-        this.proValue = true;
-    }
-
 }

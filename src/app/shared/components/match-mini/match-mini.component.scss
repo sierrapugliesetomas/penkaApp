@@ -26,16 +26,6 @@
   margin-bottom: 0;
 }
 
-/* MOBILE 300p */
-@media only screen and (min-width: 300px) and (orientation: portrait) {
-  .date-match p {
-    color: gray;
-    font-size: 10px;
-    line-height: 10px;
-    margin-bottom: 5px;
-  }
-}
-
 /* MOBILE 350p */
 @media only screen and (min-width: 350px) and (orientation: portrait) {
   .date-match p {
@@ -55,3 +45,14 @@
     margin-bottom: 5px;
   }
 }
+
+/* DESKTOP 1080p */
+@media only screen and (min-width: 1900px) and (orientation: landscape) {
+  .date-match p {
+    color: gray;
+    font-size: 12px;
+    line-height: 12px;
+    margin-bottom: 5px;
+  }
+}
+

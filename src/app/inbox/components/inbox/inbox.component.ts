@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./inbox.component.scss']
 })
 export class InboxComponent implements OnInit {
+    title = 'Mensajes';
 
     constructor() {
     }

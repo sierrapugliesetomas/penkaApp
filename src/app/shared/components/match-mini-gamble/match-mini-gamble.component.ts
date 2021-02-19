@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SingleMatchesService} from '../../../core/services/single-matches.service';
 import {SingleMatch} from '../../../core/interfaces/single-match';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'app-match-mini-gamble',
@@ -9,13 +10,13 @@ import {SingleMatch} from '../../../core/interfaces/single-match';
 })
 export class MatchMiniGambleComponent implements OnInit {
     @Input() match;
-    singleMatch = {} as SingleMatch;
+    singleMatch$: Observable<SingleMatch>;
 
     constructor(
         private singleMatchesService: SingleMatchesService) {
     }
 
     ngOnInit(): void {
-        this.singleMatch = this.singleMatchesService.getMatchById(this.match.id);
+        this.singleMatch$ = this.singleMatchesService.getMatchById(this.match.id);
     }
 }

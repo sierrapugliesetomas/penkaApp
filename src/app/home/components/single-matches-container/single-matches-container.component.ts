@@ -21,6 +21,7 @@ export class SingleMatchesContainerComponent implements OnInit, OnDestroy {
     user = {} as User;
     private unsubscribe$ = new Subject<void>();
     today = new Date();
+
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,

@@ -117,121 +117,154 @@
 
 /* DESKTOP 720P  */
 @media only screen and (min-width: 1280px) and (orientation: landscape) {
-  .mobile {
-    display: none;
-  }
-  .desktop {
-    display: inline;
-  }
-  .card-form {
-    background-color: #2E3035;
-    border-radius: 25px;
-    padding: 30px;
-  }
-  .label-form {
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 18px;
-  }
-  .label-form-help {
-    font-size: 12px;
-    line-height: 14px;
-    opacity: 0.5;
-    width: 90%;
-  }
-  .mat-form-field {
-    width: 100%;
-    font-size: 14px;
-    line-height: 16px;
-  }
-  .mat-button-toggle-group {
-    width: 100%;
-    font-size: 14px;
-    line-height: 16px;
-  }
-
-  .mat-button-toggle {
-    width: 50%;
-  }
-
-  .mat-button-toggle-checked {
-    background-color: #FDA328;
-  }
-  .coin {
-    width: 170px;
-  }
-  .bet {
-    width: 170px;
-  }
-
-  .btn-submit {
-    background-color: #FDA328;
-    border-radius: 25px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 18px;
-    line-height: 30px;
-    padding: 5px 25px 5px 25px;
-  }
-  /****************/
-  /***** Card *****/
   .card {
-    border-radius: 25px;
     background-color: #2E3035;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
   }
-
   .card-header {
-    padding: 20px 20px 5px 25px;
     background-color: #792fe8;
     border-top-right-radius: 25px;
     border-top-left-radius: 25px;
+    padding: 15px 30px 5px 30px;
   }
 
   .title {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
-    font-style: normal;
     font-weight: bold;
-    line-height: 24px;
   }
   .card-body {
-    background-color: #2E3035;
+    padding: 20px 30px 20px 30px;
+    height: 720px;
+  }
+  .container-field {
+    width: 100%;
+  }
+  .container-divisor {
+    width: 48%;
+    display: inline-block;
+  }
+  .mat-form-field {
+    width: 100%;
+    font-size: 12px;
+    margin: 0;
     padding: 0;
+  }
+  .mat-button-toggle-group {
+    width: 100%;
+    font-size: 14px;
   }
 
-  .card-footer {
-    background-color: transparent;
-    padding: 30px;
-    text-align: right;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
+  .mat-button-toggle {
+    width: 50%;
   }
-  .list-matches {
+  .mat-button-toggle-checked {
+    background-color: #FDA328;
+  }
+
+  .label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+  }
+  .text-help-size {
+    display: inline-block;
+    width: 50%;
+  }
+  .list-vertical {
     padding: 0;
-    height: 600px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    height: 680px;
   }
-  .list-matches::-webkit-scrollbar {
-    width: 10px;
-  }
-  .list-matches::-webkit-scrollbar-thumb {
-    background-color: #2E3035;
-    border-radius: 10px;
-  }
-  .list-matches::-webkit-scrollbar-thumb:active {
-    background-color: #737171;
-  }
-  .list-matches::-webkit-scrollbar-thumb:hover {
-    background-color: #792fe8;
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
-  }
-  .item-matches {
-    width: 60%;
-    margin: 10px 20% 20px 20%;
-    padding: 0;
+  .item-vertical {
     text-align: center;
+    margin: 0 0 30px 0;
+  }
+  .btn-submit {
+    background-color: #FDA328;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    font-size: 12px;
+    float: right;
+    padding: 0 20px 0 20px;
+    margin: 0 0 0 10px;
+  }
+}
+
+/* DESKTOP 1080P  */
+@media only screen and (min-width: 1900px) and (orientation: landscape) {
+  .card {
+    background-color: #2E3035;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+  }
+  .card-header {
+    background-color: #792fe8;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    padding: 15px 30px 5px 30px;
+  }
+
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .card-body {
+    padding: 20px 30px 20px 30px;
+    height: 720px;
+  }
+  .container-field {
+    width: 100%;
+  }
+  .container-divisor {
+    width: 48%;
+    display: inline-block;
+  }
+  .mat-form-field {
+    width: 100%;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+  }
+  .mat-button-toggle-group {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .mat-button-toggle {
+    width: 50%;
+  }
+  .mat-button-toggle-checked {
+    background-color: #FDA328;
+  }
+
+  .label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+  }
+  .text-help-size {
+    display: inline-block;
+    width: 50%;
+  }
+  .list-vertical {
+    padding: 0;
+    height: 680px;
+  }
+  .item-vertical {
+    text-align: center;
+    margin: 0 0 30px 0;
+  }
+  .btn-submit {
+    background-color: #FDA328;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    font-size: 14px;
+    float: right;
+    padding: 0 20px 0 20px;
+    margin: 0 0 0 10px;
   }
 }

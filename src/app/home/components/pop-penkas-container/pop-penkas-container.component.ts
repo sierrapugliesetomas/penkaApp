@@ -18,7 +18,6 @@ export class PopPenkasContainerComponent implements OnInit, OnDestroy {
     myParticipants = [] as Participant[];
     participants = [] as Participant[];
     filterParticipants = [] as Participant[];
-    finalFilter = [];
     private unsubscribe$ = new Subject<void>();
 
     constructor(
@@ -26,10 +25,10 @@ export class PopPenkasContainerComponent implements OnInit, OnDestroy {
         public auth: AuthService,
         private router: Router,
         private participantsService: ParticipantsService) {
+        this.user = this.firebase.auth().currentUser;
     }
 
     ngOnInit(): void {
-        this.user = this.firebase.auth().currentUser;
         this.participantsService.getParticipantByUserId(this.user.uid)
             .pipe(
                 takeUntil(this.unsubscribe$)

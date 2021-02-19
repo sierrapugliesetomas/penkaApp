@@ -12,6 +12,7 @@ import {FriendsComponent} from '../components/friends/friends.component';
 import {MessagesComponent} from '../components/messages/messages.component';
 import {RequestComponent} from '../components/request/request.component';
 import {RequestNotificationComponent} from '../components/request-notification/request-notification.component';
+import {SharedModule} from '../../shared/modules/shared.module';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {RequestNotificationComponent} from '../components/request-notification/r
         MaterialModule,
         FormsModule,
         CoreModule,
+        SharedModule,
     ],
     exports: [
         InboxComponent,

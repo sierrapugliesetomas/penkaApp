@@ -19,7 +19,7 @@ export class GridComponent implements OnInit, OnDestroy {
     title = 'Matriz de Resultados';
     codePenka: string;
     listMatches = [];
-    singleMatches$ = this.singleMatchesService.matches;
+    singleMatches = [];
     participants = [];
     gambles = [];
     user = {} as User;
@@ -59,6 +59,22 @@ export class GridComponent implements OnInit, OnDestroy {
             res => {
                 this.gambles = res;
             });
+        this.singleMatchesService.getMatchesPublic()
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
+            res => {
+                this.singleMatches = res;
+            }
+        );
+    }
+
+    updatePlace(event, id, userName): void {
+        if (confirm('Desea seleccionar el ' + event.value + ' lugar para: ' + userName)) {
+            this.participantService.updatePlace(id, event.value);
+        } else {
+            this.ngOnInit();
+        }
     }
 
     ngOnDestroy(): void {

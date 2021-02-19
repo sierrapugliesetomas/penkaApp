@@ -17,6 +17,7 @@ import {CodePenkaService} from '../../../core/services/code-penka.service';
 })
 export class New2Component implements OnInit, OnDestroy {
     title = 'Organiza una Penka';
+    url = '/penka/new3/singleMatches/';
     stepNumber = '2';
     stepTotal = '4';
     term: string;
@@ -122,9 +123,5 @@ export class New2Component implements OnInit, OnDestroy {
                 }
             }, error => console.log(error));
     }
-
-    makePenka(): void {
-        this.router.navigate(['/penka/new3/singleMatches/' + this.generateCodePenka]).catch();
-    }
-
 }
+

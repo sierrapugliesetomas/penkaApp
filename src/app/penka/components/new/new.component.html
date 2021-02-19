@@ -1,27 +1,66 @@
 <app-page-header-steps [title]="title" [stepNumber]="stepNumber" [stepTotal]="stepTotal"></app-page-header-steps>
 <br>
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-lg-12">
-            <div class="box">
-                <p class="section-title">Para comenzar haz tu seleccion:</p>
+
+<!-- DESKTOP -->
+<div class="desktop">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="box">
+                    <p class="section-title">Elige el modo de juego:</p>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="box">
+                    <app-button-back></app-button-back>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="box">
+                    <a [routerLink]="['/penka/new2', 'templates']">
+                        <img alt="" class="img-tournament" src="../../../../assets/images/makePenka/template.png">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="box">
+                    <a [routerLink]="['/penka/new2', 'singleMatches']">
+                        <img alt="" class="img-tournament" src="../../../../assets/images/makePenka/singleMatch.png">
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-    <br>
-    <div class="row">
-        <div class="col-xs-12 col-lg-4">
-            <div class="box">
-                <a [routerLink]="['/penka/new2', 'templates']">
-                    <img alt="" class="img-tournament" src="../../../../assets/images/makePenka/template.png">
-                </a>
+</div>
+
+<!-- MOBILE -->
+<div class="mobile">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <p class="section-title">Elige el modo de juego:</p>
+                </div>
             </div>
         </div>
-        <div class="col-xs-12 col-lg-4">
-            <div class="box">
-                <a [routerLink]="['/penka/new2', 'singleMatches']">
-                    <img alt="" class="img-tournament" src="../../../../assets/images/makePenka/singleMatch.png">
-                </a>
+        <br>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <a [routerLink]="['/penka/new2', 'templates']">
+                        <img alt="" class="img-tournament" src="../../../../assets/images/makePenka/template.png">
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="box">
+                    <a [routerLink]="['/penka/new2', 'singleMatches']">
+                        <img alt="" class="img-tournament" src="../../../../assets/images/makePenka/singleMatch.png">
+                    </a>
+                </div>
             </div>
         </div>
     </div>

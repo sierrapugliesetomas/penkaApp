@@ -6,9 +6,14 @@
     <div class="container">
         <ng-container *ngIf="type === 'templates'">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-10">
                     <div class="box">
-                        <span class="section-title">Selecciona el template que deseas jugar:</span>
+                        <span class="section-title">Selecciona la plantilla que deseas jugar:</span>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="box">
+                        <app-button-back></app-button-back>
                     </div>
                 </div>
             </div>
@@ -25,7 +30,7 @@
                         </ng-container>
 
                         <ng-template #noTemplates>
-                            <p class="text-no-results">No hay templates disponibles</p>
+                            <p class="text-no-results">No hay plantillas disponibles.</p>
                             <br>
                         </ng-template>
                     </div>
@@ -35,7 +40,7 @@
 
         <ng-container *ngIf="type === 'singleMatches'">
             <div class="row">
-                <div class="col-lg-10">
+                <div class="col-lg-9">
                     <div class="box">
                         <label>
                             <input type="text" class="search-match" placeholder="Buscar por Equipo, Liga o Competición."
@@ -43,16 +48,18 @@
                         </label>
                     </div>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-3">
                     <div class="box">
-                        <ng-container *ngIf="singleMatches.length > 0; else noButton">
-                            <button mat-button (click)="makePenka()" class="btn-continue">
-                                Continuar
-                            </button>
+
+                        <ng-container *ngIf="listMatches.length > 0; else noButton">
+                            <app-button-continue [codePenka]="generateCodePenka" [url]="url"></app-button-continue>
                         </ng-container>
 
                         <ng-template #noButton>
                         </ng-template>
+
+                        <app-button-back></app-button-back>
+
                     </div>
                 </div>
             </div>
@@ -60,7 +67,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="box">
-                        <span class="section-title">Selecciona los partidos que deseas: </span>
+                        <span class="section-title">Selecciona los partidos que deseas jugar: </span>
                     </div>
                 </div>
             </div>
@@ -69,7 +76,19 @@
                 <div class="col-lg-12">
                     <div class="box">
                         <ng-container *ngIf="listMatches.length > 0">
-                            <p class="counterPicks"><span>{{listMatches.length}}</span> partidos seleccionados.</p>
+                            <p class="counterPicks">
+
+                                <ng-container *ngIf="listMatches.length === 1">
+                                    <span>{{listMatches.length}}</span>
+                                    partido seleccionado.
+                                </ng-container>
+
+                                <ng-container *ngIf="listMatches.length > 1">
+                                    <span>{{listMatches.length}}</span>
+                                    partidos seleccionados.
+                                </ng-container>
+
+                            </p>
                             <ul class="list-horizontal">
                                 <li class="item-horizontal"
                                     *ngFor="let match of listMatches">
@@ -123,7 +142,7 @@
             <div class="row">
                 <div class="box">
                     <div class="col-xs-12">
-                        <span class="section-subTitle">Selecciona el template que deseas jugar:</span>
+                        <span class="section-subTitle">Selecciona la plantilla que deseas jugar:</span>
                     </div>
                 </div>
             </div>
@@ -140,7 +159,7 @@
                         </ng-container>
 
                         <ng-template #noTemplates>
-                            <p class="text-no-results">No hay templates disponibles</p>
+                            <p class="text-no-results">No hay plantillas disponibles.</p>
                             <br>
                         </ng-template>
                     </div>
@@ -160,7 +179,7 @@
                 </div>
                 <div class="col-xs-2">
                     <div class="box">
-                        <ng-container *ngIf="singleMatches.length > 0; else noButton">
+                        <ng-container *ngIf="listMatches.length > 0; else noButton">
                             <button mat-button (click)="makePenka()" class="btn-continue">
                                 Continuar
                             </button>
@@ -175,7 +194,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
-                        <p class="section-subTitle">Selecciona los partidos que deseas:</p>
+                        <p class="section-subTitle">Selecciona los partidos que deseas jugar:</p>
                     </div>
                 </div>
             </div>
@@ -183,7 +202,19 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <ng-container *ngIf="listMatches.length > 0">
-                            <p class="counterPicks"><span>{{listMatches.length}}</span> partidos seleccionados.</p>
+                            <p class="counterPicks">
+
+                                <ng-container *ngIf="listMatches.length === 1">
+                                    <span>{{listMatches.length}}</span>
+                                    partido seleccionado.
+                                </ng-container>
+
+                                <ng-container *ngIf="listMatches.length > 1">
+                                    <span>{{listMatches.length}}</span>
+                                    partidos seleccionados.
+                                </ng-container>
+
+                            </p>
                             <ul class="list-horizontal">
                                 <li class="item-horizontal"
                                     *ngFor="let match of listMatches">
@@ -220,7 +251,7 @@
                         </ng-container>
 
                         <ng-template #noMatches>
-                            <p class="text-no-results">No hay partidos disponibles</p>
+                            <p class="text-no-results">No hay partidos disponibles.</p>
                             <br>
                         </ng-template>
                     </div>

@@ -1,9 +1,41 @@
-.list-matches {
-  margin-top: 10px;
-  padding: 0 0 0 30px;
+/* DESKTOP 350p */
+@media only screen and (min-width: 350px) and (orientation: portrait) {
+  .list-matches {
+    margin-top: 10px;
+    padding: 0;
+  }
+
+  .item-matches {
+    display: inline-grid;
+    padding: 0;
+    margin: 0 0 20px 40px;
+  }
+}
+/* DESKTOP 720p */
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .list-matches {
+    margin-top: 10px;
+    padding: 0;
+  }
+
+  .item-matches {
+    display: inline-grid;
+    padding: 0;
+    margin: 0 0 20px 40px;
+  }
 }
 
-.item-matches {
-  display: inline-grid;
-  margin: 0 25px 15px 0;
+/* DESKTOP 1080p */
+@media only screen and (min-width: 1900px) and (orientation: landscape) {
+  .list-matches {
+    margin-top: 10px;
+    padding: 0;
+  }
+
+  .item-matches {
+    display: inline-grid;
+    padding: 0;
+    margin: 0 0 20px 40px;
+  }
 }
+

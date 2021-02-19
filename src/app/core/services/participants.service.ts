@@ -71,7 +71,7 @@ export class ParticipantsService {
     getParticipantByUserId(userId): any {
         return this.afs.collection<Participant>('participants', ref => ref
             .where('userId', '==', userId)
-            .where('status', 'in', ['1', '2'])
+            .where('status', '==', '1')
             .orderBy('date', 'asc'))
             .snapshotChanges().pipe(map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as Participant;

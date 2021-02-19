@@ -26,7 +26,19 @@
     <div class="row">
         <div class="col-xs-8 col-lg-10">
             <div class="box">
-                <p class="counterPicks"><span>{{listMatches.length}}</span> Partidos seleccionados.</p>
+                <p class="counterPicks">
+
+                    <ng-container *ngIf="listMatches.length === 1">
+                        <span>{{listMatches.length}}</span>
+                        partido seleccionado.
+                    </ng-container>
+
+                    <ng-container *ngIf="listMatches.length > 1">
+                        <span>{{listMatches.length}}</span>
+                        partidos seleccionados.
+                    </ng-container>
+
+                </p>
             </div>
         </div>
         <div class="col-xs-4 col-lg-2">

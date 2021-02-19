@@ -14,9 +14,9 @@ export class HomeComponent implements OnInit {
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService) {
+        this.user = this.firebase.auth().currentUser;
     }
 
     ngOnInit(): void {
-        this.user = this.firebase.auth().currentUser;
     }
 }

@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
     providedIn: 'root'
 })
 export class CodePenkaService {
-    codePenka: string;
+    codePenka = '';
     constructor() {
         const characters = 'AbCdEfGhIjKvWxYz0123456789';
         const charactersLength = characters.length;

@@ -13,6 +13,7 @@ import {PenkasService} from '../../../core/services/penkas.service';
 import {Gamble} from '../../../core/interfaces/gamble';
 import {GambleService} from '../../../core/services/gamble.service';
 import {takeUntil} from 'rxjs/operators';
+import {CodePenkaService} from '../../../core/services/code-penka.service';
 
 @Component({
     selector: 'app-new3',
@@ -25,7 +26,7 @@ export class New3Component implements OnInit, OnDestroy {
     stepTotal = '4';
     codeTemplate: string;
     codePenka: string;
-    codePenkaForTemplate: string;
+    generateCodePenkaForTemplate: string;
 
     listMatchesForSingleMatches = [];
     listMatchesForTemplate = [];
@@ -46,7 +47,9 @@ export class New3Component implements OnInit, OnDestroy {
         private listMatchesService: ListMatchesService,
         private participantService: ParticipantsService,
         private penkasService: PenkasService,
-        private gambleService: GambleService) {
+        private gambleService: GambleService,
+        private codePenkaService: CodePenkaService) {
+        this.generateCodePenkaForTemplate = this.codePenkaService.codePenka;
     }
 
     ngOnInit(): void {
@@ -58,13 +61,6 @@ export class New3Component implements OnInit, OnDestroy {
             }
         );
 
-
-        this.codePenkaForTemplate = '';
-        const characters = 'KvWxYz0123456789';
-        const charactersLength = characters.length;
-        for (let i = 0; i < charactersLength; i++) {
-            this.codePenkaForTemplate += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
         if (this.codePenka) {
             this.listMatchesService.getListMatchesTempByCodePenka(this.codePenka)
                 .pipe(
@@ -91,230 +87,233 @@ export class New3Component implements OnInit, OnDestroy {
     }
 
     addPenkaFromTemplate(): void {
-        const today = new Date();
-        const penkaFormat = this.newPenka.formatName;
-        if (!this.newPenka.name) {
-            alert('Debes poner un nombre para la penka');
+        if (confirm('Deseas crear la Penka: “' + this.newPenka.name + ' ”')) {
+            const today = new Date();
+            const penkaFormat = this.newPenka.formatName;
+            if (!this.newPenka.name) {
+                alert('Debes poner un nombre para la penka');
 
-        } else if (!this.newPenka.bet) {
-            alert('Debes seleccionar un monto de apuesta');
-        } else if (!this.newPenka.distributionBet) {
-            alert('Debes seleccionar un distribucion del monto');
-        } else if (!this.newPenka.limitParticipants) {
-            alert('Debes fijar un numero limite de participantes');
-        } else if (this.newPenka.limitParticipants < 2) {
-            alert('Los participantes deben ser al menos 2 personas.');
-        } else if (!this.newPenka.dateLimit) {
-            alert('Debes fijar una fecha limite de inscripcion');
-        } else {
+            } else if (!this.newPenka.bet) {
+                alert('Debes seleccionar un monto de apuesta');
+            } else if (!this.newPenka.distributionBet) {
+                alert('Debes seleccionar un distribucion del monto');
+            } else if (!this.newPenka.limitParticipants) {
+                alert('Debes fijar un numero limite de participantes');
+            } else if (this.newPenka.limitParticipants < 2) {
+                alert('Los participantes deben ser al menos 2 personas.');
+            } else if (!this.newPenka.dateLimit) {
+                alert('Debes fijar una fecha limite de inscripcion');
+            } else {
 
 
-            // tslint:disable-next-line:radix
-            const bet: number = parseInt(String(this.newPenka.bet));
+                // tslint:disable-next-line:radix
+                const bet: number = parseInt(String(this.newPenka.bet));
 
-            /// Save collection Penka
-            this.newPenka.typePenka = 'template';
-            this.newPenka.codeTemplate = this.codeTemplate;
-            this.newPenka.codeTournament = '';
-            this.newPenka.codeSingleMatch = '';
-            this.newPenka.nParticipants = 1;
-            this.newPenka.codePenka = this.codePenkaForTemplate;
-            this.newPenka.makerId = this.user.uid;
-            this.newPenka.makerName = this.user.displayName;
-            this.newPenka.makerEmail = this.user.email;
-            this.newPenka.makerPhoto = this.user.photoURL;
-            this.newPenka.bet = bet;
-            this.newPenka.status = '1';
-            this.newPenka.accumulatedBet = bet;
-            this.newPenka.date = today;
-            this.penkasService.addPenka(this.newPenka);
+                /// Save collection Penka
+                this.newPenka.typePenka = 'template';
+                this.newPenka.codeTemplate = this.codeTemplate;
+                this.newPenka.codeTournament = '';
+                this.newPenka.codeSingleMatch = '';
+                this.newPenka.nParticipants = 1;
+                this.newPenka.codePenka = this.generateCodePenkaForTemplate;
+                this.newPenka.makerId = this.user.uid;
+                this.newPenka.makerName = this.user.displayName;
+                this.newPenka.makerEmail = this.user.email;
+                this.newPenka.makerPhoto = this.user.photoURL;
+                this.newPenka.bet = bet;
+                this.newPenka.status = '1';
+                this.newPenka.accumulatedBet = bet;
+                this.newPenka.date = today;
+                this.penkasService.addPenka(this.newPenka);
 
-            this.participant.codePenka = this.codePenkaForTemplate;
-            this.participant.userId = this.user.uid;
-            this.participant.userName = this.user.displayName;
-            this.participant.userEmail = this.user.email;
-            this.participant.userPhoto = this.user.photoURL;
-            this.participant.formatName = this.newPenka.formatName;
-            this.participant.bet = bet;
-            this.participant.visibility = this.newPenka.visibility;
-            this.participant.accumulatedScore = 0;
-            this.participant.date = today;
-            this.participant.status = '1';
-            this.participantService.addParticipant(this.participant);
+                this.participant.codePenka = this.generateCodePenkaForTemplate;
+                this.participant.userId = this.user.uid;
+                this.participant.userName = this.user.displayName;
+                this.participant.userEmail = this.user.email;
+                this.participant.userPhoto = this.user.photoURL;
+                this.participant.formatName = this.newPenka.formatName;
+                this.participant.bet = bet;
+                this.participant.visibility = this.newPenka.visibility;
+                this.participant.accumulatedScore = 0;
+                this.participant.date = today;
+                this.participant.status = '1';
+                this.participantService.addParticipant(this.participant);
 
-            /* Update list matches and add gambles */
-            let listMatches = [];
-            this.listMatchesService.getListMatchesByCodeTemplate(this.codeTemplate)
-                .pipe(
-                    takeUntil(this.unsubscribe$)
-                ).subscribe(
-                res => {
-                    listMatches = res;
-                    // tslint:disable-next-line:prefer-for-of
-                    for (let i = 0; i < listMatches.length; i++) {
-                        /**************/
-                        /* New Gamble */
-                        this.newGamble.codePenka = this.codePenkaForTemplate;
-                        this.newGamble.penkaFormat = penkaFormat;
-                        this.newGamble.singleMatchId = listMatches[i].singleMatchId;
-                        this.newGamble.userId = this.user.uid;
-                        this.newGamble.userName = this.user.displayName;
-                        this.newGamble.userEmail = this.user.email;
-                        this.newGamble.userPhoto = this.user.photoURL;
-                        this.newGamble.homeTeamId = listMatches[i].homeTeamId;
-                        this.newGamble.homeTeamName = listMatches[i].homeTeamName;
-                        this.newGamble.homeTeamAlias = listMatches[i].homeTeamAlias;
-                        this.newGamble.homeTeamFlag = listMatches[i].homeTeamFlag;
-                        this.newGamble.visitTeamId = listMatches[i].visitTeamId;
-                        this.newGamble.visitTeamName = listMatches[i].visitTeamName;
-                        this.newGamble.visitTeamAlias = listMatches[i].visitTeamAlias;
-                        this.newGamble.visitTeamFlag = listMatches[i].visitTeamFlag;
-                        this.newGamble.date = today;
-                        this.newGamble.winnerTeamId = '';
-                        this.newGamble.draw = null;
-                        this.newGamble.status = '1';
-                        this.newGamble.saved = false;
-                        this.newGamble.scoreAchieved = 0;
-                        this.newGamble.startDate = listMatches[i].startDate;
-                        this.gambleService.addGamble(this.newGamble);
-                        this.newGamble = {} as Gamble;
+                /* Update list matches and add gambles */
+                let listMatches = [];
+                this.listMatchesService.getListMatchesByCodeTemplate(this.codeTemplate)
+                    .pipe(
+                        takeUntil(this.unsubscribe$)
+                    ).subscribe(
+                    res => {
+                        listMatches = res;
+                        // tslint:disable-next-line:prefer-for-of
+                        for (let i = 0; i < listMatches.length; i++) {
+                            /**************/
+                            /* New Gamble */
+                            this.newGamble.codePenka = this.generateCodePenkaForTemplate;
+                            this.newGamble.penkaFormat = penkaFormat;
+                            this.newGamble.singleMatchId = listMatches[i].singleMatchId;
+                            this.newGamble.userId = this.user.uid;
+                            this.newGamble.userName = this.user.displayName;
+                            this.newGamble.userEmail = this.user.email;
+                            this.newGamble.userPhoto = this.user.photoURL;
+                            this.newGamble.homeTeamId = listMatches[i].homeTeamId;
+                            this.newGamble.homeTeamName = listMatches[i].homeTeamName;
+                            this.newGamble.homeTeamAlias = listMatches[i].homeTeamAlias;
+                            this.newGamble.homeTeamFlag = listMatches[i].homeTeamFlag;
+                            this.newGamble.visitTeamId = listMatches[i].visitTeamId;
+                            this.newGamble.visitTeamName = listMatches[i].visitTeamName;
+                            this.newGamble.visitTeamAlias = listMatches[i].visitTeamAlias;
+                            this.newGamble.visitTeamFlag = listMatches[i].visitTeamFlag;
+                            this.newGamble.date = today;
+                            this.newGamble.winnerTeamId = '';
+                            this.newGamble.draw = null;
+                            this.newGamble.status = '1';
+                            this.newGamble.saved = false;
+                            this.newGamble.scoreAchieved = 0;
+                            this.newGamble.startDate = listMatches[i].startDate;
+                            this.gambleService.addGamble(this.newGamble);
+                            this.newGamble = {} as Gamble;
+                        }
                     }
-                }
-            );
-            /***********************/
+                );
+                /***********************/
 
-            this.newPenka = {} as Penka;
-            this.participant = {} as Participant;
+                this.newPenka = {} as Penka;
+                this.participant = {} as Participant;
 
-            this.route.navigate(['/penka/new4/' + this.codePenkaForTemplate]).catch(error => console.log(error));
+                this.route.navigate(['/penka/new4/' + this.generateCodePenkaForTemplate]).catch(error => console.log(error));
+            }
         }
     }
 
     // tslint:disable-next-line:typedef
     addPenkaFromSingleMatches() {
-        const today = new Date();
-        const penkaFormat = this.newPenka.formatName;
+        if (confirm('Deseas crear la Penka: “' + this.newPenka.name + ' ”')) {
+            const today = new Date();
+            const penkaFormat = this.newPenka.formatName;
 
-        if (!this.newPenka.name) {
-            alert('Debes poner un nombre para la penka');
+            if (!this.newPenka.name) {
+                alert('Debes poner un nombre para la penka');
 
-        } else if (!this.newPenka.bet) {
-            alert('Debes seleccionar un monto de apuesta');
-        } else if (!this.newPenka.distributionBet) {
-            alert('Debes seleccionar un distribucion del monto');
-        } else if (!this.newPenka.limitParticipants) {
-            alert('Debes fijar un numero limite de participantes');
-        } else if (this.newPenka.limitParticipants < 2) {
-            alert('Los participantes deben ser al menos 2 personas.');
-        } else if (!this.newPenka.dateLimit) {
-            alert('Debes fijar una fecha limite de inscripcion');
-        } else {
+            } else if (!this.newPenka.bet) {
+                alert('Debes seleccionar un monto de apuesta');
+            } else if (!this.newPenka.distributionBet) {
+                alert('Debes seleccionar un distribucion del monto');
+            } else if (!this.newPenka.limitParticipants) {
+                alert('Debes fijar un numero limite de participantes');
+            } else if (this.newPenka.limitParticipants < 2) {
+                alert('Los participantes deben ser al menos 2 personas.');
+            } else if (!this.newPenka.dateLimit) {
+                alert('Debes fijar una fecha limite de inscripcion');
+            } else {
 
 
-            // tslint:disable-next-line:radix
-            const bet: number = parseInt(String(this.newPenka.bet));
+                // tslint:disable-next-line:radix
+                const bet: number = parseInt(String(this.newPenka.bet));
 
-            /// Save collection Penka
-            this.newPenka.typePenka = 'singleMatches';
-            this.newPenka.codeTemplate = '';
-            this.newPenka.codeTournament = '';
-            this.newPenka.codeSingleMatch = '';
-            this.newPenka.nParticipants = 1;
-            this.newPenka.codePenka = this.codePenka;
-            this.newPenka.makerId = this.user.uid;
-            this.newPenka.makerName = this.user.displayName;
-            this.newPenka.makerEmail = this.user.email;
-            this.newPenka.makerPhoto = this.user.photoURL;
-            this.newPenka.bet = bet;
-            this.newPenka.status = '1';
-            this.newPenka.accumulatedBet = bet;
-            this.newPenka.date = today;
-            this.penkasService.addPenka(this.newPenka);
+                /// Save collection Penka
+                this.newPenka.typePenka = 'singleMatches';
+                this.newPenka.codeTemplate = '';
+                this.newPenka.codeTournament = '';
+                this.newPenka.codeSingleMatch = '';
+                this.newPenka.nParticipants = 1;
+                this.newPenka.codePenka = this.codePenka;
+                this.newPenka.makerId = this.user.uid;
+                this.newPenka.makerName = this.user.displayName;
+                this.newPenka.makerEmail = this.user.email;
+                this.newPenka.makerPhoto = this.user.photoURL;
+                this.newPenka.bet = bet;
+                this.newPenka.status = '1';
+                this.newPenka.accumulatedBet = bet;
+                this.newPenka.date = today;
+                this.penkasService.addPenka(this.newPenka);
 
-            this.participant.codePenka = this.codePenka;
-            this.participant.userId = this.user.uid;
-            this.participant.userName = this.user.displayName;
-            this.participant.userEmail = this.user.email;
-            this.participant.userPhoto = this.user.photoURL;
-            this.participant.formatName = this.newPenka.formatName;
-            this.participant.bet = bet;
-            this.participant.visibility = this.newPenka.visibility;
-            this.participant.accumulatedScore = 0;
-            this.participant.date = today;
-            this.participant.status = '1';
-            this.participantService.addParticipant(this.participant);
+                this.participant.codePenka = this.codePenka;
+                this.participant.userId = this.user.uid;
+                this.participant.userName = this.user.displayName;
+                this.participant.userEmail = this.user.email;
+                this.participant.userPhoto = this.user.photoURL;
+                this.participant.formatName = this.newPenka.formatName;
+                this.participant.bet = bet;
+                this.participant.visibility = this.newPenka.visibility;
+                this.participant.accumulatedScore = 0;
+                this.participant.date = today;
+                this.participant.status = '1';
+                this.participantService.addParticipant(this.participant);
 
-            /* Update list matches and add gambles */
-            let listMatches = [];
-            this.listMatchesService.getListMatchesTempByCodePenka(this.codePenka)
-                .pipe(
-                    takeUntil(this.unsubscribe$)
-                ).subscribe(
-                res => {
-                    listMatches = res;
-                    // tslint:disable-next-line:prefer-for-of
-                    for (let i = 0; i < listMatches.length; i++) {
-                        /**************/
-                        /* New Gamble */
-                        this.newGamble.codePenka = this.codePenka;
-                        this.newGamble.penkaFormat = penkaFormat;
-                        this.newGamble.singleMatchId = listMatches[i].singleMatchId;
-                        this.newGamble.userId = this.user.uid;
-                        this.newGamble.userName = this.user.displayName;
-                        this.newGamble.userEmail = this.user.email;
-                        this.newGamble.userPhoto = this.user.photoURL;
-                        this.newGamble.homeTeamId = listMatches[i].homeTeamId;
-                        this.newGamble.homeTeamName = listMatches[i].homeTeamName;
-                        this.newGamble.homeTeamAlias = listMatches[i].homeTeamAlias;
-                        this.newGamble.homeTeamFlag = listMatches[i].homeTeamFlag;
-                        this.newGamble.visitTeamId = listMatches[i].visitTeamId;
-                        this.newGamble.visitTeamName = listMatches[i].visitTeamName;
-                        this.newGamble.visitTeamAlias = listMatches[i].visitTeamAlias;
-                        this.newGamble.visitTeamFlag = listMatches[i].visitTeamFlag;
-                        this.newGamble.date = today;
-                        this.newGamble.winnerTeamId = '';
-                        this.newGamble.draw = null;
-                        this.newGamble.status = '1';
-                        this.newGamble.saved = false;
-                        this.newGamble.scoreAchieved = 0;
-                        this.newGamble.startDate = listMatches[i].startDate;
+                /* Update list matches and add gambles */
+                let listMatches = [];
+                this.listMatchesService.getListMatchesTempByCodePenka(this.codePenka)
+                    .pipe(
+                        takeUntil(this.unsubscribe$)
+                    ).subscribe(
+                    res => {
+                        listMatches = res;
+                        // tslint:disable-next-line:prefer-for-of
+                        for (let i = 0; i < listMatches.length; i++) {
+                            /**************/
+                            /* New Gamble */
+                            this.newGamble.codePenka = this.codePenka;
+                            this.newGamble.penkaFormat = penkaFormat;
+                            this.newGamble.singleMatchId = listMatches[i].singleMatchId;
+                            this.newGamble.userId = this.user.uid;
+                            this.newGamble.userName = this.user.displayName;
+                            this.newGamble.userEmail = this.user.email;
+                            this.newGamble.userPhoto = this.user.photoURL;
+                            this.newGamble.homeTeamId = listMatches[i].homeTeamId;
+                            this.newGamble.homeTeamName = listMatches[i].homeTeamName;
+                            this.newGamble.homeTeamAlias = listMatches[i].homeTeamAlias;
+                            this.newGamble.homeTeamFlag = listMatches[i].homeTeamFlag;
+                            this.newGamble.visitTeamId = listMatches[i].visitTeamId;
+                            this.newGamble.visitTeamName = listMatches[i].visitTeamName;
+                            this.newGamble.visitTeamAlias = listMatches[i].visitTeamAlias;
+                            this.newGamble.visitTeamFlag = listMatches[i].visitTeamFlag;
+                            this.newGamble.date = today;
+                            this.newGamble.winnerTeamId = '';
+                            this.newGamble.draw = null;
+                            this.newGamble.status = '1';
+                            this.newGamble.saved = false;
+                            this.newGamble.scoreAchieved = 0;
+                            this.newGamble.startDate = listMatches[i].startDate;
 
-                        /* New List Match */
-                        this.newListMatch.singleMatchId = listMatches[i].singleMatchId;
-                        this.newListMatch.codePenka = this.codePenka;
-                        this.newListMatch.userId = this.user.uid;
-                        this.newListMatch.userName = this.user.displayName;
-                        this.newListMatch.userEmail = this.user.email;
-                        this.newListMatch.userPhoto = this.user.photoURL;
-                        this.newListMatch.date = today;
-                        this.newListMatch.homeTeamId = listMatches[i].homeTeamId;
-                        this.newListMatch.homeTeamName = listMatches[i].homeTeamName;
-                        this.newListMatch.homeTeamAlias = listMatches[i].homeTeamAlias;
-                        this.newListMatch.homeTeamFlag = listMatches[i].homeTeamFlag;
-                        this.newListMatch.visitTeamId = listMatches[i].visitTeamId;
-                        this.newListMatch.visitTeamName = listMatches[i].visitTeamName;
-                        this.newListMatch.visitTeamAlias = listMatches[i].visitTeamAlias;
-                        this.newListMatch.visitTeamFlag = listMatches[i].visitTeamFlag;
-                        this.newListMatch.startDate = listMatches[i].startDate;
-                        this.newListMatch.limitDate = listMatches[i].limitDate;
-                        this.newListMatch.status = '1';
+                            /* New List Match */
+                            this.newListMatch.singleMatchId = listMatches[i].singleMatchId;
+                            this.newListMatch.codePenka = this.codePenka;
+                            this.newListMatch.userId = this.user.uid;
+                            this.newListMatch.userName = this.user.displayName;
+                            this.newListMatch.userEmail = this.user.email;
+                            this.newListMatch.userPhoto = this.user.photoURL;
+                            this.newListMatch.date = today;
+                            this.newListMatch.homeTeamId = listMatches[i].homeTeamId;
+                            this.newListMatch.homeTeamName = listMatches[i].homeTeamName;
+                            this.newListMatch.homeTeamAlias = listMatches[i].homeTeamAlias;
+                            this.newListMatch.homeTeamFlag = listMatches[i].homeTeamFlag;
+                            this.newListMatch.visitTeamId = listMatches[i].visitTeamId;
+                            this.newListMatch.visitTeamName = listMatches[i].visitTeamName;
+                            this.newListMatch.visitTeamAlias = listMatches[i].visitTeamAlias;
+                            this.newListMatch.visitTeamFlag = listMatches[i].visitTeamFlag;
+                            this.newListMatch.startDate = listMatches[i].startDate;
+                            this.newListMatch.limitDate = listMatches[i].limitDate;
+                            this.newListMatch.status = '1';
 
-                        this.gambleService.addGamble(this.newGamble);
-                        this.listMatchesService.addMatchFromSingleMatch(this.newListMatch);
+                            this.gambleService.addGamble(this.newGamble);
+                            this.listMatchesService.addMatchFromSingleMatch(this.newListMatch);
 
-                        this.newGamble = {} as Gamble;
-                        this.newListMatch = {} as ListMatches;
+                            this.newGamble = {} as Gamble;
+                            this.newListMatch = {} as ListMatches;
+                        }
                     }
-                }
-            );
-            /***********************/
+                );
+                /***********************/
 
-            this.newPenka = {} as Penka;
-            this.participant = {} as Participant;
+                this.newPenka = {} as Penka;
+                this.participant = {} as Participant;
 
-            this.route.navigate(['/penka/new4/' + this.codePenka]).catch(error => console.log(error));
+                this.route.navigate(['/penka/new4/' + this.codePenka]).catch(error => console.log(error));
+            }
         }
-
     }
 
 }

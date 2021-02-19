@@ -14,6 +14,7 @@ import {MenuContainerComponent} from '../components/menu-container/menu-containe
 import {NotificationContainerComponent} from '../components/notification-container/notification-container.component';
 import {SessionContainerComponent} from '../components/session-container/session-container.component';
 import {LoginComponent} from '../components/login/login.component';
+import {RulesComponent} from '../components/rules/rules.component';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import {LoginComponent} from '../components/login/login.component';
         NotificationContainerComponent,
         SessionContainerComponent,
         LoginComponent,
+        RulesComponent
     ],
     imports: [
         CommonModule,
@@ -43,6 +45,7 @@ import {LoginComponent} from '../components/login/login.component';
         NotificationContainerComponent,
         SessionContainerComponent,
         LoginComponent,
+        RulesComponent
     ]
 })
 export class LayoutModule {

@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MaterialModule} from '../../material/material.module';
 /* COMPONENTS */
-import {BackSpaceComponent} from '../components/back-space/back-space.component';
 import {MatchMiniComponent} from '../components/match-mini/match-mini.component';
 import {MatchMiniGambleComponent} from '../components/match-mini-gamble/match-mini-gamble.component';
 import {PageHeaderComponent} from '../components/page-header/page-header.component';
@@ -32,10 +31,11 @@ import {ConvertToDatePipe} from '../pipes/convert-to-date.pipe';
 import {PenkaPopComponent} from '../components/penka-pop/penka-pop.component';
 import {MatchMiniContainerComponent} from '../components/match-mini-container/match-mini-container.component';
 import {MatchMiniCounterComponent} from '../components/match-mini-counter/match-mini-counter.component';
+import {ButtonContinueComponent} from '../components/button-continue/button-continue.component';
+import {ButtonBackComponent} from '../components/button-back/button-back.component';
 
 @NgModule({
     declarations: [
-        BackSpaceComponent,
         MatchMiniComponent,
         MatchMiniContainerComponent,
         MatchMiniCounterComponent,
@@ -63,13 +63,14 @@ import {MatchMiniCounterComponent} from '../components/match-mini-counter/match-
         FilterTeamNamePipe,
         FilterDuplicatesPipe,
         ConvertToDatePipe,
+        ButtonContinueComponent,
+        ButtonBackComponent,
     ],
     imports: [
         CommonModule,
         MaterialModule,
     ],
     exports: [
-        BackSpaceComponent,
         MatchMiniComponent,
         MatchMiniContainerComponent,
         MatchMiniCounterComponent,
@@ -97,6 +98,8 @@ import {MatchMiniCounterComponent} from '../components/match-mini-counter/match-
         FilterTeamNamePipe,
         FilterDuplicatesPipe,
         ConvertToDatePipe,
+        ButtonContinueComponent,
+        ButtonBackComponent,
     ]
 })
 export class SharedModule {

@@ -1,13 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ListMatchesService} from '../../../core/services/list-matches.service';
 import {Subject} from 'rxjs';
-import {ListMatches} from '../../../core/interfaces/list-matches';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {PenkasService} from '../../../core/services/penkas.service';
 import {User} from '../../../core/interfaces/user';
 import {AuthService} from '../../../core/services/auth.service';
 import {FirebaseApp} from '@angular/fire';
-import {Gamble} from '../../../core/interfaces/gamble';
 import {takeUntil} from 'rxjs/operators';
 
 @Component({
@@ -24,6 +22,7 @@ export class New4Component implements OnInit, OnDestroy {
     penka = [];
     user = {} as User;
     private unsubscribe$ = new Subject<void>();
+
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
@@ -55,6 +54,9 @@ export class New4Component implements OnInit, OnDestroy {
             res => {
                 this.listMatches = res;
             });
+        window.onpopstate = (e) => {
+            window.history.forward();
+        };
     }
 
     ngOnDestroy(): void {

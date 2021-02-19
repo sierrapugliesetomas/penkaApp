@@ -153,64 +153,42 @@
   }
 }
 
-/************* DESKTOP ***************/
-@media only screen and (min-width: 720px) and (orientation: landscape) {
-  .desktop {
-    display: inline;
-  }
-  .mobile {
-    display: none;
-  }
-  /** Card Container **/
-  .card-participants {
+/* DESKTOP 720 */
+@media only screen and (min-width: 1280px) and (orientation: landscape) {
+  .card {
     padding: 0;
     border: 0;
-    background-color: transparent;
   }
 
-  /*********************/
-  /**** Card Header ****/
   .card-header {
     background-color: #792fe8;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
-    padding: 0 20px 0 20px;
-  }
-
-  .header-table {
-    list-style-type: none;
+    padding: 10px 0 5px 20px;
     display: inline-flex;
-    padding: 0;
+    margin: 0;
+    width: 100%;
   }
-
-  .header-participants {
-    width: 200px;
-    margin-right: 20px;
-  }
-
-  .header-scores {
-    width: 100px;
-    text-align: center;
-    margin-right: 20px;
-  }
-
-  .header-matches {
-    width: 100px;
-    padding: 0;
-    margin-right: 20px;
-    text-align: center;
-  }
-
-  /********************/
-  /******* Fonts ******/
   .header-font {
     font-family: 'Poppins', sans-serif;
-    font-style: normal;
     font-weight: bold;
     font-size: 16px;
     line-height: 16px;
   }
 
+  .column-participants {
+    width: 400px;
+    height: 20px;
+    padding: 0;
+
+  }
+  .column-scores {
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    padding: 0;
+    margin-left: 10px;
+  }
   .score-font {
     font-family: 'Poppins', sans-serif;
     font-style: normal;
@@ -219,81 +197,81 @@
     line-height: 16px;
     color: #FDA328;
   }
+  .list-horizontal {
+    margin: 0 0 0 10px;
+    padding: 0;
+    overflow-x: auto;
+    width: 610px;
+  }
+  .item-horizontal {
+    width: 120px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
 
-  /********************/
-  /*** Card Content ***/
-  .card-content {
+  .card-body {
     background-color: #2E3035;
-    padding: 0 20px 40px 20px;
+    margin: 0;
+    padding: 0 0 10px 20px;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
+    display: inline-flex;
+    width: 100%;
 
   }
 
   .list-participants {
     list-style-type: none;
-    padding: 20px;
+    padding: 0;
+    margin: 0;
   }
 
   .item-participants {
-    width: 100%;
-    padding: 20px 0 0 0;
-    display: inline-flex;
+    padding: 10px 0 0 0;
+    margin: 0;
     border-bottom: 1px solid #737171;
+    display: inline-flex;
   }
 
   .participant-name {
     width: 220px;
     height: 20px;
     display: inline-block;
-    padding: 10px 0 0 0;
-    margin-right: 20px;
+    padding:10px 0 0 0;
   }
 
   .participant-name p {
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-size: 16px;
-    line-height: 16px;
+    font-size: 14px;
+    line-height: 14px;
     font-weight: normal;
     padding: 0;
   }
 
   .me {
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-size: 16px;
-    line-height: 16px;
+    font-size: 14px;
+    line-height: 14px;
     font-weight: normal;
     padding: 0;
     color: #FDA328;
   }
 
   .participant-score {
-    width: 90px;
+    width: 100px;
     height: 20px;
     display: inline-block;
     text-align: center;
-    margin-right: 20px;
+    margin-left: 10px;
     padding: 10px 0 0 0;
   }
 
   .participant-score p {
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-size: 16px;
-    line-height: 16px;
+    font-size: 14px;
+    line-height: 14px;
     font-weight: normal;
-  }
-
-  .list-gamble {
-    list-style-type: none;
-    display: inline-flex;
-    padding: 0;
-  }
-
-  .item-gamble {
-    padding: 0;
-    width: 100px;
-    margin-right: 20px;
-    text-align: center;
   }
 
   .score-achieved {
@@ -302,5 +280,16 @@
     font-size: 14px;
     line-height: 14px;
     color: #737171;
+  }
+  .select_place {
+    background-color: #4C4E52;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    font-size: 14px;
+    height: 30px;
+    color: white;
+    padding: 0 10px 0 10px;
+    margin: 0;
   }
 }

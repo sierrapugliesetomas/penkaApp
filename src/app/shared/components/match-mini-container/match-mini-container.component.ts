@@ -2,6 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ListMatchesService} from '../../../core/services/list-matches.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
+import {ListMatches} from '../../../core/interfaces/list-matches';
 
 @Component({
     selector: 'app-match-mini-container',
@@ -12,7 +13,7 @@ export class MatchMiniContainerComponent implements OnInit, OnDestroy {
     @Input() codeTemplate: string;
     @Input() codePenka: string;
 
-    listMatches = [];
+    listMatches = [] as ListMatches[];
     private unsubscribe$ = new Subject<void>();
 
     constructor(
