@@ -56,4 +56,7 @@ export class ParticipantsComponent implements OnInit, OnChanges, OnDestroy {
         }
     }
 
+    noYet(): void {
+        alert('La Penka no ha finalizado');
+    }
 }

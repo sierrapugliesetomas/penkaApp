@@ -72,51 +72,8 @@
 
 }
 
-/* DESKTOP 720 */
+/* DESKTOP 720p */
 @media only screen and (min-width: 1280px) and (orientation: landscape) {
-  .card {
-    width: 100%;
-    border: 0;
-    border-radius: 25px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    background-color: #2E3035;
-  }
-  .header {
-    padding: 15px 30px 5px 30px;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    background-color: #424448;
-  }
-  .title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 16px;
-  }
-  .body {
-    height: 200px;
-    background-color: #2E3035;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    padding: 20px;
-  }
-  .label {
-    font-size: 12px;
-    line-height: 14px;
-    opacity: 0.5;
-    margin: 0;
-  }
-  .data {
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 20px;
-  }
-  .footer {
-    text-align: right;
-    padding: 20px;
-  }
   .btn-grid {
     background-color: #FDA328;
     font-size: 14px;
@@ -145,8 +102,8 @@
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
   }
-  .btn-toFile{
-    background-color:#737171;
+  .btn-toFile {
+    background-color: #737171;
     font-size: 14px;
     line-height: 30px;
     padding: 0 20px 0 20px;
@@ -155,7 +112,14 @@
     -moz-border-radius: 25px;
     margin: 0 20px 0 0;
   }
-
+  .social-img {
+    width: 25px;
+    height: 25px;
+    margin-right: 20px;
+  }
+  .social-img:hover{
+    cursor: pointer;
+  }
   .list-matches {
     padding: 0;
     height: 200px;
@@ -188,51 +152,9 @@
     text-align: center;
   }
 }
+
 /* DESKTOP 1080p */
 @media only screen and (min-width: 1900px) and (orientation: landscape) {
-  .card {
-    width: 100%;
-    border: 0;
-    border-radius: 25px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    background-color: #2E3035;
-  }
-  .header {
-    padding: 15px 30px 5px 30px;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    background-color: #424448;
-  }
-  .title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 18px;
-  }
-  .body {
-    height: 200px;
-    background-color: #2E3035;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    padding: 20px;
-  }
-  .label {
-    font-size: 14px;
-    line-height: 16px;
-    opacity: 0.5;
-    margin: 0;
-  }
-  .data {
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 20px;
-  }
-  .footer {
-    text-align: right;
-    padding: 20px;
-  }
   .btn-grid {
     background-color: #FDA328;
     font-size: 14px;
@@ -250,6 +172,7 @@
     border-radius: 25px;
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
+    margin: 0 0 0 20px;
   }
   .btn-finish {
     background-color: #792fe8;
@@ -260,17 +183,24 @@
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
   }
-  .btn-toFile{
-    background-color:#737171;
+  .btn-toFile {
+    background-color: #737171;
     font-size: 14px;
     line-height: 30px;
     padding: 0 20px 0 20px;
     border-radius: 25px;
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
-    margin-right: 10px;
+    margin: 0 20px 0 0;
   }
-
+  .social-img {
+    width: 25px;
+    height: 25px;
+    margin-right: 20px;
+  }
+  .social-img:hover{
+    cursor: pointer;
+  }
   .list-matches {
     padding: 0;
     height: 200px;

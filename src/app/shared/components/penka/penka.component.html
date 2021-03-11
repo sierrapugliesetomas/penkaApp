@@ -1,58 +1,20 @@
-<ng-container *ngFor="let p of penkas">
+<ng-container *ngFor="let p of penka">
 
     <div class="card">
-        <!-- Card Header penka in game -->
-        <ng-container *ngIf="p.status === '1'">
-            <div class="header penka-in-game">
-                <div class="container-title">
-                    <p class="title">{{p.name}}</p>
-                </div>
-                <div class="container-maker">
-                    <p class="subTitle">{{p.makerName}}</p>
-                </div>
-                <div class="container-button">
-                    <button mat-stroked-button class="btn-watch" (click)="goWatch(p.codePenka)">
-                        Ver más
-                    </button>
-                </div>
+        <!-- Card Header -->
+        <div class="header">
+            <div class="container-title">
+                <p class="title">{{p.name}}</p>
             </div>
-        </ng-container>
-
-        <!-- Card Header penka done -->
-        <ng-container *ngIf="p.status === '2'">
-            <div class="header penka-done">
-                <div class="container-title">
-                    <p class="title">{{p.name}}</p>
-                </div>
-                <div class="container-maker">
-                    <p class="subTitle">{{p.makerName}}</p>
-                </div>
-                <div class="container-button">
-                    <button mat-stroked-button class="btn-watch" (click)="goWatch(p.codePenka)">
-                        Ver más
-                    </button>
-                </div>
+            <div class="container-maker">
+                <p class="subTitle">{{p.makerName}}</p>
             </div>
-        </ng-container>
-
-        <!-- Card Header penka filed -->
-        <ng-container *ngIf="p.status === '9'">
-            <div class="header penka-done">
-                <div class="container-title">
-                    <p class="title">{{p.name}}</p>
-                </div>
-                <div class="container-maker">
-                    <p class="subTitle">{{p.makerName}}</p>
-                </div>
-                <div class="container-button">
-                    <button mat-stroked-button class="btn-watch" (click)="goWatch(p.codePenka)">
-                        Ver más
-                    </button>
-                </div>
+            <div class="container-button">
+                <button mat-stroked-button class="btn-watch" (click)="goWatch(p.id)">
+                    Ver más
+                </button>
             </div>
-        </ng-container>
-
-
+        </div>
 
         <!-- Card Body -->
         <div class="body">
@@ -60,49 +22,17 @@
             <!-- MATCHES FROM TEMPLATES -->
             <ng-container *ngIf="p.typePenka === 'template'">
                 <div class="container-matches">
-                    <ng-container
-                        *ngFor="let lm of listMatches | filterCodeTemplate:p.codeTemplate; let i = index, let c = count">
-                        <ng-container *ngIf="i < 1">
-                            <p>{{c}} &nbsp;partidos</p>
-                        </ng-container>
-                    </ng-container>
+                    <app-match-mini-counter [codeTemplate]="p.codeTemplate"></app-match-mini-counter>
                 </div>
-                <ul class="list-matches">
-                    <li class="item-matches"
-                        *ngFor="let lm of listMatches | filterCodeTemplate:p.codeTemplate; let i=index">
-                        <ng-container *ngIf="i <= 3">
-                            <app-match-mini
-                                [matchDate]="lm.startDate"
-                                [homeTeamFlag]="lm.homeTeamFlag"
-                                [visitTeamFlag]="lm.visitTeamFlag"
-                            ></app-match-mini>
-                        </ng-container>
-                    </li>
-                </ul>
+                <app-match-mini-container [codeTemplate]="p.codeTemplate"></app-match-mini-container>
             </ng-container>
 
             <!-- MATCHES FROM SINGLE MATCHES -->
             <ng-container *ngIf="p.typePenka === 'singleMatches'">
                 <div class="container-matches">
-                    <ng-container
-                        *ngFor="let lm of listMatches | filterCodePenka:p.codePenka; let i = index, let c = count">
-                        <ng-container *ngIf="i < 1">
-                            <p>{{c}} &nbsp;partidos</p>
-                        </ng-container>
-                    </ng-container>
+                    <app-match-mini-counter [codePenka]="p.codePenka"></app-match-mini-counter>
                 </div>
-                <ul class="list-matches">
-                    <li class="item-matches"
-                        *ngFor="let lm of listMatches | filterCodePenka:p.codePenka; let i=index">
-                        <ng-container *ngIf="i < 4">
-                            <app-match-mini
-                                [matchDate]="lm.startDate"
-                                [homeTeamFlag]="lm.homeTeamFlag"
-                                [visitTeamFlag]="lm.visitTeamFlag"
-                            ></app-match-mini>
-                        </ng-container>
-                    </li>
-                </ul>
+                <app-match-mini-container [codePenka]="p.codePenka"></app-match-mini-container>
             </ng-container>
         </div>
 
@@ -112,10 +42,10 @@
                 <div class="col-xs-4 col-lg-4">
                     <p class="label">Participantes</p>
                     <p class="limitData"><span
-                        class="currentData">{{p.nParticipants}}</span>/{{p.limitParticipants}}</p>
+                            class="currentData">{{p.nParticipants}}</span>/{{p.limitParticipants}}</p>
                 </div>
                 <div class="col-xs-4 col-lg-4">
-                    <p class="label">Fecha limite</p>
+                    <p class="label">Fecha Limíte</p>
                     <p class="limitData">{{p.dateLimit.toDate() | date:'MMM dd'}}</p>
                 </div>
                 <div class="col-xs-4 col-lg-4">
@@ -124,14 +54,49 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-6 col-lg-6">
-                    <p class="label">Entrada: &nbsp;<span class="bet">${{p.bet}}</span></p>
+                <div class="col-xs-6 col-lg-5">
+                    <p class="label">
+                        Inscripción:&nbsp;
+
+                        <ng-container *ngIf="p.coin === 'SOLES'">
+                            <span class="bet">S/.&nbsp;{{p.bet}}</span>
+                        </ng-container>
+
+                        <ng-container *ngIf="p.coin === 'USD'">
+                            <span class="bet">{{p.bet}}&nbsp;$</span>
+                        </ng-container>
+
+                        <ng-container *ngIf="p.coin === 'PESOS'">
+                            <span class="bet">$&nbsp;{{p.bet}}</span>
+                        </ng-container>
+
+                    </p>
                 </div>
-                <div class="col-xs-6 col-lg-6">
-                    <p class="label">pozo: &nbsp; <span class="currentData">${{p.accumulatedBet}}</span><span
-                        class="limitData">/{{p.bet * p.limitParticipants}}</span></p>
+                <div class="col-xs-6 col-lg-7">
+                    <p class="label">PREMIO:&nbsp;
+
+                        <ng-container *ngIf="p.coin === 'SOLES'">
+                            <span class="currentData">S/. &nbsp;{{p.accumulatedBet}}</span>
+                            <span class="limitData">/{{p.bet * p.limitParticipants}}</span>
+                        </ng-container>
+
+                        <ng-container *ngIf="p.coin === 'USD'">
+                            <span class="currentData">{{p.accumulatedBet}}</span>
+                            <span class="limitData">/{{p.bet * p.limitParticipants}}&nbsp;$</span>
+                        </ng-container>
+
+                        <ng-container *ngIf="p.coin === 'PESOS'">
+                            <span class="currentData">$&nbsp;{{p.accumulatedBet}}</span>
+                            <span class="limitData">/{{p.bet * p.limitParticipants}}</span>
+                        </ng-container>
+
+                    </p>
                 </div>
             </div>
         </div>
     </div>
+    <button class="btn-join" mat-raised-button
+            (click)="join(p.id, user.uid, p.codePenka, p.name, p.makerId, p.makerName, p.makerEmail, p.makerPhoto)">
+        Jugar
+    </button>
 </ng-container>

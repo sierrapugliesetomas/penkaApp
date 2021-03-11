@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {Penka} from '../interfaces/penka';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -8,28 +8,49 @@ import {map} from 'rxjs/operators';
     providedIn: 'root'
 })
 export class PenkasService {
-
-
     penkasCollection: AngularFirestoreCollection<Penka>;
     penkas: Observable<Penka[]>;
 
-    constructor(private afs: AngularFirestore) {
-        this.penkasCollection = afs.collection<Penka>('penkas');
+    constructor(private readonly afs: AngularFirestore) {
+        this.penkasCollection = afs.collection<Penka>('penkas', ref => ref.orderBy('startDate'));
         this.penkas = this.penkasCollection.snapshotChanges().pipe(
             map(actions => actions.map(a => {
                 const data = a.payload.doc.data() as Penka;
                 const id = a.payload.doc.id;
                 return {id, ...data};
-            }))
-        );
+            })));
+    }
+
+    onSavePenka(penka: Penka, penkaId: string): Promise<void> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const id = penkaId || this.afs.createId();
+                const data = {id, ...penka};
+                const result = await this.penkasCollection.doc(id).set(data);
+                resolve(result);
+            } catch (err) {
+                reject(err.message);
+            }
+        });
+    }
+
+    onDeletePenka(penkaId: string): Promise<void> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const result = await this.penkasCollection.doc(penkaId).delete();
+                resolve(result);
+            } catch (err) {
+                reject(err.message);
+            }
+        });
     }
 
     getPenkas(): any {
         return this.penkas;
     }
 
-    getPenkaById(id): any {
-        return this.penkasCollection.doc(id).valueChanges();
+    getPenkaById(penkaId: string): any {
+        return this.penkasCollection.doc(penkaId).valueChanges();
     }
 
     getPenkaByCodePenka(codePenka): any {

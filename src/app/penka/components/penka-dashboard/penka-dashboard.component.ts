@@ -42,25 +42,19 @@ export class PenkaDashboardComponent implements OnInit, OnDestroy {
             }
         );
         this.gambleService.getGambleByUserId(this.user.uid)
-            .pipe(
-                takeUntil(this.unsubscribe$)
-            )
+            .pipe(takeUntil(this.unsubscribe$))
             .subscribe(
                 res => {
                     this.gambles = res;
                 });
         this.penkasService.getAllPenkasByCodePenka(this.codePenka)
-            .pipe(
-                takeUntil(this.unsubscribe$)
-            )
+            .pipe(takeUntil(this.unsubscribe$))
             .subscribe(
                 res => {
                     this.penkas = res;
                 });
         this.participantsService.getParticipantByCodePenka(this.codePenka)
-            .pipe(
-                takeUntil(this.unsubscribe$)
-            )
+            .pipe(takeUntil(this.unsubscribe$))
             .subscribe(
                 res => {
                     this.participants = res;
@@ -104,4 +98,17 @@ export class PenkaDashboardComponent implements OnInit, OnDestroy {
         }
     }
 
+    shareByWhatsapp(codePenka): void {
+        const url = 'https://penkapro.com/penka/join/' + codePenka;
+        const msg = encodeURIComponent('Unete a mi Penka, solo ingresa Aqui! ' + url);
+        window.location.href = 'whatsapp://send?text=' + msg;
+    }
+
+    shareByGmail(codePenka): void {
+
+    }
+
+    shareByMessenger(codePenka): void {
+
+    }
 }

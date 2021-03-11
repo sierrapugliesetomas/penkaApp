@@ -1,49 +1,14 @@
 <div class="row">
-    <div class="col-xs-12 center-xs">
-        <img alt="" src="../../../../assets/images/header/logo.png">
+    <div class="col-xs-12 col-lg-12">
+        <div class="box">
+            <p class="section-title">Iniciar sesión</p>
+        </div>
     </div>
 </div>
-<br>
-<br>
 <div class="row">
-    <div class="col-xs-12 center-xs">
-        <button (click)="auth.googleSignin()"
-                class="btn"
-                mat-button
-                type="button"
-        >
-            Iniciar Sesion con Google
-        </button>
+    <div class="col-xs-12 col-lg-12">
+        <div class="box">
+            <img src="../../../../assets/images/social/google.png" alt="" (click)="auth.googleSignin()">
+        </div>
     </div>
 </div>
-
-
-<!-- <div class="row">
-    <div class="col-xs-12 center-xs">
-        <div *ngIf="auth.user$ | async; then authenticated else guest"></div>
-
-        <ng-template #guest>
-            <button mat-button
-                    type="button"
-                    class="btn"
-                    (click)="auth.googleSignin()"
-            >
-                Iniciar Sesion con Google
-            </button>
-        </ng-template>
-
-        <ng-template #authenticated>
-            <div *ngIf="auth.user$ | async as user" class="text-center">
-                <h4 class="mb-4">{{ user.displayName}}</h4>
-                <img [src]="user.photoURL" class="img-fluid mb-4" width="100">
-                <button
-                    type="button"
-                    class="btn btn-primary btn-block"
-                    (click)="auth.signOut()"
-                >
-                    Cerrar Sesion
-                </button>
-            </div>
-        </ng-template>
-    </div>
-</div> -->

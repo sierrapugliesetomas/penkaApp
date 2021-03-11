@@ -13,7 +13,7 @@ import {ParticipantsService} from '../../../core/services/participants.service';
 })
 export class PenkasComponent implements OnInit, OnDestroy {
     title = 'Mis Penkas';
-    status: string;
+    status = '1';
     user = {} as User;
     participants = [];
     private unsubscribe$ = new Subject<void>();

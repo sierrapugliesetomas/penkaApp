@@ -1,25 +1,22 @@
 export interface Penka {
     id?: string;
-    typePenka?: string;
-    codeTemplate?: string;
-    codeTournament?: string;
-    codeSingleMatch?: string;
-    nParticipants?: number;
-    name?: string;
-    codePenka?: string;
     makerId?: string;
     makerName?: string;
     makerEmail?: string;
     makerPhoto?: string;
-    tournamentId?: string;
-    tournamentName?: string;
-    formatName?: string;
-    visibility?: string;
+    name?: string;
+    type?: string; /* singleMatches, templates, tournament */
+    code?: string; /* code sharing */
+    format?: string;
+    public?: boolean;
     bet?: number;
     distributionBet?: string;
-    accumulatedBet?: number;
+    prize?: number;
+    currencyType?: string; /* USD, PEN */
+    nParticipants?: number;
     limitParticipants?: number;
-    date?: Date;
-    dateLimit?: Date;
-    status?: string;
+    status?: string; /* 1- in Game // 2- finished  //  3- archived  */
+    startDate?: Date;
+    endDate?: Date;
+    createdAt?: Date;
 }

@@ -24,6 +24,7 @@ export class New3Component implements OnInit, OnDestroy {
     title = 'Organiza una Penka';
     stepNumber = '3';
     stepTotal = '4';
+    minDate = new Date();
     codeTemplate: string;
     codePenka: string;
     generateCodePenkaForTemplate: string;
@@ -89,7 +90,7 @@ export class New3Component implements OnInit, OnDestroy {
     addPenkaFromTemplate(): void {
         if (confirm('Deseas crear la Penka: “' + this.newPenka.name + ' ”')) {
             const today = new Date();
-            const penkaFormat = this.newPenka.formatName;
+            const penkaFormat = this.newPenka.format;
             if (!this.newPenka.name) {
                 alert('Debes poner un nombre para la penka');
 
@@ -101,7 +102,7 @@ export class New3Component implements OnInit, OnDestroy {
                 alert('Debes fijar un numero limite de participantes');
             } else if (this.newPenka.limitParticipants < 2) {
                 alert('Los participantes deben ser al menos 2 personas.');
-            } else if (!this.newPenka.dateLimit) {
+            } else if (!this.newPenka.endDate) {
                 alert('Debes fijar una fecha limite de inscripcion');
             } else {
 
@@ -110,20 +111,17 @@ export class New3Component implements OnInit, OnDestroy {
                 const bet: number = parseInt(String(this.newPenka.bet));
 
                 /// Save collection Penka
-                this.newPenka.typePenka = 'template';
-                this.newPenka.codeTemplate = this.codeTemplate;
-                this.newPenka.codeTournament = '';
-                this.newPenka.codeSingleMatch = '';
+                this.newPenka.type = 'template';
+                this.newPenka.code = this.codeTemplate;
                 this.newPenka.nParticipants = 1;
-                this.newPenka.codePenka = this.generateCodePenkaForTemplate;
                 this.newPenka.makerId = this.user.uid;
                 this.newPenka.makerName = this.user.displayName;
                 this.newPenka.makerEmail = this.user.email;
                 this.newPenka.makerPhoto = this.user.photoURL;
                 this.newPenka.bet = bet;
                 this.newPenka.status = '1';
-                this.newPenka.accumulatedBet = bet;
-                this.newPenka.date = today;
+                this.newPenka.prize = bet;
+                this.newPenka.createdAt = today;
                 this.penkasService.addPenka(this.newPenka);
 
                 this.participant.codePenka = this.generateCodePenkaForTemplate;
@@ -131,9 +129,8 @@ export class New3Component implements OnInit, OnDestroy {
                 this.participant.userName = this.user.displayName;
                 this.participant.userEmail = this.user.email;
                 this.participant.userPhoto = this.user.photoURL;
-                this.participant.formatName = this.newPenka.formatName;
+                this.participant.formatName = this.newPenka.format;
                 this.participant.bet = bet;
-                this.participant.visibility = this.newPenka.visibility;
                 this.participant.accumulatedScore = 0;
                 this.participant.date = today;
                 this.participant.status = '1';
@@ -188,11 +185,10 @@ export class New3Component implements OnInit, OnDestroy {
         }
     }
 
-    // tslint:disable-next-line:typedef
-    addPenkaFromSingleMatches() {
+    addPenkaFromSingleMatches(): any {
         if (confirm('Deseas crear la Penka: “' + this.newPenka.name + ' ”')) {
             const today = new Date();
-            const penkaFormat = this.newPenka.formatName;
+            const penkaFormat = this.newPenka.format;
 
             if (!this.newPenka.name) {
                 alert('Debes poner un nombre para la penka');
@@ -205,7 +201,7 @@ export class New3Component implements OnInit, OnDestroy {
                 alert('Debes fijar un numero limite de participantes');
             } else if (this.newPenka.limitParticipants < 2) {
                 alert('Los participantes deben ser al menos 2 personas.');
-            } else if (!this.newPenka.dateLimit) {
+            } else if (!this.newPenka.endDate) {
                 alert('Debes fijar una fecha limite de inscripcion');
             } else {
 
@@ -214,20 +210,18 @@ export class New3Component implements OnInit, OnDestroy {
                 const bet: number = parseInt(String(this.newPenka.bet));
 
                 /// Save collection Penka
-                this.newPenka.typePenka = 'singleMatches';
-                this.newPenka.codeTemplate = '';
-                this.newPenka.codeTournament = '';
-                this.newPenka.codeSingleMatch = '';
+                this.newPenka.type = 'singleMatches';
+                this.newPenka.code = '';
                 this.newPenka.nParticipants = 1;
-                this.newPenka.codePenka = this.codePenka;
+                this.newPenka.code = this.codePenka;
                 this.newPenka.makerId = this.user.uid;
                 this.newPenka.makerName = this.user.displayName;
                 this.newPenka.makerEmail = this.user.email;
                 this.newPenka.makerPhoto = this.user.photoURL;
                 this.newPenka.bet = bet;
                 this.newPenka.status = '1';
-                this.newPenka.accumulatedBet = bet;
-                this.newPenka.date = today;
+                this.newPenka.prize = bet;
+                this.newPenka.createdAt = today;
                 this.penkasService.addPenka(this.newPenka);
 
                 this.participant.codePenka = this.codePenka;
@@ -235,9 +229,8 @@ export class New3Component implements OnInit, OnDestroy {
                 this.participant.userName = this.user.displayName;
                 this.participant.userEmail = this.user.email;
                 this.participant.userPhoto = this.user.photoURL;
-                this.participant.formatName = this.newPenka.formatName;
+                this.participant.formatName = this.newPenka.format;
                 this.participant.bet = bet;
-                this.participant.visibility = this.newPenka.visibility;
                 this.participant.accumulatedScore = 0;
                 this.participant.date = today;
                 this.participant.status = '1';

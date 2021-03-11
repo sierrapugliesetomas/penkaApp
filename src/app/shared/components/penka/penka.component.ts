@@ -21,7 +21,7 @@ import {RequestNotificationComponent} from '../../../inbox/components/request-no
 export class PenkaComponent implements OnInit, OnDestroy {
     @Input() codePenka: string;
     listMatches = [];
-    penkas = [];
+    penka = [];
     user = {} as User;
     newPenkaRequest = {} as PenkaRequest;
     private unsubscribe$ = new Subject<void>();
@@ -45,7 +45,7 @@ export class PenkaComponent implements OnInit, OnDestroy {
                 takeUntil(this.unsubscribe$)
             ).subscribe(
             res => {
-                this.penkas = res;
+                this.penka = res;
             });
         this.listMatchesService.getListMatches()
             .pipe(

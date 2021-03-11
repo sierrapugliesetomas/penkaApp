@@ -1,81 +1,3 @@
-/* MOBILE 300p */
-@media only screen and (min-width: 300px) and (orientation: portrait) {
-  .desktop {
-    display: none;
-  }
-  .mobile {
-    display: inline;
-  }
-  .list-vertical {
-    padding: 0;
-    margin: 0;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 280px;
-  }
-  .item-vertical {
-    width: 80%;
-    text-align: center;
-    margin: 0 0 20px 50px;
-  }
-  .list-horizontal {
-    margin: 0;
-  }
-  /* Counter Matches Picked */
-  .counterPicks {
-    font-size: 12px;
-    line-height: 12px;
-    color: white;
-  }
-  .counterPicks span {
-    color: #FDA328;
-  }
-  .btn-continue {
-    font-size: 12px;
-    line-height: 14px;
-    padding: 10px;
-    float: right;
-    background-color: #FDA328;
-    border-radius: 25px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-  }
-
-  .search-match {
-    background-color: #2E3035;
-    border-radius: 25px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    width: 180px;
-    height: 30px;
-    font-size: 10px;
-    padding-left: 10px;
-  }
-
-  .search-match::placeholder {
-    color: white;
-  }
-
-  .search-match::content {
-    color: white;
-  }
-
-  .search-match:hover {
-    border: 2px solid #FDA328;
-    border-radius: 25px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-  }
-
-  .search-match[type=text]:focus {
-    outline: none;
-    border: 2px solid #FDA328;
-    border-radius: 25px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-  }
-}
-
 /* MOBILE 350p */
 @media only screen and (min-width: 350px) and (orientation: portrait) {
   .desktop {
@@ -202,7 +124,9 @@
     outline: none;
     border: 2px solid #FDA328;
     border-radius: 25px;
-
+  }
+  .item-horizontal {
+    margin: 0 20px 10px 0;
   }
 }
 

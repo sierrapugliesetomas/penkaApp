@@ -5,23 +5,23 @@
 <div class="desktop">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <div class="box">
                     <input
-                        type="text"
-                        class="searchByCode"
-                        placeholder="Ingresa aqui el codigo"
-                        [(ngModel)]="codePenka"
+                            type="text"
+                            class="searchByCode"
+                            placeholder="Ingresa el código de Penka aquí"
+                            [(ngModel)]="codePenka"
                     >
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="box">
                     <input
-                        type="text"
-                        class="searchByName"
-                        placeholder="Buscar por nombre de Penka u Organizador"
-                        [(ngModel)]="penkaName"
+                            type="text"
+                            class="searchByName"
+                            placeholder="Buscar por nombre de Penka u Organizador"
+                            [(ngModel)]="penkaName"
                     >
                 </div>
             </div>
@@ -71,24 +71,7 @@
             <br>
         </ng-container>
         <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <p class="section-title">Penkas Recomendadas</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <ul class="list-penkas">
-                        <li class="item-penkas" *ngFor="let f of filterParticipants | filterDuplicates">
-                            <app-penka [codePenka]="f.codePenka"></app-penka>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <app-friends-penkas-container></app-friends-penkas-container>
         <br>
         <br>
         <br>
@@ -102,10 +85,10 @@
             <div class="col-xs-12">
                 <div class="box">
                     <input
-                        type="text"
-                        class="searchByCode"
-                        placeholder="Ingresa aqui el codigo de la penka"
-                        [(ngModel)]="codePenka"
+                            type="text"
+                            class="searchByCode"
+                            placeholder="Ingresa aqui el codigo de la penka"
+                            [(ngModel)]="codePenka"
                     >
                 </div>
             </div>
@@ -121,10 +104,10 @@
             <div class="col-xs-12">
                 <div class="box">
                     <input
-                        type="text"
-                        class="searchByName"
-                        placeholder="Buscar por Nombre de Penka u Organizador."
-                        [(ngModel)]="penkaName"
+                            type="text"
+                            class="searchByName"
+                            placeholder="Buscar por Nombre de Penka u Organizador."
+                            [(ngModel)]="penkaName"
                     >
                 </div>
             </div>
@@ -172,26 +155,7 @@
             </div>
         </ng-container>
         <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <p class="section-title">Penkas Recomendadas</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <ul class="list-penkas">
-                        <li class="item-penkas" *ngFor="let f of filterParticipants | filterDuplicates">
-                            <app-penka [codePenka]="f.codePenka"></app-penka>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-
+        <app-friends-penkas-container></app-friends-penkas-container>
         <br>
         <br>
         <br>

@@ -29,7 +29,7 @@ export class ListMatchesService {
         return this.listMatches;
     }
 
-    getListMatchesTempByCodePenka(codePenka): any { /* checked */
+    getListMatchesTempByCodePenka(codePenka): any {
         return this.afs.collection<ListMatches>('listMatches', ref => ref
             .where('codePenka', '==', codePenka)
             .where('status', '==', '0')

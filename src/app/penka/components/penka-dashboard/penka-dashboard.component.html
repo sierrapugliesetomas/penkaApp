@@ -3,969 +3,458 @@
     <app-page-header [title]="penka.name"></app-page-header>
     <br>
 
-    <!-- PENKA STATUS 1 -->
-    <ng-container *ngIf="penka.status === '1'">
-        <!-- DESKTOP -->
-        <div class="desktop">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="box">
-                            <!-- Card Information -->
-                            <div class="card">
-                                <div class="header">
-                                    <p class="title">
-                                        Informacion
-                                    </p>
-                                </div>
-                                <div class="body">
-                                    <div class="row">
-                                        <div class=" col-lg-6">
-                                            <div class="box">
-                                                <div>
-                                                    <p class="label">Organizador</p>
-                                                    <p class="data">{{penka.makerName}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Fecha de creacion</p>
-                                                    <p class="data">{{penka.date.toDate() | date:'mediumDate'}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Formato</p>
-                                                    <p class="data">{{penka.formatName}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Participantes</p>
-                                                    <p class="data">{{penka.nParticipants}}
-                                                        / {{penka.limitParticipants}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Estado</p>
-                                                    <p class="data">En Juego</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="box">
-                                                <div>
-                                                    <p class="label">Apuesta</p>
-                                                    <p class="data">${{penka.bet}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Pozo</p>
-                                                    <p class="data">${{penka.accumulatedBet}}
-                                                        / {{ penka.bet * penka.limitParticipants}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Distribucion</p>
-                                                    <p class="data">{{penka.distributionBet}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Codigo de penka</p>
-                                                    <p class="data">{{penka.codePenka}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <ng-container *ngIf="penka.makerId === user.uid">
-                                        <button mat-button class="btn-finish" (click)="finishPenka(penka.id)">
-                                            Finalizar Penka
-                                        </button>
-                                    </ng-container>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="box">
-                            <!-- Card Participants -->
-                            <div class="card">
-                                <div class="header">
-                                    <p class="title">Participants</p>
-                                </div>
-                                <div class="body">
-                                    <div class="box">
-                                        <app-participants [makerId]="penka.makerId"
-                                                          [codePenka]="penka.codePenka"></app-participants>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <button mat-button class="btn-grid" (click)="goGrid(penka.codePenka)">
-                                        Matriz de resultados
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="box">
-
-                            <!-- Matches done -->
-                            <div class="card">
-                                <div class="header">
-                                    <p class="title">Partidos Jugados</p>
-                                </div>
-                                <div class="body">
-                                    <ul class="list-matches">
-                                        <li class="item-matches"
-                                            *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'2'">
-                                            <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                            [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="footer">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="box">
-
-                            <!-- Next Matches -->
-                            <div class="card">
-                                <div class="header">
-                                    <p class="title">Proximos Partidos</p>
-                                </div>
-                                <div class="body">
-                                    <ul class="list-matches">
-                                        <li class="item-matches"
-                                            *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'1'">
-                                            <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                            [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="footer">
-                                    <button mat-button class="btn-gamble" (click)="playGamble(penka.codePenka)">
-                                        Llenar Resultados
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MOBILE -->
-        <div class="mobile">
-            <br>
+    <div class="desktop">
+        <div class="container">
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-lg-4">
                     <div class="box">
-                        <!------------------------>
-                        <!------ Scores ---------->
-                        <mat-accordion>
-                            <mat-expansion-panel [expanded]="true">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        Puntajes
-                                    </mat-panel-title>
-                                </mat-expansion-panel-header>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="box">
-                                            <app-participants [codePenka]="penka.codePenka"></app-participants>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <div class="box">
-                                            <br>
-                                            <div class="container-button-mobile">
-                                                <button class="btn-grid-mobile" mat-stroked-button
-                                                        (click)="goGrid(penka.codePenka)">
-                                                    Ver matriz de resultados
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </mat-expansion-panel>
-                        </mat-accordion>
+                        <p class="section-title">Invita a tus amigos a participar:</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="box">
+                        <img class="social-img" (click)="shareByWhatsapp(penka.codePenka)"
+                             src="../../../../assets/images/social/whatsapp.png" alt="whatsapp">
+
+                        <a target="_blank" href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=tuamigo@gmail.com&subject=Unete a mi Penka&body=Hola! Juega conmigo una Penka. Solo ingresa a https://penkapro.com/penka/join/{{penka.codePenka}} y únete!">
+                            <img class="social-img" src="../../../../assets/images/social/gmail.png" alt="gmail">
+                        </a>
+
+
+                        <img class="social-img" (click)="shareByMessenger(penka.codePenka)"
+                             src="../../../../assets/images/social/messenger.png" alt="messenger">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="box">
+                        <app-button-back></app-button-back>
                     </div>
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-lg-6">
                     <div class="box">
-                        <!----------------------------->
-                        <!------ Information ---------->
-                        <mat-accordion>
-                            <mat-expansion-panel [expanded]="false">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        Informacion
-                                    </mat-panel-title>
-                                </mat-expansion-panel-header>
+                        <!-- INFORMATION -->
+                        <div class="card">
+                            <div class="card-header">
                                 <div class="row">
-                                    <div class="col-xs-12">
+                                    <div class="col-lg-12">
                                         <div class="box">
-                                            <div>
-                                                <p class="label-mobile">Organizador</p>
-                                                <p class="item-mobile">{{penka.makerName}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Fecha de creacion</p>
-                                                <p class="item-mobile">{{penka.date.toDate() | date:'mediumDate'}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Formato</p>
-                                                <p class="item-mobile">{{penka.formatName}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Participantes</p>
-                                                <p class="item-mobile">{{penka.nParticipants}}
-                                                    / {{penka.limitParticipants}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Estado</p>
-                                                <p class="item-mobile">En Juego</p>
-                                            </div>
+                                            <p class="title-header">Información</p>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6">
                                         <div class="box">
-                                            <div>
-                                                <p class="label-mobile">Apuesta</p>
-                                                <p class="item-mobile">${{penka.bet}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Pozo</p>
-                                                <p class="item-mobile">${{penka.accumulatedBet}}
+                                            <p class="label">Organizador</p>
+                                            <p class="data">{{penka.makerName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="box">
+                                            <p class="label">Fecha de creación</p>
+                                            <p class="data">{{penka.date.toDate() | date:'mediumDate'}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="box">
+                                            <p class="label">Formato</p>
+                                            <p class="data">{{penka.formatName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="box">
+                                            <p class="label">PREMIO</p>
+
+                                            <ng-container *ngIf="penka.coin === 'SOLES'">
+                                                <p class="data">S/.&nbsp;{{penka.accumulatedBet}}
                                                     / {{ penka.bet * penka.limitParticipants}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Distribucion</p>
-                                                <p class="item-mobile">{{penka.distributionBet}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Codigo de penka</p>
-                                                <p class="item-mobile">{{penka.codePenka}}</p>
-                                            </div>
+                                            </ng-container>
+
+                                            <ng-container *ngIf="penka.coin === 'PESOS'">
+                                                <p class="data">$.&nbsp;{{penka.accumulatedBet}}
+                                                    / {{ penka.bet * penka.limitParticipants}}</p>
+                                            </ng-container>
+
+                                            <ng-container *ngIf="penka.coin === 'USD'">
+                                                <p class="data">{{penka.accumulatedBet}}
+                                                    / {{ penka.bet * penka.limitParticipants}}&nbsp;$</p>
+                                            </ng-container>
                                         </div>
                                     </div>
                                 </div>
-                            </mat-expansion-panel>
-                        </mat-accordion>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="box">
+                                            <p class="label">Participantes</p>
+                                            <p class="data">{{penka.nParticipants}}
+                                                / {{penka.limitParticipants}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="box">
+                                            <p class="label">Inscripción</p>
+                                            <p class="data">
+                                                <ng-container *ngIf="penka.coin === 'SOLES'">
+                                                    S/.&nbsp;{{penka.bet}}
+                                                </ng-container>
+
+                                                <ng-container *ngIf="penka.coin === 'PESOS'">
+                                                    $&nbsp;{{penka.bet}}
+                                                </ng-container>
+
+                                                <ng-container *ngIf="penka.coin === 'USD'">
+                                                    {{penka.bet}}&nbsp;$
+                                                </ng-container>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="box">
+                                            <p class="label">Estado</p>
+                                            <ng-container *ngIf="penka.status === '1'">
+                                                <p class="data">En juego</p>
+                                            </ng-container>
+                                            <ng-container *ngIf="penka.status === '2'">
+                                                <p class="data">Terminada</p>
+                                            </ng-container>
+                                            <ng-container *ngIf="penka.status === '9'">
+                                                <p class="data">Archivada</p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="box">
+                                            <p class="label">Distribución</p>
+                                            <p class="data">{{penka.distributionBet}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-lg-8"></div>
+                                    <div class="col-lg-4">
+                                        <div class="box">
+                                            <ng-container *ngIf="penka.makerId === user.uid">
+
+                                                <ng-container *ngIf="penka.status === '1'">
+                                                    <button mat-button class="btn-finish"
+                                                            (click)="finishPenka(penka.id)">
+                                                        Finalizar Penka
+                                                    </button>
+                                                </ng-container>
+
+                                                <ng-container *ngIf="penka.status === '2'">
+                                                    <button mat-button class="btn-toFile" (click)="toFile(penka.id)">
+                                                        Archivar
+                                                    </button>
+                                                </ng-container>
+
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="box">
+                        <!-- PARTICIPANTS -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="box">
+                                            <p class="title-header">Participantes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="box">
+                                    <app-participants [makerId]="penka.makerId"
+                                                      [codePenka]="penka.codePenka"></app-participants>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-lg-7"></div>
+                                    <div class="col-lg-5">
+                                        <div class="box">
+                                            <button mat-button class="btn-grid" (click)="goGrid(penka.codePenka)">
+                                                Matriz de resultados
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-lg-6">
                     <div class="box">
-                        <!-------------------------------->
-                        <!------ Matches Played ---------->
-                        <mat-accordion>
-                            <mat-expansion-panel [expanded]="false">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        Partidos Jugados
-                                    </mat-panel-title>
-                                </mat-expansion-panel-header>
-
-                                <ul class="list-mobile">
-                                    <li class="list-item-mobile"
+                        <!-- Matches done -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="box">
+                                            <p class="title-header">Partidos Jugados</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-matches">
+                                    <li class="item-matches"
                                         *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'2'">
-
                                         <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
                                                                         [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
-
                                     </li>
                                 </ul>
-
-                            </mat-expansion-panel>
-                        </mat-accordion>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-12">
+                <div class="col-lg-6">
                     <div class="box">
-                        <!------------------------------>
-                        <!------ Next Matches ---------->
-                        <mat-accordion>
-                            <mat-expansion-panel [expanded]="false">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        Proximos Partidos
-                                    </mat-panel-title>
-                                </mat-expansion-panel-header>
+                        <!-- Next Matches -->
+                        <div class="card">
+                            <div class="card-header">
                                 <div class="row">
-                                    <div class="col-xs-12">
+                                    <div class="col-lg-12">
                                         <div class="box">
-                                            <ul class="list-mobile">
-                                                <li class="list-item-mobile"
-                                                    *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'1'">
-
-                                                    <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                                    [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
-                                                </li>
-                                            </ul>
+                                            <p class="title-header">Próximos Partidos</p>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-matches">
+                                    <li class="item-matches"
+                                        *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'1'">
+                                        <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
+                                                                        [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-lg-7"></div>
+                                    <div class="col-lg-5">
                                         <div class="box">
-                                            <div class="container-button-mobile">
+
+                                            <ng-container *ngIf="penka.status === '1'">
                                                 <button mat-button class="btn-gamble"
                                                         (click)="playGamble(penka.codePenka)">
                                                     Llenar Resultados
                                                 </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </ng-container>
+                                            </ng-container>
 
-    <!-- PENKA STATUS 2 -->
-    <ng-container *ngIf="penka.status === '2'">
-        <!-- DESKTOP -->
-        <div class="desktop">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="box">
-                            <!-- Card Information -->
-                            <div class="card">
-                                <div class="header">
-                                    <p class="title">
-                                        Informacion
-                                    </p>
-                                </div>
-                                <div class="body">
-                                    <div class="row">
-                                        <div class=" col-lg-6">
-                                            <div class="box">
-                                                <div>
-                                                    <p class="label">Organizador</p>
-                                                    <p class="data">{{penka.makerName}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Fecha de creacion</p>
-                                                    <p class="data">{{penka.date.toDate() | date:'mediumDate'}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Formato</p>
-                                                    <p class="data">{{penka.formatName}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Participantes</p>
-                                                    <p class="data">{{penka.nParticipants}}
-                                                        / {{penka.limitParticipants}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Estado</p>
-                                                    <p class="data">Terminada</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="box">
-                                                <div>
-                                                    <p class="label">Apuesta</p>
-                                                    <p class="data">${{penka.bet}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Pozo</p>
-                                                    <p class="data">${{penka.accumulatedBet}}
-                                                        / {{ penka.bet * penka.limitParticipants}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Distribucion</p>
-                                                    <p class="data">{{penka.distributionBet}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Codigo de penka</p>
-                                                    <p class="data">{{penka.codePenka}}</p>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="footer">
-                                    <ng-container *ngIf="penka.makerId === user.uid">
-                                        <button mat-button class="btn-toFile" (click)="toFile(penka.id)">
-                                            Archivar
-                                        </button>
-                                        <button mat-button class="btn-finish" disabled
-                                                (click)="finishPenka(penka.id)">
-                                            Finalizar Penka
-                                        </button>
-                                    </ng-container>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="box">
-                            <!-- Card Participants -->
-                            <div class="card">
-                                <div class="header">
-                                    <p class="title">Participants</p>
-                                </div>
-                                <div class="body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBILE -->
+    <div class="mobile">
+        <br>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <!------------------------>
+                    <!------ Scores ---------->
+                    <mat-accordion>
+                        <mat-expansion-panel [expanded]="true">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Puntajes
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="row">
+                                <div class="col-xs-12">
                                     <div class="box">
-                                        <app-participants [makerId]="penka.makerId"
-                                                          [codePenka]="penka.codePenka"></app-participants>
+                                        <app-participants [codePenka]="penka.codePenka"></app-participants>
                                     </div>
                                 </div>
-                                <div class="footer">
-                                    <button mat-button class="btn-grid" (click)="goGrid(penka.codePenka)">
-                                        Matriz de resultados
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="box">
-
-                            <!-- Matches done -->
-                            <div class="card">
-                                <div class="header">
-                                    <p class="title">Partidos Jugados</p>
-                                </div>
-                                <div class="body">
-                                    <ul class="list-matches">
-                                        <li class="item-matches"
-                                            *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'2'">
-                                            <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                            [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="footer">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="box">
-
-                            <!-- Next Matches -->
-                            <div class="card">
-                                <div class="header">
-                                    <p class="title">Proximos Partidos</p>
-                                </div>
-                                <div class="body">
-                                    <ul class="list-matches">
-                                        <li class="item-matches"
-                                            *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'1'">
-                                            <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                            [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="footer">
-                                    <button mat-button class="btn-gamble" (click)="playGamble(penka.codePenka)">
-                                        Llenar Resultados
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MOBILE -->
-        <div class="mobile">
-            <br>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <!------------------------>
-                        <!------ Scores ---------->
-                        <mat-accordion>
-                            <mat-expansion-panel [expanded]="true">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        Puntajes
-                                    </mat-panel-title>
-                                </mat-expansion-panel-header>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="box">
-                                            <app-participants [codePenka]="penka.codePenka"></app-participants>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <div class="box">
-                                            <br>
-                                            <div class="container-button-mobile">
-                                                <button class="btn-grid-mobile" mat-stroked-button
-                                                        (click)="goGrid(penka.codePenka)">
-                                                    Ver matriz de resultados
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <!----------------------------->
-                        <!------ Information ---------->
-                        <mat-accordion>
-                            <mat-expansion-panel [expanded]="false">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        Informacion
-                                    </mat-panel-title>
-                                </mat-expansion-panel-header>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="box">
-                                            <div>
-                                                <p class="label-mobile">Organizador</p>
-                                                <p class="item-mobile">{{penka.makerName}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Fecha de creacion</p>
-                                                <p class="item-mobile">{{penka.date.toDate() | date:'mediumDate'}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Formato</p>
-                                                <p class="item-mobile">{{penka.formatName}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Participantes</p>
-                                                <p class="item-mobile">{{penka.nParticipants}}
-                                                    / {{penka.limitParticipants}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Estado</p>
-                                                <p class="item-mobile">Terminada</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <div class="box">
-                                            <div>
-                                                <p class="label-mobile">Apuesta</p>
-                                                <p class="item-mobile">${{penka.bet}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Pozo</p>
-                                                <p class="item-mobile">${{penka.accumulatedBet}}
-                                                    / {{ penka.bet * penka.limitParticipants}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Distribucion</p>
-                                                <p class="item-mobile">{{penka.distributionBet}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Codigo de penka</p>
-                                                <p class="item-mobile">{{penka.codePenka}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <!-------------------------------->
-                        <!------ Matches Played ---------->
-                        <mat-accordion>
-                            <mat-expansion-panel [expanded]="false">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        Partidos Jugados
-                                    </mat-panel-title>
-                                </mat-expansion-panel-header>
-
-                                <ul class="list-mobile">
-                                    <li class="list-item-mobile"
-                                        *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'2'">
-
-                                        <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                        [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
-
-                                    </li>
-                                </ul>
-
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <!------------------------------>
-                        <!------ Next Matches ---------->
-                        <mat-accordion>
-                            <mat-expansion-panel [expanded]="false">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        Proximos Partidos
-                                    </mat-panel-title>
-                                </mat-expansion-panel-header>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="box">
-                                            <ul class="list-mobile">
-                                                <li class="list-item-mobile"
-                                                    *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'1'">
-
-                                                    <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                                    [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <div class="box">
-                                            <div class="container-button-mobile">
-                                                <button mat-button class="btn-gamble"
-                                                        (click)="playGamble(penka.codePenka)">
-                                                    Llenar Resultados
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </ng-container>
-
-    <!-- PENKA STATUS 9 -->
-    <ng-container *ngIf="penka.status === '9'">
-        <!-- DESKTOP -->
-        <div class="desktop">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="box">
-                            <!-- Card Information -->
-                            <div class="card">
-                                <div class="header">
-                                    <p class="title">
-                                        Informacion
-                                    </p>
-                                </div>
-                                <div class="body">
-                                    <div class="row">
-                                        <div class=" col-lg-6">
-                                            <div class="box">
-                                                <div>
-                                                    <p class="label">Organizador</p>
-                                                    <p class="data">{{penka.makerName}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Fecha de creacion</p>
-                                                    <p class="data">{{penka.date.toDate() | date:'mediumDate'}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Formato</p>
-                                                    <p class="data">{{penka.formatName}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Participantes</p>
-                                                    <p class="data">{{penka.nParticipants}}
-                                                        / {{penka.limitParticipants}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Estado</p>
-                                                    <p class="data">Archivada</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="box">
-                                                <div>
-                                                    <p class="label">Apuesta</p>
-                                                    <p class="data">${{penka.bet}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Pozo</p>
-                                                    <p class="data">${{penka.accumulatedBet}}
-                                                        / {{ penka.bet * penka.limitParticipants}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Distribucion</p>
-                                                    <p class="data">{{penka.distributionBet}}</p>
-                                                </div>
-                                                <div>
-                                                    <p class="label">Codigo de penka</p>
-                                                    <p class="data">{{penka.codePenka}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <ng-container *ngIf="penka.makerId === user.uid">
-                                        <button mat-button class="btn-toFile" disabled (click)="toFile(penka.id)">
-                                            Archivar
-                                        </button>
-                                        <button mat-button class="btn-finish" disabled
-                                                (click)="finishPenka(penka.id)">
-                                            Finalizar Penka
-                                        </button>
-                                    </ng-container>
-                                </div>
-                            </div>
-                            <br>
-                            <!-- Card Participants -->
-                            <div class="card">
-                                <div class="header">
-                                    <p class="title">Participants</p>
-                                </div>
-                                <div class="body">
+                                <div class="col-xs-12">
                                     <div class="box">
-                                        <app-participants [makerId]="penka.makerId"
-                                                          [codePenka]="penka.codePenka"></app-participants>
+                                        <br>
+                                        <div class="container-button-mobile">
+                                            <button class="btn-grid-mobile" mat-stroked-button
+                                                    (click)="goGrid(penka.codePenka)">
+                                                Ver matriz de resultados
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="footer">
-                                    <button mat-button class="btn-grid" (click)="goGrid(penka.codePenka)">
-                                        Matriz de resultados
-                                    </button>
-                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="box">
-                            <!-- Matches done -->
-                            <div class="card">
-                                <div class="header">
-                                    <p class="title">Partidos Jugados</p>
-                                </div>
-                                <div class="body">
-                                    <ul class="list-matches">
-                                        <li class="item-matches"
-                                            *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'2'">
-                                            <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                            [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="footer">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
                 </div>
             </div>
         </div>
-
-        <!-- MOBILE -->
-        <div class="mobile">
-            <br>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <!------------------------>
-                        <!------ Scores ---------->
-                        <mat-accordion>
-                            <mat-expansion-panel [expanded]="true">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        Puntajes
-                                    </mat-panel-title>
-                                </mat-expansion-panel-header>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="box">
-                                            <app-participants [codePenka]="penka.codePenka"></app-participants>
+        <br>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <!----------------------------->
+                    <!------ Information ---------->
+                    <mat-accordion>
+                        <mat-expansion-panel [expanded]="false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Informacion
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="box">
+                                        <div>
+                                            <p class="label-mobile">Organizador</p>
+                                            <p class="item-mobile">{{penka.makerName}}</p>
                                         </div>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <div class="box">
-                                            <br>
-                                            <div class="container-button-mobile">
-                                                <button class="btn-grid-mobile" mat-stroked-button
-                                                        (click)="goGrid(penka.codePenka)">
-                                                    Ver matriz de resultados
-                                                </button>
-                                            </div>
+                                        <div>
+                                            <p class="label-mobile">Fecha de creacion</p>
+                                            <p class="item-mobile">{{penka.date.toDate() | date:'mediumDate'}}</p>
                                         </div>
-                                    </div>
-                                </div>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <!----------------------------->
-                        <!------ Information ---------->
-                        <mat-accordion>
-                            <mat-expansion-panel [expanded]="false">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        Informacion
-                                    </mat-panel-title>
-                                </mat-expansion-panel-header>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="box">
-                                            <div>
-                                                <p class="label-mobile">Organizador</p>
-                                                <p class="item-mobile">{{penka.makerName}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Fecha de creacion</p>
-                                                <p class="item-mobile">{{penka.date.toDate() | date:'mediumDate'}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Formato</p>
-                                                <p class="item-mobile">{{penka.formatName}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Participantes</p>
-                                                <p class="item-mobile">{{penka.nParticipants}}
-                                                    / {{penka.limitParticipants}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Estado</p>
-                                                <p class="item-mobile">Archivada</p>
-                                            </div>
+                                        <div>
+                                            <p class="label-mobile">Formato</p>
+                                            <p class="item-mobile">{{penka.formatName}}</p>
                                         </div>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <div class="box">
-                                            <div>
-                                                <p class="label-mobile">Apuesta</p>
-                                                <p class="item-mobile">${{penka.bet}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Pozo</p>
-                                                <p class="item-mobile">${{penka.accumulatedBet}}
-                                                    / {{ penka.bet * penka.limitParticipants}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Distribucion</p>
-                                                <p class="item-mobile">{{penka.distributionBet}}</p>
-                                            </div>
-                                            <div>
-                                                <p class="label-mobile">Codigo de penka</p>
-                                                <p class="item-mobile">{{penka.codePenka}}</p>
-                                            </div>
+                                        <div>
+                                            <p class="label-mobile">Participantes</p>
+                                            <p class="item-mobile">{{penka.nParticipants}}
+                                                / {{penka.limitParticipants}}</p>
+                                        </div>
+                                        <div>
+                                            <p class="label-mobile">Estado</p>
+                                            <p class="item-mobile">Terminada</p>
                                         </div>
                                     </div>
                                 </div>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <!-------------------------------->
-                        <!------ Matches Played ---------->
-                        <mat-accordion>
-                            <mat-expansion-panel [expanded]="false">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        Partidos Jugados
-                                    </mat-panel-title>
-                                </mat-expansion-panel-header>
-
-                                <ul class="list-mobile">
-                                    <li class="list-item-mobile"
-                                        *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'2'">
-
-                                        <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                        [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
-
-                                    </li>
-                                </ul>
-
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <!------------------------------>
-                        <!------ Next Matches ---------->
-                        <mat-accordion>
-                            <mat-expansion-panel [expanded]="false">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        Proximos Partidos
-                                    </mat-panel-title>
-                                </mat-expansion-panel-header>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="box">
-                                            <ul class="list-mobile">
-                                                <li class="list-item-mobile"
-                                                    *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'1'">
-
-                                                    <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                                    [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
-                                                </li>
-                                            </ul>
+                                <div class="col-xs-12">
+                                    <div class="box">
+                                        <div>
+                                            <p class="label-mobile">Apuesta</p>
+                                            <p class="item-mobile">${{penka.bet}}</p>
                                         </div>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <div class="box">
-                                            <div class="container-button-mobile">
-                                                <button mat-button class="btn-gamble"
-                                                        (click)="playGamble(penka.codePenka)">
-                                                    Llenar Resultados
-                                                </button>
-                                            </div>
+                                        <div>
+                                            <p class="label-mobile">Pozo</p>
+                                            <p class="item-mobile">${{penka.accumulatedBet}}
+                                                / {{ penka.bet * penka.limitParticipants}}</p>
+                                        </div>
+                                        <div>
+                                            <p class="label-mobile">Distribucion</p>
+                                            <p class="item-mobile">{{penka.distributionBet}}</p>
+                                        </div>
+                                        <div>
+                                            <p class="label-mobile">Codigo de penka</p>
+                                            <p class="item-mobile">{{penka.codePenka}}</p>
                                         </div>
                                     </div>
                                 </div>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
                 </div>
             </div>
         </div>
-    </ng-container>
+        <br>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <!-------------------------------->
+                    <!------ Matches Played ---------->
+                    <mat-accordion>
+                        <mat-expansion-panel [expanded]="false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Partidos Jugados
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
 
+                            <ul class="list-mobile">
+                                <li class="list-item-mobile"
+                                    *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'2'">
+
+                                    <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
+                                                                    [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
+
+                                </li>
+                            </ul>
+
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <!------------------------------>
+                    <!------ Next Matches ---------->
+                    <mat-accordion>
+                        <mat-expansion-panel [expanded]="false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Proximos Partidos
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="box">
+                                        <ul class="list-mobile">
+                                            <li class="list-item-mobile"
+                                                *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'1'">
+
+                                                <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
+                                                                                [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="box">
+                                        <div class="container-button-mobile">
+                                            <button mat-button class="btn-gamble"
+                                                    (click)="playGamble(penka.codePenka)">
+                                                Llenar Resultados
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </ng-container>
-
+<br>
+<br>

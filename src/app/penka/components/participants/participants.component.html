@@ -25,7 +25,7 @@
             <div class="container-place">
                 <!-- if participation is still in game and penka no finish yet  -->
                 <ng-container *ngIf="p.status === '1'">
-                    <select class="select_place" disabled>
+                    <select class="select_place" (click)="noYet()">
                         <option value="">Seleccionar Posicion</option>
                     </select>
                 </ng-container>

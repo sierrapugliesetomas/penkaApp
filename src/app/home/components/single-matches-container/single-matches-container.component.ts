@@ -16,6 +16,7 @@ import {CodePenkaService} from '../../../core/services/code-penka.service';
 })
 export class SingleMatchesContainerComponent implements OnInit, OnDestroy {
     generateCodePenka: string;
+    url = '/penka/new3/singleMatches/';
     singleMatches = [];
     listMatches = [];
     user = {} as User;
@@ -29,11 +30,11 @@ export class SingleMatchesContainerComponent implements OnInit, OnDestroy {
         private singleMatchesService: SingleMatchesService,
         private listMatchesService: ListMatchesService,
         private codePenkaService: CodePenkaService) {
-        this.user = this.firebase.auth().currentUser;
-        this.generateCodePenka = this.codePenkaService.codePenka;
     }
 
     ngOnInit(): void {
+        this.user = this.firebase.auth().currentUser;
+        this.generateCodePenka = this.codePenkaService.codePenka;
         this.singleMatchesService.getMatchesPublicLimit()
             .pipe(
                 takeUntil(this.unsubscribe$)
@@ -94,9 +95,5 @@ export class SingleMatchesContainerComponent implements OnInit, OnDestroy {
                     counter++;
                 }
             }, error => console.log(error));
-    }
-
-    makePenka(): any {
-        this.router.navigate(['/penka/new3/singleMatches/' + this.generateCodePenka]).catch();
     }
 }

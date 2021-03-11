@@ -21,6 +21,7 @@ import {PenkaMatchGambleComponent} from '../components/penka-match-gamble/penka-
 import {PenkaMatchGambleResultsComponent} from '../components/penka-match-gamble-results/penka-match-gamble-results.component';
 import {ViewComponent} from '../components/view/view.component';
 import {PenkasComponent} from '../components/penkas/penkas.component';
+import {FriendsPenkasContainerComponent} from '../components/friends-penkas-container/friends-penkas-container.component';
 
 @NgModule({
     declarations: [
@@ -38,6 +39,8 @@ import {PenkasComponent} from '../components/penkas/penkas.component';
         PenkaMatchGambleResultsComponent,
         ViewComponent,
         PenkasComponent,
+        FriendsPenkasContainerComponent,
+
     ],
     imports: [
         CommonModule,
@@ -64,6 +67,7 @@ import {PenkasComponent} from '../components/penkas/penkas.component';
         PenkaMatchGambleResultsComponent,
         ViewComponent,
         PenkasComponent,
+        FriendsPenkasContainerComponent,
     ]
 })
 export class PenkaModule {

@@ -28,6 +28,7 @@ const routes: Routes = [
 
     {path: 'grid/:codePenka', component: GridComponent, canActivate: [AuthGuard]},
     {path: 'gamble/:codePenka', component: GambleComponent, canActivate: [AuthGuard]},
+    {path: 'join/:codePenka', component: JoinComponent, canActivate: [AuthGuard]},
     {path: 'join', component: JoinComponent, canActivate: [AuthGuard]},
 ];
 

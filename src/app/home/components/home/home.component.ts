@@ -4,19 +4,19 @@ import {AuthService} from '../../../core/services/auth.service';
 import {User} from '../../../core/interfaces/user';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-    user = {} as User;
+  user = {} as User;
 
-    constructor(
-        public firebase: FirebaseApp,
-        public auth: AuthService) {
-        this.user = this.firebase.auth().currentUser;
-    }
+  constructor(
+    public firebase: FirebaseApp,
+    public auth: AuthService) {
+  }
 
-    ngOnInit(): void {
-    }
+  ngOnInit(): void {
+    this.user = this.firebase.auth().currentUser;
+  }
 }

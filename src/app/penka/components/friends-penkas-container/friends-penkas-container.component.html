@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-xs-12 col-lg-12">
+        <div class="box">
+            <p class="section-title">Penkas de los amigos</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-lg-12">
+        <div class="box">
+            <ul class="list-horizontal">
+                <li class="item-horizontal" *ngFor="let f of filterParticipants | filterDuplicates">
+                    <app-penka-pop [codePenka]="f.codePenka"></app-penka-pop>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -23,7 +23,7 @@ export class TemplatesService {
         );
     }
 
-    getTemplatesPublicLimit(): any { /* checked */
+    getTemplatesPublicLimit(): any {
         return this.afs.collection<Template>('templates', ref => ref
             .where('publish', '==', true)
             .where('status', '==', '1')
@@ -54,8 +54,8 @@ export class TemplatesService {
         return this.afs.collection('templates').doc(id).valueChanges();
     }
 
-    inactivated(id): any {
-        this.templatesCollection.doc(id).update({status: '2'}).catch();
+    changeTemplateState(id: string, status: string): any {
+        this.templatesCollection.doc(id).update({status}).catch();
     }
 
 }

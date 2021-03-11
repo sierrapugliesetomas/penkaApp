@@ -64,19 +64,22 @@ export class New4Component implements OnInit, OnDestroy {
         this.unsubscribe$.complete();
     }
 
-    playGamble(codePenka): void {
-        this.router.navigate(['/penka/gamble/' + codePenka]).catch(error => console.log(error));
+    goDashboard(codePenka): void {
+        this.router.navigate(['/penka/dashboard/' + codePenka]).catch(error => console.log(error));
     }
 
-    goWatch(penkaId): void {
-        this.router.navigate(['/penka/dashboard/' + penkaId]).catch(error => console.log(error));
-    }
-
-    sendInvitation(codePenka): void {
-        const url = 'https://penkapro.com/penka/found';
-        const msg = encodeURIComponent('Unete a la nueva penka de ' + this.user.displayName + '. Solo copia este codigo Penka ' + codePenka + ' e ingresa Aqui! ' + url);
+    shareByWhatsapp(codePenka): void {
+        const url = 'https://penkapro.com/penka/join/' + codePenka;
+        const msg = encodeURIComponent('Unete a mi Penka, solo ingresa Aqui! ' + url);
         window.location.href = 'whatsapp://send?text=' + msg;
     }
 
+    shareByGmail(codePenka): void {
+
+    }
+
+    shareByMessenger(codePenka): void {
+
+    }
 
 }

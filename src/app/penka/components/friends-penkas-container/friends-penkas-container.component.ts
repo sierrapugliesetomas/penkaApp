@@ -1,18 +1,19 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {User} from '../../../core/interfaces/user';
-import {Subject} from 'rxjs';
-import {FirebaseApp} from '@angular/fire';
-import {AuthService} from '../../../core/services/auth.service';
-import {Router} from '@angular/router';
-import {ParticipantsService} from '../../../core/services/participants.service';
-import {takeUntil} from 'rxjs/operators';
+import {User} from "../../../core/interfaces/user";
+import {Subject} from "rxjs";
+import {FirebaseApp} from "@angular/fire";
+import {AuthService} from "../../../core/services/auth.service";
+import {Router} from "@angular/router";
+import {ParticipantsService} from "../../../core/services/participants.service";
+import {takeUntil} from "rxjs/operators";
 
 @Component({
-    selector: 'app-pop-penkas-container',
-    templateUrl: './pop-penkas-container.component.html',
-    styleUrls: ['./pop-penkas-container.component.scss']
+    selector: 'app-friends-penkas-container',
+    templateUrl: './friends-penkas-container.component.html',
+    styleUrls: ['./friends-penkas-container.component.scss']
 })
-export class PopPenkasContainerComponent implements OnInit, OnDestroy {
+export class FriendsPenkasContainerComponent implements OnInit, OnDestroy {
+
     user = {} as User;
     myParticipants = [];
     participants = [];
@@ -57,4 +58,5 @@ export class PopPenkasContainerComponent implements OnInit, OnDestroy {
         this.unsubscribe$.next();
         this.unsubscribe$.complete();
     }
+
 }
