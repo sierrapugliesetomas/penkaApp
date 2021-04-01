@@ -95,7 +95,8 @@
             </div>
         </div>
     </div>
-    <button class="btn-join" mat-raised-button
+    <button *ngIf="showJoinButton"
+            class="btn-join" mat-raised-button
             (click)="join(p.id, user.uid, p.codePenka, p.name, p.makerId, p.makerName, p.makerEmail, p.makerPhoto)">
         Jugar
     </button>
