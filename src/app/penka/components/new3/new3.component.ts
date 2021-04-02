@@ -125,6 +125,8 @@ export class New3Component implements OnInit, OnDestroy {
                 this.newPenka.status = '1';
                 this.newPenka.accumulatedBet = bet;
                 this.newPenka.date = today;
+				this.newPenka.visibility = 'privada';
+
                 this.penkasService.addPenka(this.newPenka);
 
                 this.participant.codePenka = this.generateCodePenkaForTemplate;
@@ -229,6 +231,8 @@ export class New3Component implements OnInit, OnDestroy {
                 this.newPenka.status = '1';
                 this.newPenka.accumulatedBet = bet;
                 this.newPenka.date = today;
+                this.newPenka.visibility = 'privada';
+
                 this.penkasService.addPenka(this.newPenka);
 
                 this.participant.codePenka = this.codePenka;
