@@ -13,7 +13,7 @@ export interface Penka {
     distributionBet?: string;
     prize?: number;
     accumulatedBet: number;
-    currencyType?: string; /* USD, PEN */
+    coin?: string; /* USD, PEN */
     nParticipants?: number;
     limitParticipants?: number;
     status?: string; /* 1- in Game // 2- finished  //  3- archived  */
