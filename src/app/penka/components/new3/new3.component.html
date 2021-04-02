@@ -59,7 +59,7 @@
                                 <div class="col-lg-12">
                                     <div class="box">
                                         <p class="label">Formato </p>
-                                        <mat-button-toggle-group [(ngModel)]="newPenka.format"
+                                        <mat-button-toggle-group [(ngModel)]="newPenka.formatName"
                                                                  aria-label="Font Style"
                                                                  name="fontStyle">
                                             <mat-button-toggle value="PRO">PRO</mat-button-toggle>
@@ -86,11 +86,11 @@
                                 <div class="col-lg-12">
                                     <div class="box">
                                         <p class="label">Modalidad</p>
-                                        <mat-button-toggle-group [(ngModel)]="newPenka.public"
+                                        <mat-button-toggle-group [(ngModel)]="newPenka.visibility"
                                                                  aria-label="Font Style"
                                                                  name="fontStyle">
-                                            <mat-button-toggle value="true">ABIERTA</mat-button-toggle>
-                                            <mat-button-toggle value="false">PRIVADA</mat-button-toggle>
+                                            <mat-button-toggle value="abierta">ABIERTA</mat-button-toggle>
+                                            <mat-button-toggle value="privada">PRIVADA</mat-button-toggle>
                                         </mat-button-toggle-group>
                                     </div>
                                 </div>
@@ -120,7 +120,7 @@
                                 <div class="col-lg-6">
                                     <div class="box">
                                         <mat-form-field appearance="fill">
-                                            <mat-select [(ngModel)]="newPenka.currencyType">
+                                            <mat-select [(ngModel)]="newPenka.coin">
                                                 <mat-option value="USD">USD</mat-option>
                                                 <mat-option value="SOLES">SOLES</mat-option>
                                                 <mat-option value="PESOS">PESOS</mat-option>
@@ -183,7 +183,7 @@
                                         <mat-form-field appearance="fill">
                                             <mat-label>Elije una fecha:</mat-label>
                                             <mat-label>Elije una fecha:</mat-label>
-                                            <input matInput [(ngModel)]="newPenka.startDate" [matDatepicker]="picker" [min]="minDate">
+                                            <input matInput [(ngModel)]="newPenka.dateLimit" [matDatepicker]="picker" [min]="minDate">
                                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                             <mat-datepicker #picker></mat-datepicker>
                                         </mat-form-field>
@@ -271,7 +271,7 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="box">
-                                    <mat-button-toggle-group [(ngModel)]="newPenka.format" aria-label="Font Style"
+                                    <mat-button-toggle-group [(ngModel)]="newPenka.formatName" aria-label="Font Style"
                                                              name="fontStyle">
                                         <mat-button-toggle value="PRO">PRO</mat-button-toggle>
                                         <mat-button-toggle value="MEDIUM">MEDIUM</mat-button-toggle>
@@ -305,10 +305,10 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="box">
-                                    <mat-button-toggle-group [(ngModel)]="newPenka.public" aria-label="Font Style"
+                                    <mat-button-toggle-group [(ngModel)]="newPenka.visibility" aria-label="Font Style"
                                                              name="fontStyle">
-                                        <mat-button-toggle value="true">ABIERTA</mat-button-toggle>
-                                        <mat-button-toggle value="false">PRIVADA</mat-button-toggle>
+                                        <mat-button-toggle value="abierta">ABIERTA</mat-button-toggle>
+                                        <mat-button-toggle value="privada">PRIVADA</mat-button-toggle>
                                     </mat-button-toggle-group>
                                 </div>
                             </div>
@@ -418,7 +418,7 @@
                                 <div class="box">
                                     <mat-form-field appearance="fill">
                                         <mat-label>Elije una fecha</mat-label>
-                                        <input [(ngModel)]="newPenka.startDate" [matDatepicker]="picker" matInput>
+                                        <input [(ngModel)]="newPenka.dateLimit" [matDatepicker]="picker" matInput>
                                         <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>

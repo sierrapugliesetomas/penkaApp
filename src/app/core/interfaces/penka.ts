@@ -6,17 +6,28 @@ export interface Penka {
     makerPhoto?: string;
     name?: string;
     type?: string; /* singleMatches, templates, tournament */
-    code?: string; /* code sharing */
+    codePenka?: string; /* code sharing */
     format?: string;
     public?: boolean;
     bet?: number;
     distributionBet?: string;
     prize?: number;
+    accumulatedBet: number;
     currencyType?: string; /* USD, PEN */
     nParticipants?: number;
     limitParticipants?: number;
     status?: string; /* 1- in Game // 2- finished  //  3- archived  */
-    startDate?: Date;
-    endDate?: Date;
+    date?: Date;
+    dateLimit?: Date;
     createdAt?: Date;
+    visibility: string;
+    typePenka: string;
+    formatName: string;
+    codeSingleMatch: string;
+    codeTemplate: string;
+    codeTournament: string;
 }
+
+// TODO: Se agregaron propiedades que aparecen el codigo productivo pero no en git/main
+// Proxima refactorizar
+
