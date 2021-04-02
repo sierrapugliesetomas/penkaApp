@@ -101,11 +101,7 @@ export class PenkaDashboardComponent implements OnInit, OnDestroy {
     shareByWhatsapp(codePenka): void {
         const url = 'https://penkapro.com/penka/join/' + codePenka;
         const msg = encodeURIComponent('Unete a mi Penka, solo ingresa Aqui! ' + url);
-        window.location.href = 'whatsapp://send?text=' + msg;
-    }
-
-    shareByGmail(codePenka): void {
-
+	    window.location.href = 'https://web.whatsapp.com/send?text=' + msg;
     }
 
     shareByMessenger(codePenka): void {
