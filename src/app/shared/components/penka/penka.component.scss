@@ -37,11 +37,14 @@
     display: inline-block;
   }
   .btn-watch {
-    padding: 5px 10px 5px 10px;
-    border-radius: 15px;
-    border: 1px solid white;
+    // TODO: alinear texto verticalmente
     font-size: 12px;
-    line-height: 12px;
+    border-radius: 8px;
+    width: 100%;
+    color: #FDA328;
+    border: 2px solid #FDA328;
+    margin-top: 10px;
+    height: 30px;
   }
   /* Card Body */
   .body {
@@ -77,10 +80,10 @@
   }
   /* Card - Footer */
   .footer {
-    padding: 10px 0 5px 20px;
+    padding: 10px 20px 10px 20px;
     background-color: #414347;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
   }
   .label {
     font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -166,11 +169,14 @@
     display: inline-block;
   }
   .btn-watch {
-    padding: 5px 10px 5px 10px;
-    border-radius: 15px;
-    border: 1px solid white;
+    // TODO: alinear texto verticalmente
     font-size: 12px;
-    line-height: 12px;
+    border-radius: 8px;
+    width: 100%;
+    color: #FDA328;
+    border: 2px solid #FDA328;
+    margin-top: 10px;
+    height: 30px;
   }
   /* Card Body */
   .body {
@@ -191,10 +197,10 @@
 
   /* Card - Footer */
   .footer {
-    padding: 10px 0 5px 20px;
+    padding: 10px 20px 10px 20px;
     background-color: #414347;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
   }
   .label {
     font-family: Roboto, "Helvetica Neue", sans-serif;
