@@ -26,7 +26,7 @@ export class TemplatesContainerComponent implements OnInit, OnDestroy {
                 this.templates = res;
                 this.templates.forEach(item => {
                     if (this.today >= item.limitDate.toDate()) {
-                        this.templateService.changeTemplateState(item.id, '2');
+                        this.templateService.inactivated(item.id);
                     }
                 });
 

@@ -30,8 +30,7 @@ export class New2Component implements OnInit, OnDestroy {
     user = {} as User;
     private unsubscribe$ = new Subject<void>();
     today = new Date();
-
-    listMatchesPicked = [] as ListMatches[];
+	listMatchesPicked = [] as ListMatches[];
 
     constructor(
         public firebase: FirebaseApp,
@@ -42,18 +41,23 @@ export class New2Component implements OnInit, OnDestroy {
         private templateService: TemplatesService,
         private listMatchesService: ListMatchesService,
         private codePenkaService: CodePenkaService) {
+        this.user = this.firebase.auth().currentUser;
+        this.generateCodePenka = this.codePenkaService.codePenka;
     }
 
     ngOnInit(): void {
-        this.user = this.firebase.auth().currentUser;
+		this.user = this.firebase.auth().currentUser;
         this.generateCodePenka = this.codePenkaService.codePenka;
+		
         this.activatedRoute.params.subscribe(
             (params: Params) => {
                 this.type = params.type;
             }
         );
         this.singleMatchesService.getMatchesPublic()
-            .pipe(takeUntil(this.unsubscribe$)).subscribe(
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
             res => {
                 this.singleMatches = res;
                 this.singleMatches.forEach(item => {
@@ -63,14 +67,23 @@ export class New2Component implements OnInit, OnDestroy {
                 });
             });
         this.templateService.getTemplatesPublic()
-            .pipe(takeUntil(this.unsubscribe$)).subscribe(
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
             res => {
                 this.templates = res;
                 this.templates.forEach(item => {
                     if (this.today >= item.limitDate.toDate()) {
-                        this.templateService.changeTemplateState(item.id, '2');
+                        this.templateService.inactivated(item.id);
                     }
                 });
+            });
+        this.listMatchesService.getListMatchesTempByCodePenka(this.generateCodePenka)
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
+            res => {
+                this.listMatches = res;
             });
     }
 
@@ -78,11 +91,11 @@ export class New2Component implements OnInit, OnDestroy {
         this.unsubscribe$.next();
         this.unsubscribe$.complete();
     }
-
-    addPickedMatch(sm): void {
+	
+	addPickedMatch(sm): void {
         if (this.listMatchesPicked.indexOf(sm) === -1) {
             this.listMatchesPicked.push(sm);
-        }
+		}
     }
 
     deletePickedMatch(sm): void {
@@ -91,8 +104,6 @@ export class New2Component implements OnInit, OnDestroy {
             this.listMatchesPicked.splice(index, 1);
         }
     }
-
-
 
     pickTeam(sm): void {
         const codeTemplate = '';

@@ -54,8 +54,8 @@ export class TemplatesService {
         return this.afs.collection('templates').doc(id).valueChanges();
     }
 
-    changeTemplateState(id: string, status: string): any {
-        this.templatesCollection.doc(id).update({status}).catch();
+    inactivated(id): any {
+        this.templatesCollection.doc(id).update({status: '2'}).catch();
     }
 
 }

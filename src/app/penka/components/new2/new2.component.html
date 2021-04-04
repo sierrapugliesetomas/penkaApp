@@ -51,7 +51,7 @@
                 <div class="col-lg-3">
                     <div class="box">
 
-                        <ng-container *ngIf="listMatchesPicked.length > 0; else noButton">
+                        <ng-container *ngIf="listMatches.length > 0; else noButton">
                             <app-button-continue [codePenka]="generateCodePenka" [url]="url"></app-button-continue>
                         </ng-container>
 
@@ -75,25 +75,24 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="box">
-                        <ng-container *ngIf="listMatchesPicked.length > 0">
+                        <ng-container *ngIf="listMatches.length > 0">
                             <p class="counterPicks">
 
-                                <ng-container *ngIf="listMatchesPicked.length === 1">
-                                    <span>{{listMatchesPicked.length}}</span>
+                                <ng-container *ngIf="listMatches.length === 1">
+                                    <span>{{listMatches.length}}</span>
                                     partido seleccionado.
                                 </ng-container>
 
-                                <ng-container *ngIf="listMatchesPicked.length > 1">
-                                    <span>{{listMatchesPicked.length}}</span>
+                                <ng-container *ngIf="listMatches.length > 1">
+                                    <span>{{listMatches.length}}</span>
                                     partidos seleccionados.
                                 </ng-container>
 
                             </p>
                             <ul class="list-horizontal">
                                 <li class="item-horizontal"
-                                    *ngFor="let match of listMatchesPicked">
-                                    <app-single-match-picked [match]="match"
-                                                             (click)="deletePickedMatch(match)"></app-single-match-picked>
+                                    *ngFor="let match of listMatches">
+                                    <app-single-match-picked [match]="match"></app-single-match-picked>
                                 </li>
                             </ul>
                         </ng-container>
@@ -117,7 +116,7 @@
                             <ng-template #list>
                                 <ul class="list-horizontal">
                                     <li class="item-horizontal" *ngFor="let match of singleMatches"
-                                        (click)="addPickedMatch(match)">
+                                        (click)="pickTeam(match)">
                                         <app-single-match [match]="match"></app-single-match>
                                     </li>
                                 </ul>
