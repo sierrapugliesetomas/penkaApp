@@ -9,13 +9,13 @@ import {AuthService} from '../../../core/services/auth.service';
 import {ListMatchesService} from '../../../core/services/list-matches.service';
 import {takeUntil} from 'rxjs/operators';
 import {CodePenkaService} from '../../../core/services/code-penka.service';
-import {ListMatches} from "../../../core/interfaces/list-matches";
 
 @Component({
     selector: 'app-new2',
     templateUrl: './new2.component.html',
     styleUrls: ['./new2.component.scss']
 })
+
 export class New2Component implements OnInit, OnDestroy {
     title = 'Organiza una Penka';
     url = '/penka/new3/singleMatches/';
@@ -30,7 +30,6 @@ export class New2Component implements OnInit, OnDestroy {
     user = {} as User;
     private unsubscribe$ = new Subject<void>();
     today = new Date();
-	listMatchesPicked = [] as ListMatches[];
 
     constructor(
         public firebase: FirebaseApp,
@@ -42,12 +41,11 @@ export class New2Component implements OnInit, OnDestroy {
         private listMatchesService: ListMatchesService,
         private codePenkaService: CodePenkaService) {
         this.user = this.firebase.auth().currentUser;
-        this.generateCodePenka = this.codePenkaService.codePenka;
+        this.generateCodePenka = this.codePenkaService.generateCodePenka();
     }
 
     ngOnInit(): void {
-		this.user = this.firebase.auth().currentUser;
-        this.generateCodePenka = this.codePenkaService.codePenka;
+        this.user = this.firebase.auth().currentUser;
 		
         this.activatedRoute.params.subscribe(
             (params: Params) => {
@@ -84,7 +82,7 @@ export class New2Component implements OnInit, OnDestroy {
             ).subscribe(
             res => {
                 this.listMatches = res;
-            });
+            }); 
     }
 
     ngOnDestroy(): void {
@@ -92,19 +90,6 @@ export class New2Component implements OnInit, OnDestroy {
         this.unsubscribe$.complete();
     }
 	
-	addPickedMatch(sm): void {
-        if (this.listMatchesPicked.indexOf(sm) === -1) {
-            this.listMatchesPicked.push(sm);
-		}
-    }
-
-    deletePickedMatch(sm): void {
-        const index = this.listMatchesPicked.indexOf(sm);
-        if (index > -1) {
-            this.listMatchesPicked.splice(index, 1);
-        }
-    }
-
     pickTeam(sm): void {
         const codeTemplate = '';
         const status = '0';
@@ -142,4 +127,3 @@ export class New2Component implements OnInit, OnDestroy {
             }, error => console.log(error));
     }
 }
-
