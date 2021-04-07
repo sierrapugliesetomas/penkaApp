@@ -125,13 +125,15 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
                                                 this.newGamble.homeTeamName = listMatches[i].homeTeamName;
                                                 this.newGamble.homeTeamAlias = listMatches[i].homeTeamAlias;
                                                 this.newGamble.homeTeamFlag = listMatches[i].homeTeamFlag;
+                                                this.newGamble.homeTeamScore = 0;
                                                 this.newGamble.visitTeamId = listMatches[i].visitTeamId;
                                                 this.newGamble.visitTeamName = listMatches[i].visitTeamName;
                                                 this.newGamble.visitTeamAlias = listMatches[i].visitTeamAlias;
                                                 this.newGamble.visitTeamFlag = listMatches[i].visitTeamFlag;
+                                                this.newGamble.visitTeamScore = 0
                                                 this.newGamble.date = today;
                                                 this.newGamble.winnerTeamId = '';
-                                                this.newGamble.draw = null;
+                                                this.newGamble.draw = true;
                                                 this.newGamble.status = '1';
                                                 this.newGamble.saved = false;
                                                 this.newGamble.scoreAchieved = 0;
@@ -167,13 +169,15 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
                                                 this.newGamble.homeTeamName = listMatches[i].homeTeamName;
                                                 this.newGamble.homeTeamAlias = listMatches[i].homeTeamAlias;
                                                 this.newGamble.homeTeamFlag = listMatches[i].homeTeamFlag;
+                                                this.newGamble.visitTeamScore = 0;
                                                 this.newGamble.visitTeamId = listMatches[i].visitTeamId;
                                                 this.newGamble.visitTeamName = listMatches[i].visitTeamName;
                                                 this.newGamble.visitTeamAlias = listMatches[i].visitTeamAlias;
                                                 this.newGamble.visitTeamFlag = listMatches[i].visitTeamFlag;
+                                                this.newGamble.visitTeamScore = 0;
                                                 this.newGamble.date = today;
                                                 this.newGamble.winnerTeamId = '';
-                                                this.newGamble.draw = null;
+                                                this.newGamble.draw = true;
                                                 this.newGamble.status = '1';
                                                 this.newGamble.saved = false;
                                                 this.newGamble.scoreAchieved = 0;
@@ -196,7 +200,7 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
                 }, error => console.log(error));
         }
     }
-
+    
     reject(requestId): void {
         this.penkaRequestService.rejectPenkaRequest(requestId);
     }

@@ -173,7 +173,7 @@ export class New3Component implements OnInit, OnDestroy {
 							this.newGamble.visitTeamScore = 0;
                             this.newGamble.date = today;
                             this.newGamble.winnerTeamId = '';
-                            this.newGamble.draw = null;
+                            this.newGamble.draw = true;
                             this.newGamble.status = '1';
                             this.newGamble.saved = false;
                             this.newGamble.scoreAchieved = 0;
@@ -281,7 +281,7 @@ export class New3Component implements OnInit, OnDestroy {
 							this.newGamble.visitTeamScore = 0;
                             this.newGamble.date = today;
                             this.newGamble.winnerTeamId = '';
-                            this.newGamble.draw = null;
+                            this.newGamble.draw = true;
                             this.newGamble.status = '1';
                             this.newGamble.saved = false;
                             this.newGamble.scoreAchieved = 0;
@@ -324,5 +324,4 @@ export class New3Component implements OnInit, OnDestroy {
             }
         }
     }
-
 }
