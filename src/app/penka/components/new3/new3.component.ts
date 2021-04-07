@@ -50,7 +50,7 @@ export class New3Component implements OnInit, OnDestroy {
         private penkasService: PenkasService,
         private gambleService: GambleService,
         private codePenkaService: CodePenkaService) {
-        this.generateCodePenkaForTemplate = this.codePenkaService.codePenka;
+        this.generateCodePenkaForTemplate = this.codePenkaService.generateCodePenka();
     }
 
     ngOnInit(): void {
