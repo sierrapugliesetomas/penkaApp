@@ -122,7 +122,7 @@
                                             <ng-container *ngIf="ga.userId === user.uid; else guess">
                                                 <ng-container *ngIf="ga.penkaFormat === 'PRO'">
 
-                                                    <ng-container *ngIf="ga.homeTeamScore; else noScoreYet">
+                                                    <ng-container *ngIf="ga.homeTeamScore != null; else noScoreYet">
                                                         <p class="header-font">{{ga.homeTeamScore}}
                                                             - {{ga.visitTeamScore}}</p>
                                                         <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
@@ -161,7 +161,7 @@
                                             <!-- Other Players Gambles -->
                                             <ng-template #guess>
                                                 <ng-container *ngIf="ga.penkaFormat === 'PRO'">
-                                                    <ng-container *ngIf="ga.homeTeamScore; else noScoreYet">
+                                                    <ng-container *ngIf="ga.homeTeamScore != null; else noScoreYet">
                                                         <p class="header-font">{{ga.homeTeamScore}}
                                                             - {{ga.visitTeamScore}}</p>
                                                         <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
@@ -269,7 +269,7 @@
                                                 <ng-container *ngIf="ga.userId === user.uid; else guess">
                                                     <ng-container *ngIf="ga.penkaFormat === 'PRO'">
 
-                                                        <ng-container *ngIf="ga.homeTeamScore; else noScoreYet">
+                                                        <ng-container *ngIf="ga.homeTeamScore != null; else noScoreYet">
                                                             <p class="header-font">{{ga.homeTeamScore}}
                                                                 - {{ga.visitTeamScore}}</p>
                                                             <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>

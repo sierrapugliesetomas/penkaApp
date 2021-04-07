@@ -18,7 +18,7 @@
             <!-- format PRO -->
             <ng-container *ngIf="g.penkaFormat === 'PRO'">
                 <!-- Home Team Score -->
-                <ng-container *ngIf="g.homeTeamScore; else noHomeScore">
+                <ng-container *ngIf="g.homeTeamScore != null; else noHomeScore">
                     <p class="home-score">{{g.homeTeamScore}}</p>
                 </ng-container>
                 <ng-template #noHomeScore>
@@ -28,7 +28,7 @@
                 <p class="separator">:</p>
                 <!---->
                 <!-- Visit Team Score --->
-                <ng-container *ngIf="g.visitTeamScore; else noVisitScore">
+                <ng-container *ngIf="g.visitTeamScore != null; else noVisitScore">
                     <p class="visit-score">{{g.visitTeamScore}}</p>
                 </ng-container>
                 <ng-template #noVisitScore>
@@ -78,7 +78,7 @@
     <div class="real">
 
         <!-- real Score -->
-        <ng-container *ngIf="singleMatch.homeTeamScore; else noScoreYet">
+        <ng-container *ngIf="singleMatch.homeTeamScore != null; else noScoreYet">
             <div class="score-real">
                 <p>{{singleMatch.homeTeamScore}}&nbsp;-&nbsp;{{singleMatch.visitTeamScore}}</p>
             </div>

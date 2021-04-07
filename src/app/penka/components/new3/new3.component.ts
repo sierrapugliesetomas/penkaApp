@@ -165,10 +165,12 @@ export class New3Component implements OnInit, OnDestroy {
                             this.newGamble.homeTeamName = listMatches[i].homeTeamName;
                             this.newGamble.homeTeamAlias = listMatches[i].homeTeamAlias;
                             this.newGamble.homeTeamFlag = listMatches[i].homeTeamFlag;
+							this.newGamble.homeTeamScore = 0;
                             this.newGamble.visitTeamId = listMatches[i].visitTeamId;
                             this.newGamble.visitTeamName = listMatches[i].visitTeamName;
                             this.newGamble.visitTeamAlias = listMatches[i].visitTeamAlias;
                             this.newGamble.visitTeamFlag = listMatches[i].visitTeamFlag;
+							this.newGamble.visitTeamScore = 0;
                             this.newGamble.date = today;
                             this.newGamble.winnerTeamId = '';
                             this.newGamble.draw = null;
@@ -271,10 +273,12 @@ export class New3Component implements OnInit, OnDestroy {
                             this.newGamble.homeTeamName = listMatches[i].homeTeamName;
                             this.newGamble.homeTeamAlias = listMatches[i].homeTeamAlias;
                             this.newGamble.homeTeamFlag = listMatches[i].homeTeamFlag;
+							this.newGamble.homeTeamScore = 0;
                             this.newGamble.visitTeamId = listMatches[i].visitTeamId;
                             this.newGamble.visitTeamName = listMatches[i].visitTeamName;
                             this.newGamble.visitTeamAlias = listMatches[i].visitTeamAlias;
                             this.newGamble.visitTeamFlag = listMatches[i].visitTeamFlag;
+							this.newGamble.visitTeamScore = 0;
                             this.newGamble.date = today;
                             this.newGamble.winnerTeamId = '';
                             this.newGamble.draw = null;

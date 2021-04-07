@@ -6,13 +6,13 @@
         <div class="teams-container">
             <img class="team-flag" alt="{{match.homeTeamAlias}}" src="{{match.homeTeamFlag}}">
 
-            <ng-container *ngIf="match.homeTeamScore; else noGambleYet">
+            <ng-container *ngIf="match.homeTeamScore != null; else noGambleYet">
                 <p class="team-score">{{match.homeTeamScore}}</p>
             </ng-container>
 
             <p class="separator">:</p>
 
-            <ng-container *ngIf="match.visitTeamScore; else noGambleYet">
+            <ng-container *ngIf="match.visitTeamScore != null; else noGambleYet">
                 <p class="team-score">{{match.visitTeamScore}}</p>
             </ng-container>
 
@@ -94,7 +94,7 @@
             <img class="team-flag" alt="" src="{{match.visitTeamFlag}}">
         </div>
         <div class="gamble-container">
-            <ng-container *ngIf="singleMatch.homeTeamScore; else noScoreYet">
+            <ng-container *ngIf="singleMatch.homeTeamScore != null; else noScoreYet">
                 <div class="real-score">
                     <p>{{singleMatch.homeTeamScore}}</p>
                     <p>-</p>
