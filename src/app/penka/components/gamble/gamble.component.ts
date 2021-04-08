@@ -8,6 +8,7 @@ import {takeUntil} from 'rxjs/operators';
 import {GambleService} from '../../../core/services/gamble.service';
 import {Gamble} from '../../../core/interfaces/gamble';
 import {Location} from '@angular/common';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-gamble',
@@ -29,7 +30,8 @@ export class GambleComponent implements OnInit, OnDestroy {
         public firebase: FirebaseApp,
         public auth: AuthService,
         private activatedRoute: ActivatedRoute,
-        private gambleService: GambleService) {
+        private gambleService: GambleService,
+        private _snackBar: MatSnackBar) {
     }
 
     ngOnInit(): void {
@@ -73,6 +75,14 @@ export class GambleComponent implements OnInit, OnDestroy {
             }
         });
         this.back();
+        const message = 'Jugada guardada';
+        const action = '';
+        this._snackBar.open(message, action, {
+            duration: 2000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass: ['alert-success']
+        });
     }
 
     saveGamblePro(match): void {
