@@ -15,8 +15,7 @@
                     <!-- Flag Home Team -->
                     <img class="team-flag-desktop" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
                     <!-- Home Team Score -->
-                    <select class="formScore-desktop" (change)="homeTeam($event.target)">
-                        <option value="{{match.homeTeamScore}}" selected>{{match.homeTeamScore}}</option>
+                    <select class="formScore-desktop" (change)="homeTeam($event.target)" value="{{match.homeTeamScore}}">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -31,8 +30,7 @@
                     <!-- Separator -->
                     <p class="separator-desktop">:</p>
                     <!-- Visit Team Score --->
-                    <select class="formScore-desktop" (change)="visitTeam($event.target)">
-                        <option value="{{match.visitTeamScore}}" selected>{{match.visitTeamScore}}</option>
+                    <select class="formScore-desktop" (change)="visitTeam($event.target)" value="{{match.visitTeamScore}}">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -67,32 +65,12 @@
                     <!-- Home Team Score -->
                     <select class="formScore-desktop" (change)="homeTeam($event.target)" disabled>
                         <option value="{{match.homeTeamScore}}" selected>{{match.homeTeamScore}}</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
                     </select>
                     <!-- Separator -->
                     <p class="separator-desktop">:</p>
                     <!-- Visit Team Score --->
                     <select class="formScore-desktop" (change)="visitTeam($event.target)" disabled>
                         <option value="{{match.visitTeamScore}}" selected>{{match.visitTeamScore}}</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
                     </select>
                     <!-- Flag Visit Team -->
                     <img class="team-flag-desktop" src="{{match.visitTeamFlag}}" alt="{{match.visitTeamName}}">
@@ -129,12 +107,12 @@
                         <p class="teams-font">{{match.visitTeamAlias}}</p>
                     </div>
                     <div class="teams-options-desktop">
-                                <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
-                                    <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
-                                    <mat-radio-button value="draw"></mat-radio-button>
-                                    <mat-radio-button value="{{match.visitTeamId}}">
-                                    </mat-radio-button>
-                                </mat-radio-group>
+                        <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
+                            <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
+                            <mat-radio-button value="draw"></mat-radio-button>
+                            <mat-radio-button value="{{match.visitTeamId}}">
+                            </mat-radio-button>
+                        </mat-radio-group>
                     </div>
                 </div>
             </div>
@@ -193,8 +171,7 @@
                     <!-- Flag Home Team -->
                     <img class="team-flag-mobile" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
                     <!-- Home Team Score -->
-                    <select class="formScore-mobile" (change)="homeTeam($event.target)">
-                        <option value="{{match.homeTeamScore}}" selected>{{match.homeTeamScore}}</option>
+                    <select class="formScore-mobile" (change)="homeTeam($event.target)" value="{{match.homeTeamScore}}">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -209,8 +186,7 @@
                     <!-- Separator -->
                     <p class="separator-mobile">:</p>
                     <!-- Visit Team Score --->
-                    <select class="formScore-mobile" (change)="visitTeam($event.target)">
-                        <option value="{{match.visitTeamScore}}" selected>{{match.visitTeamScore}}</option>
+                    <select class="formScore-mobile" (change)="visitTeam($event.target)" value="{{match.visitTeamScore}}">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -245,33 +221,13 @@
                     <img class="team-flag-mobile" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">
                     <!-- Home Team Score -->
                     <select class="formScore-mobile" (change)="homeTeam($event.target)" disabled>
-                        <option value="{{match.homeTeamScore}}" selected>{{match.homeTeamScore}}</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
+                        <option value="{{match.homeTeamScore}}">{{match.homeTeamScore}}</option> 
                     </select>
                     <!-- Separator -->
                     <p class="separator-mobile">:</p>
                     <!-- Visit Team Score --->
                     <select class="formScore-mobile" (change)="visitTeam($event.target)" disabled>
                         <option value="{{match.visitTeamScore}}" selected>{{match.visitTeamScore}}</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
                     </select>
                     <!-- Flag Visit Team -->
                     <img class="team-flag-mobile" src="{{match.visitTeamFlag}}" alt="{{match.visitTeamName}}">
