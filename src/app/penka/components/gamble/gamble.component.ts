@@ -63,11 +63,14 @@ export class GambleComponent implements OnInit, OnDestroy {
     }
 
     saveGambles() {
-        // only for pro
-        // ToDo: medium
         this.gambles.forEach(gamble => {
-            this.gambleService.editGambleScores(gamble.id, gamble.homeTeamScore, gamble.visitTeamScore);
-            this.saveGamblePro(gamble);
+            if (gamble.penkaFormat === 'PRO') {
+                this.gambleService.editGambleScores(gamble.id, gamble.homeTeamScore, gamble.visitTeamScore);
+                this.saveGamblePro(gamble);
+            } else {
+                // MEDIUM
+                this.gambleService.updateGambleMedium(gamble.id, gamble.winnerTeamId, gamble.draw);
+            }
         });
         this.back();
     }

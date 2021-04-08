@@ -1,11 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Gamble} from '../../../core/interfaces/gamble';
-import {User} from '../../../core/interfaces/user';
-import {FirebaseApp} from '@angular/fire';
-import {AuthService} from '../../../core/services/auth.service';
-import {Router} from '@angular/router';
-import {GambleService} from '../../../core/services/gamble.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Component, Input, OnInit } from '@angular/core';
+import { Gamble } from '../../../core/interfaces/gamble';
+import { User } from '../../../core/interfaces/user';
+import { FirebaseApp } from '@angular/fire';
+import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
+import { GambleService } from '../../../core/services/gamble.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-penka-match-gamble',
@@ -31,6 +31,19 @@ export class PenkaMatchGambleComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.firebase.auth().currentUser;
+    if (this.match.penkaFormat === 'MEDIUM') {
+      this.setDefaultRadioButtonValue();
+    }
+  }
+
+  private setDefaultRadioButtonValue(): void {
+    if (this.match.winnerTeamId === this.match.homeTeamId) {
+      this.mediumGamble = this.match.homeTeamId;
+    } else if (this.match.winnerTeamId === this.match.visitTeamId) {
+      this.mediumGamble = this.match.visitTeamId;
+    } else {
+      this.mediumGamble = 'draw';
+    }
   }
 
   /* For Penka PRO */
@@ -47,62 +60,18 @@ export class PenkaMatchGambleComponent implements OnInit {
     this.gambleService.editGambleVisitScore(this.match.id, this.match.visitTeamScore);
   }
 
-  saveGamblePro(match): void {
-    // Ya se crean por defecto con un gamble en draw, revisar si puede ser eliminado
-    let winnerId: string;
-    let draw: boolean;
-    if (match.homeTeamScore > match.visitTeamScore) {
-      winnerId = match.homeTeamId;
-      draw = false;
-    }
-    if (match.visitTeamScore > match.homeTeamScore) {
-      winnerId = match.visitTeamId;
-      draw = false;
-    }
-    if (match.homeTeamScore === match.visitTeamScore) {
-      winnerId = '';
-      draw = true;
-    }
-	
-    this.gambleService.updateGamble(match.id, winnerId, draw);
-    this.newGamble = {} as Gamble;
-  }
-
   getGambleMedium(): void {
     if (this.mediumGamble === 'draw') {
-      this.newGamble.draw = true;
-      this.newGamble.winnerTeamId = '';
+      this.match.draw = true;
+      this.match.winnerTeamId = '';
     } else {
-      this.newGamble.draw = false;
-      this.newGamble.winnerTeamId = this.mediumGamble;
+      this.match.draw = false;
+      this.match.winnerTeamId = this.mediumGamble;
     }
   }
 
-  enableGamble(matchId): void {
-    this.gambleService.enableGamble(matchId);
-  }
+  // enableGamble(matchId): void {
+  //   this.gambleService.enableGamble(matchId);
+  // }
 
-  saveGambleMedium(match): void {
-    if (this.mediumGamble) {
-      this.gambleService.updateGambleMedium(match.id, this.newGamble.winnerTeamId, this.newGamble.draw);
-      this.newGamble = {} as Gamble;
-      const message = 'Jugada guardada';
-      const action = '';
-      this._snackBar.open(message, action, {
-        duration: 2000,
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-        panelClass: ['alert-success']
-      });
-    } else {
-      const message = 'Debe seleccionar un resultado';
-      const action = '';
-      this._snackBar.open(message, action, {
-        duration: 2000,
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-        panelClass: ['alert-danger']
-      });
-    }
-  }
 }
