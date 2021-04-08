@@ -62,4 +62,31 @@ export class GambleComponent implements OnInit, OnDestroy {
         this._location.back();
     }
 
+    saveGambles() {
+        // only for pro
+        // ToDo: medium
+        this.gambles.forEach(gamble => {
+            this.gambleService.editGambleScores(gamble.id, gamble.homeTeamScore, gamble.visitTeamScore);
+            this.saveGamblePro(gamble);
+        });
+        this.back();
+    }
+
+    saveGamblePro(match): void {
+        let winnerId: string;
+        let draw: boolean;
+        if (match.homeTeamScore > match.visitTeamScore) {
+            winnerId = match.homeTeamId;
+            draw = false;
+        }
+        if (match.visitTeamScore > match.homeTeamScore) {
+            winnerId = match.visitTeamId;
+            draw = false;
+        }
+        if (match.homeTeamScore === match.visitTeamScore) {
+            winnerId = '';
+            draw = true;
+        }
+        this.gambleService.updateGamble(match.id, winnerId, draw);
+    }
 }

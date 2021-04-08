@@ -16,18 +16,17 @@ export class PenkaMatchGambleComponent implements OnInit {
   mediumGamble: string; /* medium gamble from radio buttons */
   checked: true;
 
-  @Input() match;
+  @Input() match: Gamble;
   save: string;
 
   newGamble = {} as Gamble;
   user = {} as User;
 
   constructor(
-      public firebase: FirebaseApp,
-      public auth: AuthService,
-      private router: Router,
-      private gambleService: GambleService,
-      private _snackBar: MatSnackBar) {
+    public firebase: FirebaseApp,
+    public auth: AuthService,
+    private gambleService: GambleService,
+    private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -35,15 +34,21 @@ export class PenkaMatchGambleComponent implements OnInit {
   }
 
   /* For Penka PRO */
-  homeTeam(event, match): void {
-    this.gambleService.editGambleHomeScore(match.id, event.value);
+  homeTeam(event): void {
+    this.match.homeTeamScore = event.value;
   }
 
-  visitTeam(event, match): void {
-    this.gambleService.editGambleVisitScore(match.id, event.value);
+  visitTeam(event): void {
+    this.match.visitTeamScore = event.value;
+  }
+
+  editGambleScore() {
+    this.gambleService.editGambleHomeScore(this.match.id, this.match.homeTeamScore);
+    this.gambleService.editGambleVisitScore(this.match.id, this.match.visitTeamScore);
   }
 
   saveGamblePro(match): void {
+    // Ya se crean por defecto con un gamble en draw, revisar si puede ser eliminado
     let winnerId: string;
     let draw: boolean;
     if (match.homeTeamScore > match.visitTeamScore) {
@@ -58,16 +63,9 @@ export class PenkaMatchGambleComponent implements OnInit {
       winnerId = '';
       draw = true;
     }
-    const message = 'Jugada guardada';
-    const action = '';
+	
     this.gambleService.updateGamble(match.id, winnerId, draw);
     this.newGamble = {} as Gamble;
-    this._snackBar.open(message, action, {
-      duration: 2000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      panelClass: ['alert-success']
-    });
   }
 
   getGambleMedium(): void {
