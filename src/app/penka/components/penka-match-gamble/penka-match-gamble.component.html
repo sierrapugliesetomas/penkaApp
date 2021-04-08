@@ -129,14 +129,12 @@
                         <p class="teams-font">{{match.visitTeamAlias}}</p>
                     </div>
                     <div class="teams-options-desktop">
-                        <!-- <ng-container *ngIf="match.winnerTeamId !== '' || match.draw === true"> -->
                                 <mat-radio-group [(ngModel)]="mediumGamble" (change)="getGambleMedium()">
                                     <mat-radio-button value="{{match.homeTeamId}}"></mat-radio-button>
                                     <mat-radio-button value="draw"></mat-radio-button>
                                     <mat-radio-button value="{{match.visitTeamId}}">
                                     </mat-radio-button>
                                 </mat-radio-group>
-                        <!-- </ng-container> -->
                     </div>
                 </div>
             </div>

@@ -1,11 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Gamble } from '../../../core/interfaces/gamble';
-import { User } from '../../../core/interfaces/user';
-import { FirebaseApp } from '@angular/fire';
-import { AuthService } from '../../../core/services/auth.service';
-import { Router } from '@angular/router';
-import { GambleService } from '../../../core/services/gamble.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {Component, Input, OnInit} from '@angular/core';
+import {Gamble} from '../../../core/interfaces/gamble';
+import {User} from '../../../core/interfaces/user';
+import {FirebaseApp} from '@angular/fire';
+import {AuthService} from '../../../core/services/auth.service';
+import {GambleService} from '../../../core/services/gamble.service';
 
 @Component({
   selector: 'app-penka-match-gamble',
@@ -25,8 +23,7 @@ export class PenkaMatchGambleComponent implements OnInit {
   constructor(
     public firebase: FirebaseApp,
     public auth: AuthService,
-    private gambleService: GambleService,
-    private _snackBar: MatSnackBar) {
+    private gambleService: GambleService) {
   }
 
   ngOnInit(): void {
@@ -69,9 +66,4 @@ export class PenkaMatchGambleComponent implements OnInit {
       this.match.winnerTeamId = this.mediumGamble;
     }
   }
-
-  // enableGamble(matchId): void {
-  //   this.gambleService.enableGamble(matchId);
-  // }
-
 }
