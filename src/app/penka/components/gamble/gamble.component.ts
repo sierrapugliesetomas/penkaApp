@@ -31,8 +31,7 @@ export class GambleComponent implements OnInit, OnDestroy {
         public auth: AuthService,
         private activatedRoute: ActivatedRoute,
         private gambleService: GambleService,
-        private _snackBar: MatSnackBar) {
-    }
+        private _snackBar: MatSnackBar) {}
 
     ngOnInit(): void {
         /* User */
@@ -67,14 +66,11 @@ export class GambleComponent implements OnInit, OnDestroy {
     saveGambles() {
         this.gambles.forEach(gamble => {
             if (gamble.penkaFormat === 'PRO') {
-                this.gambleService.editGambleScores(gamble.id, gamble.homeTeamScore, gamble.visitTeamScore);
                 this.saveGamblePro(gamble);
             } else {
-                // MEDIUM
                 this.gambleService.updateGambleMedium(gamble.id, gamble.winnerTeamId, gamble.draw);
             }
         });
-        this.back();
         const message = 'Jugada guardada';
         const action = '';
         this._snackBar.open(message, action, {
@@ -83,6 +79,7 @@ export class GambleComponent implements OnInit, OnDestroy {
             verticalPosition: 'top',
             panelClass: ['alert-success']
         });
+        this.back();
     }
 
     saveGamblePro(match): void {
@@ -101,5 +98,6 @@ export class GambleComponent implements OnInit, OnDestroy {
             draw = true;
         }
         this.gambleService.updateGamble(match.id, winnerId, draw);
+        this.gambleService.editGambleScores(match.id, match.homeTeamScore, match.visitTeamScore);
     }
 }
