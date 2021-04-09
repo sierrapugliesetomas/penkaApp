@@ -104,7 +104,5 @@ export class PenkaDashboardComponent implements OnInit, OnDestroy {
 	    window.open('https://web.whatsapp.com/send?text=' + msg);
     }
 
-    shareByMessenger(codePenka): void {
-
-    }
+    // shareByMessenger(codePenka): void {}
 }
