@@ -180,11 +180,8 @@
                 <div class="col-xs-2">
                     <div class="box">
                         <ng-container *ngIf="listMatches.length > 0; else noButton">
-                            <button mat-button (click)="makePenka()" class="btn-continue">
-                                Continuar
-                            </button>
+                            <app-button-continue [codePenka]="generateCodePenka" [url]="url"></app-button-continue>
                         </ng-container>
-
                         <ng-template #noButton>
                         </ng-template>
                     </div>
