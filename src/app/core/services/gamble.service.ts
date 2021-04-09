@@ -158,6 +158,10 @@ export class GambleService {
     editGambleVisitScore(id, visitTeamScore): void {
         this.gambleCollection.doc(id).update({visitTeamScore, saved: false});
     }
+	
+	editGambleScores(id, homeTeamScore, visitTeamScore): void {
+		this.gambleCollection.doc(id).update({ homeTeamScore, visitTeamScore, saved: false })
+    }
 
     enableGamble(id): void {
         this.gambleCollection.doc(id).update({saved: false});

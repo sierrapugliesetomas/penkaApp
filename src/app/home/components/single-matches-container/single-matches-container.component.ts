@@ -34,7 +34,7 @@ export class SingleMatchesContainerComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
-        this.generateCodePenka = this.codePenkaService.codePenka;
+        this.generateCodePenka = this.codePenkaService.generateCodePenka();
         this.singleMatchesService.getMatchesPublicLimit()
             .pipe(
                 takeUntil(this.unsubscribe$)

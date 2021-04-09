@@ -8,6 +8,7 @@ import {takeUntil} from 'rxjs/operators';
 import {GambleService} from '../../../core/services/gamble.service';
 import {Gamble} from '../../../core/interfaces/gamble';
 import {Location} from '@angular/common';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-gamble',
@@ -29,8 +30,8 @@ export class GambleComponent implements OnInit, OnDestroy {
         public firebase: FirebaseApp,
         public auth: AuthService,
         private activatedRoute: ActivatedRoute,
-        private gambleService: GambleService) {
-    }
+        private gambleService: GambleService,
+        private _snackBar: MatSnackBar) {}
 
     ngOnInit(): void {
         /* User */
@@ -62,4 +63,41 @@ export class GambleComponent implements OnInit, OnDestroy {
         this._location.back();
     }
 
+    saveGambles() {
+        this.gambles.forEach(gamble => {
+            if (gamble.penkaFormat === 'PRO') {
+                this.saveGamblePro(gamble);
+            } else {
+                this.gambleService.updateGambleMedium(gamble.id, gamble.winnerTeamId, gamble.draw);
+            }
+        });
+        const message = 'Jugada guardada';
+        const action = '';
+        this._snackBar.open(message, action, {
+            duration: 2000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass: ['alert-success']
+        });
+        this.back();
+    }
+
+    saveGamblePro(match): void {
+        let winnerId: string;
+        let draw: boolean;
+        if (match.homeTeamScore > match.visitTeamScore) {
+            winnerId = match.homeTeamId;
+            draw = false;
+        }
+        if (match.visitTeamScore > match.homeTeamScore) {
+            winnerId = match.visitTeamId;
+            draw = false;
+        }
+        if (match.homeTeamScore === match.visitTeamScore) {
+            winnerId = '';
+            draw = true;
+        }
+        this.gambleService.updateGamble(match.id, winnerId, draw);
+        this.gambleService.editGambleScores(match.id, match.homeTeamScore, match.visitTeamScore);
+    }
 }

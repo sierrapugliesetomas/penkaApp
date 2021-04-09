@@ -20,6 +20,7 @@ import {RequestNotificationComponent} from '../../../inbox/components/request-no
 })
 export class PenkaComponent implements OnInit, OnDestroy {
     @Input() codePenka: string;
+	@Input() showJoinButton: boolean = true;
     listMatches = [];
     penka = [];
     user = {} as User;

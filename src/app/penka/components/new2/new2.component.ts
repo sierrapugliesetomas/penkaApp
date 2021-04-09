@@ -9,13 +9,13 @@ import {AuthService} from '../../../core/services/auth.service';
 import {ListMatchesService} from '../../../core/services/list-matches.service';
 import {takeUntil} from 'rxjs/operators';
 import {CodePenkaService} from '../../../core/services/code-penka.service';
-import {ListMatches} from "../../../core/interfaces/list-matches";
 
 @Component({
     selector: 'app-new2',
     templateUrl: './new2.component.html',
     styleUrls: ['./new2.component.scss']
 })
+
 export class New2Component implements OnInit, OnDestroy {
     title = 'Organiza una Penka';
     url = '/penka/new3/singleMatches/';
@@ -31,8 +31,6 @@ export class New2Component implements OnInit, OnDestroy {
     private unsubscribe$ = new Subject<void>();
     today = new Date();
 
-    listMatchesPicked = [] as ListMatches[];
-
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
@@ -42,18 +40,22 @@ export class New2Component implements OnInit, OnDestroy {
         private templateService: TemplatesService,
         private listMatchesService: ListMatchesService,
         private codePenkaService: CodePenkaService) {
+        this.user = this.firebase.auth().currentUser;
+        this.generateCodePenka = this.codePenkaService.generateCodePenka();
     }
 
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
-        this.generateCodePenka = this.codePenkaService.codePenka;
+		
         this.activatedRoute.params.subscribe(
             (params: Params) => {
                 this.type = params.type;
             }
         );
         this.singleMatchesService.getMatchesPublic()
-            .pipe(takeUntil(this.unsubscribe$)).subscribe(
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
             res => {
                 this.singleMatches = res;
                 this.singleMatches.forEach(item => {
@@ -63,37 +65,31 @@ export class New2Component implements OnInit, OnDestroy {
                 });
             });
         this.templateService.getTemplatesPublic()
-            .pipe(takeUntil(this.unsubscribe$)).subscribe(
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
             res => {
                 this.templates = res;
                 this.templates.forEach(item => {
                     if (this.today >= item.limitDate.toDate()) {
-                        this.templateService.changeTemplateState(item.id, '2');
+                        this.templateService.inactivated(item.id);
                     }
                 });
             });
+        this.listMatchesService.getListMatchesTempByCodePenka(this.generateCodePenka)
+            .pipe(
+                takeUntil(this.unsubscribe$)
+            ).subscribe(
+            res => {
+                this.listMatches = res;
+            }); 
     }
 
     ngOnDestroy(): void {
         this.unsubscribe$.next();
         this.unsubscribe$.complete();
     }
-
-    addPickedMatch(sm): void {
-        if (this.listMatchesPicked.indexOf(sm) === -1) {
-            this.listMatchesPicked.push(sm);
-        }
-    }
-
-    deletePickedMatch(sm): void {
-        const index = this.listMatchesPicked.indexOf(sm);
-        if (index > -1) {
-            this.listMatchesPicked.splice(index, 1);
-        }
-    }
-
-
-
+	
     pickTeam(sm): void {
         const codeTemplate = '';
         const status = '0';
@@ -131,4 +127,3 @@ export class New2Component implements OnInit, OnDestroy {
             }, error => console.log(error));
     }
 }
-

@@ -9,11 +9,6 @@
             <div class="container-maker">
                 <p class="subTitle">{{p.makerName}}</p>
             </div>
-            <div class="container-button">
-                <button mat-stroked-button class="btn-watch" (click)="goWatch(p.id)">
-                    Ver más
-                </button>
-            </div>
         </div>
 
         <!-- Card Body -->
@@ -93,9 +88,15 @@
                     </p>
                 </div>
             </div>
+            <div class="row">
+                <button mat-stroked-button class="btn-watch" (click)="goWatch(p.codePenka)">
+                    Ver Más
+                </button>
+            </div>
         </div>
     </div>
-    <button class="btn-join" mat-raised-button
+    <button *ngIf="showJoinButton"
+            class="btn-join" mat-raised-button
             (click)="join(p.id, user.uid, p.codePenka, p.name, p.makerId, p.makerName, p.makerEmail, p.makerPhoto)">
         Jugar
     </button>
