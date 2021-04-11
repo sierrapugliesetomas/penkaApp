@@ -6,68 +6,36 @@
     <li class="list-item" *ngFor="let p of listParticipants; let i = index">
 
         <div class="userName">
-            <ng-container *ngIf="p.userId === user.uid">
-                <p class="pickUser" (click)="selectUser(p.userId)">
-
-                    <ng-container *ngIf="p.place; else noPlace">
-                        <ng-container *ngIf="p.place === 'primero'">
-                            <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
-                            &nbsp;
-                        </ng-container>
-                        <ng-container *ngIf="p.place === 'segundo'">
-                            <img class="medal" src="../../../../assets/images/medals/medal-silver.png"
-                                 alt="Segundo">
-                            &nbsp;
-                        </ng-container>
-                        <ng-container *ngIf="p.place === 'tercero'">
-                            <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercer">
-                            &nbsp;
-                        </ng-container>
+            <ng-container >
+            <p class="pickUser" (click)="selectUser(p.userId)">
+                <ng-container *ngIf="p.place; else noPlace">
+                    <ng-container *ngIf="p.place === 'primero'">
+                        <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
+                        &nbsp;
                     </ng-container>
-
-                    <ng-template #noPlace>
-                        {{i + 1}}.&nbsp;&nbsp;
-                    </ng-template>
-
-                    <span class="me">{{p.userName}}</span>
-                </p>
-            </ng-container>
-            <ng-container *ngIf="p.userId !== user.uid">
-                <p class="pickUser" (click)="selectUser(p.userId)">
-
-                    <ng-container *ngIf="p.place; else noPlace">
-                        <ng-container *ngIf="p.place === 'primero'">
-                            <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
-                            &nbsp;
-                        </ng-container>
-                        <ng-container *ngIf="p.place === 'segundo'">
-                            <img class="medal" src="../../../../assets/images/medals/medal-silver.png"
-                                 alt="Segundo">
-                            &nbsp;
-                        </ng-container>
-                        <ng-container *ngIf="p.place === 'tercero'">
-                            <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercer">
-                            &nbsp;
-                        </ng-container>
+                    <ng-container *ngIf="p.place === 'segundo'">
+                        <img class="medal" src="../../../../assets/images/medals/medal-silver.png" alt="Segundo">
+                        &nbsp;
                     </ng-container>
+                    <ng-container *ngIf="p.place === 'tercero'">
+                        <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercer">
+                        &nbsp;
+                    </ng-container>
+                </ng-container>
 
-                    <ng-template #noPlace>
-                        {{i + 1}}.&nbsp;&nbsp;
-                    </ng-template>
-                    <span class="user">{{p.userName}}</span>
-                </p>
-            </ng-container>
+                <ng-template #noPlace>
+                    {{i + 1}}.&nbsp;&nbsp;
+                </ng-template>
+
+                <span
+                    [ngClass]="{'me': p.userId === selectedUserId, 'user': p.userId !== selectedUserId}">{{p.userName}}</span>
+            </p>
+        </ng-container>
         </div>
 
         <div class="userScore">
-            <ng-container *ngIf="p.userId === user.uid">
-                <p class="me">{{p.accumulatedScore}} pt</p>
-
-            </ng-container>
-
-            <ng-container *ngIf="p.userId !== user.uid">
-                <p class="user">{{p.accumulatedScore}} pt</p>
-            </ng-container>
+            <p [ngClass]="{'me': p.userId === selectedUserId, 'user': p.userId !== selectedUserId}">
+                {{p.accumulatedScore}} pt</p>
         </div>
 
     </li>

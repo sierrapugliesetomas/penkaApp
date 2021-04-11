@@ -5,7 +5,6 @@ import {User} from '../../../core/interfaces/user';
 import {Subject} from 'rxjs';
 import {FirebaseApp} from '@angular/fire';
 import {AuthService} from '../../../core/services/auth.service';
-import {Router} from '@angular/router';
 import {ParticipantsService} from '../../../core/services/participants.service';
 import {GambleService} from '../../../core/services/gamble.service';
 import {takeUntil} from 'rxjs/operators';
@@ -19,7 +18,7 @@ export class ListParticipantsComponent implements OnInit, OnDestroy {
 
 
     @Input() codePenka;
-    @Output() selectedUser = new EventEmitter<string>();
+    @Output() selectedUserEvent = new EventEmitter<string>();
 
     /* Array Gamble Accumulated Score */
     gambles = [] as Gamble[];
@@ -28,19 +27,20 @@ export class ListParticipantsComponent implements OnInit, OnDestroy {
     user = {} as User;
     counter = 1;
     singleParticipant = [];
+    selectedUserId: string;
 
     private unsubscribe$ = new Subject<void>();
 
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
-        private router: Router,
         private participantsService: ParticipantsService,
         private gambleService: GambleService) {
     }
 
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
+        this.selectedUserId = this.user.uid;
         this.participantsService.getParticipantByCodePenkaLimit4(this.codePenka)
             .pipe(
                 takeUntil(this.unsubscribe$)
@@ -88,7 +88,8 @@ export class ListParticipantsComponent implements OnInit, OnDestroy {
 
 
     selectUser(userId): void {
-        this.selectedUser.emit(userId);
+        this.selectedUserEvent.emit(userId);
+        this.selectedUserId = userId;
     }
 
 }

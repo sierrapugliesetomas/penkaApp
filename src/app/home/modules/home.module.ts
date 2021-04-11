@@ -9,7 +9,6 @@ import {FormsModule} from '@angular/forms';
 import {HomeComponent} from '../components/home/home.component';
 import {ListMatchesDoneComponent} from '../components/list-matches-done/list-matches-done.component';
 import {ListMatchesWaitComponent} from '../components/list-matches-wait/list-matches-wait.component';
-import {ListParticipantsComponent} from '../components/list-participants/list-participants.component';
 import {MainBannerComponent} from '../components/main-banner/main-banner.component';
 import {PenkaDashboardMiniComponent} from '../components/penka-dashboard-mini/penka-dashboard-mini.component';
 import {PenkaPickerComponent} from '../components/penka-picker/penka-picker.component';
@@ -19,6 +18,7 @@ import {PopPenkasContainerComponent} from '../components/pop-penkas-container/po
 import {SecondaryBannersComponent} from '../components/secondary-banners/secondary-banners.component';
 import {SingleMatchesContainerComponent} from '../components/single-matches-container/single-matches-container.component';
 import {TemplatesContainerComponent} from '../components/templates-container/templates-container.component';
+import { ListParticipantsComponent } from '../components/list-participants/list-participants.component';
 
 
 @NgModule({

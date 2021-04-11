@@ -40,7 +40,7 @@
                 <div class="body">
                     <div class="row">
                         <div class="col-lg-4 list-participants">
-                            <app-list-participants [codePenka]="p.codePenka" (selectedUser)="selectParticipant($event)">
+                            <app-list-participants [codePenka]="p.codePenka" (selectedUserEvent)="selectParticipant($event)">
                             </app-list-participants>
                         </div>
                         <div class="col-lg-4 list-matches-done">
@@ -90,7 +90,7 @@
                 <div class="body">
                     <div class="row">
                         <div class="col-xs-12 list-participants">
-                            <app-list-participants [codePenka]="p.codePenka" (selectedUser)="selectParticipant($event)">
+                            <app-list-participants [codePenka]="p.codePenka" (selectedUserEvent)="selectParticipant($event)">
                             </app-list-participants>
                         </div>
                         <div class="col-xs-12 list-matches-done">
