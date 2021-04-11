@@ -5,7 +5,7 @@
 
             <div class="card">
 
-                <ng-container *ngIf="p.status === '1'; else ended">
+                <!-- <ng-container *ngIf="p.status === '1'; else ended"> -->
                     <div class="header status-ended-false">
                         <div class="title">
                             <p>{{p.name}}&nbsp;&nbsp;-&nbsp;&nbsp;Pozo:&nbsp;${{p.accumulatedBet}}</p>
@@ -17,9 +17,9 @@
                             Ver mas
                         </button>
                     </div>
-                </ng-container>
+                <!-- </ng-container> -->
 
-                <ng-template #ended>
+                <!-- <ng-template #ended>
                     <div class="header status-ended-true">
                         <div class="title">
                             <p>{{p.name}}&nbsp;&nbsp;-&nbsp;&nbsp;Pozo:&nbsp;${{p.accumulatedBet}}</p>
@@ -34,7 +34,7 @@
                             Ver mas
                         </button>
                     </div>
-                </ng-template>
+                </ng-template> -->
 
 
                 <div class="body">
@@ -106,9 +106,11 @@
                 <div class="footer">
                     <div class="row">
                         <div class="col-xs-12">
-                            <button mat-button class="btn-gambles" (click)="playGamble(p.codePenka)">
-                                Llenar resultados
-                            </button>
+                            <ng-container *ngIf="p.status === '1'">>
+                                <button mat-button class="btn-gambles" (click)="playGamble(p.codePenka)">
+                                    Llenar resultados
+                                </button>
+                            </ng-container>
                         </div>
                     </div>
                 </div>

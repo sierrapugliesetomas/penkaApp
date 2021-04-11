@@ -27,8 +27,7 @@ export class PenkaDashboardMiniComponent implements OnInit, OnChanges, OnDestroy
         public firebase: FirebaseApp,
         public auth: AuthService,
         private router: Router,
-        private penkasService: PenkasService,
-        private participantsService: ParticipantsService) {
+        private penkasService: PenkasService) {
     }
 
     ngOnInit(): void {
