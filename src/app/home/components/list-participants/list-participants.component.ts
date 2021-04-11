@@ -40,7 +40,6 @@ export class ListParticipantsComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
-        this.selectedUserId = this.user.uid;
         this.participantsService.getParticipantByCodePenkaLimit4(this.codePenka)
             .pipe(
                 takeUntil(this.unsubscribe$)
