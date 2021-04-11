@@ -34,9 +34,9 @@
                                             <p class="header-font">{{sm.homeTeamAlias}} &nbsp; -
                                                 &nbsp; {{sm.visitTeamAlias}}</p>
 
-                                            <ng-container *ngIf="sm.homeTeamScore === null; else score">
+                                            <ng-container *ngIf="sm.status === '1'; else score">
                                                 <p class="score-fonts">{{sm.startDate.toDate() | date:'MMM dd'}}
-                                                    - {{sm.startDate.toDate() | date:'HH mm'}}</p>
+                                                    - {{sm.startDate.toDate() | date:'HH:mm'}}</p>
                                             </ng-container>
 
                                             <ng-template #score>
