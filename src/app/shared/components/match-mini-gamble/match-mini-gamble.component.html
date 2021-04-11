@@ -94,7 +94,7 @@
             <img class="team-flag" alt="" src="{{match.visitTeamFlag}}">
         </div>
         <div class="gamble-container">
-            <ng-container *ngIf="singleMatch.homeTeamScore != null; else noScoreYet">
+            <ng-container *ngIf="singleMatch?.homeTeamScore != null; else noScoreYet">
                 <div class="real-score">
                     <p>{{singleMatch.homeTeamScore}}</p>
                     <p>-</p>
