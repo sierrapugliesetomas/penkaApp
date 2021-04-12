@@ -22,6 +22,7 @@ export class PenkaDashboardComponent implements OnInit, OnDestroy {
     participants = [];
     user = {} as User;
     newGamble = {} as Gamble;
+    hasOpenGambles: boolean;
     private unsubscribe$ = new Subject<void>();
 
     constructor(
@@ -45,7 +46,8 @@ export class PenkaDashboardComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(
                 res => {
-                    this.gambles = res;
+                    this.gambles = res.filter(c => (c.codePenka === this.codePenka)); 
+                    this.hasOpenGambles = this.gambles.find(c => c.status === '1') ? true : false;
                 });
         this.penkasService.getAllPenkasByCodePenka(this.codePenka)
             .pipe(takeUntil(this.unsubscribe$))

@@ -56,7 +56,7 @@
                 <div class="footer">
                     <div class="row">
                         <div class="col-lg-4 col-lg-offset-8">
-                            <ng-container *ngIf="p.status === '1'">
+                            <ng-container *ngIf="p.status === '1' && hasOpenGambles">
                                 <button mat-button class="btn-gambles" (click)="playGamble(p.codePenka)">
                                     Llenar resultados
                                 </button>
@@ -106,7 +106,7 @@
                 <div class="footer">
                     <div class="row">
                         <div class="col-xs-12">
-                            <ng-container *ngIf="p.status === '1'">>
+                            <ng-container *ngIf="p.status === '1' && hasOpenGambles">
                                 <button mat-button class="btn-gambles" (click)="playGamble(p.codePenka)">
                                     Llenar resultados
                                 </button>
