@@ -57,12 +57,7 @@ export class New2Component implements OnInit, OnDestroy {
                 takeUntil(this.unsubscribe$)
             ).subscribe(
             res => {
-                this.singleMatches = res;
-                this.singleMatches.forEach(item => {
-                    if (this.today >= item.limitDate.toDate()) {
-                        this.singleMatchesService.changeMatchState(item.id, '2');
-                    }
-                });
+                this.singleMatches = res.filter(sm => sm.limitDate.toDate() > this.today);
             });
         this.templateService.getTemplatesPublic()
             .pipe(
