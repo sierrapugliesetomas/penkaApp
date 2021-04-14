@@ -18,7 +18,7 @@
                     <div class="card-gamble">
                         <div class="card-gamble-content">
                             <ul>
-                                <li *ngFor="let match of gambles">
+                                <li *ngFor="let match of gambles | filterStatus:'1'">
                                     <app-penka-match-gamble [match]="match"></app-penka-match-gamble>
                                 </li>
                             </ul>
