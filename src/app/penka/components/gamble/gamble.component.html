@@ -44,7 +44,7 @@
                 <div class="box">
                     <div class="container-gambles-mobile">
                         <ul class="list-mobile">
-                            <li class="list-item-mobile" *ngFor="let match of gambles">
+                            <li *ngFor="let match of gambles | filterStatus:'1'">
                                 <app-penka-match-gamble [match]="match"></app-penka-match-gamble>
                             </li>
                         </ul>
