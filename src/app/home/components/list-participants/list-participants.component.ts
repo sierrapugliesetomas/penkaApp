@@ -53,30 +53,6 @@ export class ListParticipantsComponent implements OnInit, OnDestroy {
             ).subscribe(
             res => {
                 this.participants = res;
-
-                if (this.counter === 1) {
-
-                    // tslint:disable-next-line:prefer-for-of
-                    for (let i = 0; i < this.participants.length; i++) {
-                        let gambles = [];
-                        let counter = 1;
-                        let accumulatedScore = 0;
-                        this.gambleService.getGambleByGetScore(this.participants[i].userId, this.codePenka).subscribe(
-                            result => {
-                                gambles = result;
-
-                                // tslint:disable-next-line:prefer-for-of
-                                for (let x = 0; x < gambles.length; x++) {
-                                    accumulatedScore = accumulatedScore + gambles[x].scoreAchieved;
-                                }
-                                if (counter === 1) {
-                                    this.participantsService.updateAccumulatedScore(this.participants[i].id, accumulatedScore);
-                                    counter++;
-                                }
-                            }, error => console.log(error));
-                    }
-                }
-                this.counter++;
             });
     }
 
