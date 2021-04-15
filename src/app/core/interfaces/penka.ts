@@ -23,7 +23,7 @@ export interface Penka {
     visibility: string;
     typePenka: string;
     formatName: string;
-    codeSingleMatch: string;
+    singleMatchesId: string[];
     codeTemplate: string;
     codeTournament: string;
 }
