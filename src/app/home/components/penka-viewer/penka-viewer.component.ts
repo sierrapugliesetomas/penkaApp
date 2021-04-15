@@ -41,6 +41,5 @@ export class PenkaViewerComponent implements OnInit, OnDestroy {
 
     getPicked(codePenka): void {
         this.codePenkaSelected = codePenka;
-        console.log(this.codePenkaSelected);
     }
 }
