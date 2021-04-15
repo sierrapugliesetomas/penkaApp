@@ -1,11 +1,11 @@
 <ng-container *ngIf="selectedParticipant; else defaultGamble">
-    <ng-container *ngFor="let g of gambles | filterUserId:selectedParticipant | filterStatus:'2'; let i=index">
+    <ng-container *ngFor="let g of gambles | filterUserId:selectedParticipant; let i=index">
         <ng-container *ngIf="i === 0">
 
             <p class="title">Jugadas de {{g.userName}}</p>
             <ul class="list-matches">
                 <li class="item-matches"
-                    *ngFor="let g of gambles | filterUserId:selectedParticipant | filterStatus:'2'; let x=index">
+                    *ngFor="let g of gambles | filterUserId:selectedParticipant; let x=index">
                     <ng-container *ngIf="x <= 3">
                         <app-match-mini-gamble [match]="g"></app-match-mini-gamble>
                     </ng-container>
@@ -18,13 +18,13 @@
 
 <ng-template #defaultGamble>
     <p class="title">Partidos Jugados</p>
-    <ng-container *ngFor="let g of gambles | filterUserId:user.uid | filterStatus:'2'; let i = index, let c = count">
+    <ng-container *ngFor="let g of gambles | filterUserId:user.uid; let i = index, let c = count">
         <ng-container *ngIf="i < 1">
             <p class="text-help">{{c}}&nbsp;partidos.</p>
         </ng-container>
     </ng-container>
     <ul class="list-matches">
-        <li class="item-matches" *ngFor="let g of gambles | filterUserId:user.uid | filterStatus:'2'; let x=index">
+        <li class="item-matches" *ngFor="let g of gambles | filterUserId:user.uid; let x=index">
             <ng-container *ngIf="x <= 3">
                 <app-match-mini-gamble [match]="g"></app-match-mini-gamble>
             </ng-container>
