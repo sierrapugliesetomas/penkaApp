@@ -138,6 +138,7 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
                                                 this.newGamble.saved = false;
                                                 this.newGamble.scoreAchieved = 0;
                                                 this.newGamble.startDate = listMatches[i].startDate;
+                                                this.newGamble.limitDate = listMatches[i].limitDate;
                                                 this.gambleService.addGamble(this.newGamble);
                                                 this.newGamble = {} as Gamble;
                                             }
@@ -182,6 +183,7 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
                                                 this.newGamble.saved = false;
                                                 this.newGamble.scoreAchieved = 0;
                                                 this.newGamble.startDate = listMatches[i].startDate;
+                                                this.newGamble.limitDate = listMatches[i].limitDate;
                                                 this.gambleService.addGamble(this.newGamble);
                                                 this.newGamble = {} as Gamble;
                                             }
