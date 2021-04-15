@@ -144,13 +144,6 @@
                                         <div class="box">
                                             <ng-container *ngIf="penka.makerId === user.uid">
 
-                                                <ng-container *ngIf="penka.status === '1'">
-                                                    <button mat-button class="btn-finish"
-                                                            (click)="finishPenka(penka.id)">
-                                                        Finalizar Penka
-                                                    </button>
-                                                </ng-container>
-
                                                 <ng-container *ngIf="penka.status === '2'">
                                                     <button mat-button class="btn-toFile" (click)="toFile(penka.id)">
                                                         Archivar

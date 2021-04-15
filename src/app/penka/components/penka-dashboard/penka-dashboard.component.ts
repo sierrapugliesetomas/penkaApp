@@ -90,15 +90,6 @@ export class PenkaDashboardComponent implements OnInit, OnDestroy {
         this.router.navigate(['/penka/gambleEdit/' + codePenka]).then();
     }
 
-    finishPenka(penkaId): any {
-        if (confirm('Desea Finalizar esta Penka?')) {
-            this.penkasService.updateStatus(penkaId, '2');
-            this.participants.forEach(item => {
-                this.participantsService.updateParticipation(item.id, '2');
-            });
-        }
-    }
-
     toFile(penkaId): any {
         if (confirm('Desea Archivar esta Penka?')) {
             this.penkasService.updateStatus(penkaId, '9');
