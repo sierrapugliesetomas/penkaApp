@@ -19,7 +19,7 @@
                         <div class="card-gamble-content">
                             <ul>
                                 <li *ngFor="let match of gambles | filterStatus:'1'">
-                                    <app-penka-match-gamble [match]="match"></app-penka-match-gamble>
+                                    <app-penka-match-gamble *ngIf="!isDueLimitDate(match.limitDate)" [match]="match"></app-penka-match-gamble>
                                 </li>
                             </ul>
                         </div>
@@ -45,7 +45,7 @@
                     <div class="container-gambles-mobile">
                         <ul class="list-mobile">
                             <li *ngFor="let match of gambles | filterStatus:'1'">
-                                <app-penka-match-gamble [match]="match"></app-penka-match-gamble>
+                                <app-penka-match-gamble *ngIf="!isDueLimitDate(match.limitDate)" [match]="match"></app-penka-match-gamble>
                             </li>
                         </ul>
                     </div>

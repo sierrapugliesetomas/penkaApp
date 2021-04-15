@@ -100,4 +100,8 @@ export class GambleComponent implements OnInit, OnDestroy {
         this.gambleService.updateGamble(match.id, winnerId, draw);
         this.gambleService.editGambleScores(match.id, match.homeTeamScore, match.visitTeamScore);
     }
+
+    isDueLimitDate(limitDate) {
+        return limitDate.toDate() < new Date(); 
+    }
 }
