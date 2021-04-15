@@ -27,7 +27,3 @@ export interface Penka {
     codeTemplate: string;
     codeTournament: string;
 }
-
-// TODO: Se agregaron propiedades que aparecen el codigo productivo pero no en git/main
-// Proxima refactorizar
-
