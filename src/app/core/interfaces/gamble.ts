@@ -41,4 +41,5 @@ export interface Gamble {
     scoreAchieved?: number;
     status?: string;
     startDate: Date;
+    limitDate: Date;
 }
