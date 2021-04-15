@@ -219,7 +219,7 @@
                             <div class="card-body">
                                 <ul class="list-matches">
                                     <li class="item-matches"
-                                        *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'2'">
+                                        *ngFor="let g of finishedOrDueGambles | filterCodePenka:penka.codePenka">
                                         <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
                                                                         [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
                                     </li>
@@ -246,9 +246,10 @@
                             <div class="card-body">
                                 <ul class="list-matches">
                                     <li class="item-matches"
-                                        *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'1'">
+                                        *ngFor="let g of openGambles | filterCodePenka:penka.codePenka">
                                         <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                        [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
+                                                                        [codePenka]="penka.codePenka">
+                                                                    </app-penka-match-gamble-results>
                                     </li>
                                 </ul>
                             </div>
@@ -395,7 +396,7 @@
 
                             <ul class="list-mobile">
                                 <li class="list-item-mobile"
-                                    *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'2'">
+                                    *ngFor="let g of finishedOrDueGambles | filterCodePenka:penka.codePenka">
 
                                     <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
                                                                     [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
@@ -426,7 +427,7 @@
                                     <div class="box">
                                         <ul class="list-mobile">
                                             <li class="list-item-mobile"
-                                                *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'1'">
+                                                *ngFor="let g of openGambles | filterCodePenka:penka.codePenka">
 
                                                 <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
                                                                                 [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
