@@ -23,7 +23,6 @@ export class ParticipantsComponent implements OnInit, OnChanges, OnDestroy {
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
-        private router: Router,
         private participantsService: ParticipantsService) {
     }
 
@@ -54,9 +53,5 @@ export class ParticipantsComponent implements OnInit, OnChanges, OnDestroy {
         } else {
             this.ngOnInit();
         }
-    }
-
-    noYet(): void {
-        alert('La Penka no ha finalizado');
     }
 }

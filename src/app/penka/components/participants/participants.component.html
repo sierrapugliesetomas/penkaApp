@@ -23,14 +23,6 @@
 
         <ng-container *ngIf="makerId === user.uid">
             <div class="container-place">
-                <!-- if participation is still in game and penka no finish yet  -->
-                <ng-container *ngIf="p.status === '1'">
-                    <select class="select_place" (click)="noYet()">
-                        <option value="">Seleccionar Posicion</option>
-                    </select>
-                </ng-container>
-
-                <!-- if participation is done and penka is ended -->
                 <ng-container *ngIf="p.status === '9'">
                     <ng-container *ngIf="p.place === 'primero'">
                         <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
@@ -41,41 +33,7 @@
                     <ng-container *ngIf="p.place === 'tercero'">
                         <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercero">
                     </ng-container>
-                    <select class="select_place" disabled>
-                        <option value="">{{p.place}}</option>
-                    </select>
                 </ng-container>
-
-                <ng-container *ngIf="p.status === '2'">
-                    <ng-container *ngIf="p.place === 'primero'">
-                        <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
-                    </ng-container>
-                    <ng-container *ngIf="p.place === 'segundo'">
-                        <img class="medal" src="../../../../assets/images/medals/medal-silver.png" alt="Segundo">
-                    </ng-container>
-                    <ng-container *ngIf="p.place === 'tercero'">
-                        <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercero">
-                    </ng-container>
-
-                    <select class="select_place" (change)="updatePlace($event.target, p.id, p.userName)">
-
-                        <ng-container *ngIf="p.place; else selectPlace">
-                            <option value="{{p.place}}">{{p.place}}</option>
-                            <option value="primero">Primero</option>
-                            <option value="segundo">Segundo</option>
-                            <option value="tercero">Tercero</option>
-                        </ng-container>
-
-                        <ng-template #selectPlace>
-                            <option value="null">Selecciona Posicion</option>
-                            <option value="primero">Primero</option>
-                            <option value="segundo">Segundo</option>
-                            <option value="tercero">Tercero</option>
-                        </ng-template>
-
-                    </select>
-                </ng-container>
-
             </div>
         </ng-container>
     </li>
