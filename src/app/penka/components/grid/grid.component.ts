@@ -30,10 +30,8 @@ export class GridComponent implements OnInit, OnDestroy {
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
-        private router: Router,
         private activatedRoute: ActivatedRoute,
         private singleMatchesService: SingleMatchesService,
-        private listMatchesService: ListMatchesService,
         private participantService: ParticipantsService,
         private gamblesService: GambleService) {
         this.user = this.firebase.auth().currentUser;

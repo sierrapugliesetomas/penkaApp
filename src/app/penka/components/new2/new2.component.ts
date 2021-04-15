@@ -34,7 +34,6 @@ export class New2Component implements OnInit, OnDestroy {
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
-        private router: Router,
         private activatedRoute: ActivatedRoute,
         private singleMatchesService: SingleMatchesService,
         private templateService: TemplatesService,
