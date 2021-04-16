@@ -12,7 +12,7 @@ export class PenkasService {
     penkas: Observable<Penka[]>;
 
     constructor(private readonly afs: AngularFirestore) {
-        this.penkasCollection = afs.collection<Penka>('penkas', ref => ref.orderBy('startDate'));
+        this.penkasCollection = afs.collection<Penka>('penkas');
         this.penkas = this.penkasCollection.snapshotChanges().pipe(
             map(actions => actions.map(a => {
                 const data = a.payload.doc.data() as Penka;
