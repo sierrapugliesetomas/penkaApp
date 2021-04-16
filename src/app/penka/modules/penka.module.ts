@@ -22,6 +22,7 @@ import {PenkaMatchGambleResultsComponent} from '../components/penka-match-gamble
 import {ViewComponent} from '../components/view/view.component';
 import {PenkasComponent} from '../components/penkas/penkas.component';
 import {FriendsPenkasContainerComponent} from '../components/friends-penkas-container/friends-penkas-container.component';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import {FriendsPenkasContainerComponent} from '../components/friends-penkas-cont
         ReactiveFormsModule,
         FormsModule,
         MaterialModule,
-        Ng2SearchPipeModule
+        Ng2SearchPipeModule,
+        ClipboardModule
     ],
     exports: [
         GambleComponent,
