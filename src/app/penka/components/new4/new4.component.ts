@@ -65,7 +65,7 @@ export class New4Component implements OnInit, OnDestroy {
     }
 
     goDashboard(codePenka): void {
-        this.router.navigate(['/penka/dashboard/' + codePenka]).catch(error => console.log(error));
+        this.router.navigate(['/penka/dashboard/' + codePenka], {replaceUrl:true}).catch(error => console.log(error));
     }
 
     shareByWhatsapp(codePenka): void {
