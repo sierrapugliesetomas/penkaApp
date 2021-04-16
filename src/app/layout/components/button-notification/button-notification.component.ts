@@ -170,7 +170,7 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
                                                 this.newGamble.homeTeamName = listMatches[i].homeTeamName;
                                                 this.newGamble.homeTeamAlias = listMatches[i].homeTeamAlias;
                                                 this.newGamble.homeTeamFlag = listMatches[i].homeTeamFlag;
-                                                this.newGamble.visitTeamScore = 0;
+                                                this.newGamble.homeTeamScore = 0;
                                                 this.newGamble.visitTeamId = listMatches[i].visitTeamId;
                                                 this.newGamble.visitTeamName = listMatches[i].visitTeamName;
                                                 this.newGamble.visitTeamAlias = listMatches[i].visitTeamAlias;

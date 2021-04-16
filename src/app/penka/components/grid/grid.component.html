@@ -59,58 +59,45 @@
                                         <div class="participant-name">
                                             <p class="me">{{i + 1}}.&nbsp;{{part.userName}}</p>
                                         </div>
-                                        <!-- Select Place -->
-                                        <select class="select_place"
-                                                (change)="updatePlace($event.target, part.id, part.userName)">
-
-                                            <ng-container *ngIf="part.place; else selectPlace">
-                                                <option value="{{part.place}}">{{part.place}}</option>
-                                                <option value="primero">Primero</option>
-                                                <option value="segundo">Segundo</option>
-                                                <option value="tercero">Tercero</option>
-                                            </ng-container>
-
-                                            <ng-template #selectPlace>
-                                                <option value="null">Selecciona Posicion</option>
-                                                <option value="primero">Primero</option>
-                                                <option value="segundo">Segundo</option>
-                                                <option value="tercero">Tercero</option>
-                                            </ng-template>
-
-                                        </select>
                                         <!------------------->
                                         <div class="participant-score">
                                             <p class="me">{{part.accumulatedScore}} pt</p>
                                         </div>
-
+                                        <div class="container-place">
+                                            <ng-container *ngIf="part.status === '9'">
+                                                <ng-container *ngIf="part.place === 'primero'">
+                                                    <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
+                                                </ng-container>
+                                                <ng-container *ngIf="part.place === 'segundo'">
+                                                    <img class="medal" src="../../../../assets/images/medals/medal-silver.png" alt="Segundo">
+                                                </ng-container>
+                                                <ng-container *ngIf="part.place === 'tercero'">
+                                                    <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercero">
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
                                     </ng-container>
 
                                     <ng-template #other>
                                         <div class="participant-name">
                                             <p>{{i + 1}}.&nbsp;{{part.userName}}</p>
                                         </div>
-                                        <!-- Select Place -->
-                                        <select class="select_place"
-                                                (change)="updatePlace($event.target, part.id, part.userName)">
-
-                                            <ng-container *ngIf="part.place; else selectPlace">
-                                                <option value="{{part.place}}">{{part.place}}</option>
-                                                <option value="primero">Primero</option>
-                                                <option value="segundo">Segundo</option>
-                                                <option value="tercero">Tercero</option>
-                                            </ng-container>
-
-                                            <ng-template #selectPlace>
-                                                <option value="null">Selecciona Posicion</option>
-                                                <option value="primero">Primero</option>
-                                                <option value="segundo">Segundo</option>
-                                                <option value="tercero">Tercero</option>
-                                            </ng-template>
-
-                                        </select>
                                         <!------------------->
                                         <div class="participant-score">
                                             <p>{{part.accumulatedScore}} pt</p>
+                                        </div>
+                                        <div class="container-place">
+                                            <ng-container *ngIf="part.status === '9'">
+                                                <ng-container *ngIf="part.place === 'primero'">
+                                                    <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
+                                                </ng-container>
+                                                <ng-container *ngIf="part.place === 'segundo'">
+                                                    <img class="medal" src="../../../../assets/images/medals/medal-silver.png" alt="Segundo">
+                                                </ng-container>
+                                                <ng-container *ngIf="part.place === 'tercero'">
+                                                    <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercero">
+                                                </ng-container>
+                                            </ng-container>
                                         </div>
                                     </ng-template>
 
@@ -249,6 +236,19 @@
                                         <div class="container-score">
                                             <p><span class="me">{{part.accumulatedScore}} pt</span></p>
                                         </div>
+                                        <div class="container-place">
+                                            <ng-container *ngIf="part.status === '9'">
+                                                <ng-container *ngIf="part.place === 'primero'">
+                                                    <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
+                                                </ng-container>
+                                                <ng-container *ngIf="part.place === 'segundo'">
+                                                    <img class="medal" src="../../../../assets/images/medals/medal-silver.png" alt="Segundo">
+                                                </ng-container>
+                                                <ng-container *ngIf="part.place === 'tercero'">
+                                                    <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercero">
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
                                     </ng-container>
 
                                     <ng-template #other>
@@ -257,6 +257,19 @@
                                         </div>
                                         <div class="container-score">
                                             <p>{{part.accumulatedScore}} pt</p>
+                                        </div>
+                                        <div class="container-place">
+                                            <ng-container *ngIf="part.status === '9'">
+                                                <ng-container *ngIf="part.place === 'primero'">
+                                                    <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
+                                                </ng-container>
+                                                <ng-container *ngIf="part.place === 'segundo'">
+                                                    <img class="medal" src="../../../../assets/images/medals/medal-silver.png" alt="Segundo">
+                                                </ng-container>
+                                                <ng-container *ngIf="part.place === 'tercero'">
+                                                    <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercero">
+                                                </ng-container>
+                                            </ng-container>
                                         </div>
                                     </ng-template>
 
