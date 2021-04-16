@@ -106,8 +106,4 @@ export class PenkaDashboardComponent implements OnInit, OnDestroy {
     }
 
     // shareByMessenger(codePenka): void {}
-
-    back() {
-        this.router.navigate(['/home'],{replaceUrl: true});
-    }
 }
