@@ -45,16 +45,11 @@ export class PenkaMatchGambleComponent implements OnInit {
 
   /* For Penka PRO */
   homeTeam(event): void {
-    this.match.homeTeamScore = event.value;
+    this.match.homeTeamScore = Number(event.value);
   }
 
   visitTeam(event): void {
-    this.match.visitTeamScore = event.value;
-  }
-
-  editGambleScore() {
-    this.gambleService.editGambleHomeScore(this.match.id, this.match.homeTeamScore);
-    this.gambleService.editGambleVisitScore(this.match.id, this.match.visitTeamScore);
+    this.match.visitTeamScore = Number(event.value);
   }
 
   getGambleMedium(): void {

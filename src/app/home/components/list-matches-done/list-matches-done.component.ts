@@ -33,7 +33,8 @@ export class ListMatchesDoneComponent implements OnInit, OnDestroy {
                 takeUntil(this.unsubscribe$)
             ).subscribe(
             res => {
-                this.gambles = res;
+                const today = new Date();
+                this.gambles = res.filter(g => g.status === '2' || g.limitDate.toDate() < today);
             });
     }
 

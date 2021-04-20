@@ -61,7 +61,6 @@ export class New3Component implements OnInit, OnDestroy {
                 this.codePenka = params.codePenka;
             }
         );
-
         if (this.codePenka) {
             this.listMatchesService.getListMatchesTempByCodePenka(this.codePenka)
                 .pipe(
@@ -114,7 +113,6 @@ export class New3Component implements OnInit, OnDestroy {
                 this.newPenka.typePenka = 'template';
                 this.newPenka.codeTemplate = this.codeTemplate;
                 this.newPenka.codeTournament = '';
-                this.newPenka.codeSingleMatch = '';
                 this.newPenka.nParticipants = 1;
                 this.newPenka.codePenka = this.generateCodePenkaForTemplate;
                 this.newPenka.makerId = this.user.uid;
@@ -126,6 +124,7 @@ export class New3Component implements OnInit, OnDestroy {
                 this.newPenka.accumulatedBet = bet;
                 this.newPenka.date = today;
 				this.newPenka.visibility = 'privada';
+                this.newPenka.singleMatchesId = this.listMatchesForTemplate.map(sm => sm.singleMatchId);
 
                 this.penkasService.addPenka(this.newPenka);
 
@@ -178,6 +177,7 @@ export class New3Component implements OnInit, OnDestroy {
                             this.newGamble.saved = false;
                             this.newGamble.scoreAchieved = 0;
                             this.newGamble.startDate = listMatches[i].startDate;
+                            this.newGamble.limitDate = listMatches[i].limitDate;
                             this.gambleService.addGamble(this.newGamble);
                             this.newGamble = {} as Gamble;
                         }
@@ -222,7 +222,6 @@ export class New3Component implements OnInit, OnDestroy {
                 this.newPenka.typePenka = 'singleMatches';
                 this.newPenka.codeTemplate = '';
                 this.newPenka.codeTournament = '';
-                this.newPenka.codeSingleMatch = '';
                 this.newPenka.nParticipants = 1;
                 this.newPenka.codePenka = this.codePenka;
                 this.newPenka.makerId = this.user.uid;
@@ -234,6 +233,7 @@ export class New3Component implements OnInit, OnDestroy {
                 this.newPenka.accumulatedBet = bet;
                 this.newPenka.date = today;
                 this.newPenka.visibility = 'privada';
+                this.newPenka.singleMatchesId = this.listMatchesForSingleMatches.map(sm => sm.singleMatchId);
 
                 this.penkasService.addPenka(this.newPenka);
 
@@ -286,6 +286,7 @@ export class New3Component implements OnInit, OnDestroy {
                             this.newGamble.saved = false;
                             this.newGamble.scoreAchieved = 0;
                             this.newGamble.startDate = listMatches[i].startDate;
+                            this.newGamble.limitDate = listMatches[i].limitDate;
 
                             /* New List Match */
                             this.newListMatch.singleMatchId = listMatches[i].singleMatchId;

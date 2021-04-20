@@ -30,7 +30,7 @@ export class PenkaViewerComponent implements OnInit, OnDestroy {
                 takeUntil(this.unsubscribe$)
             ).subscribe(
             res => {
-                this.myParticipations = res;
+                this.myParticipations = res.filter(p => p.status === '1');
             });
     }
 
@@ -41,6 +41,5 @@ export class PenkaViewerComponent implements OnInit, OnDestroy {
 
     getPicked(codePenka): void {
         this.codePenkaSelected = codePenka;
-        console.log(this.codePenkaSelected);
     }
 }

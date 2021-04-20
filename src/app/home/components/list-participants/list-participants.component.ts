@@ -5,7 +5,6 @@ import {User} from '../../../core/interfaces/user';
 import {Subject} from 'rxjs';
 import {FirebaseApp} from '@angular/fire';
 import {AuthService} from '../../../core/services/auth.service';
-import {Router} from '@angular/router';
 import {ParticipantsService} from '../../../core/services/participants.service';
 import {GambleService} from '../../../core/services/gamble.service';
 import {takeUntil} from 'rxjs/operators';
@@ -19,7 +18,7 @@ export class ListParticipantsComponent implements OnInit, OnDestroy {
 
 
     @Input() codePenka;
-    @Output() selectedUser = new EventEmitter<string>();
+    @Output() selectedUserEvent = new EventEmitter<string>();
 
     /* Array Gamble Accumulated Score */
     gambles = [] as Gamble[];
@@ -28,13 +27,13 @@ export class ListParticipantsComponent implements OnInit, OnDestroy {
     user = {} as User;
     counter = 1;
     singleParticipant = [];
+    selectedUserId: string;
 
     private unsubscribe$ = new Subject<void>();
 
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
-        private router: Router,
         private participantsService: ParticipantsService,
         private gambleService: GambleService) {
     }
@@ -54,30 +53,6 @@ export class ListParticipantsComponent implements OnInit, OnDestroy {
             ).subscribe(
             res => {
                 this.participants = res;
-
-                if (this.counter === 1) {
-
-                    // tslint:disable-next-line:prefer-for-of
-                    for (let i = 0; i < this.participants.length; i++) {
-                        let gambles = [];
-                        let counter = 1;
-                        let accumulatedScore = 0;
-                        this.gambleService.getGambleByGetScore(this.participants[i].userId, this.codePenka).subscribe(
-                            result => {
-                                gambles = result;
-
-                                // tslint:disable-next-line:prefer-for-of
-                                for (let x = 0; x < gambles.length; x++) {
-                                    accumulatedScore = accumulatedScore + gambles[x].scoreAchieved;
-                                }
-                                if (counter === 1) {
-                                    this.participantsService.updateAccumulatedScore(this.participants[i].id, accumulatedScore);
-                                    counter++;
-                                }
-                            }, error => console.log(error));
-                    }
-                }
-                this.counter++;
             });
     }
 
@@ -88,7 +63,8 @@ export class ListParticipantsComponent implements OnInit, OnDestroy {
 
 
     selectUser(userId): void {
-        this.selectedUser.emit(userId);
+        this.selectedUserEvent.emit(userId);
+        this.selectedUserId = userId;
     }
 
 }

@@ -78,7 +78,7 @@
     <div class="real">
 
         <!-- real Score -->
-        <ng-container *ngIf="singleMatch.homeTeamScore != null; else noScoreYet">
+        <ng-container *ngIf="singleMatch.homeTeamScore != null && singleMatch.status === '2'; else noScoreYet">
             <div class="score-real">
                 <p>{{singleMatch.homeTeamScore}}&nbsp;-&nbsp;{{singleMatch.visitTeamScore}}</p>
             </div>

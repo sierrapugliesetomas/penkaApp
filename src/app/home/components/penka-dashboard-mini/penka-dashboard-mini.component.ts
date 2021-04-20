@@ -5,8 +5,8 @@ import {FirebaseApp} from '@angular/fire';
 import {AuthService} from '../../../core/services/auth.service';
 import {Router} from '@angular/router';
 import {PenkasService} from '../../../core/services/penkas.service';
-import {ParticipantsService} from '../../../core/services/participants.service';
 import {takeUntil} from 'rxjs/operators';
+import { GambleService } from 'src/app/core/services/gamble.service';
 
 @Component({
     selector: 'app-penka-dashboard-mini',
@@ -20,6 +20,7 @@ export class PenkaDashboardMiniComponent implements OnInit, OnChanges, OnDestroy
     selectedParticipant: string;
     penka = [];
     user = {} as User;
+    hasOpenGambles: boolean;
 
     private unsubscribe$ = new Subject<void>();
 
@@ -28,7 +29,7 @@ export class PenkaDashboardMiniComponent implements OnInit, OnChanges, OnDestroy
         public auth: AuthService,
         private router: Router,
         private penkasService: PenkasService,
-        private participantsService: ParticipantsService) {
+        private gambleService: GambleService) {
     }
 
     ngOnInit(): void {
@@ -43,6 +44,14 @@ export class PenkaDashboardMiniComponent implements OnInit, OnChanges, OnDestroy
             res => {
                 this.penka = res;
             });
+    
+            this.gambleService.getGambleByUserId(this.user.uid)
+            .pipe(takeUntil(this.unsubscribe$))
+            .subscribe(
+                res => {
+                    let gambles = res.filter(c => (c.codePenka === this.codePenka)); 
+                    this.hasOpenGambles = gambles.find(c => c.status === '1') ? true : false;
+                });
     }
 
     ngOnDestroy(): void {

@@ -3,7 +3,6 @@ import {User} from '../../../core/interfaces/user';
 import {Subject} from 'rxjs';
 import {FirebaseApp} from '@angular/fire';
 import {AuthService} from '../../../core/services/auth.service';
-import {Router} from '@angular/router';
 import {GambleService} from '../../../core/services/gamble.service';
 import {takeUntil} from 'rxjs/operators';
 
@@ -22,7 +21,6 @@ export class ListMatchesWaitComponent implements OnInit, OnDestroy {
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
-        private router: Router,
         private gambleService: GambleService) {
     }
 
@@ -33,7 +31,8 @@ export class ListMatchesWaitComponent implements OnInit, OnDestroy {
                 takeUntil(this.unsubscribe$)
             ).subscribe(
             res => {
-                this.gambles = res;
+                const today = new Date()
+                this.gambles = res.filter(g => g.limitDate.toDate() > today);
             });
     }
 

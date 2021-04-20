@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject} from 'rxjs';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {FirebaseApp} from '@angular/fire';
 import {AuthService} from '../../../core/services/auth.service';
 import {User} from '../../../core/interfaces/user';
@@ -31,7 +31,8 @@ export class GambleComponent implements OnInit, OnDestroy {
         public auth: AuthService,
         private activatedRoute: ActivatedRoute,
         private gambleService: GambleService,
-        private _snackBar: MatSnackBar) {}
+        private _snackBar: MatSnackBar,
+        private router: Router) {}
 
     ngOnInit(): void {
         /* User */
@@ -60,7 +61,7 @@ export class GambleComponent implements OnInit, OnDestroy {
 
     // tslint:disable-next-line:typedef
     back() {
-        this._location.back();
+        this.router.navigate(['/penka/dashboard/' + this.codePenka]).catch();
     }
 
     saveGambles() {
@@ -79,7 +80,7 @@ export class GambleComponent implements OnInit, OnDestroy {
             verticalPosition: 'top',
             panelClass: ['alert-success']
         });
-        this.back();
+        this.back()
     }
 
     saveGamblePro(match): void {
@@ -99,5 +100,9 @@ export class GambleComponent implements OnInit, OnDestroy {
         }
         this.gambleService.updateGamble(match.id, winnerId, draw);
         this.gambleService.editGambleScores(match.id, match.homeTeamScore, match.visitTeamScore);
+    }
+
+    isDueLimitDate(limitDate) {
+        return limitDate.toDate() < new Date(); 
     }
 }

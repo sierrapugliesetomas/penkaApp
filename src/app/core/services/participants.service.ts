@@ -97,7 +97,7 @@ export class ParticipantsService {
     getParticipantLimitByUserId(userId): any {
         return this.afs.collection<Participant>('participants', ref => ref
             .where('userId', '==', userId)
-            .where('status', 'in', ['1', '2'])
+            .where('status', 'in', ['1'])
             .orderBy('date', 'asc')
             .limit(4))
             .snapshotChanges().pipe(map(actions => actions.map(a => {

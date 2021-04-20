@@ -144,13 +144,6 @@
                                         <div class="box">
                                             <ng-container *ngIf="penka.makerId === user.uid">
 
-                                                <ng-container *ngIf="penka.status === '1'">
-                                                    <button mat-button class="btn-finish"
-                                                            (click)="finishPenka(penka.id)">
-                                                        Finalizar Penka
-                                                    </button>
-                                                </ng-container>
-
                                                 <ng-container *ngIf="penka.status === '2'">
                                                     <button mat-button class="btn-toFile" (click)="toFile(penka.id)">
                                                         Archivar
@@ -219,7 +212,7 @@
                             <div class="card-body">
                                 <ul class="list-matches">
                                     <li class="item-matches"
-                                        *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'2'">
+                                        *ngFor="let g of finishedOrDueGambles | filterCodePenka:penka.codePenka">
                                         <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
                                                                         [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
                                     </li>
@@ -246,9 +239,10 @@
                             <div class="card-body">
                                 <ul class="list-matches">
                                     <li class="item-matches"
-                                        *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'1'">
+                                        *ngFor="let g of openGambles | filterCodePenka:penka.codePenka">
                                         <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                        [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
+                                                                        [codePenka]="penka.codePenka">
+                                                                    </app-penka-match-gamble-results>
                                     </li>
                                 </ul>
                             </div>
@@ -257,8 +251,7 @@
                                     <div class="col-lg-7"></div>
                                     <div class="col-lg-5">
                                         <div class="box">
-
-                                            <ng-container *ngIf="penka.status === '1'">
+                                            <ng-container *ngIf="penka.status === '1' && hasOpenGambles">
                                                 <button mat-button class="btn-gamble"
                                                         (click)="playGamble(penka.codePenka)">
                                                     Llenar Resultados
@@ -396,7 +389,7 @@
 
                             <ul class="list-mobile">
                                 <li class="list-item-mobile"
-                                    *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'2'">
+                                    *ngFor="let g of finishedOrDueGambles | filterCodePenka:penka.codePenka">
 
                                     <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
                                                                     [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
@@ -427,7 +420,7 @@
                                     <div class="box">
                                         <ul class="list-mobile">
                                             <li class="list-item-mobile"
-                                                *ngFor="let g of gambles | filterCodePenka:penka.codePenka | filterStatus:'1'">
+                                                *ngFor="let g of openGambles | filterCodePenka:penka.codePenka">
 
                                                 <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
                                                                                 [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
@@ -435,6 +428,7 @@
                                         </ul>
                                     </div>
                                 </div>
+                                <ng-container *ngIf="penka.status === '1' && hasOpenGambles">
                                 <div class="col-xs-12">
                                     <div class="box">
                                         <div class="container-button-mobile">
@@ -445,6 +439,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </ng-container>
                             </div>
                         </mat-expansion-panel>
                     </mat-accordion>

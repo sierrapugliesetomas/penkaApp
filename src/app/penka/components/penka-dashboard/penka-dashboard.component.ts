@@ -18,10 +18,13 @@ import {takeUntil} from 'rxjs/operators';
 export class PenkaDashboardComponent implements OnInit, OnDestroy {
     codePenka: string;
     penkas = [];
-    gambles = [];
+    finishedOrDueGambles = [];
+    openGambles = [];
     participants = [];
     user = {} as User;
     newGamble = {} as Gamble;
+    hasOpenGambles: boolean;
+    today: Date;
     private unsubscribe$ = new Subject<void>();
 
     constructor(
@@ -35,6 +38,7 @@ export class PenkaDashboardComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        this.today = new Date();
         this.user = this.firebase.auth().currentUser;
         this.activatedRoute.params.subscribe(
             (params: Params) => {
@@ -45,7 +49,13 @@ export class PenkaDashboardComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(
                 res => {
-                    this.gambles = res;
+                    const gambles = res.filter(c => (c.codePenka === this.codePenka)); 
+                    // open gambles
+                    this.openGambles = gambles.filter(g => g.status === '1' && g.limitDate.toDate() > this.today);
+                    this.hasOpenGambles = this.openGambles.length > 0;
+
+                    // finished or limit date past gambles
+                    this.finishedOrDueGambles = gambles.filter(g => g.status === '2' || g.limitDate.toDate() < this.today);
                 });
         this.penkasService.getAllPenkasByCodePenka(this.codePenka)
             .pipe(takeUntil(this.unsubscribe$))
@@ -78,15 +88,6 @@ export class PenkaDashboardComponent implements OnInit, OnDestroy {
 
     editGamble(codePenka): any {
         this.router.navigate(['/penka/gambleEdit/' + codePenka]).then();
-    }
-
-    finishPenka(penkaId): any {
-        if (confirm('Desea Finalizar esta Penka?')) {
-            this.penkasService.updateStatus(penkaId, '2');
-            this.participants.forEach(item => {
-                this.participantsService.updateParticipation(item.id, '2');
-            });
-        }
     }
 
     toFile(penkaId): any {

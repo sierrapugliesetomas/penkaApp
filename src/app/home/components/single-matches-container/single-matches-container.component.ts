@@ -40,12 +40,7 @@ export class SingleMatchesContainerComponent implements OnInit, OnDestroy {
                 takeUntil(this.unsubscribe$)
             ).subscribe(
             res => {
-                this.singleMatches = res;
-                this.singleMatches.forEach(item => {
-                    if (this.today >= item.limitDate.toDate()) {
-                        this.singleMatchesService.changeMatchState(item.id, '2');
-                    }
-                });
+                this.singleMatches = res.filter(sm => sm.limitDate.toDate() > this.today);
             });
         this.listMatchesService.getListMatchesTempByCodePenka(this.generateCodePenka)
             .pipe(
