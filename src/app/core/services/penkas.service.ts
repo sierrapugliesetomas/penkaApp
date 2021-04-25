@@ -79,6 +79,19 @@ export class PenkasService {
             );
     }
 
+    getPenkasByCodeArray(codePenka: string[]): any {
+    return this.afs.collection<Penka>('penkas', ref => ref
+            .where('codePenka', 'in', codePenka)
+            .where('status', '==', '1')
+            .orderBy('dateLimit', 'asc'))
+            .snapshotChanges().pipe(map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Penka;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
     addPenka(penka: Penka): any {
         this.penkasCollection.add(penka).catch(error => console.log(error));
     }

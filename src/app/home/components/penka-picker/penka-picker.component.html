@@ -1,42 +1,21 @@
 <div class="desktop">
     <ul class="list-buttons">
-        <li class="item-buttons" *ngFor="let p of myParticipations; let i = index">
-            <ng-container *ngIf="i === 0; else others">
-                <app-penka-picker-button
-                    (pickedPenka)="getPicked($event)"
-                    [codePenka]="p.codePenka"
-                >
-                </app-penka-picker-button>
-            </ng-container>
-
-            <ng-template #others>
-                <app-penka-picker-button
-                    (pickedPenka)="getPicked($event)"
-                    [codePenka]="p.codePenka"
-                >
-                </app-penka-picker-button>
-            </ng-template>
+        <li class="item-buttons" *ngFor="let p of penkas">
+            <button mat-button class="btn-penka" [ngClass]="{'selected': selectedPenka === p.codePenka}" (click)="getPicked(p.codePenka)">
+                {{p.name}}&nbsp;-&nbsp;{{p.accumulatedBet}}$
+            </button>                
         </li>
     </ul>
 </div>
 
-
 <div class="mobile">
-    <select class="selectPicker" name="" id="" (change)="selectPick($event.target)">
-        <ng-container *ngFor="let p of myParticipations; let i = index">
-
-            <ng-container *ngIf="i === 0; else others">
+    <select class="selectPicker" (change)="selectPick($event.target)">
+        <ng-container *ngFor="let p of penkas">
                 <option value="{{p.codePenka}}">
-                    <app-penka-picker-button [codePenka]="p.codePenka"></app-penka-picker-button>
+                    <button mat-button class="btn-penka" (click)="getPicked(p.codePenka)">
+                        {{p.name}}&nbsp;-&nbsp;{{p.accumulatedBet}}$
+                    </button>
                 </option>
-            </ng-container>
-
-            <ng-template #others>
-                <option value="{{p.codePenka}}">
-                    <app-penka-picker-button [codePenka]="p.codePenka"></app-penka-picker-button>
-                </option>
-            </ng-template>
-
         </ng-container>
     </select>
 </div>
