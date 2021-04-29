@@ -55,51 +55,32 @@
                                 <li class="item-participants"
                                     *ngFor="let part of participants; let i = index">
 
-                                    <ng-container *ngIf="part.userId === user.uid; else other">
+                                    <ng-container>
                                         <div class="participant-name">
-                                            <p class="me">{{i + 1}}.&nbsp;{{part.userName}}</p>
+                                            <p [ngClass]="{'me': part.userId === user.uid}">{{i + 1}}.&nbsp;{{part.userName}}</p>
                                         </div>
-                                        <!------------------->
+                                        
                                         <div class="participant-score">
-                                            <p class="me">{{part.accumulatedScore}} pt</p>
+                                            <p [ngClass]="{'me': part.userId === user.uid}">{{part.accumulatedScore}} pt</p>
                                         </div>
                                         <div class="container-place">
                                             <ng-container *ngIf="part.status === '9'">
                                                 <ng-container *ngIf="part.place === 'primero'">
-                                                    <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
+                                                    <img src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
                                                 </ng-container>
                                                 <ng-container *ngIf="part.place === 'segundo'">
-                                                    <img class="medal" src="../../../../assets/images/medals/medal-silver.png" alt="Segundo">
+                                                    <img src="../../../../assets/images/medals/medal-silver.png" alt="Segundo">
                                                 </ng-container>
                                                 <ng-container *ngIf="part.place === 'tercero'">
-                                                    <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercero">
+                                                    <img src="../../../../assets/images/medals/medal-bronze.png" alt="Tercero">
+                                                </ng-container>
+                                                <ng-container *ngIf="part.place === '' || part.place === undefined" class="row">
+                                                    <img class="no-medal" src="../../../../assets/images/medals/medal-bronze.png">
                                                 </ng-container>
                                             </ng-container>
                                         </div>
                                     </ng-container>
 
-                                    <ng-template #other>
-                                        <div class="participant-name">
-                                            <p>{{i + 1}}.&nbsp;{{part.userName}}</p>
-                                        </div>
-                                        <!------------------->
-                                        <div class="participant-score">
-                                            <p>{{part.accumulatedScore}} pt</p>
-                                        </div>
-                                        <div class="container-place">
-                                            <ng-container *ngIf="part.status === '9'">
-                                                <ng-container *ngIf="part.place === 'primero'">
-                                                    <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
-                                                </ng-container>
-                                                <ng-container *ngIf="part.place === 'segundo'">
-                                                    <img class="medal" src="../../../../assets/images/medals/medal-silver.png" alt="Segundo">
-                                                </ng-container>
-                                                <ng-container *ngIf="part.place === 'tercero'">
-                                                    <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercero">
-                                                </ng-container>
-                                            </ng-container>
-                                        </div>
-                                    </ng-template>
 
                                     <ul class="list-horizontal">
                                         <li class="item-horizontal"
@@ -229,49 +210,30 @@
                                 <li class="item-participants"
                                     *ngFor="let part of participants; let i = index">
 
-                                    <ng-container *ngIf="part.userId === user.uid; else other">
-                                        <div class="container-participant">
-                                            <p><span class="me">{{i + 1}}.&nbsp;{{part.userName}}</span></p>
-                                        </div>
-                                        <div class="container-score">
-                                            <p><span class="me">{{part.accumulatedScore}} pt</span></p>
-                                        </div>
+                                    <ng-container >
+                                            <div class="participant-name">
+                                                <p [ngClass]="{'me': part.userId === user.uid}">{{i + 1}}.&nbsp;{{part.userName}}</p>
+                                            </div>
+                                            <div class="participant-score">
+                                                <p [ngClass]="{'me': part.userId === user.uid}">{{part.accumulatedScore}} pt</p>
+                                            </div>
                                         <div class="container-place">
                                             <ng-container *ngIf="part.status === '9'">
                                                 <ng-container *ngIf="part.place === 'primero'">
-                                                    <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
+                                                    <img src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
                                                 </ng-container>
                                                 <ng-container *ngIf="part.place === 'segundo'">
-                                                    <img class="medal" src="../../../../assets/images/medals/medal-silver.png" alt="Segundo">
+                                                    <img src="../../../../assets/images/medals/medal-silver.png" alt="Segundo">
                                                 </ng-container>
                                                 <ng-container *ngIf="part.place === 'tercero'">
-                                                    <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercero">
+                                                    <img src="../../../../assets/images/medals/medal-bronze.png" alt="Tercero">
+                                                </ng-container>
+                                                <ng-container *ngIf="part.place === '' || part.place === undefined" class="row">
+                                                    <img class="no-medal" src="../../../../assets/images/medals/medal-bronze.png">
                                                 </ng-container>
                                             </ng-container>
                                         </div>
                                     </ng-container>
-
-                                    <ng-template #other>
-                                        <div class="container-participant">
-                                            <p>{{i + 1}}.&nbsp;{{part.userName}}</p>
-                                        </div>
-                                        <div class="container-score">
-                                            <p>{{part.accumulatedScore}} pt</p>
-                                        </div>
-                                        <div class="container-place">
-                                            <ng-container *ngIf="part.status === '9'">
-                                                <ng-container *ngIf="part.place === 'primero'">
-                                                    <img class="medal" src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
-                                                </ng-container>
-                                                <ng-container *ngIf="part.place === 'segundo'">
-                                                    <img class="medal" src="../../../../assets/images/medals/medal-silver.png" alt="Segundo">
-                                                </ng-container>
-                                                <ng-container *ngIf="part.place === 'tercero'">
-                                                    <img class="medal" src="../../../../assets/images/medals/medal-bronze.png" alt="Tercero">
-                                                </ng-container>
-                                            </ng-container>
-                                        </div>
-                                    </ng-template>
 
                                     <div>
                                         <ul class="list-gamble">

@@ -67,14 +67,6 @@ export class GridComponent implements OnInit, OnDestroy {
         );
     }
 
-    updatePlace(event, id, userName): void {
-        if (confirm('Desea seleccionar el ' + event.value + ' lugar para: ' + userName)) {
-            this.participantService.updatePlace(id, event.value);
-        } else {
-            this.ngOnInit();
-        }
-    }
-
     ngOnDestroy(): void {
         this.unsubscribe$.next();
         this.unsubscribe$.complete();
