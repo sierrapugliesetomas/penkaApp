@@ -20,6 +20,7 @@ export class JoinComponent implements OnInit, OnDestroy {
     codePenka: string;
     penkaName: string;
     penkas = [];
+    participantsId = [];
     user = {} as User;
 
     private unsubscribe$ = new Subject<void>();
@@ -47,6 +48,15 @@ export class JoinComponent implements OnInit, OnDestroy {
             res => {
                 this.penkas = res;
             });
+    
+        this.participantsService.getAllParticipantByUserId(this.user.uid)
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe(
+            res => {
+                this.participantsId = res.map(p => p.codePenka);
+                this.penkas = this.penkas.filter(penka => !this.participantsId.includes(penka.codePenka));
+            }
+        )
     }
 
     ngOnDestroy(): void {
