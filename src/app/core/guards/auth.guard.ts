@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, NavigationEnd, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthService} from '../services/auth.service';
 import {map, take, tap} from 'rxjs/operators';
@@ -10,7 +10,8 @@ import {map, take, tap} from 'rxjs/operators';
 export class AuthGuard implements CanActivate {
 
 
-    constructor(private auth: AuthService, private router: Router) {
+    constructor(private auth: AuthService, 
+                private router: Router) {
 
     }
 
@@ -23,9 +24,14 @@ export class AuthGuard implements CanActivate {
             map(user => !!user),
             tap(loggedIn => {
                 if (!loggedIn) {
-                    console.log('Acceso denegado');
                     alert('Debes iniciar sesion para ingresar');
-                    this.router.navigate(['/login']);
+                    this.router.events
+                        .pipe(take(1))
+                        .subscribe((event: NavigationEnd) => {
+                            // saves previous url
+                            localStorage.setItem('redirectTo', event.url);
+                            this.router.navigate(['/login']);
+                    });
                 }
             })
         );
