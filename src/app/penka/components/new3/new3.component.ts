@@ -124,7 +124,7 @@ export class New3Component implements OnInit, OnDestroy {
                 this.newPenka.accumulatedBet = bet;
                 this.newPenka.date = today;
 				this.newPenka.visibility = 'privada';
-                this.newPenka.singleMatchesId = this.listMatchesForTemplate.map(sm => sm.singleMatchId);
+                // No se guardan los singleMatchId si es un template
 
                 this.penkasService.addPenka(this.newPenka);
 
