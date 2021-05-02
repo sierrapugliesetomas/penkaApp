@@ -57,7 +57,7 @@ export class GridComponent implements OnInit, OnDestroy {
             res => {
                 this.gambles = res;
             });
-        this.singleMatchesService.getMatchesPublic()
+        this.singleMatchesService.getMatchesPublicAndFinish()
             .pipe(
                 takeUntil(this.unsubscribe$)
             ).subscribe(

@@ -29,6 +29,20 @@ export class SingleMatchesService {
     getMatchesPublic(): any {
         return this.matches = this.afs.collection<SingleMatch>('singleMatches', ref => ref
             .where('publish', '==', true)
+            .where('status', '==', '1')
+            .orderBy('startDate', 'asc'))
+            .snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as SingleMatch;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
+    getMatchesPublicAndFinish(): any {
+        return this.matches = this.afs.collection<SingleMatch>('singleMatches', ref => ref
+            .where('publish', '==', true)
             .where('status', 'in', ['1','2'])
             .orderBy('startDate', 'asc'))
             .snapshotChanges().pipe(
