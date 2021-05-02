@@ -29,7 +29,7 @@ export class SingleMatchesService {
     getMatchesPublic(): any {
         return this.matches = this.afs.collection<SingleMatch>('singleMatches', ref => ref
             .where('publish', '==', true)
-            .where('status', '==', '1')
+            .where('status', 'in', ['1','2'])
             .orderBy('startDate', 'asc'))
             .snapshotChanges().pipe(
                 map(actions => actions.map(a => {
