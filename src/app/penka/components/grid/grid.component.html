@@ -64,7 +64,6 @@
                                             <p [ngClass]="{'me': part.userId === user.uid}">{{part.accumulatedScore}} pt</p>
                                         </div>
                                         <div class="container-place">
-                                            <ng-container *ngIf="part.status === '9'">
                                                 <ng-container *ngIf="part.place === 'primero'">
                                                     <img src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
                                                 </ng-container>
@@ -77,7 +76,6 @@
                                                 <ng-container *ngIf="part.place === '' || part.place === undefined" class="row">
                                                     <img class="no-medal" src="../../../../assets/images/medals/medal-bronze.png">
                                                 </ng-container>
-                                            </ng-container>
                                         </div>
                                     </ng-container>
 
@@ -212,7 +210,6 @@
                                                 <p [ngClass]="{'me': part.userId === user.uid}">{{part.accumulatedScore}} pt</p>
                                             </div>
                                         <div class="container-place">
-                                            <ng-container *ngIf="part.status === '9'">
                                                 <ng-container *ngIf="part.place === 'primero'">
                                                     <img src="../../../../assets/images/medals/medal-gold.png" alt="Primero">
                                                 </ng-container>
@@ -225,7 +222,6 @@
                                                 <ng-container *ngIf="part.place === '' || part.place === undefined" class="row">
                                                     <img class="no-medal" src="../../../../assets/images/medals/medal-bronze.png">
                                                 </ng-container>
-                                            </ng-container>
                                         </div>
                                     </ng-container>
 
