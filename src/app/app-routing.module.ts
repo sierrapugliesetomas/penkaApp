@@ -13,10 +13,10 @@ const routes: Routes = [
         loadChildren: () => import('./home/modules/home.module').then(m => m.HomeModule)
     },
     // INBOX
-    {
-        path: 'inbox',
-        loadChildren: () => import('./inbox/modules/inbox.module').then(m => m.InboxModule)
-    },
+    // {
+    //     path: 'inbox',
+    //     loadChildren: () => import('./inbox/modules/inbox.module').then(m => m.InboxModule)
+    // },
     // PENKA
     {
         path: 'penka',
