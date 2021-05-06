@@ -93,7 +93,7 @@
                                                     <ng-container *ngIf="ga.homeTeamScore != null; else noScoreYet">
                                                         <p class="header-font">{{ga.homeTeamScore}}
                                                             - {{ga.visitTeamScore}}</p>
-                                                        <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
+                                                        <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>
                                                     </ng-container>
 
                                                     <ng-template #noScoreYet>
@@ -106,16 +106,14 @@
                                                             *ngIf="ga.winnerTeamId || ga.draw; else noScoreYet">
                                                         <ng-container *ngIf="ga.winnerTeamId === ga.homeTeamId">
                                                             <p class="header-font">L</p>
-                                                            <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
+                                                            <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>
                                                         </ng-container>
                                                         <ng-container *ngIf="ga.winnerTeamId === ga.visitTeamId">
                                                             <p class="header-font">V</p>
-                                                            <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                        </ng-container>
+                                                            <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                        </ng-container>
                                                         <ng-container *ngIf="ga.draw === true">
                                                             <p class="header-font">E</p>
-                                                            <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                        </ng-container>
+                                                            <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                        </ng-container>
                                                     </ng-container>
 
                                                     <ng-template #noScoreYet>
@@ -132,8 +130,7 @@
                                                     <ng-container *ngIf="ga.homeTeamScore != null; else noScoreYet">
                                                         <p class="header-font">{{ga.homeTeamScore}}
                                                             - {{ga.visitTeamScore}}</p>
-                                                        <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                    </ng-container>
+                                                        <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                    </ng-container>
 
                                                     <ng-template #noScoreYet>
                                                         <p class="header-font">-</p>
@@ -144,17 +141,14 @@
 
                                                     <ng-container *ngIf="ga.winnerTeamId === ga.homeTeamId">
                                                         <p class="header-font">L</p>
-                                                        <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                    </ng-container>
+                                                        <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                    </ng-container>
                                                     <ng-container
                                                             *ngIf="ga.winnerTeamId === ga.visitTeamId">
                                                         <p class="header-font">V</p>
-                                                        <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                    </ng-container>
+                                                        <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                    </ng-container>
                                                     <ng-container *ngIf="ga.draw === true">
                                                         <p class="header-font">E</p>
-                                                        <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                    </ng-container>
+                                                        <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                    </ng-container>
                                                 </ng-container>
                                             </ng-template>
 
@@ -247,7 +241,7 @@
                                                         <ng-container *ngIf="ga.homeTeamScore != null; else noScoreYet">
                                                             <p class="header-font">{{ga.homeTeamScore}}
                                                                 - {{ga.visitTeamScore}}</p>
-                                                            <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
+                                                            <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>
                                                         </ng-container>
 
                                                         <ng-template #noScoreYet>
@@ -260,16 +254,13 @@
                                                                 *ngIf="ga.winnerTeamId || ga.draw; else noScoreYet">
                                                             <ng-container *ngIf="ga.winnerTeamId === ga.homeTeamId">
                                                                 <p class="header-font">L</p>
-                                                                <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                            </ng-container>
+                                                                <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                            </ng-container>
                                                             <ng-container *ngIf="ga.winnerTeamId === ga.visitTeamId">
                                                                 <p class="header-font">V</p>
-                                                                <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                            </ng-container>
+                                                                <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                            </ng-container>
                                                             <ng-container *ngIf="ga.draw === true">
                                                                 <p class="header-font">E</p>
-                                                                <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                            </ng-container>
+                                                                <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                            </ng-container>
                                                         </ng-container>
 
                                                         <ng-template #noScoreYet>
@@ -288,7 +279,7 @@
                                                             <ng-container *ngIf="ga.startTime <= time;">
                                                                 <p class="header-font">{{ga.homeTeamScore}}
                                                                     - {{ga.visitTeamScore}}</p>
-                                                                <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
+                                                                    <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>
                                                             </ng-container>
                                                             <ng-container *ngIf="ga.startTime > time;">
                                                                 <p class="header-font">-</p>
@@ -298,8 +289,7 @@
                                                         <ng-container *ngIf="ga.startDate < date">
                                                             <p class="header-font">{{ga.homeTeamScore}}
                                                                 - {{ga.visitTeamScore}}</p>
-                                                            <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                        </ng-container>
+                                                                <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                        </ng-container>
 
                                                         <ng-container *ngIf="ga.startDate > date">
                                                             <p class="header-font">-</p>
@@ -312,33 +302,27 @@
                                                             <ng-container *ngIf="ga.startTime <= time;">
                                                                 <ng-container *ngIf="ga.winnerTeamId === ga.homeTeamId">
                                                                     <p class="header-font">L</p>
-                                                                    <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                                </ng-container>
+                                                                    <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                                </ng-container>
                                                                 <ng-container
                                                                         *ngIf="ga.winnerTeamId === ga.visitTeamId">
                                                                     <p class="header-font">V</p>
-                                                                    <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                                </ng-container>
+                                                                    <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                                </ng-container>
                                                                 <ng-container *ngIf="ga.draw === true">
                                                                     <p class="header-font">E</p>
-                                                                    <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                                </ng-container>
+                                                                    <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                                </ng-container>
                                                             </ng-container>
                                                         </ng-container>
 
                                                         <ng-container *ngIf="ga.startDate < date; else noneDate">
                                                             <ng-container *ngIf="ga.winnerTeamId === ga.homeTeamId">
                                                                 <p class="header-font">L</p>
-                                                                <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                            </ng-container>
+                                                                <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                            </ng-container>
                                                             <ng-container *ngIf="ga.winnerTeamId === ga.visitTeamId">
                                                                 <p class="header-font">V</p>
-                                                                <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                            </ng-container>
+                                                                <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                            </ng-container>
                                                             <ng-container *ngIf="ga.draw === true">
                                                                 <p class="header-font">E</p>
-                                                                <p class="score-achieved">{{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                            </ng-container>
+                                                                <p [ngClass]="getClass(ga.scoreAchieved)">{{ga.scoreAchieved}}&nbsp;puntos</p>                                                            </ng-container>
                                                         </ng-container>
 
                                                         <ng-template #noneDate>

@@ -154,6 +154,14 @@
   .no-medal {
     visibility: hidden;
   }
+
+  .score-5 {
+    color: green;
+  }
+  
+  .score-3 {
+    color: rgb(234, 248, 107)
+  }
 }
 
 /* DESKTOP 720 */
@@ -299,5 +307,13 @@
   }
   .gambles {
     margin-left: 25px;
+  }
+
+  .score-5 {
+    color: green;
+  }
+  
+  .score-3 {
+    color: rgb(234, 248, 107)
   }
 }
