@@ -60,7 +60,11 @@
 @media only screen and (min-width: 1280px) and (orientation: landscape) {
   .list-buttons {
     padding: 0;
+    padding-right: 10%;
     margin: 0;
+    height: 350px;
+    overflow-y: auto;
+    overflow-scrolling: auto;
   }
   .item-buttons {
     padding: 0;
@@ -88,7 +92,12 @@
 @media only screen and (min-width: 1900px) and (orientation: landscape) {
   .list-buttons {
     padding: 0;
+    padding-right: 10%;
     margin: 0;
+    height: 350px;
+    overflow-y: auto;
+    width:400px;
+    overflow-scrolling: auto;
   }
   .item-buttons {
     padding: 0;

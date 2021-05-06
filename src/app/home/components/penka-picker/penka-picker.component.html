@@ -1,5 +1,5 @@
 <div class="desktop">
-    <ul class="list-buttons">
+    <ul class="list-buttons list-vertical">
         <li class="item-buttons" *ngFor="let p of penkas">
             <button mat-button class="btn-penka" [ngClass]="{'selected': selectedPenka === p.codePenka}" (click)="getPicked(p.codePenka)">
                 {{p.name}}&nbsp;-&nbsp;{{p.accumulatedBet}}$
