@@ -47,7 +47,7 @@
   }
 
   .header-participants {
-    width: 180px;
+    width: 187px;
     padding: 0 0 0 5px;
   }
 
@@ -102,6 +102,7 @@
     padding: 10px 0 0 0;
     display: inline-flex;
     border-bottom: 1px solid #737171;
+    width: 100%
   }
 
   .container-participant {
@@ -161,6 +162,34 @@
   
   .score-3 {
     color: rgb(234, 248, 107)
+  }
+
+  .participant-name {
+    width: 175px;
+    height: 20px;
+    display: inline-block;
+    padding:10px 0 0 0;
+  }
+  .participant-name p {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: normal;
+    padding: 0;
+  }
+  .participant-score {
+    width: 50px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    // margin-left: 5px;
+    padding: 10px 0 0 0;
+  }
+  .participant-score p {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: normal;
   }
 }
 
@@ -228,7 +257,6 @@
     border-bottom-right-radius: 25px;
     display: inline-flex;
     width: 100%;
-
   }
 
   .list-participants {
@@ -238,10 +266,11 @@
   }
 
   .item-participants {
-    padding: 10px 0 0 0;
+    padding: 30px 0 0 0;
     margin: 0;
     border-bottom: 1px solid #737171;
     display: inline-flex;
+    width: 99.5%
   }
 
   .participant-name {
