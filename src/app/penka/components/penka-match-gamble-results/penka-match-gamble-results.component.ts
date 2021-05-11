@@ -31,7 +31,6 @@ export class PenkaMatchGambleResultsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        debugger;
         this.user = this.firebase.auth().currentUser;
         this.singleMatchService.getMatchById(this.match.singleMatchId).subscribe(
             res => this.singleMatch = res,

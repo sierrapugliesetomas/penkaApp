@@ -6,24 +6,15 @@
     <div class="desktop">
         <div class="container">
             <div class="row">
-                <div class="col-5">
+                <div class="col-sm-10">
                     <div class="box">
-                        <p class="section-title">Invita a tus amigos a participar:</p>
+                        <span class="section-title">Invita a tus amigos a participar:</span>
+                        &nbsp;<span [cdkCopyToClipboard]="penka.codePenka" class="codePenka">{{penka.codePenka}}</span>
+                        &nbsp;<img class="social-img box" (click)="shareByWhatsapp(penka.codePenka)"
+                                 src="../../../../assets/images/social/whatsapp.png" alt="whatsapp">
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="box">
-                        <img class="social-img" (click)="shareByWhatsapp(penka.codePenka)"
-                             src="../../../../assets/images/social/whatsapp.png" alt="whatsapp">
-
-                        <!-- <a target="_blank" href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=tuamigo@gmail.com&subject=Unete a mi Penka&body=Hola! Juega conmigo una Penka. Solo ingresa a https://penkapro.com/penka/join/{{penka.codePenka}} y únete!">
-                            <img class="social-img" src="../../../../assets/images/social/gmail.png" alt="gmail">
-                        </a> -->
-                        <!-- <img class="social-img" (click)="shareByMessenger(penka.codePenka)"
-                             src="../../../../assets/images/social/messenger.png" alt="messenger"> -->
-                    </div>
-                </div>
-                <div class="col-lg-2">
+                <div class="col-sm-2">
                     <div class="box">
                         <app-button-back></app-button-back>
                     </div>
