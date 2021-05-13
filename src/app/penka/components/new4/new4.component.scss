@@ -7,6 +7,7 @@
     font-style: normal;
     font-size: 16px;
     color: #FDA328;
+    cursor: pointer;
   }
   /* --------- Cards ---------- */
   /* ---- Card Information ---- */
@@ -112,6 +113,12 @@
   .btn-whatsapp {
     color: #FDA328;
   }
+  ::ng-deep .alert-success {
+    background-color: #27ae60;
+    color: white;
+    font-style: normal;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
 }
 
 /* DESKTOP 720P */
@@ -122,6 +129,7 @@
     font-style: normal;
     font-size: 16px;
     color: #FDA328;
+    cursor: pointer;
   }
   .social-img {
     width: 25px;
@@ -155,6 +163,12 @@
     padding: 0 20px 0 20px;
     margin: 0 0 0 10px;
   }
+  ::ng-deep .alert-success {
+    background-color: #27ae60;
+    color: white;
+    font-style: normal;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
 }
 
 /* DESKTOP 1080P */
@@ -165,6 +179,7 @@
     font-style: normal;
     font-size: 16px;
     color: #FDA328;
+    cursor: pointer;
   }
   .card-body{
     height: 350px;
@@ -197,5 +212,11 @@
     float: right;
     padding: 0 20px 0 20px;
     margin: 0 0 0 10px;
+  }
+  ::ng-deep .alert-success {
+    background-color: #27ae60;
+    color: white;
+    font-style: normal;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
   }
 }

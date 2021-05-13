@@ -9,6 +9,7 @@ import {PenkasService} from '../../../core/services/penkas.service';
 import {ParticipantsService} from '../../../core/services/participants.service';
 import {GambleService} from '../../../core/services/gamble.service';
 import {takeUntil} from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-penka-dashboard',
@@ -34,7 +35,9 @@ export class PenkaDashboardComponent implements OnInit, OnDestroy {
         private activatedRoute: ActivatedRoute,
         private penkasService: PenkasService,
         private participantsService: ParticipantsService,
-        private gambleService: GambleService) {
+        private gambleService: GambleService,
+        private _snackBar: MatSnackBar,
+        ) {
     }
 
     ngOnInit(): void {
@@ -105,5 +108,14 @@ export class PenkaDashboardComponent implements OnInit, OnDestroy {
 	    window.open('https://web.whatsapp.com/send?text=' + msg);
     }
 
-    // shareByMessenger(codePenka): void {}
+    showCopyNotification(): void {
+        const message = 'Enlace copiado';
+        const action = '';
+        this._snackBar.open(message, action, {
+            duration: 2000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass: ['alert-success']
+        });
+    }
 }

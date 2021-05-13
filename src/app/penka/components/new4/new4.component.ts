@@ -7,6 +7,7 @@ import {User} from '../../../core/interfaces/user';
 import {AuthService} from '../../../core/services/auth.service';
 import {FirebaseApp} from '@angular/fire';
 import {takeUntil} from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-new4',
@@ -29,7 +30,9 @@ export class New4Component implements OnInit, OnDestroy {
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private listMatchesService: ListMatchesService,
-        private penkasService: PenkasService) {
+        private penkasService: PenkasService,
+        private _snackBar: MatSnackBar,
+        ) {
     }
 
     ngOnInit(): void {
@@ -74,6 +77,15 @@ export class New4Component implements OnInit, OnDestroy {
 	    window.open('https://web.whatsapp.com/send?text=' + msg);
     }
 
-    // shareByMessenger(codePenka): void {}
+    showCopyNotification(): void {
+        const message = 'Enlace copiado';
+        const action = '';
+        this._snackBar.open(message, action, {
+            duration: 2000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass: ['alert-success']
+        });
+    }
 
 }
