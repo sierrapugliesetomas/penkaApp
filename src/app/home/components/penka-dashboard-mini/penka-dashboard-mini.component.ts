@@ -44,14 +44,15 @@ export class PenkaDashboardMiniComponent implements OnInit, OnChanges, OnDestroy
             res => {
                 this.penka = res;
             });
-    
+        if(this.user.uid != undefined) {
             this.gambleService.getGambleByUserId(this.user.uid)
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe(
-                res => {
-                    let gambles = res.filter(c => (c.codePenka === this.codePenka)); 
-                    this.hasOpenGambles = gambles.find(c => c.status === '1') ? true : false;
+                .pipe(takeUntil(this.unsubscribe$))
+                .subscribe(
+                    res => {
+                        let gambles = res.filter(c => (c.codePenka === this.codePenka)); 
+                        this.hasOpenGambles = gambles.find(c => c.status === '1') ? true : false;
                 });
+            }
     }
 
     ngOnDestroy(): void {
