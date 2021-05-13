@@ -22,7 +22,7 @@
             </ng-template>
         </div>
         <div class="gamble-container">
-            <ng-container *ngIf="singleMatch$ | async as singleMatch; else noScoreYet">
+            <ng-container *ngIf="singleMatch?.homeTeamScore != null; else noScoreYet">
                 <div class="real-score">
                     <p>{{singleMatch.homeTeamScore}}</p>
                     <p>-</p>

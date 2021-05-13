@@ -1,7 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {SingleMatchesService} from '../../../core/services/single-matches.service';
 import {Subject} from 'rxjs';
-import {takeUntil} from "rxjs/operators";
+import {share, takeUntil} from "rxjs/operators";
 
 @Component({
     selector: 'app-match-mini-gamble',
@@ -18,7 +18,8 @@ export class MatchMiniGambleComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.singleMatchesService.getMatchById(this.match.id)
+        // this.singleMatch = this.singleMatchesService.getMatchById(this.match.singleMatchId);
+        this.singleMatchesService.getMatchById(this.match.singleMatchId)
             .pipe(
                 takeUntil(this.unsubscribe$)
             ).subscribe(
