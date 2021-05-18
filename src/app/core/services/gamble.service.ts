@@ -30,7 +30,9 @@ export class GambleService {
     getGambleByCodePenka(codePenka): any {
         return this.afs.collection<Gamble>('gambles', ref => ref
             .where('codePenka', '==', codePenka)
-            .orderBy('startDate', 'asc'))
+            .orderBy('startDate', 'asc')
+            .orderBy('homeTeamAlias', 'desc')
+            .orderBy('visitTeamAlias','desc'))
             .snapshotChanges().pipe(map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as Gamble;
                     const id = a.payload.doc.id;

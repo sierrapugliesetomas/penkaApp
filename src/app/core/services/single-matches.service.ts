@@ -44,7 +44,9 @@ export class SingleMatchesService {
         return this.matches = this.afs.collection<SingleMatch>('singleMatches', ref => ref
             .where('publish', '==', true)
             .where('status', 'in', ['1','2'])
-            .orderBy('startDate', 'asc'))
+            .orderBy('startDate', 'asc')
+            .orderBy('homeTeamAlias', 'desc')
+            .orderBy('visitTeamAlias','desc'))
             .snapshotChanges().pipe(
                 map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as SingleMatch;
