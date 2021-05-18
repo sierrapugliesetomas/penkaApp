@@ -18,7 +18,6 @@ export class MatchMiniGambleComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        // this.singleMatch = this.singleMatchesService.getMatchById(this.match.singleMatchId);
         this.singleMatchesService.getMatchById(this.match.singleMatchId)
             .pipe(
                 takeUntil(this.unsubscribe$)
