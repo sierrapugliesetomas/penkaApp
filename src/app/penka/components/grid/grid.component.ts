@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {User} from '../../../core/interfaces/user';
 import {Subject} from 'rxjs';
 import {FirebaseApp} from '@angular/fire';
@@ -8,6 +8,7 @@ import {SingleMatchesService} from '../../../core/services/single-matches.servic
 import {ParticipantsService} from '../../../core/services/participants.service';
 import {GambleService} from '../../../core/services/gamble.service';
 import {takeUntil} from 'rxjs/operators';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
     selector: 'app-grid',
@@ -26,13 +27,16 @@ export class GridComponent implements OnInit, OnDestroy {
     private unsubscribe$ = new Subject<void>();
     today = new Date();
 
+    private listItemsRef: NodeListOf<Element>;
+
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
         private activatedRoute: ActivatedRoute,
         private singleMatchesService: SingleMatchesService,
         private participantService: ParticipantsService,
-        private gamblesService: GambleService) {
+        private gamblesService: GambleService,
+        @Inject(DOCUMENT) private _document: HTMLDocument) {
         this.user = this.firebase.auth().currentUser;
     }
 
@@ -55,6 +59,7 @@ export class GridComponent implements OnInit, OnDestroy {
             ).subscribe(
             res => {
                 this.gambles = res;
+                this.listItemsRef = this._document.querySelectorAll('ul.list-horizontal');
             });
         this.singleMatchesService.getMatchesPublicAndFinish()
             .pipe(
@@ -64,6 +69,12 @@ export class GridComponent implements OnInit, OnDestroy {
                 this.singleMatches = res;
             }
         );
+    }
+
+    updateScroll($event): void {
+        this.listItemsRef.forEach(ref => {
+            ref.scrollLeft = $event.srcElement.scrollLeft;
+        });
     }
 
     getClass(score): string {

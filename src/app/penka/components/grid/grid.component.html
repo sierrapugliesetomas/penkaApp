@@ -26,7 +26,7 @@
                                 <p class="header-font">Puntos</p>
                             </div>
 
-                            <ul class="list-horizontal">
+                            <ul class="list-horizontal" (scroll)="updateScroll($event)">
                                 <li class="item-horizontal" *ngFor="let g of gambles | filterUserId:user.uid">
                                     <ng-container
                                         *ngFor="let sm of singleMatches | filterId:g.singleMatchId; let i = index">
@@ -86,7 +86,7 @@
                                     </ng-container>
 
 
-                                    <ul class="list-horizontal gambles">
+                                    <ul class="list-horizontal gambles" (scroll)="updateScroll($event)">
                                         <li class="item-horizontal"
                                             *ngFor="let ga of gambles | filterUserId:part.userId; let x = index">
 
