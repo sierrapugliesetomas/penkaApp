@@ -1,3 +1,15 @@
+.btn-continue {
+  background-color: #FDA328;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  font-size: 12px;
+  float: right;
+  padding: 0 20px 0 20px;
+  margin: 0 0 0 10px;
+}
+
+
 /* DESKTOP 720p */
 @media only screen and (min-width: 1280px) and (orientation: landscape) {
   .btn-continue {
