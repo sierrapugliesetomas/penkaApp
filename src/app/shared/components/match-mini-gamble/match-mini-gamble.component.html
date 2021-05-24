@@ -2,6 +2,7 @@
     <div class="match-container">
         <div class="date-container">
             <p class="date">{{match.startDate.toDate() | date:'MMM dd'}}&nbsp; - &nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+            <p>{{singleMatch.competition}}</p>
         </div>
         <div class="teams-container">
             <img class="team-flag" alt="{{match.homeTeamAlias}}" src="{{match.homeTeamFlag}}">
@@ -59,6 +60,7 @@
     <div class="match-container">
         <div class="date-container">
             <p class="date">{{match.startDate.toDate() | date:'MMM dd'}}&nbsp; - &nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+            <p>{{singleMatch.competition}}</p>
         </div>
         <div class="teams-container">
             <!-- Home Team -->
