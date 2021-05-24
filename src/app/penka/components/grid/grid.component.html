@@ -205,8 +205,16 @@
                                             <ng-container *ngIf="i === 0">
                                                 <p class="header-font">{{sm.homeTeamAlias}} &nbsp; -
                                                     &nbsp; {{sm.visitTeamAlias}}</p>
-                                                <p class="score-font">{{sm.homeTeamScore}} &nbsp; -
-                                                    &nbsp; {{sm.visitTeamScore}}</p>
+    
+                                                <ng-container *ngIf="sm.status === '1'; else score">
+                                                    <p class="score-fonts">{{sm.startDate.toDate() | date:'MMM dd'}}
+                                                        - {{sm.startDate.toDate() | date:'HH:mm'}}</p>
+                                                </ng-container>
+    
+                                                <ng-template #score>
+                                                    <p class="score-font">{{sm.homeTeamScore}}&nbsp; -
+                                                        &nbsp; {{sm.visitTeamScore}}</p>
+                                                </ng-template>
                                             </ng-container>
                                         </ng-container>
                                     </li>
