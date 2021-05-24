@@ -59,7 +59,7 @@ export class GridComponent implements OnInit, OnDestroy {
             ).subscribe(
             res => {
                 this.gambles = res;
-                this.listItemsRef = this._document.querySelectorAll('ul.list-horizontal');
+                this.listItemsRef = this._document.querySelectorAll('ul.list-horizontal'); // ToDo: esto quizas no deba ir ubicado aca
             });
         this.singleMatchesService.getMatchesPublicAndFinish()
             .pipe(

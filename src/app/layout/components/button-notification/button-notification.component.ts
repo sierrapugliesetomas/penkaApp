@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {takeUntil} from 'rxjs/operators';
+import {first, takeUntil} from 'rxjs/operators';
 import {PenkasService} from '../../../core/services/penkas.service';
 import {Subject} from 'rxjs';
 import {Gamble} from '../../../core/interfaces/gamble';
@@ -91,7 +91,7 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
             this.penkasService.getPenkaById(penkaId).subscribe(
                 res => {
                     penka = res;
-
+                    
                     if (counter === 1) {
                         /* Verified is available participants limit */
                         if (penka.limitParticipants > penka.nParticipants) {
@@ -107,6 +107,7 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
                                 /* Update list matches and add gambles */
                                 let listMatches = [];
                                 this.listMatchesService.getListMatchesByCodeTemplate(codeTemplate)
+                                    .pipe(first())
                                     .subscribe(
                                         results => {
                                             listMatches = results;
@@ -151,10 +152,11 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
                                 /* Update list matches and add gambles */
                                 let listMatches = [];
                                 this.listMatchesService.getListMatchesByCodePenka(codePenka)
+                                    .pipe(first())
                                     .subscribe(
                                         results => {
                                             listMatches = results;
-
+                                            
                                             // tslint:disable-next-line:prefer-for-of
                                             for (let i = 0; i < listMatches.length; i++) {
                                                 /**************/
