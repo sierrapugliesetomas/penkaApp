@@ -44,7 +44,7 @@
                     <div class="box">
                         <label>
                             <input type="text" class="search-match" placeholder="Buscar por Equipo, Liga o Competición."
-                                   [(ngModel)]="term">
+                                [(ngModel)]="term">
                         </label>
                     </div>
                 </div>
@@ -90,8 +90,7 @@
 
                             </p>
                             <ul class="list-horizontal">
-                                <li class="item-horizontal"
-                                    *ngFor="let match of listMatches">
+                                <li class="item-horizontal" *ngFor="let match of listMatches">
                                     <app-single-match-picked [match]="match"></app-single-match-picked>
                                 </li>
                             </ul>
@@ -138,6 +137,9 @@
 <!-- MOBILE -->
 <div class="mobile">
     <div class="container">
+        <div class="mb-2 box">
+            <app-button-back></app-button-back>
+        </div>
         <ng-container *ngIf="type === 'templates'">
             <div class="row">
                 <div class="box">
@@ -173,7 +175,7 @@
                     <div class="box">
                         <label>
                             <input type="text" class="search-match" placeholder="Buscar Equipo, Liga o Competición."
-                                   [(ngModel)]="term">
+                                [(ngModel)]="term">
                         </label>
                     </div>
                 </div>
@@ -213,8 +215,7 @@
 
                             </p>
                             <ul class="list-horizontal">
-                                <li class="item-horizontal"
-                                    *ngFor="let match of listMatches">
+                                <li class="item-horizontal" *ngFor="let match of listMatches">
                                     <app-single-match-picked [match]="match"></app-single-match-picked>
                                 </li>
                             </ul>

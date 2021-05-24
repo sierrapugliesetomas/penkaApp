@@ -46,9 +46,8 @@
                                         <mat-form-field appearance="fill">
                                             <label>
                                                 <input [(ngModel)]="newPenka.name" matInput
-                                                       placeholder="Escribe el nombre de tu Penka."
-                                                       maxlength="25" 
-                                                       autocomplete="off">
+                                                    placeholder="Escribe el nombre de tu Penka." maxlength="25"
+                                                    autocomplete="off">
                                             </label>
                                         </mat-form-field>
                                     </div>
@@ -61,8 +60,7 @@
                                     <div class="box">
                                         <p class="label">Formato </p>
                                         <mat-button-toggle-group [(ngModel)]="newPenka.formatName"
-                                                                 aria-label="Font Style"
-                                                                 name="fontStyle">
+                                            aria-label="Font Style" name="fontStyle">
                                             <mat-button-toggle value="PRO">PRO</mat-button-toggle>
                                             <mat-button-toggle value="MEDIUM">MEDIUM</mat-button-toggle>
                                         </mat-button-toggle-group>
@@ -169,7 +167,8 @@
                                         <mat-form-field appearance="fill">
                                             <label>
                                                 <input type="number" [(ngModel)]="newPenka.limitParticipants" matInput
-                                                       placeholder="Escribe aquí el número de participantes." min="2" autocomplete="off">
+                                                    placeholder="Escribe aquí el número de participantes." min="2"
+                                                    autocomplete="off">
                                             </label>
                                         </mat-form-field>
                                     </div>
@@ -184,7 +183,8 @@
                                         <mat-form-field appearance="fill">
                                             <mat-label>Elije una fecha:</mat-label>
                                             <mat-label>Elije una fecha:</mat-label>
-                                            <input matInput [(ngModel)]="newPenka.dateLimit" [matDatepicker]="picker" [min]="minDate" autocomplete="off">
+                                            <input matInput [(ngModel)]="newPenka.dateLimit" [matDatepicker]="picker"
+                                                [min]="minDate" autocomplete="off">
                                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                             <mat-datepicker #picker></mat-datepicker>
                                         </mat-form-field>
@@ -243,8 +243,15 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
+                    <app-button-back></app-button-back>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
                     <div class="form-container">
-
                         <!-- NAME -->
                         <div class="row">
                             <div class="col-xs-12">
@@ -256,9 +263,8 @@
                                 <div class="box">
                                     <mat-form-field appearance="fill">
                                         <input [(ngModel)]="newPenka.name" matInput
-                                               placeholder="Escribe el nombre de tu Penka."
-                                               maxlength="25"
-                                               autocomplete="off">
+                                            placeholder="Escribe el nombre de tu Penka." maxlength="25"
+                                            autocomplete="off">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -274,7 +280,7 @@
                             <div class="col-xs-12">
                                 <div class="box">
                                     <mat-button-toggle-group [(ngModel)]="newPenka.formatName" aria-label="Font Style"
-                                                             name="fontStyle">
+                                        name="fontStyle">
                                         <mat-button-toggle value="PRO">PRO</mat-button-toggle>
                                         <mat-button-toggle value="MEDIUM">MEDIUM</mat-button-toggle>
                                     </mat-button-toggle-group>
@@ -403,7 +409,8 @@
                             <div class="col-xs-12">
                                 <div class="box">
                                     <mat-form-field appearance="fill">
-                                        <input type="number" [(ngModel)]="newPenka.limitParticipants" autocomplete="off" matInput>
+                                        <input type="number" [(ngModel)]="newPenka.limitParticipants" autocomplete="off"
+                                            matInput>
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -420,7 +427,8 @@
                                 <div class="box">
                                     <mat-form-field appearance="fill">
                                         <mat-label>Elije una fecha</mat-label>
-                                        <input [(ngModel)]="newPenka.dateLimit" [matDatepicker]="picker" autocomplete="off" matInput>
+                                        <input [(ngModel)]="newPenka.dateLimit" [matDatepicker]="picker"
+                                            autocomplete="off" matInput>
                                         <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>
