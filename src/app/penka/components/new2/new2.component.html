@@ -137,15 +137,13 @@
 <!-- MOBILE -->
 <div class="mobile">
     <div class="container">
-        <div class="mb-2 box">
-            <app-button-back></app-button-back>
-        </div>
         <ng-container *ngIf="type === 'templates'">
             <div class="row">
                 <div class="box">
-                    <div class="col-xs-12">
-                        <span class="section-subTitle">Selecciona la plantilla que deseas jugar:</span>
-                    </div>
+                    <span class="section-subTitle">Selecciona la plantilla que deseas jugar:</span>
+                </div>
+                <div class="box">
+                    <app-button-back></app-button-back>
                 </div>
             </div>
             <br>
@@ -171,7 +169,7 @@
 
         <ng-container *ngIf="type === 'singleMatches'">
             <div class="row">
-                <div class="col-xs-10">
+                <div class="col-xs-5">
                     <div class="box">
                         <label>
                             <input type="text" class="search-match" placeholder="Buscar Equipo, Liga o Competición."
@@ -179,12 +177,14 @@
                         </label>
                     </div>
                 </div>
-                <div class="col-xs-2">
+                <div class="col-xs-7">
                     <div class="box">
                         <ng-container *ngIf="listMatches.length > 0; else noButton">
+                            <app-button-back></app-button-back>
                             <app-button-continue [codePenka]="generateCodePenka" [url]="url"></app-button-continue>
                         </ng-container>
                         <ng-template #noButton>
+                            <app-button-back></app-button-back>
                         </ng-template>
                     </div>
                 </div>
