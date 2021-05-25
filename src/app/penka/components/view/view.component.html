@@ -1,4 +1,4 @@
-<app-page-header [title]="penka.name"></app-page-header>
+<app-page-header [title]="penka?.name"></app-page-header>
 <br>
 <!-- DESKTOP -->
 <div class="desktop">
@@ -24,28 +24,28 @@
                                     <div class="box">
                                         <div>
                                             <p class="label-card">Organizador</p>
-                                            <p class="item-card">{{penka.makerName}}</p>
+                                            <p class="item-card">{{penka?.makerName}}</p>
                                         </div>
                                         <div>
                                             <p class="label-card">Fecha de creacion</p>
-                                            <p class="item-card">{{penka.date.toDate() | date:'mediumDate'}}</p>
+                                            <p class="item-card">{{penka?.date}}</p>
                                         </div>
                                         <div>
                                             <p class="label-card">Formato</p>
-                                            <p class="item-card">{{penka.formatName}}</p>
+                                            <p class="item-card">{{penka?.formatName}}</p>
                                         </div>
                                         <div>
                                             <p class="label-card">Participantes</p>
-                                            <p class="item-card">{{penka.nParticipants}}
-                                                / {{penka.limitParticipants}}</p>
+                                            <p class="item-card">{{penka?.nParticipants}}
+                                                / {{penka?.limitParticipants}}</p>
                                         </div>
                                         <div>
                                             <p class="label-card">Estado</p>
                                             <p class="item-card">
-                                                <ng-container *ngIf="penka.status === '1'">
+                                                <ng-container *ngIf="penka?.status === '1'">
                                                     En Juego
                                                 </ng-container>
-                                                <ng-container *ngIf="penka.status === '2'">
+                                                <ng-container *ngIf="penka?.status === '2'">
                                                     Terminada
                                                 </ng-container>
                                             </p>
@@ -56,20 +56,20 @@
                                     <div class="box">
                                         <div>
                                             <p class="label-card">Apuesta</p>
-                                            <p class="item-card">${{penka.bet}}</p>
+                                            <p class="item-card">${{penka?.bet}}</p>
                                         </div>
                                         <div>
                                             <p class="label-card">Pozo</p>
-                                            <p class="item-card">${{penka.accumulatedBet}}
-                                                / {{ penka.bet * penka.limitParticipants}}</p>
+                                            <p class="item-card">${{penka?.accumulatedBet}}
+                                                / {{ penka?.bet * penka?.limitParticipants}}</p>
                                         </div>
                                         <div>
                                             <p class="label-card">Distribucion</p>
-                                            <p class="item-card">{{penka.distributionBet}}</p>
+                                            <p class="item-card">{{penka?.distributionBet}}</p>
                                         </div>
                                         <div>
                                             <p class="label-card">Codigo de penka</p>
-                                            <p class="item-card">{{penka.codePenka}}</p>
+                                            <p class="item-card">{{penka?.codePenka}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                             </p>
                         </div>
                         <div class="card-body card-participants">
-                            <app-participants [codePenka]="penka.codePenka"></app-participants>
+                            <app-participants [codePenka]="penka?.codePenka"></app-participants>
                         </div>
                         <div class="card-footer">
                             <button mat-button (click)="join()" class="btn-join">
@@ -106,8 +106,7 @@
                         </div>
                         <div class="card-body card-matches">
                             <ul class="list-vertical">
-                                <li class="item-vertical"
-                                    *ngFor="let match of listMatches | filterCodePenka:penka.codePenka">
+                                <li class="item-vertical" *ngFor="let match of listMatches">
                                     <app-penka-match [match]="match"></app-penka-match>
                                 </li>
                             </ul>
@@ -138,28 +137,28 @@
                                 <div class="box">
                                     <div>
                                         <p class="label-mobile">Organizador</p>
-                                        <p class="item-mobile">{{penka.makerName}}</p>
+                                        <p class="item-mobile">{{penka?.makerName}}</p>
                                     </div>
                                     <div>
                                         <p class="label-mobile">Fecha de creacion</p>
-                                        <p class="item-mobile">{{penka.date.toDate() | date:'mediumDate'}}</p>
+                                        <p class="item-mobile">{{penka?.date}</p>
                                     </div>
                                     <div>
                                         <p class="label-mobile">Formato</p>
-                                        <p class="item-mobile">{{penka.formatName}}</p>
+                                        <p class="item-mobile">{{penka?.formatName}}</p>
                                     </div>
                                     <div>
                                         <p class="label-mobile">Participantes</p>
-                                        <p class="item-mobile">{{penka.nParticipants}}
-                                            / {{penka.limitParticipants}}</p>
+                                        <p class="item-mobile">{{penka?.nParticipants}}
+                                            / {{penka?.limitParticipants}}</p>
                                     </div>
                                     <div>
                                         <p class="label-mobile">Estado</p>
                                         <p class="item-mobile">
-                                            <ng-container *ngIf="penka.status === '1'">
+                                            <ng-container *ngIf="penka?.status === '1'">
                                                 En Juego
                                             </ng-container>
-                                            <ng-container *ngIf="penka.status === '2'">
+                                            <ng-container *ngIf="penka?.status === '2'">
                                                 Terminada
                                             </ng-container>
                                         </p>
@@ -170,20 +169,20 @@
                                 <div class="box">
                                     <div>
                                         <p class="label-mobile">Apuesta</p>
-                                        <p class="item-mobile">${{penka.bet}}</p>
+                                        <p class="item-mobile">${{penka?.bet}}</p>
                                     </div>
                                     <div>
                                         <p class="label-mobile">Pozo</p>
-                                        <p class="item-mobile">${{penka.accumulatedBet}}
-                                            / {{ penka.bet * penka.limitParticipants}}</p>
+                                        <p class="item-mobile">${{penka?.accumulatedBet}}
+                                            / {{ penka?.bet * penka?.limitParticipants}}</p>
                                     </div>
                                     <div>
                                         <p class="label-mobile">Distribucion</p>
-                                        <p class="item-mobile">{{penka.distributionBet}}</p>
+                                        <p class="item-mobile">{{penka?.distributionBet}}</p>
                                     </div>
                                     <div>
                                         <p class="label-mobile">Codigo de penka</p>
-                                        <p class="item-mobile">{{penka.codePenka}}</p>
+                                        <p class="item-mobile">{{penka?.codePenka}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -209,15 +208,14 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="box">
-                                    <app-participants [codePenka]="penka.codePenka"></app-participants>
+                                    <app-participants [codePenka]="penka?.codePenka"></app-participants>
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="box">
                                     <br>
                                     <div class="container-button-mobile">
-                                        <button class="btn-grid-mobile" mat-button
-                                                (click)="join()">
+                                        <button class="btn-grid-mobile" mat-button (click)="join()">
                                             Jugar
                                         </button>
                                     </div>
@@ -246,8 +244,7 @@
                             <div class="col-xs-12">
                                 <div class="box">
                                     <ul class="list-vertical">
-                                        <li class="item-vertical"
-                                            *ngFor="let match of listMatches | filterCodePenka:penka.codePenka">
+                                        <li class="item-vertical" *ngFor="let match of listMatches">
                                             <app-penka-match [match]="match"></app-penka-match>
                                         </li>
                                     </ul>
