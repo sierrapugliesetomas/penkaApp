@@ -23,11 +23,7 @@ export class GridComponent implements OnInit, OnDestroy {
     participants = [];
     gambles = [];
     user = {} as User;
-
     private unsubscribe$ = new Subject<void>();
-    today = new Date();
-
-    private listItemsRef: NodeListOf<Element>;
 
     constructor(
         public firebase: FirebaseApp,
@@ -59,7 +55,6 @@ export class GridComponent implements OnInit, OnDestroy {
             ).subscribe(
             res => {
                 this.gambles = res;
-                this.listItemsRef = this._document.querySelectorAll('ul.list-horizontal');
             });
         this.singleMatchesService.getMatchesPublicAndFinish()
             .pipe(
@@ -72,7 +67,7 @@ export class GridComponent implements OnInit, OnDestroy {
     }
 
     updateScroll($event): void {
-        this.listItemsRef.forEach(ref => {
+        this._document.querySelectorAll('ul.list-horizontal').forEach(ref => {
             ref.scrollLeft = $event.srcElement.scrollLeft;
         });
     }
@@ -85,6 +80,10 @@ export class GridComponent implements OnInit, OnDestroy {
             classRet = 'score-3'
         } 
         return classRet;
+    }
+
+    getToday() {
+        return new Date();
     }
 
     ngOnDestroy(): void {

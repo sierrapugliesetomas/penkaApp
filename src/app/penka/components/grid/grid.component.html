@@ -136,35 +136,41 @@
                                             <!-- Other Players Gambles -->
                                             <ng-template #guess>
                                                 <ng-container *ngIf="ga.penkaFormat === 'PRO'">
-                                                    <ng-container *ngIf="ga.homeTeamScore != null; else noScoreYet">
+                                                    <ng-container
+                                                        *ngIf="ga.startDate > getToday() || ga.status === '2'; else matchNotStarted">
                                                         <p class="header-font">{{ga.homeTeamScore}}
                                                             - {{ga.visitTeamScore}}</p>
                                                         <p [ngClass]="getClass(ga.scoreAchieved)">
                                                             {{ga.scoreAchieved}}&nbsp;puntos</p>
                                                     </ng-container>
 
-                                                    <ng-template #noScoreYet>
+                                                    <ng-template #matchNotStarted>
                                                         <p class="header-font">-</p>
                                                     </ng-template>
                                                 </ng-container>
 
                                                 <ng-container *ngIf="ga.penkaFormat === 'MEDIUM'">
-
-                                                    <ng-container *ngIf="ga.winnerTeamId === ga.homeTeamId">
-                                                        <p class="header-font">L</p>
-                                                        <p [ngClass]="getClass(ga.scoreAchieved)">
-                                                            {{ga.scoreAchieved}}&nbsp;puntos</p>
+                                                    <ng-container
+                                                        *ngIf="ga.startDate > getToday() || ga.status === '2'; else matchNotStarted">
+                                                        <ng-container *ngIf="ga.winnerTeamId === ga.homeTeamId">
+                                                            <p class="header-font">L</p>
+                                                            <p [ngClass]="getClass(ga.scoreAchieved)">
+                                                                {{ga.scoreAchieved}}&nbsp;puntos</p>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="ga.winnerTeamId === ga.visitTeamId">
+                                                            <p class="header-font">V</p>
+                                                            <p [ngClass]="getClass(ga.scoreAchieved)">
+                                                                {{ga.scoreAchieved}}&nbsp;puntos</p>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="ga.draw === true">
+                                                            <p class="header-font">E</p>
+                                                            <p [ngClass]="getClass(ga.scoreAchieved)">
+                                                                {{ga.scoreAchieved}}&nbsp;puntos</p>
+                                                        </ng-container>
                                                     </ng-container>
-                                                    <ng-container *ngIf="ga.winnerTeamId === ga.visitTeamId">
-                                                        <p class="header-font">V</p>
-                                                        <p [ngClass]="getClass(ga.scoreAchieved)">
-                                                            {{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                    </ng-container>
-                                                    <ng-container *ngIf="ga.draw === true">
-                                                        <p class="header-font">E</p>
-                                                        <p [ngClass]="getClass(ga.scoreAchieved)">
-                                                            {{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                    </ng-container>
+                                                    <ng-template #matchNotStarted>
+                                                        <p class="header-font">-</p>
+                                                    </ng-template>
                                                 </ng-container>
                                             </ng-template>
 
@@ -205,12 +211,12 @@
                                             <ng-container *ngIf="i === 0">
                                                 <p class="header-font">{{sm.homeTeamAlias}} &nbsp; -
                                                     &nbsp; {{sm.visitTeamAlias}}</p>
-    
+
                                                 <ng-container *ngIf="sm.status === '1'; else score">
                                                     <p class="score-fonts">{{sm.startDate.toDate() | date:'MMM dd'}}
                                                         - {{sm.startDate.toDate() | date:'HH:mm'}}</p>
                                                 </ng-container>
-    
+
                                                 <ng-template #score>
                                                     <p class="score-font">{{sm.homeTeamScore}}&nbsp; -
                                                         &nbsp; {{sm.visitTeamScore}}</p>
@@ -302,62 +308,28 @@
                                                             <p class="header-font">-</p>
                                                         </ng-template>
 
-
                                                     </ng-container>
                                                 </ng-container>
 
                                                 <!-- Other Players Gambles -->
                                                 <ng-template #guess>
                                                     <ng-container *ngIf="ga.penkaFormat === 'PRO'">
-
-                                                        <ng-container *ngIf="ga.startDate === date">
-                                                            <ng-container *ngIf="ga.startTime <= time;">
-                                                                <p class="header-font">{{ga.homeTeamScore}}
-                                                                    - {{ga.visitTeamScore}}</p>
-                                                                <p [ngClass]="getClass(ga.scoreAchieved)">
-                                                                    {{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                            </ng-container>
-                                                            <ng-container *ngIf="ga.startTime > time;">
-                                                                <p class="header-font">-</p>
-                                                            </ng-container>
-                                                        </ng-container>
-
-                                                        <ng-container *ngIf="ga.startDate < date">
+                                                        <ng-container
+                                                            *ngIf="ga.startDate > getToday() || ga.status === '2'; else matchNotStarted">
                                                             <p class="header-font">{{ga.homeTeamScore}}
                                                                 - {{ga.visitTeamScore}}</p>
                                                             <p [ngClass]="getClass(ga.scoreAchieved)">
                                                                 {{ga.scoreAchieved}}&nbsp;puntos</p>
                                                         </ng-container>
 
-                                                        <ng-container *ngIf="ga.startDate > date">
+                                                        <ng-template #matchNotStarted>
                                                             <p class="header-font">-</p>
-                                                        </ng-container>
+                                                        </ng-template>
                                                     </ng-container>
 
                                                     <ng-container *ngIf="ga.penkaFormat === 'MEDIUM'">
-
-                                                        <ng-container *ngIf="ga.startDate === date">
-                                                            <ng-container *ngIf="ga.startTime <= time;">
-                                                                <ng-container *ngIf="ga.winnerTeamId === ga.homeTeamId">
-                                                                    <p class="header-font">L</p>
-                                                                    <p [ngClass]="getClass(ga.scoreAchieved)">
-                                                                        {{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                                </ng-container>
-                                                                <ng-container
-                                                                    *ngIf="ga.winnerTeamId === ga.visitTeamId">
-                                                                    <p class="header-font">V</p>
-                                                                    <p [ngClass]="getClass(ga.scoreAchieved)">
-                                                                        {{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                                </ng-container>
-                                                                <ng-container *ngIf="ga.draw === true">
-                                                                    <p class="header-font">E</p>
-                                                                    <p [ngClass]="getClass(ga.scoreAchieved)">
-                                                                        {{ga.scoreAchieved}}&nbsp;puntos</p>
-                                                                </ng-container>
-                                                            </ng-container>
-                                                        </ng-container>
-
-                                                        <ng-container *ngIf="ga.startDate < date; else noneDate">
+                                                        <ng-container
+                                                            *ngIf="ga.startTime > getToday() || ga.status === '2'; else matchNotStarted">
                                                             <ng-container *ngIf="ga.winnerTeamId === ga.homeTeamId">
                                                                 <p class="header-font">L</p>
                                                                 <p [ngClass]="getClass(ga.scoreAchieved)">
@@ -374,11 +346,9 @@
                                                                     {{ga.scoreAchieved}}&nbsp;puntos</p>
                                                             </ng-container>
                                                         </ng-container>
-
-                                                        <ng-template #noneDate>
+                                                        <ng-template #matchNotStarted>
                                                             <p class="header-font">-</p>
                                                         </ng-template>
-
                                                     </ng-container>
                                                 </ng-template>
 
