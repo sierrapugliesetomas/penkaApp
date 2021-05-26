@@ -2,6 +2,7 @@ export interface PenkaRequest {
     id?: string;
     penkaId?: string;
     codePenka?: string;
+    penkaName?: string;
     makerId?: string;
     makerName?: string;
     makerEmail?: string;

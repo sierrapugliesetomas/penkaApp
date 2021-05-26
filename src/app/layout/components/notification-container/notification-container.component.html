@@ -10,8 +10,7 @@
         <ul class="list">
             <li class="item" *ngFor="let pr of penkaRequest">
                 <a routerLink="/inbox">
-                    <p class="notification-font">Solicitud pendiente de aprobacion, de
-                        <span class="user-request">{{pr.userName}}</span>
+                    <p class="notification-font">{{pr.userName}} solicita unirse a {{pr.penkaName}}
                     </p>
                 </a>
                 <app-button-notification [codePenka]="pr.codePenka" [request]="pr"></app-button-notification>

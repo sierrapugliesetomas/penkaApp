@@ -73,6 +73,7 @@ export class PenkaPopComponent implements OnInit, OnDestroy {
                         }
                     } else {
                         if (counter === 1) {
+                            this.newPenkaRequest.penkaName = penkaName;
                             this.newPenkaRequest.penkaId = penkaId;
                             this.newPenkaRequest.codePenka = codePenka;
                             this.newPenkaRequest.makerId = makerId;
