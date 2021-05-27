@@ -97,6 +97,7 @@ export class PenkaComponent implements OnInit, OnDestroy {
                             this.newPenkaRequest.userPhoto = this.user.photoURL;
                             this.newPenkaRequest.date = today;
                             this.newPenkaRequest.status = '1';
+                            this.newPenkaRequest.timesShow = 0;
                             this.penkasRequestService.addPenkaRequest(this.newPenkaRequest);
 
                             this._snackBar.openFromComponent(RequestNotificationComponent, {

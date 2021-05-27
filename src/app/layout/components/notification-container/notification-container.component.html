@@ -6,14 +6,26 @@
     </a>
 
     <!-- show notifications -->
-    <mat-menu #beforeMenu="matMenu" xPosition="before" class="notification-menu">
+    <mat-menu #beforeMenu="matMenu" xPosition="before" class="notification-menu" (close)="updateNotificationsStatus()">
         <ul class="list">
             <li class="item" *ngFor="let pr of penkaRequest">
-                <a routerLink="/inbox">
-                    <p class="notification-font">{{pr.userName}} solicita unirse a {{pr.penkaName}}
+                <div *ngIf="pr.status === '1'">
+                    <a routerLink="/inbox">
+                        <p class="notification-font">{{pr.userName}} solicita unirse a {{pr.penkaName}}
+                        </p>
+                    </a>
+                    <app-button-notification [codePenka]="pr.codePenka" [request]="pr" (statusUpdate)="updateNotificationsStatus(pr)"></app-button-notification>
+                </div>
+
+                <div *ngIf="pr.status === '8'">
+                    <p class="notification-font">{{pr.makerName}} aceptó tu solicitud para unirte a {{pr.penkaName}}
                     </p>
-                </a>
-                <app-button-notification [codePenka]="pr.codePenka" [request]="pr"></app-button-notification>
+                </div>
+
+                <div *ngIf="pr.status === '9'">
+                    <p class="notification-font">{{pr.makerName}} rechazó tu solicitud para unirte a {{pr.penkaName}}
+                    </p>
+                </div>
             </li>
         </ul>
     </mat-menu>

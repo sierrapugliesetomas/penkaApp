@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, Output, EventEmitter} from '@angular/core';
 import {first, takeUntil} from 'rxjs/operators';
 import {PenkasService} from '../../../core/services/penkas.service';
 import {Subject} from 'rxjs';
@@ -12,6 +12,7 @@ import {ListMatchesService} from '../../../core/services/list-matches.service';
 import {PenkaRequestService} from '../../../core/services/penka-request.service';
 import {GambleService} from '../../../core/services/gamble.service';
 import {ParticipantsService} from '../../../core/services/participants.service';
+import { PenkaRequest } from 'src/app/core/interfaces/penkaRequest';
 
 @Component({
     selector: 'app-button-notification',
@@ -23,6 +24,7 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
     penkas = [];
     @Input() codePenka: string;
     @Input() request;
+    @Output() statusUpdate = new EventEmitter<PenkaRequest>();
     private unsubscribe$ = new Subject<void>();
 
     ifExist = [];
@@ -35,7 +37,6 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
         public auth: AuthService,
         public dialog: MatDialog,
         private router: Router,
-        private activatedRoute: ActivatedRoute,
         private penkasService: PenkasService,
         private listMatchesService: ListMatchesService,
         private penkaRequestService: PenkaRequestService,
@@ -196,6 +197,7 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
 
                             this.penkaRequestService.agreePenkaRequest(requestId);
                             counter++;
+                            this.statusUpdate.emit(this.request);
                         } else {
                             alert('La penka no tiene cupos disponibles');
                             this.penkaRequestService.rejectPenkaRequest(requestId);
@@ -207,6 +209,7 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
     
     reject(requestId): void {
         this.penkaRequestService.rejectPenkaRequest(requestId);
+        this.statusUpdate.emit(this.request);
     }
 
 }

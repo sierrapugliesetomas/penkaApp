@@ -54,6 +54,21 @@ export class PenkaRequestService {
             );
     }
 
+    getAcceptedAndRejectedRequests(userId): any {
+        return this.afs.collection<PenkaRequest>('penkaRequest', ref => ref            
+            .where('userId', '==', userId)
+            .where('status', 'in', ['8','9'])
+            .where('timesShow', '<', 1)
+            .orderBy('timesShow', 'asc')
+            .orderBy('date', 'asc'))
+            .snapshotChanges().pipe(map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as PenkaRequest;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
     addPenkaRequest(penkaRequest: PenkaRequest) {
         this.penkaRequestCollection.add(penkaRequest).catch(error => console.log(error));
     }
@@ -64,5 +79,10 @@ export class PenkaRequestService {
 
     rejectPenkaRequest(id) {
         this.penkaRequestCollection.doc(id).update({status: '9'}).catch(error => console.log(error));
+    }
+
+    updatePenkaRequest(request: PenkaRequest) {
+        console.log(request);
+        this.penkaRequestCollection.doc(request.id).update(request).catch(error => console.log(error));
     }
 }

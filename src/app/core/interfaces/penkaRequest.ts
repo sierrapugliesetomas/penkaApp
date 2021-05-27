@@ -14,4 +14,5 @@ export interface PenkaRequest {
     message?: string;
     date?: Date;
     status?: string;
+    timesShow: number;
 }
