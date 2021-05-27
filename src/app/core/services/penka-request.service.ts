@@ -82,7 +82,6 @@ export class PenkaRequestService {
     }
 
     updatePenkaRequest(request: PenkaRequest) {
-        console.log(request);
         this.penkaRequestCollection.doc(request.id).update(request).catch(error => console.log(error));
     }
 }

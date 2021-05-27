@@ -2,6 +2,8 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {PenkaRequestService} from '../../../core/services/penka-request.service';
 import {Subject, combineLatest} from 'rxjs';
 import {map, takeUntil} from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { PenkaRequest } from 'src/app/core/interfaces/penkaRequest';
 
 @Component({
     selector: 'app-notification-container',
@@ -17,7 +19,8 @@ export class NotificationContainerComponent implements OnInit, OnDestroy {
     private unsubscribe$ = new Subject<void>();
 
     constructor(
-        private penkaRequestService: PenkaRequestService) {
+        private penkaRequestService: PenkaRequestService,
+        private router: Router) {
     }
 
     ngOnInit(): void {
@@ -29,8 +32,6 @@ export class NotificationContainerComponent implements OnInit, OnDestroy {
             map((response: any) => [...response[0], ...response[1]])
           ).subscribe(
             response => {
-                console.log(response);
-                
               this.penkaRequest = response;
             }
           );
@@ -53,6 +54,10 @@ export class NotificationContainerComponent implements OnInit, OnDestroy {
             this.penkaRequest.splice(indexToDelete);
 
         }
+    }
+
+    goGamble(request: PenkaRequest): void {
+        this.router.navigate(['/penka/gamble/' + request.codePenka]).catch();
     }
     
     ngOnDestroy(): void {

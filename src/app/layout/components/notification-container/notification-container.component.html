@@ -20,6 +20,7 @@
                 <div *ngIf="pr.status === '8'">
                     <p class="notification-font">{{pr.makerName}} aceptó tu solicitud para unirte a {{pr.penkaName}}
                     </p>
+                    <button mat-flat-button type="button" class="gamble-fill-btn" (click)="goGamble(pr)">Llenar resultados</button>
                 </div>
 
                 <div *ngIf="pr.status === '9'">
