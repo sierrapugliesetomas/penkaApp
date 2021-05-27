@@ -5,13 +5,8 @@
         <ng-container *ngIf="match.status === '1'">
             <div class="match-container-desktop">
                 <!-- Date and Time -->
-                <div class="date-desktop">
-                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
-                </div>
-
-                <!-- Competition -->
-                <div>
-                    <p>{{singleMatch.competition}}</p>
+                <div class="container-date">
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}  -  {{singleMatch?.competition}}</p>
                 </div>
 
                 <!-- Teams -->
@@ -59,13 +54,9 @@
         <ng-container *ngIf="match.status === '2'">
             <div class="match-container-desktop">
                 <!-- Date and Time -->
-                <div class="date-desktop">
-                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+                <div class="container-date">
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}  -  {{singleMatch?.competition}}</p>
                 </div>
-                 <!-- Competition -->
-                 <div>
-                     <p>{{singleMatch.competition}}</p>
-                 </div>
                 <!-- Teams -->
                 <div class="teams-disable-desktop">
                     <!-- Alias Home Team -->
@@ -99,13 +90,9 @@
         <ng-container *ngIf="match.status === '1'">
             <div class="match-container-desktop">
                 <!-- date -->
-                <div class="date-desktop">
-                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+                <div class="container-date">
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}  -  {{singleMatch?.competition}}</p>
                 </div>
-                 <!-- Competition -->
-                 <div>
-                     <p>{{singleMatch.competition}}</p>
-                 </div>
 
                 <div class="medium-container-teams-desktop">
                     <div class="medium-teams-desktop">
@@ -136,13 +123,9 @@
         <ng-container *ngIf="match.status === '2'">
             <div class="match-container-desktop">
                 <!-- date -->
-                <div class="date-desktop">
-                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+                <div class="container-date">
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}  -  {{singleMatch?.competition}}</p>
                 </div>
-                 <!-- Competition -->
-                 <div>
-                     <p>{{singleMatch.competition}}</p>
-                 </div>
 
                 <div class="medium-container-teams-disable-desktop {{save}}">
                     <div class="medium-teams-desktop">
@@ -179,13 +162,10 @@
         <ng-container *ngIf="match.status === '1'">
             <div class="match-container-mobile">
                 <!-- Date and Time -->
-                <div class="date-mobile">
-                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
+                <div class="container-date">
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}  -  {{singleMatch?.competition}}</p>
                 </div>
-                <!-- Competition -->
-                <div>
-                    <p>{{singleMatch.competition}}</p>
-                </div>
+
                 <!-- Teams -->
                 <div class="teams-mobile">
                     <!-- Alias Home Team -->
@@ -233,11 +213,7 @@
             <div class="match-container-mobile">
                 <!-- Date and Time -->
                 <div class="date-mobile">
-                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
-                </div>
-                <!-- Competition -->
-                <div>
-                    <p>{{singleMatch.competition}}</p>
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}  -  {{singleMatch?.competition}}</p>
                 </div>
                 <!-- Teams -->
                 <div class="teams-mobile">
@@ -274,11 +250,7 @@
             <div class="match-container-medium-mobile">
                 <!-- date -->
                 <div class="container-date">
-                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
-                </div>
-                <!-- Competition -->
-                <div>
-                    <p>{{singleMatch.competition}}</p>
+                    <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp;{{match.startDate.toDate() | date:'HH:mm'}}  -  {{singleMatch?.competition}}</p>
                 </div>
                 <!-- Teams -->
                 <div class="container-teams">
