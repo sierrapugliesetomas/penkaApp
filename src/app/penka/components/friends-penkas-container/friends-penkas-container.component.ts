@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {User} from "../../../core/interfaces/user";
 import {Subject} from "rxjs";
 import {FirebaseApp} from "@angular/fire";
@@ -6,6 +6,7 @@ import {AuthService} from "../../../core/services/auth.service";
 import {Router} from "@angular/router";
 import {ParticipantsService} from "../../../core/services/participants.service";
 import {takeUntil} from "rxjs/operators";
+import { Penka } from 'src/app/core/interfaces/penka';
 
 @Component({
     selector: 'app-friends-penkas-container',
@@ -13,7 +14,7 @@ import {takeUntil} from "rxjs/operators";
     styleUrls: ['./friends-penkas-container.component.scss']
 })
 export class FriendsPenkasContainerComponent implements OnInit, OnDestroy {
-
+    @Input() penkas: Penka[];
     user = {} as User;
     myParticipants = [];
     participants = [];
@@ -50,6 +51,14 @@ export class FriendsPenkasContainerComponent implements OnInit, OnDestroy {
                     this.filterParticipants = this.filterParticipants.filter(item => {
                         return item.codePenka !== this.myParticipants[i].codePenka;
                     });
+                }
+                // Active limitDate penkas from parent component
+                if(this.penkas.length > 0) {
+                    const activePenkasIds = this.penkas.map(penka => penka.codePenka);
+                    this.filterParticipants = this.filterParticipants.filter(part => activePenkasIds.includes(part.codePenka))
+                } else {
+                    // there are no active penkas to show
+                    this.filterParticipants = [];
                 }
             });
     }

@@ -3,6 +3,8 @@ import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} 
 import {Penka} from '../interfaces/penka';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import { Timestamp } from 'rxjs/internal/operators/timestamp';
+import * as firebase from 'firebase';
 
 @Injectable({
     providedIn: 'root'
@@ -91,6 +93,19 @@ export class PenkasService {
                 }))
             );
     }
+
+    getPenkasByLimitDate(): any {
+        const currentDate = firebase.firestore.Timestamp.fromDate(new Date());
+        return this.afs.collection<Penka>('penkas', ref => ref
+                .where('dateLimit', '>', currentDate) // ToDo: consultar dia limite inclusivo o exclusivo
+                .orderBy('dateLimit', 'asc'))
+                .snapshotChanges().pipe(map(actions => actions.map(a => {
+                        const data = a.payload.doc.data() as Penka;
+                        const id = a.payload.doc.id;
+                        return {id, ...data};
+                    }))
+                );
+        }
 
     addPenka(penka: Penka): any {
         this.penkasCollection.add(penka).catch(error => console.log(error));

@@ -41,7 +41,7 @@ export class JoinComponent implements OnInit, OnDestroy {
                 this.codePenka = params.codePenka;
             }
         );
-        this.penkasService.getPenkas()
+        this.penkasService.getPenkasByLimitDate()
             .pipe(
                 takeUntil(this.unsubscribe$)
             ).subscribe(
