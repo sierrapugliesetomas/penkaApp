@@ -14,18 +14,27 @@
                         <p class="notification-font">{{pr.userName}} solicita unirse a {{pr.penkaName}}
                         </p>
                     </a>
-                    <app-button-notification [codePenka]="pr.codePenka" [request]="pr" (statusUpdate)="updateNotificationsStatus(pr)"></app-button-notification>
+                    <app-button-notification [codePenka]="pr.codePenka" [request]="pr"
+                        (statusUpdate)="updateNotificationsStatus(pr)"></app-button-notification>
                 </div>
 
                 <div *ngIf="pr.status === '8'">
                     <p class="notification-font">{{pr.makerName}} aceptó tu solicitud para unirte a {{pr.penkaName}}
                     </p>
-                    <button mat-flat-button type="button" class="gamble-fill-btn" (click)="goGamble(pr)">Llenar resultados</button>
+                    <button mat-flat-button type="button" class="gamble-fill-btn" (click)="goGamble(pr)">Llenar
+                        resultados</button>
                 </div>
 
                 <div *ngIf="pr.status === '9'">
                     <p class="notification-font">{{pr.makerName}} rechazó tu solicitud para unirte a {{pr.penkaName}}
                     </p>
+                </div>
+
+                <div *ngIf="pr.status === '10'">
+                    <p class="notification-font">La penka {{pr.penkaName}} ha finalizado
+                    </p>
+                    <button mat-flat-button type="button" class="gamble-fill-btn" (click)="goGrid(pr)">
+                        Ver más</button>
                 </div>
             </li>
         </ul>

@@ -14,5 +14,12 @@ export interface PenkaRequest {
     message?: string;
     date?: Date;
     status?: string;
-    timesShow: number;
+    timesShow?: number;
 }
+
+/* Status 
+    1 - request to join penka 
+    8 - accepted request
+    9 - rejected request
+    10 - penka finnished
+*/

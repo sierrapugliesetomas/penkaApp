@@ -54,10 +54,10 @@ export class PenkaRequestService {
             );
     }
 
-    getAcceptedAndRejectedRequests(userId): any {
+    getOtherNotificationsRequests(userId): any {
         return this.afs.collection<PenkaRequest>('penkaRequest', ref => ref            
             .where('userId', '==', userId)
-            .where('status', 'in', ['8','9'])
+            .where('status', 'in', ['8','9', '10'])
             .where('timesShow', '<', 1)
             .orderBy('timesShow', 'asc')
             .orderBy('date', 'asc'))

@@ -25,7 +25,7 @@ export class NotificationContainerComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.myRequest$ = this.penkaRequestService.getPenkaRequestByMaker(this.user);
-        this.otherUsersRequest$ = this.penkaRequestService.getAcceptedAndRejectedRequests(this.user);
+        this.otherUsersRequest$ = this.penkaRequestService.getOtherNotificationsRequests(this.user);
 
         combineLatest([this.myRequest$, this.otherUsersRequest$]).pipe(
             takeUntil(this.unsubscribe$),
@@ -40,7 +40,7 @@ export class NotificationContainerComponent implements OnInit, OnDestroy {
     updateNotificationsStatus(request?): void {
         if(!request) {
             // when close mat menu
-            let requestsToUpdate = this.penkaRequest.filter(req => req.status === '8' || req.status === '9');
+            let requestsToUpdate = this.penkaRequest.filter(req => req.status !== '1');
             requestsToUpdate.forEach(req =>{ 
                 req.timesShow = req.timesShow + 1
                 this.penkaRequestService.updatePenkaRequest(req);
@@ -60,6 +60,10 @@ export class NotificationContainerComponent implements OnInit, OnDestroy {
         this.router.navigate(['/penka/gamble/' + request.codePenka]).catch();
     }
     
+    goGrid(request: PenkaRequest): void {
+        this.router.navigate(['/penka/grid/' + request.codePenka]).catch();
+    }
+
     ngOnDestroy(): void {
         this.unsubscribe$.next();
         this.unsubscribe$.complete();
