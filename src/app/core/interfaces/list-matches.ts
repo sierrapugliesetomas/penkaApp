@@ -1,5 +1,6 @@
 export interface ListMatches {
     id?: string;
+    competition?: string;
     singleMatchId?: string;
     codePenka?: string;
     codeTemplate?: string;
