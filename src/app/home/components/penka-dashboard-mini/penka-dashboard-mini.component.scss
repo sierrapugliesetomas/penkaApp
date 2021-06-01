@@ -69,6 +69,9 @@
     border-radius: 25px;
     background-color: #FDA328;
   }
+  .padding-mobile {
+    padding-top: 110px;
+  }
 }
 
 /* MOBILE 350p */
@@ -143,7 +146,9 @@
     border-radius: 25px;
     background-color: #FDA328;
   }
-
+  .padding-mobile {
+    padding-top: 110px;
+  }
 }
 
 /* DESKTOP 720P and 1080p */
@@ -222,5 +227,8 @@
     font-size: 14px;
     border-radius: 25px;
     background-color: #FDA328;
+  }
+  .margin {
+    margin-bottom: 80px;
   }
 }

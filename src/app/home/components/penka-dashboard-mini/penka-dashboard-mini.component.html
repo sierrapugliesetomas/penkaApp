@@ -37,7 +37,7 @@
                 </ng-template> -->
 
 
-                <div class="body">
+                <div class="body margin">
                     <div class="row">
                         <div class="col-lg-4 list-participants">
                             <app-list-participants [codePenka]="p.codePenka" (selectedUserEvent)="selectParticipant($event)">
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer">
+                <div class="footer padding-mobile">
                     <div class="row">
                         <div class="col-xs-12">
                             <ng-container *ngIf="p.status === '1' && hasOpenGambles">
