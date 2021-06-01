@@ -64,6 +64,10 @@ export class NotificationContainerComponent implements OnInit, OnDestroy {
         this.router.navigate(['/penka/grid/' + request.codePenka]).catch();
     }
 
+    goDashboard(request: PenkaRequest): void {
+        this.router.navigate(['/penka/dashboard/' + request.codePenka]).catch();
+    }
+
     ngOnDestroy(): void {
         this.unsubscribe$.next();
         this.unsubscribe$.complete();

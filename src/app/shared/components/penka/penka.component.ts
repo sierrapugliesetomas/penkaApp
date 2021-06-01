@@ -114,7 +114,7 @@ export class PenkaComponent implements OnInit, OnDestroy {
                             this.penkasRequestService.addPenkaRequest(this.newPenkaRequest);
 
                             this._snackBar.openFromComponent(RequestNotificationComponent, {
-                                duration: 3000,
+                                duration: 5000,
                                 horizontalPosition: 'end',
                                 verticalPosition: 'top',
                                 panelClass: 'request-notification'
