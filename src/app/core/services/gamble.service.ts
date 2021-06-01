@@ -93,18 +93,18 @@ export class GambleService {
             );
     }
 
-    getGambleByGetScore(userId, codePenka): any {
+    getOpenGambleByUserIdAndCodePenka(userId, codePenka) {
         return this.afs.collection<Gamble>('gambles', ref => ref
-            .where('userId', '==', userId)
-            .where('codePenka', '==', codePenka)
-            .where('status', '==', '2'))
-            .snapshotChanges()
-            .pipe(map(actions => actions.map(a => {
-                    const data = a.payload.doc.data() as Gamble;
-                    const id = a.payload.doc.id;
-                    return {id, ...data};
-                }))
-            );
+        .where('userId', '==', userId)
+        .where('codePenka', '==', codePenka)
+        .where('status', '==', '1'))
+        .snapshotChanges()
+        .pipe(map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Gamble;
+                const id = a.payload.doc.id;
+                return {id, ...data};
+            }))
+        );
     }
 
     getGambleByUpdate(userId, codePenka, matchId) {

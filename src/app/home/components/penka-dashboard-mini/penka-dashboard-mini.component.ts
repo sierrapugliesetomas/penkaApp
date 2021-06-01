@@ -1,11 +1,11 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
-import {User} from '../../../core/interfaces/user';
-import {Subject} from 'rxjs';
-import {FirebaseApp} from '@angular/fire';
-import {AuthService} from '../../../core/services/auth.service';
-import {Router} from '@angular/router';
-import {PenkasService} from '../../../core/services/penkas.service';
-import {takeUntil} from 'rxjs/operators';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { User } from '../../../core/interfaces/user';
+import { Subject } from 'rxjs';
+import { FirebaseApp } from '@angular/fire';
+import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
+import { PenkasService } from '../../../core/services/penkas.service';
+import { takeUntil } from 'rxjs/operators';
 import { GambleService } from 'src/app/core/services/gamble.service';
 
 @Component({
@@ -34,6 +34,14 @@ export class PenkaDashboardMiniComponent implements OnInit, OnChanges, OnDestroy
 
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
+        
+        this.gambleService.getOpenGambleByUserIdAndCodePenka(this.user.uid, this.codePenka)
+            .pipe(takeUntil(this.unsubscribe$))
+            .subscribe(
+                res => {
+                    console.log(res);
+                    this.hasOpenGambles = res.length > 0;
+                });
     }
 
     ngOnChanges(): void {
@@ -41,18 +49,11 @@ export class PenkaDashboardMiniComponent implements OnInit, OnChanges, OnDestroy
             .pipe(
                 takeUntil(this.unsubscribe$)
             ).subscribe(
-            res => {
-                this.penka = res;
-            });
-        if(this.user.uid != undefined) {
-            this.gambleService.getGambleByUserId(this.user.uid)
-                .pipe(takeUntil(this.unsubscribe$))
-                .subscribe(
-                    res => {
-                        let gambles = res.filter(c => (c.codePenka === this.codePenka)); 
-                        this.hasOpenGambles = gambles.find(c => c.status === '1') ? true : false;
+                res => {
+                    this.penka = res;
+                    console.log(this.penka);
+
                 });
-            }
     }
 
     ngOnDestroy(): void {
