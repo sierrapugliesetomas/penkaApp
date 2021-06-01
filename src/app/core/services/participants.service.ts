@@ -121,6 +121,19 @@ export class ParticipantsService {
             );
     }
 
+    getParticipantByUserAndCodePenkaAllStatus(userId, codePenka): any {
+        return this.afs.collection<Participant>('participants', ref => ref
+            .where('userId', '==', userId)
+            .where('codePenka', '==', codePenka)
+            .where('status', 'in', ['1','2', '9']))
+            .snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Participant;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
 
     addParticipant(participant: Participant): void {
         this.participantsCollection.add(participant)

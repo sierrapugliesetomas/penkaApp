@@ -25,6 +25,7 @@ export class PenkaComponent implements OnInit, OnDestroy {
     penka = [];
     user = {} as User;
     newPenkaRequest = {} as PenkaRequest;
+    isUserParticipant: boolean;
     private unsubscribe$ = new Subject<void>();
 
     constructor(
@@ -55,6 +56,14 @@ export class PenkaComponent implements OnInit, OnDestroy {
             res => {
                 this.listMatches = res;
             });
+        this.participantsService.getParticipantByUserAndCodePenka(this.user.uid, this.codePenka)
+        .pipe(
+            takeUntil(this.unsubscribe$)
+        ).subscribe(
+        res => {
+            // is user already playing this penka
+            this.isUserParticipant = res.length === 1;
+        });
     }
 
     ngOnDestroy(): void {
@@ -63,7 +72,11 @@ export class PenkaComponent implements OnInit, OnDestroy {
     }
 
     goWatch(codePenka): void {
-        this.router.navigate(['/penka/dashboard/' + codePenka]).catch();
+        if (this.isUserParticipant) {
+            this.router.navigate(['/penka/dashboard/' + codePenka]).catch();
+        } else {
+            this.router.navigate(['/penka/view/' + codePenka]).catch();
+        }
     }
 
     join(penkaId, userId, codePenka, penkaName, makerId, makerName, makerEmail, makerPhoto): void {
