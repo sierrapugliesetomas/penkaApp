@@ -70,6 +70,7 @@ export class SingleMatchesContainerComponent implements OnInit, OnDestroy {
                             match.id,
                             this.generateCodePenka,
                             codeTemplate,
+                            match.competition,
                             this.user.uid,
                             this.user.displayName,
                             this.user.email,

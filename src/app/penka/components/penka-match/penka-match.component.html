@@ -3,6 +3,7 @@
     <div class="date-container">
         <p>{{match.startDate.toDate() | date:'MMM dd'}}&nbsp; - &nbsp;{{match.startDate.toDate() | date:'HH:mm'}}</p>
     </div>
+    <p>{{ match.competition }}</p>
     <div class="teams-container">
         <p class="teams-alias">{{match.homeTeamAlias}}</p>
         <img class="team-flag" src="{{match.homeTeamFlag}}" alt="{{match.homeTeamName}}">

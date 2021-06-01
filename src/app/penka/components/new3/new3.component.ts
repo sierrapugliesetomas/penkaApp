@@ -291,6 +291,7 @@ export class New3Component implements OnInit, OnDestroy {
                             /* New List Match */
                             this.newListMatch.singleMatchId = listMatches[i].singleMatchId;
                             this.newListMatch.codePenka = this.codePenka;
+                            this.newListMatch.competition = listMatches[i].competition;
                             this.newListMatch.userId = this.user.uid;
                             this.newListMatch.userName = this.user.displayName;
                             this.newListMatch.userEmail = this.user.email;

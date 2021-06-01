@@ -127,11 +127,12 @@ export class ListMatchesService {
     }
 
     // tslint:disable-next-line:typedef max-line-length
-    addMatch(singleMatchId, codePenka, codeTemplate, userId, userName, userEmail, userPhoto, date, homeTeamId, homeTeamName, homeTeamAlias, homeTeamFlag, visitTeamId, visitTeamName, visitTeamAlias, visitTeamFlag, startDate, limitDate, status) {
+    addMatch(singleMatchId, codePenka, codeTemplate, competition, userId, userName, userEmail, userPhoto, date, homeTeamId, homeTeamName, homeTeamAlias, homeTeamFlag, visitTeamId, visitTeamName, visitTeamAlias, visitTeamFlag, startDate, limitDate, status) {
         this.listMatchesCollection.add({
             singleMatchId,
             codePenka,
             codeTemplate,
+            competition,
             userId,
             userName,
             userEmail,

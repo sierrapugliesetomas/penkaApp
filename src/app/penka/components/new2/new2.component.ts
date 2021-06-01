@@ -99,6 +99,7 @@ export class New2Component implements OnInit, OnDestroy {
                             sm.id,
                             this.generateCodePenka,
                             codeTemplate,
+                            sm.competition,
                             this.user.uid,
                             this.user.displayName,
                             this.user.email,

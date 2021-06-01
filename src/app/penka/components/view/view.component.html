@@ -11,6 +11,25 @@
             </div>
             <div class="col-lg-5">
                 <div class="box">
+                    <!-- Card List Matches -->
+                    <div class="card">
+                        <div class="card-header special-background">
+                            <p class="card-title">
+                                Partidos a Jugar
+                            </p>
+                        </div>
+                        <div class="card-body card-matches">
+                            <ul class="list-vertical">
+                                <li class="item-vertical" *ngFor="let match of listMatches">
+                                    <app-penka-match [match]="match"></app-penka-match>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="box">
                     <!-- Card Information -->
                     <div class="card">
                         <div class="card-header">
@@ -91,25 +110,6 @@
                             <button mat-button (click)="join()" class="btn-join">
                                 Jugar
                             </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <div class="box">
-                    <!-- Card List Matches -->
-                    <div class="card">
-                        <div class="card-header special-background">
-                            <p class="card-title">
-                                Partidos a Jugar
-                            </p>
-                        </div>
-                        <div class="card-body card-matches">
-                            <ul class="list-vertical">
-                                <li class="item-vertical" *ngFor="let match of listMatches">
-                                    <app-penka-match [match]="match"></app-penka-match>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
