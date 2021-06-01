@@ -9,9 +9,10 @@
                 <div class="col-sm-10">
                     <div class="box">
                         <span class="section-title">Invita a tus amigos a participar:</span>
-                        &nbsp;<span (click)="showCopyNotification()" [cdkCopyToClipboard]="penka.codePenka" class="codePenka">{{penka.codePenka}}</span>
+                        &nbsp;<span (click)="showCopyNotification()" [cdkCopyToClipboard]="penka.codePenka"
+                            class="codePenka">{{penka.codePenka}}</span>
                         &nbsp;<img class="social-img box" (click)="shareByWhatsapp(penka.codePenka)"
-                                 src="../../../../assets/images/social/whatsapp.png" alt="whatsapp">
+                            src="../../../../assets/images/social/whatsapp.png" alt="whatsapp">
                     </div>
                 </div>
                 <div class="col-sm-2">
@@ -22,6 +23,114 @@
             </div>
             <br>
             <div class="row">
+                <div class="col-lg-6">
+                    <div class="box">
+                        <!-- Next Matches -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="box">
+                                            <p class="title-header">Próximos Partidos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-matches">
+                                    <li class="item-matches"
+                                        *ngFor="let g of openGambles | filterCodePenka:penka.codePenka">
+                                        <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
+                                            [codePenka]="penka.codePenka">
+                                        </app-penka-match-gamble-results>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-lg-7"></div>
+                                    <div class="col-lg-5">
+                                        <div class="box">
+                                            <ng-container *ngIf="penka.status === '1' && hasOpenGambles">
+                                                <button mat-button class="btn-gamble"
+                                                    (click)="playGamble(penka.codePenka)">
+                                                    Llenar Resultados
+                                                </button>
+                                            </ng-container>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="box">
+                        <!-- PARTICIPANTS -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="box">
+                                            <p class="title-header">Participantes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body participants">
+                                <div class="box">
+                                    <app-participants [makerId]="penka.makerId" [codePenka]="penka.codePenka">
+                                    </app-participants>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-lg-7"></div>
+                                    <div class="col-lg-5">
+                                        <div class="box">
+                                            <button mat-button class="btn-grid mb-5" (click)="goGrid(penka.codePenka)">
+                                                Matriz de resultados
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="box">
+                        <!-- Matches done -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="box">
+                                            <p class="title-header">Partidos Jugados</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-matches">
+                                    <li class="item-matches"
+                                        *ngFor="let g of finishedOrDueGambles | filterCodePenka:penka.codePenka">
+                                        <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
+                                            [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-lg-6">
                     <div class="box">
                         <!-- INFORMATION -->
@@ -35,7 +144,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body information">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="box">
@@ -149,113 +258,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="box">
-                        <!-- PARTICIPANTS -->
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="box">
-                                            <p class="title-header">Participantes</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="box">
-                                    <app-participants [makerId]="penka.makerId"
-                                                      [codePenka]="penka.codePenka"></app-participants>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-lg-7"></div>
-                                    <div class="col-lg-5">
-                                        <div class="box">
-                                            <button mat-button class="btn-grid" (click)="goGrid(penka.codePenka)">
-                                                Matriz de resultados
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="box">
-                        <!-- Matches done -->
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="box">
-                                            <p class="title-header">Partidos Jugados</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-matches">
-                                    <li class="item-matches"
-                                        *ngFor="let g of finishedOrDueGambles | filterCodePenka:penka.codePenka">
-                                        <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                        [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-footer">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="box">
-                        <!-- Next Matches -->
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="box">
-                                            <p class="title-header">Próximos Partidos</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-matches">
-                                    <li class="item-matches"
-                                        *ngFor="let g of openGambles | filterCodePenka:penka.codePenka">
-                                        <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                        [codePenka]="penka.codePenka">
-                                                                    </app-penka-match-gamble-results>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-lg-7"></div>
-                                    <div class="col-lg-5">
-                                        <div class="box">
-                                            <ng-container *ngIf="penka.status === '1' && hasOpenGambles">
-                                                <button mat-button class="btn-gamble"
-                                                        (click)="playGamble(penka.codePenka)">
-                                                    Llenar Resultados
-                                                </button>
-                                            </ng-container>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -267,9 +270,10 @@
             <div class="col-xs-12">
                 <div class="box">
                     <p class="section-title mb-1">Invita a tus amigos a participar:</p>
-                    &nbsp;<span (click)="showCopyNotification()" [cdkCopyToClipboard]="penka.codePenka" class="codePenka">{{penka.codePenka}}</span>
+                    &nbsp;<span (click)="showCopyNotification()" [cdkCopyToClipboard]="penka.codePenka"
+                        class="codePenka">{{penka.codePenka}}</span>
                     &nbsp;<img class="social-img box" (click)="shareByWhatsapp(penka.codePenka)"
-                             src="../../../../assets/images/social/whatsapp.png" alt="whatsapp">
+                        src="../../../../assets/images/social/whatsapp.png" alt="whatsapp">
                 </div>
                 <br>
             </div>
@@ -297,13 +301,86 @@
                                         <br>
                                         <div class="container-button-mobile">
                                             <button class="btn-grid-mobile" mat-stroked-button
-                                                    (click)="goGrid(penka.codePenka)">
+                                                (click)="goGrid(penka.codePenka)">
                                                 Ver matriz de resultados
                                             </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <!------------------------------>
+                    <!------ Next Matches ---------->
+                    <mat-accordion>
+                        <mat-expansion-panel [expanded]="false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Proximos Partidos
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="box">
+                                        <ul class="list-mobile">
+                                            <li class="list-item-mobile"
+                                                *ngFor="let g of openGambles | filterCodePenka:penka.codePenka">
+
+                                                <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
+                                                    [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <ng-container *ngIf="penka.status === '1' && hasOpenGambles">
+                                    <div class="col-xs-12">
+                                        <div class="box">
+                                            <div class="container-button-mobile">
+                                                <button mat-button class="btn-gamble"
+                                                    (click)="playGamble(penka.codePenka)">
+                                                    Llenar Resultados
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <!-------------------------------->
+                    <!------ Matches Played ---------->
+                    <mat-accordion>
+                        <mat-expansion-panel [expanded]="false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Partidos Jugados
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+
+                            <ul class="list-mobile">
+                                <li class="list-item-mobile"
+                                    *ngFor="let g of finishedOrDueGambles | filterCodePenka:penka.codePenka">
+
+                                    <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
+                                        [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
+
+                                </li>
+                            </ul>
+
                         </mat-expansion-panel>
                     </mat-accordion>
                 </div>
@@ -369,79 +446,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </mat-expansion-panel>
-                    </mat-accordion>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <!-------------------------------->
-                    <!------ Matches Played ---------->
-                    <mat-accordion>
-                        <mat-expansion-panel [expanded]="false">
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    Partidos Jugados
-                                </mat-panel-title>
-                            </mat-expansion-panel-header>
-
-                            <ul class="list-mobile">
-                                <li class="list-item-mobile"
-                                    *ngFor="let g of finishedOrDueGambles | filterCodePenka:penka.codePenka">
-
-                                    <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                    [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
-
-                                </li>
-                            </ul>
-
-                        </mat-expansion-panel>
-                    </mat-accordion>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <!------------------------------>
-                    <!------ Next Matches ---------->
-                    <mat-accordion>
-                        <mat-expansion-panel [expanded]="false">
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    Proximos Partidos
-                                </mat-panel-title>
-                            </mat-expansion-panel-header>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="box">
-                                        <ul class="list-mobile">
-                                            <li class="list-item-mobile"
-                                                *ngFor="let g of openGambles | filterCodePenka:penka.codePenka">
-
-                                                <app-penka-match-gamble-results [match]="g" [userId]="user.uid"
-                                                                                [codePenka]="penka.codePenka"></app-penka-match-gamble-results>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <ng-container *ngIf="penka.status === '1' && hasOpenGambles">
-                                <div class="col-xs-12">
-                                    <div class="box">
-                                        <div class="container-button-mobile">
-                                            <button mat-button class="btn-gamble"
-                                                    (click)="playGamble(penka.codePenka)">
-                                                Llenar Resultados
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-container>
                             </div>
                         </mat-expansion-panel>
                     </mat-accordion>
