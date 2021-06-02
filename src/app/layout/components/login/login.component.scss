@@ -1,81 +1,93 @@
-img:hover {
-  cursor: pointer;
-}
+  img:hover {
+    cursor: pointer;
+  }
+  
+  .wrapper {
+    display: flex;
+  }
+  
+  .text-section {
+    height:     100vh;
+    width:      50vw;
+    background: #18181c;
+    align-items: center;
+    justify-content: center;
+    flex-flow: wrap;
+    display: flex;
+    flex-direction: column;
+  }
 
-.wrapper {
-  display: flex;
-}
-
-.text-section {
-  height:     100vh;
-  width:      50vw;
-  background: #18181c;
-  align-items: center;
-  justify-content: center;
-  flex-flow: wrap;
-  display: flex;
-  flex-direction: column;
-}
-
-.image-section {
-  height:     100vh;
-  width:      50vw;
-  overflow: hidden;
-  background-image: url("../../../../assets/images/login/aside.png");
-  background-repeat: no-repeat;
-  background-position-x: 65%;
-  background-size: 100% 120%;
-}
-
-.title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 28px;
-  line-height: 28x;
-}
-
-.logo-desktop {
-  margin-bottom: 30px;
-  margin-left: 25%;
-  height: 45%;
-  width: 45%;
-}
-
-.btn-signin {
-  font-size: 12px;
-  border-radius: 8px;
-  width: 160px;
-  border: 2px solid #3a3a3e;
-  margin: 10px;
-  height: 55px;
-}
-
-.btn-wrapper {
-  margin-top: 35px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.google {
-  height: 23px;
-  width: 23px;
-}
-
-.facebook {
-  height: 23px;
-  width: 30px;
-}
-
-.divider {
-  height: 0.5px;
-  width: 46%;
-  background-color: #3a3a3e;
-  margin-top: 40px;
-}
-
-.input-wrapper {
-  margin-top: 50px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
+  .text-section-mobile {
+    height:     100vh;
+    width:      100vw;
+    background: #18181c;
+    align-items: center;
+    justify-content: center;
+    flex-flow: wrap;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .image-section {
+    height:     100vh;
+    width:      50vw;
+    overflow: hidden;
+    background-image: url("../../../../assets/images/login/aside.png");
+    background-repeat: no-repeat;
+    background-position-x: 65%;
+    background-size: 100% 120%;
+  }
+  
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    line-height: 28x;
+  }
+  
+  .logo-desktop {
+    margin-bottom: 30px;
+    margin-left: 25%;
+    height: 45%;
+    width: 45%;
+  }
+  
+  .btn-signin {
+    font-size: 12px;
+    border-radius: 8px;
+    width: 160px;
+    border: 2px solid #3a3a3e;
+    margin: 10px;
+    height: 55px;
+  }
+  
+  .btn-wrapper {
+    margin-top: 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .google {
+    height: 23px;
+    width: 23px;
+  }
+  
+  .facebook {
+    height: 23px;
+    width: 30px;
+  }
+  
+  .divider {
+    height: 0.5px;
+    width: 46%;
+    background-color: #3a3a3e;
+    margin-top: 40px;
+  }
+  
+  .input-wrapper {
+    margin-top: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+// }
