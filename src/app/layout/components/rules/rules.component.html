@@ -6,27 +6,6 @@
     <div class="row">
         <div class="col-xs-12 col-lg-12">
             <div class="box">
-                <p class="section-title">Que es una Penka?</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 col-lg-8">
-            <div class="box">
-                <p class="content-text">Una penka es un juego donde el principal objetivo es predecir los resultados de
-                    un
-                    determinado evento
-                    Deportivo. Para ello, se forman grupos donde cada participante apuesta un monto determinado por
-                    el
-                    organizador, para asi formar un pozo que sera dividido entre los ganadores. </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 col-lg-12">
-            <div class="box">
                 <ul class="list-countries">
                     <li class="item-countries">
                         <img class="country-flag" src="../../../../assets/images/rules/argentina.png" alt="">
@@ -121,7 +100,7 @@
             <div class="box">
 
                 <!--- JUNIOR -->
-                <div *ngIf="juniorValue === true; then btnJuniorActive else btnJuniorDisable"></div>
+                <!-- <div *ngIf="juniorValue === true; then btnJuniorActive else btnJuniorDisable"></div>
                 <ng-template #btnJuniorActive>
                     <button mat-button (click)="junior()" class="btn active">
                         JUNIOR
@@ -131,7 +110,7 @@
                     <button mat-button (click)="junior()" class="btn disable">
                         JUNIOR
                     </button>
-                </ng-template>
+                </ng-template> -->
 
                 <!-- MEDIUM -->
                 <div *ngIf="mediumValue === true; then btnMediumActive else btnMediumDisable"></div>
@@ -166,8 +145,8 @@
         <div class="col-xs-12 col-lg-12">
             <div class="box">
                 <!-- JUNIOR --->
-                <div *ngIf="juniorValue === true; then contentJunior else none"></div>
-                <ng-template #contentJunior>
+                <!-- <div *ngIf="juniorValue === true; then contentJunior else none"></div> -->
+                <!-- <ng-template #contentJunior>
                     <ul class="list-rules">
                         <li class="item-rules">Campeon - 10 puntos.</li>
                         <li class="item-rules">SubCampeon - 7 puntos.</li>
@@ -175,7 +154,7 @@
                         <li class="item-rules">Goleador del torneo - 5 puntos.</li>
                         <li class="item-rules">Mejor jugador del torneo - 5 puntos.</li>
                     </ul>
-                </ng-template>
+                </ng-template> -->
 
                 <!-- MEDIUM --->
                 <div *ngIf="mediumValue === true; then contentMedium else none"></div>
@@ -184,13 +163,15 @@
                         <li class="item-rules">Ganador del partido (o empate) - 3 puntos.</li>
                         <li class="item-rules">Si el participante no acierta el ganador (o empate) - 0 puntos.</li>
                     </ul>
+                    
                     <p class="text-help">* En caso de que se este jugando un torneo.</p>
+                    <p class="text-help">* El goleador y otras menciones serán definidas exclusivamente en base a la determinación oficial del torneo.</p>
                     <ul class="list-rules">
-                        <li class="item-rules">Campeon - 10 puntos.</li>
-                        <li class="item-rules">SubCampeon - 7 puntos.</li>
-                        <li class="item-rules">Tecer lugar - 5 puntos.</li>
-                        <li class="item-rules">Goleador del torneo - 5 puntos.</li>
-                        <li class="item-rules">Mejor jugador del torneo - 5 puntos.</li>
+                        <li class="item-rules">Acertar el Campeón - 10 puntos.</li>
+                        <li class="item-rules">Acertar el SubCampeón - 7 puntos.</li>
+                        <li class="item-rules">Acertar el Tercer lugar - 5 puntos.</li>
+                        <li class="item-rules">Acertar el goleador del torneo - 5 puntos.</li>
+                        <li class="item-rules">Acertar el mejor jugador del torneo - 5 puntos.</li>
                     </ul>
                 </ng-template>
 
@@ -205,6 +186,8 @@
                         <li class="item-rules">Si el participante no acierta al ganador (o empate) - 0 puntos.</li>
                     </ul>
                     <p class="text-help">* En caso de que se este jugando un torneo.</p>
+                    <p class="text-help">* El goleador y otras menciones serán definidas exclusivamente en base a la determinación oficial del torneo.</p>
+
                     <ul class="list-rules">
                         <li class="item-rules">Campeon - 10 puntos.</li>
                         <li class="item-rules">SubCampeon - 7 puntos.</li>
