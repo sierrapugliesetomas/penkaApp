@@ -3,7 +3,7 @@ import {User} from '../../../core/interfaces/user';
 import {FirebaseApp} from '@angular/fire';
 import {AuthService} from '../../../core/services/auth.service';
 import {MatDialog} from '@angular/material/dialog';
-import {LoginComponent} from '../login/login.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-session-container',
@@ -17,7 +17,8 @@ export class SessionContainerComponent implements OnInit {
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
-        public dialog: MatDialog) {
+        public dialog: MatDialog,
+        public router: Router) {
     }
 
     ngOnInit(): void {
@@ -25,12 +26,6 @@ export class SessionContainerComponent implements OnInit {
     }
 
     modalLogin(): void {
-        const dialogRef = this.dialog.open(LoginComponent, {
-            width: '400px',
-            height: '300px',
-        });
-        setTimeout(() => {
-            dialogRef.close();
-        }, 3000);
+        this.router.navigate(['/login']);
     }
 }
