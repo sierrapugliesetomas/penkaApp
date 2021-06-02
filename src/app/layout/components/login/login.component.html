@@ -1,14 +1,22 @@
-<div class="row">
-    <div class="col-xs-12 col-lg-12">
-        <div class="box">
-            <p class="section-title">Iniciar sesión</p>
+<div class="wrapper">
+    <div class="text-section wrapper">
+        <div>
+            <img class="logo-desktop" src="../../../../assets/images/header/logo.png">
+            <p class="title">Inicia Sesión</p>
+            <p class="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;en Penka</p>
         </div>
+        <div class="btn-wrapper">
+            <!-- <button mat-button class="btn-signin">
+                <img class="facebook" src="../../../../assets/images/login/facebook.png">
+            </button> -->
+            <button mat-button class="btn-signin" (click)="auth.googleSignin()">
+                <img class="google" src="../../../../assets/images/login/google.png">
+            </button>
+        </div>
+        <!-- <mat-divider class="divider"></mat-divider>
+        <div class="input-wrapper">
+        </div> -->
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12 col-lg-12">
-        <div class="box">
-            <img src="../../../../assets/images/social/google.png" alt="" (click)="auth.googleSignin()">
-        </div>
+    <div class="image-section">
     </div>
 </div>
