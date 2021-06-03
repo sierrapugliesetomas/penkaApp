@@ -29,13 +29,19 @@
   }
   
   .image-section {
-    height:     100vh;
-    width:      50vw;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
     background-image: url("../../../../assets/images/login/aside.jpg");
     background-repeat: no-repeat;
-    background-position-x: 65%;
-    background-size: 100% 120%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .image-container {
+    height:     100vh;
+    width:      50vw;
+    overflow: hidden;
   }
   
   .title {
