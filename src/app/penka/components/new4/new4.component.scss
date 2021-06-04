@@ -1,6 +1,5 @@
 /* MOBILE */
 @media only screen and (min-width: 350px) and (orientation: portrait) {
-  /* ----  CodePenka ----- */
   .codePenka {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
@@ -9,115 +8,84 @@
     color: #FDA328;
     cursor: pointer;
   }
-  /* --------- Cards ---------- */
-  /* ---- Card Information ---- */
-  .card-information {
-    padding: 0;
+
+  .btn-start {
+    background-color: #FDA328;
     border-radius: 25px;
-    background-color: transparent;
-    margin-bottom: 20px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    font-size: 12px;
+    float: right;
+    padding: 0 20px 0 20px;
+    margin: 0 0 0 10px;
   }
-  .card-information-header {
-    padding: 15px 0 15px 10px;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    background-color: #424448;
-  }
-  .card-information-content {
-    background-color: #2E3035;
-    padding: 20px 0 0 20px;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    height: 300px;
-  }
-  .label-information {
-    color: gray;
+
+  .section-subTitle {
     font-size: 12px;
     line-height: 12px;
   }
-  .data-information {
+
+  .section-title {
     font-family: 'Poppins', sans-serif;
+    font-weight: bold;
     font-size: 14px;
     line-height: 14px;
   }
-  /* ---- Card Matches---- */
-  .card-matches {
-    padding: 0 0 30px 0;
-    border-radius: 25px;
-    background-color: #2E3035;
-  }
 
-  .card-matches-header {
-    background-color: #792fe8;
-    border-top-right-radius: 25px;
-    border-top-left-radius: 25px;
-    padding: 15px 0 15px 10px;
-  }
-
-  .card-title {
+  .mat-expansion-panel-header-title {
     font-family: 'Poppins', sans-serif;
+    font-weight: bold;
     font-size: 16px;
-    font-weight: 700;
-    line-height: 24px;
+    line-height: 16px;
   }
-  .card-matches-content {
+  .mat-expanded {
     background-color: #2E3035;
-    padding: 20px;
-    margin: 0;
   }
-  .card-matches-footer {
-    background-color: transparent;
-    padding: 30px;
-    text-align: right;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
+  .label-mobile {
+    font-size: 14px;
+    line-height: 16px;
+    opacity: 0.5;
   }
-
-  .list-matches {
-    padding: 10px;
-    margin: 0;
-    height: 300px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+  .item-mobile {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
   }
-
-  .list-matches::-webkit-scrollbar {
-    width: 10px;
-  }
-  .list-matches::-webkit-scrollbar-thumb {
-    background-color: #2E3035;
-    border-radius: 10px;
-  }
-  .list-matches::-webkit-scrollbar-thumb:active {
-    background-color: #737171;
-  }
-  .list-matches::-webkit-scrollbar-thumb:hover {
-    background-color: #792fe8;
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
-  }
-
-  .item-matches {
+  .container-button-mobile {
     text-align: center;
-    margin-bottom: 20px;
   }
-
-  /* ---- Buttons ---- */
-  .btn-play {
+  /* Buttons */
+  .btn-grid-mobile {
+    border-radius: 25px;
+    background-color: #FDA328;
+  }
+  .btn-gamble {
     background-color: #FDA328;
     border-radius: 25px;
-    padding: 2px 30px 2px 30px;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-weight: 400;
-    font-size: 14px;
+    padding: 0 20px 0 20px;
   }
-  .btn-whatsapp {
-    color: #FDA328;
-  }
-  ::ng-deep .alert-success {
-    background-color: #27ae60;
+  .btn-join {
+    background-color: #FDA328;
     color: white;
-    font-style: normal;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    font-size: 14px;
+    line-height: 30px;
+    padding: 0 30px 0 30px;
+  }
+  .list-vertical{
+    padding: 0;
+  }
+  .item-vertical{
+    text-align: center;
+    margin: 0 0 20px 0;
+  }
+  .social-img {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
   }
 }
 
