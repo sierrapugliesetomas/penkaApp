@@ -39,7 +39,6 @@ export class PenkaDashboardMiniComponent implements OnInit, OnChanges, OnDestroy
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(
                 res => {
-                    console.log(res);
                     this.hasOpenGambles = res.length > 0;
                 });
     }
