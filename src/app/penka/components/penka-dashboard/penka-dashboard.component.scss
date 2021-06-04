@@ -203,10 +203,14 @@
     font-family: Roboto, "Helvetica Neue", sans-serif;
   }
   .participants {
+    height: 200px;
     margin-bottom: 28px;
   }
   .information {
     margin-bottom: 30px;
+  }
+  .card-participants {
+    height: 370px;
   }
 }
 
@@ -314,9 +318,13 @@
     font-family: Roboto, "Helvetica Neue", sans-serif;
   }
   .participants {
+    height: 200px;
     margin-bottom: 28px;
   }
   .information {
     margin-bottom: 30px;
   }
+  .card-participants {
+    height: 370px;
+  } 
 }
