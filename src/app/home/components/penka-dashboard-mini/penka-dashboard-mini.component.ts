@@ -50,8 +50,6 @@ export class PenkaDashboardMiniComponent implements OnInit, OnChanges, OnDestroy
             ).subscribe(
                 res => {
                     this.penka = res;
-                    console.log(this.penka);
-
                 });
     }
 
