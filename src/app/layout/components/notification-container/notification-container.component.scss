@@ -2,6 +2,7 @@
 @media only screen and (min-width: 350px) and (orientation: portrait) {
   .list {
     padding: 0 0 0 20px;
+    max-height: 400px;
   }
   .item {
 
@@ -29,8 +30,10 @@
 /* DESKTOP */
 @media only screen and (min-width: 1280px) and (orientation: landscape) {
   .list {
-
+    overflow-y: auto;
+    max-height: 400px;
   }
+  
   .item {
     margin-bottom: 25px;
   }

@@ -1,7 +1,7 @@
 <ng-container *ngIf="penkaRequest.length > 0; else none">
 
     <!-- counter notification icon -->
-    <a mat-button [matMenuTriggerFor]="beforeMenu" matBadge="{{penkaRequest.length}}" matBadgeColor="warn">
+    <a mat-button [matMenuTriggerFor]="beforeMenu" matBadge="{{unseenNotifications > 0 ? unseenNotifications : ''}}" matBadgeColor="warn">
         <mat-icon fontSet="material-icons-outlined">notifications</mat-icon>
     </a>
 
@@ -36,6 +36,12 @@
                     <p class="notification-font">La penka {{pr.penkaName}} ha finalizado
                     </p>
                     <button mat-flat-button type="button" class="gamble-fill-btn" (click)="goGrid(pr)">
+                        Ver más</button>
+                </div>
+                <div *ngIf="pr.status === '11'">
+                    <p class="notification-font">Se ha añadido un nuevo partido a {{pr.penkaName}}
+                    </p>
+                    <button mat-flat-button type="button" class="gamble-fill-btn" (click)="goDashboard(pr)">
                         Ver más</button>
                 </div>
             </li>

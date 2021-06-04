@@ -14,6 +14,7 @@ export class NotificationContainerComponent implements OnInit, OnDestroy {
 
     @Input() user: string;
     penkaRequest = [];
+    unseenNotifications: number;
     myRequest$;
     otherUsersRequest$;
     private unsubscribe$ = new Subject<void>();
@@ -33,6 +34,7 @@ export class NotificationContainerComponent implements OnInit, OnDestroy {
           ).subscribe(
             response => {
               this.penkaRequest = response;
+              this.unseenNotifications = this.penkaRequest.filter(req => req.timesShow === 0).length;
             }
           );
     }
@@ -44,8 +46,7 @@ export class NotificationContainerComponent implements OnInit, OnDestroy {
             requestsToUpdate.forEach(req =>{ 
                 req.timesShow = req.timesShow + 1
                 this.penkaRequestService.updatePenkaRequest(req);
-                const indexToDelete = this.penkaRequest.findIndex(r => r.id === req.id);
-                this.penkaRequest.splice(indexToDelete)
+                this.unseenNotifications = this.penkaRequest.filter(req => req.timesShow === 0).length;
             });
 
         } else {

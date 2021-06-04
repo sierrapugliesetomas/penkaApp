@@ -57,10 +57,8 @@ export class PenkaRequestService {
     getOtherNotificationsRequests(userId): any {
         return this.afs.collection<PenkaRequest>('penkaRequest', ref => ref            
             .where('userId', '==', userId)
-            .where('status', 'in', ['8','9', '10'])
-            .where('timesShow', '<', 1)
-            .orderBy('timesShow', 'asc')
-            .orderBy('date', 'asc'))
+            .where('status', 'in', ['8','9', '10', '11'])
+            .orderBy('date', 'desc'))
             .snapshotChanges().pipe(map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as PenkaRequest;
                     const id = a.payload.doc.id;
