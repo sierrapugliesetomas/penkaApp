@@ -8,12 +8,11 @@ import { HideHeaderRoutes } from './layout/utils/HideHeaderRoutes';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'penkaAPP';
+    title = 'Penka';
     showHeaderFlag: boolean;
 
     constructor(private router: Router) {
         this.router.events.subscribe((event) => {
-
             if (event instanceof NavigationEnd) {
                 HideHeaderRoutes.includes(this.router.url) ? this.hideHeader() : this.showHeader()
             }
