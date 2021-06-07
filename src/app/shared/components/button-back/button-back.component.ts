@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-button-back',
@@ -7,13 +8,21 @@ import {Location} from '@angular/common';
     styleUrls: ['./button-back.component.scss']
 })
 export class ButtonBackComponent implements OnInit {
-    constructor(private _location: Location) {
+    @Input() redirectURL: string;
+
+    constructor(private _location: Location,
+                private router: Router) {
     }
 
     ngOnInit(): void {
     }
 
     back(): void {
-        this._location.back();
+        if(!this.redirectURL) {
+            this._location.back();
+        }
+        else {
+            this.router.navigate([this.redirectURL]);
+        }
     }
 }
