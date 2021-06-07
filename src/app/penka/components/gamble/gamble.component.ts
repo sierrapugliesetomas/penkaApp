@@ -61,7 +61,7 @@ export class GambleComponent implements OnInit, OnDestroy {
 
     // tslint:disable-next-line:typedef
     back() {
-        this.router.navigate(['/penka/dashboard/' + this.codePenka]).catch();
+        this.router.navigate(['/penka/dashboard/' + this.codePenka], {skipLocationChange: true}).catch();
     }
 
     saveGambles() {
