@@ -55,7 +55,7 @@ export class New3Component implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
-        this.activatedRoute.params.subscribe(
+        this.activatedRoute.params.pipe(takeUntil(this.unsubscribe$)).subscribe(
             (params: Params) => {
                 this.codeTemplate = params.codeTemplate;
                 this.codePenka = params.codePenka;
@@ -187,7 +187,7 @@ export class New3Component implements OnInit, OnDestroy {
 
                 this.newPenka = {} as Penka;
                 this.participant = {} as Participant;
-
+                
                 this.route.navigate(['/penka/new4/' + this.generateCodePenkaForTemplate]).catch(error => console.log(error));
             }
         }
@@ -321,7 +321,6 @@ export class New3Component implements OnInit, OnDestroy {
 
                 this.newPenka = {} as Penka;
                 this.participant = {} as Participant;
-
                 this.route.navigate(['/penka/new4/' + this.codePenka]).catch(error => console.log(error));
             }
         }

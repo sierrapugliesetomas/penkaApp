@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import {Subject} from 'rxjs';
 import {TemplatesService} from '../../../core/services/templates.service';
 import {SingleMatchesService} from '../../../core/services/single-matches.service';
@@ -46,7 +46,7 @@ export class New2Component implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
 		
-        this.activatedRoute.params.subscribe(
+        this.activatedRoute.params.pipe(takeUntil(this.unsubscribe$)).subscribe(
             (params: Params) => {
                 this.type = params.type;
             }
