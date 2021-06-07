@@ -1,12 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ListMatchesService} from '../../../core/services/list-matches.service';
-import {Subject} from 'rxjs';
-import {ActivatedRoute, Params, Router} from '@angular/router';
-import {PenkasService} from '../../../core/services/penkas.service';
-import {User} from '../../../core/interfaces/user';
-import {AuthService} from '../../../core/services/auth.service';
-import {FirebaseApp} from '@angular/fire';
-import {takeUntil} from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ListMatchesService } from '../../../core/services/list-matches.service';
+import { Subject } from 'rxjs';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { PenkasService } from '../../../core/services/penkas.service';
+import { User } from '../../../core/interfaces/user';
+import { AuthService } from '../../../core/services/auth.service';
+import { FirebaseApp } from '@angular/fire';
+import { takeUntil } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -32,12 +32,12 @@ export class New4Component implements OnInit, OnDestroy {
         private listMatchesService: ListMatchesService,
         private penkasService: PenkasService,
         private _snackBar: MatSnackBar,
-        ) {
+    ) {
     }
 
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
-        this.activatedRoute.params.subscribe(
+        this.activatedRoute.params.pipe(takeUntil(this.unsubscribe$)).subscribe(
             (params: Params) => {
                 this.codePenka = params.codePenka;
             }
@@ -46,35 +46,32 @@ export class New4Component implements OnInit, OnDestroy {
             .pipe(
                 takeUntil(this.unsubscribe$)
             ).subscribe(
-            res => {
-                this.penka = res;
-            }
-        );
+                res => {
+                    this.penka = res;
+                }
+            );
         this.listMatchesService.getListMatches()
             .pipe(
                 takeUntil(this.unsubscribe$)
             ).subscribe(
-            res => {
-                this.listMatches = res;
-            });
-        window.onpopstate = (e) => {
-            window.history.forward();
-        };
+                res => {
+                    this.listMatches = res;
+                });
     }
 
-    ngOnDestroy(): void {
+    ngOnDestroy() {
         this.unsubscribe$.next();
         this.unsubscribe$.complete();
     }
 
     goDashboard(codePenka): void {
-        this.router.navigate(['/penka/dashboard/' + codePenka], {replaceUrl:true}).catch(error => console.log(error));
+        this.router.navigate(['/penka/dashboard/' + codePenka], { state: { redirect: '/home'} }).catch(error => console.log(error));
     }
 
     shareByWhatsapp(codePenka): void {
         const url = 'https://penkapro.com/penka/join/' + codePenka;
         const msg = encodeURIComponent('Unete a mi Penka, solo ingresa Aqui! ' + url);
-	    window.open('https://web.whatsapp.com/send?text=' + msg);
+        window.open('https://web.whatsapp.com/send?text=' + msg);
     }
 
     showCopyNotification(): void {
