@@ -19,7 +19,7 @@ export interface Penka {
     status?: string; /* 1- in Game // 2- finished  //  3- archived  */
     date?: Date;
     dateLimit?: Date;
-    createdAt?: Date;
+    createdAt?: Date; // ToDo: verificar en desuso
     visibility: string;
     typePenka: string;
     formatName: string;
