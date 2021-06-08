@@ -40,7 +40,6 @@ export class NotificationContainerComponent implements OnInit, OnDestroy {
     }
 
     updateNotificationsStatus(request?): void {
-        this.unseenNotifications = 0;
         if(!request) {
             // when close mat menu
             let requestsToUpdate = this.penkaRequest.filter(req => req.status !== '1');
@@ -55,6 +54,10 @@ export class NotificationContainerComponent implements OnInit, OnDestroy {
             this.penkaRequest.splice(indexToDelete);
 
         }
+    }
+
+    updateNotificationIcon(): void {
+        this.unseenNotifications = 0;
     }
 
     goGamble(request: PenkaRequest): void {
