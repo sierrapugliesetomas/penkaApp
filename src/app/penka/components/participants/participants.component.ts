@@ -1,5 +1,4 @@
 import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
-import {Router} from '@angular/router';
 import {ParticipantsService} from '../../../core/services/participants.service';
 import {Participant} from '../../../core/interfaces/participant';
 import {User} from '../../../core/interfaces/user';
