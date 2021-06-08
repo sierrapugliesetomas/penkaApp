@@ -40,13 +40,13 @@ export class NotificationContainerComponent implements OnInit, OnDestroy {
     }
 
     updateNotificationsStatus(request?): void {
+        this.unseenNotifications = 0;
         if(!request) {
             // when close mat menu
             let requestsToUpdate = this.penkaRequest.filter(req => req.status !== '1');
             requestsToUpdate.forEach(req =>{ 
                 req.timesShow = req.timesShow + 1
                 this.penkaRequestService.updatePenkaRequest(req);
-                this.unseenNotifications = this.penkaRequest.filter(req => req.timesShow === 0).length;
             });
 
         } else {
