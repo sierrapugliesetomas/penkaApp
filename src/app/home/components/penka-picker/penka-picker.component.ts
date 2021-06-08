@@ -6,6 +6,7 @@ import {FirebaseApp} from '@angular/fire';
 import {AuthService} from '../../../core/services/auth.service';
 import {ParticipantsService} from '../../../core/services/participants.service';
 import { PenkasService } from 'src/app/core/services/penkas.service';
+import { Penka } from 'src/app/core/interfaces/penka';
 
 @Component({
     selector: 'app-penka-picker',
@@ -65,11 +66,11 @@ export class PenkaPickerComponent implements OnInit, OnDestroy {
             });
     }
 
-    private getPenkas(penkaCodes): void {
-        this.penkasService.getPenkasByCodeArray(penkaCodes)
+    private getPenkas(penkaCodes: string[]): void {
+        this.penkasService.getPenkasByMakerId(this.user.uid)
         .pipe(takeUntil(this.unsubscribe$))
-        .subscribe(res => {
-            this.penkas = res;
+        .subscribe((res) => {
+            this.penkas = res.filter(penka => penkaCodes.includes(penka.codePenka));
         });
     }
 }
