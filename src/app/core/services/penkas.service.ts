@@ -95,9 +95,13 @@ export class PenkasService {
     }
 
     getPenkasByLimitDate(): any {
-        const currentDate = firebase.firestore.Timestamp.fromDate(new Date());
+        let date = new Date();
+        date.setDate(date.getDate() - 1); // not exlcude today limit penkas
+        
+        const currentDate = firebase.firestore.Timestamp.fromDate(date);
         return this.afs.collection<Penka>('penkas', ref => ref
-                .where('dateLimit', '>', currentDate) // ToDo: consultar dia limite inclusivo o exclusivo
+                .where('status', '==', '1')
+                .where('dateLimit', '>', currentDate)
                 .orderBy('dateLimit', 'asc'))
                 .snapshotChanges().pipe(map(actions => actions.map(a => {
                         const data = a.payload.doc.data() as Penka;
