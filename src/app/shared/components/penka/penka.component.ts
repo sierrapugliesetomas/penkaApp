@@ -56,7 +56,7 @@ export class PenkaComponent implements OnInit, OnDestroy {
             res => {
                 this.listMatches = res;
             });
-        this.participantsService.getParticipantByUserAndCodePenka(this.user.uid, this.codePenka)
+        this.participantsService.getParticipantByUserAndCodePenkaAllStatus(this.user.uid, this.codePenka)
         .pipe(
             takeUntil(this.unsubscribe$)
         ).subscribe(
