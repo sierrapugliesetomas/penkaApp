@@ -94,7 +94,7 @@ export class ParticipantsService {
             );
     }
 
-    getParticipantLimitByUserId(userId): any {
+    getOpenParticipantByUserId(userId): any {
         return this.afs.collection<Participant>('participants', ref => ref
             .where('userId', '==', userId)
             .where('status', 'in', ['1'])
