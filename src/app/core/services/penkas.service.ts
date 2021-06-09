@@ -55,6 +55,12 @@ export class PenkasService {
         return this.penkasCollection.doc(penkaId).valueChanges();
     }
 
+    getPenkasByIdArray(idArray: string []): any {
+        const retPenkas = [];
+        idArray.forEach(id => retPenkas.push(this.penkasCollection.doc(id).valueChanges()));
+        return retPenkas;
+    }
+
     getPenkasByMakerId(makerId: string): any {
         return this.afs.collection<Penka>('penkas', ref => ref
         .where('makerId', '==', makerId))
