@@ -8,6 +8,10 @@ import { User } from '../../../core/interfaces/user';
 import { takeUntil } from 'rxjs/operators';
 import { ListMatchesService } from '../../../core/services/list-matches.service';
 import { Penka } from 'src/app/core/interfaces/penka';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { PenkaRequest } from 'src/app/core/interfaces/penkaRequest';
+import { PenkaRequestService } from 'src/app/core/services/penka-request.service';
+import { RequestNotificationComponent } from 'src/app/inbox/components/request-notification/request-notification.component';
 
 @Component({
   selector: 'app-view',
@@ -19,16 +23,19 @@ export class ViewComponent implements OnInit, OnDestroy {
   penka: Penka;
   user = {} as User;
   listMatches = [];
+  newPenkaRequest = {} as PenkaRequest;
+
   private unsubscribe$ = new Subject<void>();
 
   constructor(
     public firebase: FirebaseApp,
     public auth: AuthService,
-    private router: Router,
     private activatedRoute: ActivatedRoute,
     private penkasService: PenkasService,
-    private listMatchesService: ListMatchesService
-  ) {}
+    private listMatchesService: ListMatchesService,
+    private penkasRequestService: PenkaRequestService,
+    private _snackBar: MatSnackBar) {
+  }
 
   ngOnInit(): void {
     this.getUser();
@@ -53,33 +60,76 @@ export class ViewComponent implements OnInit, OnDestroy {
 
   private getPenka(): void {
     this.penkasService
-    .getPenkaByCodePenka(this.penkaId)
-    .pipe(takeUntil(this.unsubscribe$))
-    .subscribe((res) => {
-      this.penka = res[0];
-      this.getListMatches();
-    });
+      .getPenkaByCodePenka(this.penkaId)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((res) => {
+        this.penka = res[0];
+        this.getListMatches();
+      });
   }
 
   private getListMatches(): void {
-    if(this.penka.codeTemplate !== '') {
+    if (this.penka.codeTemplate !== '') {
       this.listMatchesService
-      .getListMatchesByCodeTemplate(this.penka.codeTemplate)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((res) => {
-        this.listMatches = res;
-      });
+        .getListMatchesByCodeTemplate(this.penka.codeTemplate)
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe((res) => {
+          this.listMatches = res;
+        });
     } else {
       this.listMatchesService
-      .getListMatchesByCodePenka(this.penka.codePenka)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((res) => {
-        this.listMatches = res;
-      });
+        .getListMatchesByCodePenka(this.penka.codePenka)
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe((res) => {
+          this.listMatches = res;
+        });
     }
   }
 
+  join(): void {
+    let ifExist = [];
+    const today = new Date();
+    let counter = 1;
 
+    if (confirm('Deseas unirte a la penka: ' + this.penka.name)) {
 
-  join(): void {}
+      this.penkasRequestService.getPenkaByUserAndCodePenka(this.user.uid, this.penka.codePenka).subscribe(
+        res => {
+          ifExist = res;
+          if (ifExist.length > 0) {
+            if (counter === 1) {
+              alert('Ya has enviado una solicitud de union a la Penka:' + this.penka.name);
+              counter++;
+            }
+          } else {
+            if (counter === 1) {
+              this.newPenkaRequest.penkaName = this.penka.name;
+              this.newPenkaRequest.penkaId = this.penkaId;
+              this.newPenkaRequest.codePenka = this.penka.codePenka;
+              this.newPenkaRequest.makerId = this.penka.makerId;
+              this.newPenkaRequest.makerName = this.penka.makerName;
+              this.newPenkaRequest.makerEmail = this.penka.makerEmail;
+              this.newPenkaRequest.makerPhoto = this.penka.makerPhoto;
+              this.newPenkaRequest.userId = this.user.uid;
+              this.newPenkaRequest.userName = this.user.displayName;
+              this.newPenkaRequest.userEmail = this.user.email;
+              this.newPenkaRequest.userPhoto = this.user.photoURL;
+              this.newPenkaRequest.date = today;
+              this.newPenkaRequest.status = '1';
+              this.newPenkaRequest.timesShow = 0;
+              this.penkasRequestService.addPenkaRequest(this.newPenkaRequest);
+
+              this._snackBar.openFromComponent(RequestNotificationComponent, {
+                duration: 5000,
+                horizontalPosition: 'end',
+                verticalPosition: 'top',
+                panelClass: 'request-notification'
+              });
+              counter++;
+            }
+          }
+        },
+        error => console.log(error));
+    }
+  }
 }
