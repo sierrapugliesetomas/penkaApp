@@ -106,10 +106,16 @@ export class PenkaDashboardComponent implements OnInit, OnDestroy {
         }
     }
 
-    shareByWhatsapp(codePenka): void {
+    shareByWhatsappWeb(codePenka): void {
         const url = 'https://penkapro.com/penka/join/' + codePenka;
         const msg = encodeURIComponent('¡Únete a mi Penka, sólo ingresa aquí! ' + url);
         window.open('https://web.whatsapp.com/send?text=' + msg);
+    }
+
+    shareByWhatsappMobile(codePenka): void {
+        const url = 'https://penkapro.com/penka/join/' + codePenka;
+        const msg = encodeURIComponent('¡Únete a mi Penka, sólo ingresa aquí! ' + url);
+        window.open('https://wa.me/?text=' + msg);
     }
 
     showCopyNotification(): void {
