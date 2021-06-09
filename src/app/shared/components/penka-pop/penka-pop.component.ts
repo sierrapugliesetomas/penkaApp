@@ -68,7 +68,7 @@ export class PenkaPopComponent implements OnInit, OnDestroy {
                     ifExist = res;
                     if (ifExist.length > 0) {
                         if (counter === 1) {
-                            alert('Ya has enviado una solicitud de union a la Penka: "penkaName"');
+                            alert('Ya has enviado una solicitud de union a la Penka:' + penkaName);
                             counter++;
                         }
                     } else {
