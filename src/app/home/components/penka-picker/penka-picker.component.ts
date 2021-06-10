@@ -6,6 +6,7 @@ import { FirebaseApp } from '@angular/fire';
 import { AuthService } from '../../../core/services/auth.service';
 import { ParticipantsService } from '../../../core/services/participants.service';
 import { PenkasService } from 'src/app/core/services/penkas.service';
+import { Penka } from 'src/app/core/interfaces/penka';
 
 @Component({
     selector: 'app-penka-picker',
@@ -15,7 +16,7 @@ import { PenkasService } from 'src/app/core/services/penkas.service';
 export class PenkaPickerComponent implements OnInit, OnDestroy {
     myParticipations = [];
     user = {} as User;
-    penkas = [];
+    penkas = [] as Penka [];
     selectedPenka = '';
     private unsubscribe$ = new Subject<void>();
     @Output() pickedPenka = new EventEmitter<string>();
@@ -70,9 +71,9 @@ export class PenkaPickerComponent implements OnInit, OnDestroy {
     }
 
     private getPenkas(penkaCodes: string[]): void {
-        this.penkas = this.penkasService.getPenkas()
+        this.penkasService.getPenkas()
             .pipe(takeUntil(this.unsubscribe$))
-            .subscribe(response => {
+            .subscribe((response: Penka[]) => {
                 this.penkas = response.filter(penka => penkaCodes.includes(penka.codePenka));
             });
     }

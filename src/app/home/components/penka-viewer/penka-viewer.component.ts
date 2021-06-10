@@ -1,10 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {User} from '../../../core/interfaces/user';
-import {Subject} from 'rxjs';
-import {FirebaseApp} from '@angular/fire';
-import {AuthService} from '../../../core/services/auth.service';
-import {ParticipantsService} from '../../../core/services/participants.service';
-import {takeUntil} from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { User } from '../../../core/interfaces/user';
+import { combineLatest, Subject } from 'rxjs';
+import { FirebaseApp } from '@angular/fire';
+import { AuthService } from '../../../core/services/auth.service';
+import { ParticipantsService } from '../../../core/services/participants.service';
+import { map, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-penka-viewer',
@@ -25,13 +25,18 @@ export class PenkaViewerComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
-        this.participantsService.getParticipantByUserId(this.user.uid)
-            .pipe(
-                takeUntil(this.unsubscribe$)
-            ).subscribe(
-            res => {
-                this.myParticipations = res.filter(p => p.status === '1');
-            });
+
+        const openParticipants = this.participantsService.getOpenParticipantByUserId(this.user.uid);
+        const yesterdayFinishParticipants = this.participantsService.getYesterdayFinishParticipantsByUserId(this.user.uid);
+
+        combineLatest([openParticipants, yesterdayFinishParticipants]).pipe(
+            takeUntil(this.unsubscribe$),
+            map((response: any) => [...response[0], ...response[1]])
+        ).subscribe(
+            response => {
+                this.myParticipations = response;
+            }
+        );
     }
 
     ngOnDestroy(): void {
