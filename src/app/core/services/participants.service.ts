@@ -3,6 +3,7 @@ import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firest
 import {Participant} from '../interfaces/participant';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import * as firebase from 'firebase';
 
 @Injectable({
     providedIn: 'root'
@@ -99,6 +100,24 @@ export class ParticipantsService {
             .where('userId', '==', userId)
             .where('status', 'in', ['1'])
             .orderBy('date', 'asc'))
+            .snapshotChanges().pipe(map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Participant;
+                    const id = a.payload.doc.id;
+                    return {id, ...data};
+                }))
+            );
+    }
+
+    getYesterdayFinishParticipantsByUserId(userId): any {
+        let date = new Date();
+        date.setDate(date.getDate() - 1);
+        const yesterday = firebase.firestore.Timestamp.fromDate(date);
+
+        return this.afs.collection<Participant>('participants', ref => ref
+            .where('userId', '==', userId)
+            .where('status', '==', '2')
+            .where('finishDate', '>=', yesterday)
+            .orderBy('finishDate', 'desc'))
             .snapshotChanges().pipe(map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as Participant;
                     const id = a.payload.doc.id;

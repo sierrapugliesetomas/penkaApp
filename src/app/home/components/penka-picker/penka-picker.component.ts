@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { User } from '../../../core/interfaces/user';
-import { Subject } from 'rxjs';
+import { combineLatest, Subject } from 'rxjs';
 import { FirebaseApp } from '@angular/fire';
 import { AuthService } from '../../../core/services/auth.service';
 import { ParticipantsService } from '../../../core/services/participants.service';
@@ -51,27 +51,29 @@ export class PenkaPickerComponent implements OnInit, OnDestroy {
     }
 
     private getParticipations(): void {
-        this.participantsService.getOpenParticipantByUserId(this.user.uid)
-            .pipe(
-                takeUntil(this.unsubscribe$)
-            ).subscribe(
-                res => {
-                    this.myParticipations = res;
-                    if (this.myParticipations.length > 0) {
-                        this.selectedPenka = this.myParticipations[0].codePenka;
-                        let penkaCodes = this.myParticipations.map(p => p.codePenka);
-                        this.getPenkas(penkaCodes);
-                    }
-                });
+        const openParticipants = this.participantsService.getOpenParticipantByUserId(this.user.uid);
+        const yesterdayFinishParticipants = this.participantsService.getYesterdayFinishParticipantsByUserId(this.user.uid);
+
+        combineLatest([openParticipants, yesterdayFinishParticipants]).pipe(
+            takeUntil(this.unsubscribe$),
+            map((response: any) => [...response[0], ...response[1]])
+        ).subscribe(
+            response => {
+                this.myParticipations = response;
+                if (this.myParticipations.length > 0) {
+                    this.selectedPenka = this.myParticipations[0].codePenka;
+                    let penkaCodes = this.myParticipations.map(p => p.codePenka);
+                    this.getPenkas(penkaCodes);
+                }
+            }
+        );
     }
 
     private getPenkas(penkaCodes: string[]): void {
-        this.penkasService.getPenkasByCodeArray(penkaCodes)
-        .pipe(takeUntil(this.unsubscribe$))
-        .subscribe(
-            res => {
-                this.penkas = res;
-            }
-        )
+        this.penkas = this.penkasService.getPenkas()
+            .pipe(takeUntil(this.unsubscribe$))
+            .subscribe(response => {
+                this.penkas = response.filter(penka => penkaCodes.includes(penka.codePenka));
+            });
     }
 }
