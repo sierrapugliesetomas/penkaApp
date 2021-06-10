@@ -3,7 +3,6 @@ import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} 
 import {Penka} from '../interfaces/penka';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import { Timestamp } from 'rxjs/internal/operators/timestamp';
 import * as firebase from 'firebase';
 
 @Injectable({
@@ -55,12 +54,6 @@ export class PenkasService {
         return this.penkasCollection.doc(penkaId).valueChanges();
     }
 
-    getPenkasByIdArray(idArray: string []): any {
-        const retPenkas = [];
-        idArray.forEach(id => retPenkas.push(this.penkasCollection.doc(id).valueChanges()));
-        return retPenkas;
-    }
-
     getPenkasByMakerId(makerId: string): any {
         return this.afs.collection<Penka>('penkas', ref => ref
         .where('makerId', '==', makerId))
@@ -101,7 +94,6 @@ export class PenkasService {
     getPenkasByCodeArray(codePenka: string[]): any {
     return this.afs.collection<Penka>('penkas', ref => ref
             .where('codePenka', 'in', codePenka)
-            .where('status', '==', '1')
             .orderBy('dateLimit', 'asc'))
             .snapshotChanges().pipe(map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as Penka;
