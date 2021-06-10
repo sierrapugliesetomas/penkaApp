@@ -26,4 +26,5 @@ export interface Penka {
     singleMatchesId: string[];
     codeTemplate: string;
     codeTournament: string;
+    finishDate?: Date;
 }
