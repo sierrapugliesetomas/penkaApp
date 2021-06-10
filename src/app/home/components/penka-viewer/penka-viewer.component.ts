@@ -15,6 +15,8 @@ export class PenkaViewerComponent implements OnInit, OnDestroy {
     codePenkaSelected: string;
     myParticipations = [];
     user = {} as User;
+    openParticipants;
+    yesterdayFinishParticipants;
     private unsubscribe$ = new Subject<void>();
 
     constructor(
@@ -26,10 +28,10 @@ export class PenkaViewerComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
 
-        const openParticipants = this.participantsService.getOpenParticipantByUserId(this.user.uid);
-        const yesterdayFinishParticipants = this.participantsService.getYesterdayFinishParticipantsByUserId(this.user.uid);
+        this.openParticipants = this.participantsService.getOpenParticipantByUserId(this.user.uid);
+        this.yesterdayFinishParticipants = this.participantsService.getYesterdayFinishParticipantsByUserId(this.user.uid);
 
-        combineLatest([openParticipants, yesterdayFinishParticipants]).pipe(
+        combineLatest([this.openParticipants, this.yesterdayFinishParticipants]).pipe(
             takeUntil(this.unsubscribe$),
             map((response: any) => [...response[0], ...response[1]])
         ).subscribe(

@@ -18,6 +18,8 @@ export class PenkaPickerComponent implements OnInit, OnDestroy {
     user = {} as User;
     penkas = [] as Penka [];
     selectedPenka = '';
+    openParticipants;
+    yesterdayFinishParticipants;
     private unsubscribe$ = new Subject<void>();
     @Output() pickedPenka = new EventEmitter<string>();
 
@@ -52,10 +54,10 @@ export class PenkaPickerComponent implements OnInit, OnDestroy {
     }
 
     private getParticipations(): void {
-        const openParticipants = this.participantsService.getOpenParticipantByUserId(this.user.uid);
-        const yesterdayFinishParticipants = this.participantsService.getYesterdayFinishParticipantsByUserId(this.user.uid);
+        this.openParticipants = this.participantsService.getOpenParticipantByUserId(this.user.uid);
+        this.yesterdayFinishParticipants = this.participantsService.getYesterdayFinishParticipantsByUserId(this.user.uid);
 
-        combineLatest([openParticipants, yesterdayFinishParticipants]).pipe(
+        combineLatest([this.openParticipants, this.yesterdayFinishParticipants]).pipe(
             takeUntil(this.unsubscribe$),
             map((response: any) => [...response[0], ...response[1]])
         ).subscribe(
@@ -71,7 +73,7 @@ export class PenkaPickerComponent implements OnInit, OnDestroy {
     }
 
     private getPenkas(penkaCodes: string[]): void {
-        this.penkasService.getPenkas()
+        this.penkasService.getAllPenkas()
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe((response: Penka[]) => {
                 this.penkas = response.filter(penka => penkaCodes.includes(penka.codePenka));

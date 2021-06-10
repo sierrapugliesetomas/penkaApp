@@ -49,6 +49,17 @@ export class PenkasService {
     getPenkas(): any {
         return this.penkas;
     }
+
+    getAllPenkas(): any {
+        return this.afs.collection<Penka>('penkas', ref => ref
+        .where('status', 'in', ['1','2']))
+        .snapshotChanges().pipe(map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Penka;
+                const id = a.payload.doc.id;
+                return {id, ...data};
+            }))
+        );
+    }
     
     getPenkaById(penkaId: string): any {
         return this.penkasCollection.doc(penkaId).valueChanges();
