@@ -93,7 +93,7 @@ export class ViewComponent implements OnInit, OnDestroy {
 
     if (confirm('Deseas unirte a la penka: ' + this.penka.name)) {
 
-      this.penkasRequestService.getPenkaByUserAndCodePenka(this.user.uid, this.penka.codePenka).subscribe(
+      this.penkasRequestService.getPenkaByUserAndCodePenka(this.user.uid, this.penka.codePenka).pipe(takeUntil(this.unsubscribe$)).subscribe(
         res => {
           ifExist = res;
           if (ifExist.length > 0) {

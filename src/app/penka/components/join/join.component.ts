@@ -1,14 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PenkasService} from '../../../core/services/penkas.service';
-import {Penka} from '../../../core/interfaces/penka';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
-import {FirebaseApp} from '@angular/fire';
-import {AuthService} from '../../../core/services/auth.service';
-import {ActivatedRoute, Params, Router} from '@angular/router';
-import {ParticipantsService} from '../../../core/services/participants.service';
-import {User} from '../../../core/interfaces/user';
-import {Participant} from '../../../core/interfaces/participant';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { PenkasService } from '../../../core/services/penkas.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { FirebaseApp } from '@angular/fire';
+import { AuthService } from '../../../core/services/auth.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ParticipantsService } from '../../../core/services/participants.service';
+import { User } from '../../../core/interfaces/user';
 
 @Component({
     selector: 'app-join',
@@ -28,7 +26,6 @@ export class JoinComponent implements OnInit, OnDestroy {
     constructor(
         public firebase: FirebaseApp,
         public auth: AuthService,
-        private router: Router,
         private activatedRoute: ActivatedRoute,
         private participantsService: ParticipantsService,
         private penkasService: PenkasService) {
@@ -41,22 +38,21 @@ export class JoinComponent implements OnInit, OnDestroy {
                 this.codePenka = params.codePenka;
             }
         );
+
         this.penkasService.getPenkasByLimitDate()
             .pipe(
                 takeUntil(this.unsubscribe$)
             ).subscribe(
-            res => {
-                this.penkas = res;
-            });
-    
-        this.participantsService.getAllParticipantByUserId(this.user.uid)
-        .pipe(takeUntil(this.unsubscribe$))
-        .subscribe(
-            res => {
-                this.participantsId = res.map(p => p.codePenka);
-                this.penkas = this.penkas.filter(penka => !this.participantsId.includes(penka.codePenka));
-            }
-        )
+                penkasRes => {
+                    this.participantsService.getAllParticipantByUserId(this.user.uid)
+                        .pipe(takeUntil(this.unsubscribe$))
+                        .subscribe(
+                            res => {
+                                this.participantsId = res.map(p => p.codePenka);
+                                this.penkas = penkasRes.filter(penka => !this.participantsId.includes(penka.codePenka));
+                            }
+                        )
+                });
     }
 
     ngOnDestroy(): void {

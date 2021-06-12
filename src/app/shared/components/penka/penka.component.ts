@@ -62,7 +62,7 @@ export class PenkaComponent implements OnInit, OnDestroy {
         ).subscribe(
         res => {
             // is user already playing this penka
-            this.isUserParticipant = res.length === 1;
+            this.isUserParticipant = res.length > 0;
         });
     }
 
@@ -87,7 +87,7 @@ export class PenkaComponent implements OnInit, OnDestroy {
 
         if (confirm('Deseas unirte a la penka: ' + penkaName)) {
 
-            this.penkasRequestService.getPenkaByUserAndCodePenka(userId, codePenka).subscribe(
+            this.penkasRequestService.getPenkaByUserAndCodePenka(userId, codePenka).pipe(takeUntil(this.unsubscribe$)).subscribe(
                 res => {
                     ifExist = res;
                     if (ifExist.length > 0) {

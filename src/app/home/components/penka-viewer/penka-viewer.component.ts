@@ -36,6 +36,8 @@ export class PenkaViewerComponent implements OnInit, OnDestroy {
             map((response: any) => [...response[0], ...response[1]])
         ).subscribe(
             response => {
+                console.log(response);
+                
                 this.myParticipations = response;
             }
         );
