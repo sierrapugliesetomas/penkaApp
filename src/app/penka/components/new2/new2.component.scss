@@ -69,6 +69,12 @@
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
   }
+
+  .disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 }
 
 /* DESKTOP 720P */
@@ -128,6 +134,12 @@
   .item-horizontal {
     margin: 0 20px 10px 0;
   }
+
+  .disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 }
 
 /* DESKTOP 1080P */
@@ -177,7 +189,12 @@
     outline: none;
     border: 2px solid #FDA328;
     border-radius: 25px;
+  }
 
+  .disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
   }
 }
 

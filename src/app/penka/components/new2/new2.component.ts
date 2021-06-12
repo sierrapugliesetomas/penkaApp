@@ -27,6 +27,7 @@ export class New2Component implements OnInit, OnDestroy {
     templates = [];
     singleMatches = [];
     listMatches = [];
+    disableButtons = false;
     user = {} as User;
     private unsubscribe$ = new Subject<void>();
     today = new Date();
@@ -85,6 +86,7 @@ export class New2Component implements OnInit, OnDestroy {
     }
 	
     pickTeam(sm): void {
+        this.disableButtons = true;
         const codeTemplate = '';
         const status = '0';
         const today = new Date();
@@ -119,6 +121,11 @@ export class New2Component implements OnInit, OnDestroy {
                     }
                     counter++;
                 }
+                this.disableButtons = false;
             }, error => console.log(error));
+    }
+
+    isSelected(sm) {
+        return this.listMatches.map(lm => lm.singleMatchId).includes(sm.id);
     }
 }

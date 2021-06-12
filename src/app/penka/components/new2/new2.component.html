@@ -105,19 +105,23 @@
 
                             <ng-container *ngIf="term; else list">
                                 <ul class="list-horizontal">
-                                    <li class="item-horizontal" *ngFor="let match of singleMatches | filter:term"
-                                        (click)="pickTeam(match)">
-                                        <app-single-match [match]="match"></app-single-match>
-                                    </li>
+                                    <ng-container *ngFor="let match of singleMatches | filter:term">
+                                        <li class="item-horizontal" *ngIf="!isSelected(match)" (click)="pickTeam(match)"
+                                            [ngClass]="{'disabled': disableButtons}">
+                                            <app-single-match [match]="match"></app-single-match>
+                                        </li>
+                                    </ng-container>
                                 </ul>
                             </ng-container>
 
                             <ng-template #list>
                                 <ul class="list-horizontal">
-                                    <li class="item-horizontal" *ngFor="let match of singleMatches"
-                                        (click)="pickTeam(match)">
-                                        <app-single-match [match]="match"></app-single-match>
-                                    </li>
+                                    <ng-container *ngFor="let match of singleMatches">
+                                        <li class="item-horizontal" *ngIf="!isSelected(match)" (click)="pickTeam(match)"
+                                            [ngClass]="{'disabled': disableButtons}">
+                                            <app-single-match [match]="match"></app-single-match>
+                                        </li>
+                                    </ng-container>
                                 </ul>
                             </ng-template>
 
@@ -230,19 +234,23 @@
 
                             <ng-container *ngIf="term; else list">
                                 <ul class="list-vertical">
-                                    <li class="item-vertical" *ngFor="let match of singleMatches | filter:term"
-                                        (click)="pickTeam(match)">
-                                        <app-single-match [match]="match"></app-single-match>
-                                    </li>
+                                    <ng-container *ngFor="let match of singleMatches | filter:term">
+                                        <li class="item-vertical" *ngIf="!isSelected(match)" (click)="pickTeam(match)"
+                                            [ngClass]="{'disabled': disableButtons}">
+                                            <app-single-match [match]="match"></app-single-match>
+                                        </li>
+                                    </ng-container>
                                 </ul>
                             </ng-container>
 
                             <ng-template #list>
                                 <ul class="list-vertical">
-                                    <li class="item-vertical" *ngFor="let match of singleMatches"
-                                        (click)="pickTeam(match)">
-                                        <app-single-match [match]="match"></app-single-match>
-                                    </li>
+                                    <ng-container *ngFor="let match of singleMatches">
+                                        <li class="item-vertical" *ngIf="!isSelected(match)" (click)="pickTeam(match)"
+                                            [ngClass]="{'disabled': disableButtons}">
+                                            <app-single-match [match]="match"></app-single-match>
+                                        </li>
+                                    </ng-container>
                                 </ul>
                             </ng-template>
 
