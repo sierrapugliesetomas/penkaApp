@@ -135,6 +135,12 @@
   .competition {
     color: white;
   }
+
+  .gamble-img {
+    width: 15px;
+    height: 15px;
+    margin: 5px 0 0 0;
+  }
 }
 
 /* MOBILE 350p */
@@ -274,6 +280,12 @@
   .competition {
     color: white;
   }
+
+  .gamble-img {
+    width: 15px;
+    height: 15px;
+    margin: 5px 0 0 0;
+  }
 }
 
 /* DESKTOP 720P */
@@ -331,9 +343,11 @@
     line-height: 12px;
     padding: 0;
   }
-  .img-gamble{
-    width: 20px;
-    height: 20px;
+
+  .gamble-img {
+    width: 15px;
+    height: 15px;
+    margin: 5px 0 0 0;
   }
 
   .home-score, .visit-score {
@@ -416,5 +430,11 @@
 
   .competition {
     color: white;
+  }
+
+  .gamble-img {
+    width: 15px;
+    height: 15px;
+    margin: 5px 0 0 0;
   }
 }
