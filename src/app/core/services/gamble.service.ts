@@ -43,7 +43,8 @@ export class GambleService {
 
     getGambleByUserId(userId): any {
         return this.afs.collection<Gamble>('gambles', ref => ref
-            .where('userId', '==', userId))
+            .where('userId', '==', userId)
+            .orderBy('startDate', 'asc'))
             .snapshotChanges().pipe(map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as Gamble;
                     const id = a.payload.doc.id;
