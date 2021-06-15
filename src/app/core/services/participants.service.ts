@@ -54,21 +54,6 @@ export class ParticipantsService {
             );
     }
 
-    getParticipantByCodePenkaLimit4(codePenka): any { /* participant.ts */
-        return this.afs.collection<Participant>('participants', ref => ref
-            .where('codePenka', '==', codePenka)
-            .where('status', 'in', ['1', '2', '9'])
-            .orderBy('accumulatedScore', 'desc')
-            .limit(4))
-            .snapshotChanges()
-            .pipe(map(actions => actions.map(a => {
-                    const data = a.payload.doc.data() as Participant;
-                    const id = a.payload.doc.id;
-                    return {id, ...data};
-                }))
-            );
-    }
-
     getParticipantByUserId(userId): any {
         return this.afs.collection<Participant>('participants', ref => ref
             .where('userId', '==', userId)

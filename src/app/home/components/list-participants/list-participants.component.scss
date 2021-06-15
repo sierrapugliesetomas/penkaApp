@@ -25,6 +25,8 @@
   .list-participant {
     list-style-type: none;
     padding: 0 30px 0 30px;
+    height: 120px;
+    overflow-y: scroll;
   }
 
   .list-item {
@@ -92,6 +94,8 @@
   .list-participant {
     list-style-type: none;
     padding: 0 30px 0 30px;
+    height: 120px;
+    overflow-y: scroll;
   }
 
   .list-item {
@@ -158,10 +162,32 @@
   .text-help {
     text-align: center;
   }
+
   .list-participant {
     list-style-type: none;
+    padding: 0 30px 0 30px;
+    height: 220px;
+    overflow-y: scroll;
   }
 
+  .list-participant::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .list-participant::-webkit-scrollbar-thumb {
+    background-color: #414143;
+    border-radius: 10px;
+  }
+  
+  .list-participant::-webkit-scrollbar-thumb:active {
+    background-color: #737171;
+  }
+  
+  .list-participant::-webkit-scrollbar-thumb:hover {
+    background-color: #792fe8;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+  
   .list-item {
     padding: 0;
     border-bottom: 1px solid gray;
