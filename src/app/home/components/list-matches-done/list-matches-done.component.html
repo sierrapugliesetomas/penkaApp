@@ -18,11 +18,11 @@
 
 <ng-template #defaultGamble>
     <p class="title">Partidos Jugados</p>
-    <ng-container *ngFor="let g of gambles | filterUserId:user.uid; let i = index, let c = count">
+    <!-- <ng-container *ngFor="let g of gambles | filterUserId:user.uid; let i = index, let c = count">
         <ng-container *ngIf="i < 1">
             <p class="text-help">{{c}}&nbsp;partidos.</p>
         </ng-container>
-    </ng-container>
+    </ng-container> -->
     <ul class="list-matches">
         <li class="item-matches" *ngFor="let g of gambles | filterUserId:user.uid; let x=index">
             <ng-container *ngIf="x <= 3">
