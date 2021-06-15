@@ -395,7 +395,7 @@
                         <mat-expansion-panel [expanded]="false">
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
-                                    Informacion
+                                    Información
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
                             <div class="row">
@@ -419,7 +419,15 @@
                                         </div>
                                         <div>
                                             <p class="label-mobile">Estado</p>
-                                            <p class="item-mobile">Terminada</p>
+                                            <ng-container *ngIf="penka.status === '1'">
+                                                <p class="item-mobile">En juego</p>
+                                            </ng-container>
+                                            <ng-container *ngIf="penka.status === '2'">
+                                                <p class="item-mobile">Terminada</p>
+                                            </ng-container>
+                                            <ng-container *ngIf="penka.status === '9'">
+                                                <p class="item-mobile">Archivada</p>
+                                            </ng-container>
                                         </div>
                                     </div>
                                 </div>
