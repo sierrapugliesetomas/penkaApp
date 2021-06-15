@@ -46,17 +46,21 @@
     <div class="row">
         <div class="col-xs-12 col-lg-8">
             <div class="box">
-                <p class="content-text"><span class="nOrder">1. </span> El ganador de la penka será quien acumule la
+                <p class="content-text"><span class="nOrder">1. </span> Los puntajes y la complejidad de la Penka
+                    dependen del formato
+                    que
+                    elija el organizador</p>
+                <p class="content-text"><span class="nOrder">2. </span> El ganador de la penka será quien acumule la
                     mayor cantidad de
                     puntos
                 </p>
-                <p class="content-text"><span class="nOrder">2. </span> Todos los marcadores y/o resultados son a 90
+                <p class="content-text"><span class="nOrder">3. </span> Todos los marcadores y/o resultados son a 90
                     minutos sin contar
                     tiempo extra o penales.</p>
-                <p class="content-text"><span class="nOrder">3. </span> Una hora antes de iniciar el primer Partido de
+                <p class="content-text"><span class="nOrder">4. </span> Una hora antes de iniciar el primer Partido de
                     la penka, no hay
                     opcion a retirarse de la misma.</p>
-                <p class="content-text"><span class="nOrder">4. </span> Los resultados de los partidos pueden ser
+                <p class="content-text"><span class="nOrder">5. </span> Los resultados de los partidos pueden ser
                     pronosticados hasta 15
                     minutos antes de iniciar el Partido.</p>
                 <!-- <p class="content-text"><span class="nOrder">5. </span> En caso de jugarse un TORNEO, el pronostico del
@@ -80,16 +84,12 @@
                     decir, si
                     hay empate entre los primeros 3 lugares, el pozo sera dividio equitativamente 33% - 33% -
                     33%.</p>
-                <p class="content-text"><span class="nOrder">7. </span> Los partidos seran presentados de acuerdo a la
-                    hora local.</p>
-                <p class="content-text"><span class="nOrder">8. </span> La plataforma no se hace responsable de la
+                <p class="content-text"><span class="nOrder">7. </span>Los partidos serán presentados de acuerdo a tu
+                    zona horaria.</p>
+                <p class="content-text"><span class="nOrder">8. </span> Penka no se hace responsable de la
                     recolección del dinero
                     y
                     el pago de los premios.</p>
-                <p class="content-text"><span class="nOrder">9. </span> Los puntajes y la complejidad de la Penka
-                    dependen del formato
-                    que
-                    elija el organizador</p>
             </div>
         </div>
     </div>
@@ -148,11 +148,11 @@
                 <!-- <div *ngIf="juniorValue === true; then contentJunior else none"></div> -->
                 <!-- <ng-template #contentJunior>
                     <ul class="list-rules">
-                        <li class="item-rules">Campeon - 10 puntos.</li>
-                        <li class="item-rules">SubCampeon - 7 puntos.</li>
-                        <li class="item-rules">Tecer lugar - 5 puntos.</li>
-                        <li class="item-rules">Goleador del torneo - 5 puntos.</li>
-                        <li class="item-rules">Mejor jugador del torneo - 5 puntos.</li>
+                        <li class="content-text">Campeon - 10 puntos.</li>
+                        <li class="content-text">SubCampeon - 7 puntos.</li>
+                        <li class="content-text">Tecer lugar - 5 puntos.</li>
+                        <li class="content-text">Goleador del torneo - 5 puntos.</li>
+                        <li class="content-text">Mejor jugador del torneo - 5 puntos.</li>
                     </ul>
                 </ng-template> -->
 
@@ -160,18 +160,18 @@
                 <div *ngIf="mediumValue === true; then contentMedium else none"></div>
                 <ng-template #contentMedium>
                     <ul class="list-rules">
-                        <li class="item-rules">Ganador del partido (o empate) - 3 puntos.</li>
-                        <li class="item-rules">Si el participante no acierta el ganador (o empate) - 0 puntos.</li>
+                        <li class="content-text">Ganador del partido (o empate) - 3 puntos.</li>
+                        <li class="content-text">Si el participante no acierta el ganador (o empate) - 0 puntos.</li>
                     </ul>
-                    
+
                     <!-- <p class="text-help">* En caso de que se este jugando un torneo.</p>
                     <p class="text-help">* El goleador y otras menciones serán definidas exclusivamente en base a la determinación oficial del torneo.</p>
                     <ul class="list-rules">
-                        <li class="item-rules">Acertar el Campeón - 10 puntos.</li>
-                        <li class="item-rules">Acertar el SubCampeón - 7 puntos.</li>
-                        <li class="item-rules">Acertar el Tercer lugar - 5 puntos.</li>
-                        <li class="item-rules">Acertar el goleador del torneo - 5 puntos.</li>
-                        <li class="item-rules">Acertar el mejor jugador del torneo - 5 puntos.</li>
+                        <li class="content-text">Acertar el Campeón - 10 puntos.</li>
+                        <li class="content-text">Acertar el SubCampeón - 7 puntos.</li>
+                        <li class="content-text">Acertar el Tercer lugar - 5 puntos.</li>
+                        <li class="content-text">Acertar el goleador del torneo - 5 puntos.</li>
+                        <li class="content-text">Acertar el mejor jugador del torneo - 5 puntos.</li>
                     </ul> -->
                     <br>
                 </ng-template>
@@ -179,21 +179,21 @@
                 <div *ngIf="proValue === true; then contentPro else none"></div>
                 <ng-template #contentPro>
                     <ul class="list-rules">
-                        <li class="item-rules">Resultado exacto del partido - 5 puntos por partido.</li>
-                        <li class="item-rules">Acertar el ganador del partido (o empate) pero no el resultado - 3
+                        <li class="content-text">Resultado exacto del partido - 5 puntos por partido.</li>
+                        <li class="content-text">Acertar el ganador del partido (o empate) pero no el resultado - 3
                             puntos.
                         </li>
-                        <li class="item-rules">Si el participante no acierta al ganador (o empate) - 0 puntos.</li>
+                        <li class="content-text">Si el participante no acierta al ganador (o empate) - 0 puntos.</li>
                     </ul>
                     <!-- <p class="text-help">* En caso de que se este jugando un torneo.</p>
                     <p class="text-help">* El goleador y otras menciones serán definidas exclusivamente en base a la determinación oficial del torneo.</p>
 
                     <ul class="list-rules">
-                        <li class="item-rules">Campeon - 10 puntos.</li>
-                        <li class="item-rules">SubCampeon - 7 puntos.</li>
-                        <li class="item-rules">Tecer lugar - 5 puntos.</li>
-                        <li class="item-rules">Goleador del torneo - 5 puntos.</li>
-                        <li class="item-rules">Mejor jugador del torneo - 5 puntos.</li>
+                        <li class="content-text">Campeon - 10 puntos.</li>
+                        <li class="content-text">SubCampeon - 7 puntos.</li>
+                        <li class="content-text">Tecer lugar - 5 puntos.</li>
+                        <li class="content-text">Goleador del torneo - 5 puntos.</li>
+                        <li class="content-text">Mejor jugador del torneo - 5 puntos.</li>
                     </ul> -->
                     <br>
                 </ng-template>
