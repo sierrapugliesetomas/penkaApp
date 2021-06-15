@@ -77,6 +77,7 @@ export class PenkaPickerComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe((response: Penka[]) => {
                 this.penkas = response.filter(penka => penkaCodes.includes(penka.codePenka));
+                this.getPicked(this.penkas[0].codePenka)
             });
     }
 }
