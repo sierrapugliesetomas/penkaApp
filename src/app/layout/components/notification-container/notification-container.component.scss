@@ -33,6 +33,24 @@
     overflow-y: auto;
     max-height: 400px;
   }
+
+  .list::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .list::-webkit-scrollbar-thumb {
+    background-color: #414143;
+    border-radius: 10px;
+  }
+  
+  .list::-webkit-scrollbar-thumb:active {
+    background-color: #737171;
+  }
+  
+  .list::-webkit-scrollbar-thumb:hover {
+    background-color: #792fe8;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
   
   .item {
     margin-bottom: 25px;
