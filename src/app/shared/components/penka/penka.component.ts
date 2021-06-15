@@ -10,7 +10,7 @@ import {ListMatchesService} from '../../../core/services/list-matches.service';
 import {PenkaRequestService} from '../../../core/services/penka-request.service';
 import {ParticipantsService} from '../../../core/services/participants.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {takeUntil} from 'rxjs/operators';
+import {first, takeUntil} from 'rxjs/operators';
 import {RequestNotificationComponent} from '../../../inbox/components/request-notification/request-notification.component';
 
 @Component({
@@ -56,7 +56,7 @@ export class PenkaComponent implements OnInit, OnDestroy {
             res => {
                 this.listMatches = res;
             });
-        this.participantsService.getParticipantByUserAndCodePenkaAllStatus(this.user.uid, this.codePenka)
+        this.participantsService.getParticipantByUserAndCodePenka(this.user.uid, this.codePenka)
         .pipe(
             takeUntil(this.unsubscribe$)
         ).subscribe(
@@ -87,7 +87,9 @@ export class PenkaComponent implements OnInit, OnDestroy {
 
         if (confirm('Deseas unirte a la penka: ' + penkaName)) {
 
-            this.penkasRequestService.getPenkaByUserAndCodePenka(userId, codePenka).pipe(takeUntil(this.unsubscribe$)).subscribe(
+            this.penkasRequestService.getPenkaByUserAndCodePenka(userId, codePenka)
+            .pipe(first())
+            .subscribe(
                 res => {
                     ifExist = res;
                     if (ifExist.length > 0) {

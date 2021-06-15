@@ -67,7 +67,9 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
         let ifExist = [];
         const today = new Date();
 
-        this.participantsService.getParticipantByUserAndCodePenka(userId, codePenka).subscribe(
+        this.participantsService.getParticipantByUserAndCodePenka(userId, codePenka)
+        .pipe(first())
+        .subscribe(
             res => ifExist = res,
             error => console.log(error));
 
@@ -89,7 +91,7 @@ export class ButtonNotificationComponent implements OnInit, OnDestroy {
             this.newParticipant.status = '1';
 
 
-            this.penkasService.getPenkaById(penkaId).subscribe(
+            this.penkasService.getPenkaById(penkaId).pipe(first()).subscribe(
                 res => {
                     penka = res;
                     
