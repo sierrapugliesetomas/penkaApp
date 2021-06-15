@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../../core/interfaces/user';
 import { combineLatest, Subject } from 'rxjs';
 import { FirebaseApp } from '@angular/fire';
@@ -15,8 +15,8 @@ export class PenkaViewerComponent implements OnInit, OnDestroy {
     codePenkaSelected: string;
     myParticipations = [];
     user = {} as User;
-    openParticipants;
-    yesterdayFinishParticipants;
+    openParticipants$;
+    yesterdayFinishParticipants$;
     private unsubscribe$ = new Subject<void>();
 
     constructor(
@@ -28,16 +28,14 @@ export class PenkaViewerComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.user = this.firebase.auth().currentUser;
 
-        this.openParticipants = this.participantsService.getOpenParticipantByUserId(this.user.uid);
-        this.yesterdayFinishParticipants = this.participantsService.getYesterdayFinishParticipantsByUserId(this.user.uid);
+        this.openParticipants$ = this.participantsService.getOpenParticipantByUserId(this.user.uid);
+        this.yesterdayFinishParticipants$ = this.participantsService.getYesterdayFinishParticipantsByUserId(this.user.uid);
 
-        combineLatest([this.openParticipants, this.yesterdayFinishParticipants]).pipe(
+        combineLatest([this.openParticipants$, this.yesterdayFinishParticipants$]).pipe(
             takeUntil(this.unsubscribe$),
             map((response: any) => [...response[0], ...response[1]])
         ).subscribe(
             response => {
-                console.log(response);
-                
                 this.myParticipations = response;
             }
         );
@@ -51,4 +49,5 @@ export class PenkaViewerComponent implements OnInit, OnDestroy {
     getPicked(codePenka): void {
         this.codePenkaSelected = codePenka;
     }
+
 }
