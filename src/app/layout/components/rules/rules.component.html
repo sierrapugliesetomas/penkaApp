@@ -50,6 +50,116 @@
                     dependen del formato
                     que
                     elija el organizador</p>
+                    <div class="row">
+                        <div class="col-xs-12 col-lg-12">
+                            <div class="box">
+                
+                                <!--- JUNIOR -->
+                                <!-- <div *ngIf="juniorValue === true; then btnJuniorActive else btnJuniorDisable"></div>
+                                <ng-template #btnJuniorActive>
+                                    <button mat-button (click)="junior()" class="btn active">
+                                        JUNIOR
+                                    </button>
+                                </ng-template>
+                                <ng-template #btnJuniorDisable>
+                                    <button mat-button (click)="junior()" class="btn disable">
+                                        JUNIOR
+                                    </button>
+                                </ng-template> -->
+                
+                                <!-- MEDIUM -->
+                                <div *ngIf="mediumValue === true; then btnMediumActive else btnMediumDisable"></div>
+                                <ng-template #btnMediumActive>
+                                    <button mat-button (click)="medium()" class="btn active">
+                                        MEDIUM
+                                    </button>
+                                </ng-template>
+                                <ng-template #btnMediumDisable>
+                                    <button mat-button (click)="medium()" class="btn disable">
+                                        MEDIUM
+                                    </button>
+                                </ng-template>
+                
+                                <!-- PRO --->
+                                <div *ngIf="proValue === true; then btnProActive else btnProDisable"></div>
+                                <ng-template #btnProActive>
+                                    <button mat-button (click)="pro()" class="btn active">
+                                        PRO
+                                    </button>
+                                </ng-template>
+                                <ng-template #btnProDisable>
+                                    <button mat-button (click)="pro()" class="btn disable">
+                                        PRO
+                                    </button>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-12 col-lg-12">
+                            <div class="box">
+                                <!-- JUNIOR --->
+                                <!-- <div *ngIf="juniorValue === true; then contentJunior else none"></div> -->
+                                <!-- <ng-template #contentJunior>
+                                    <ul class="list-rules">
+                                        <li class="content-text">Campeon - 10 puntos.</li>
+                                        <li class="content-text">SubCampeon - 7 puntos.</li>
+                                        <li class="content-text">Tecer lugar - 5 puntos.</li>
+                                        <li class="content-text">Goleador del torneo - 5 puntos.</li>
+                                        <li class="content-text">Mejor jugador del torneo - 5 puntos.</li>
+                                    </ul>
+                                </ng-template> -->
+                
+                                <!-- MEDIUM --->
+                                <div *ngIf="mediumValue === true; then contentMedium else none"></div>
+                                <ng-template #contentMedium>
+                                    <ul class="list-rules">
+                                        <li class="content-text">Ganador del partido (o empate) - 3 puntos.</li>
+                                        <li class="content-text">Si el participante no acierta el ganador (o empate) - 0 puntos.</li>
+                                    </ul>
+                
+                                    <!-- <p class="text-help">* En caso de que se este jugando un torneo.</p>
+                                    <p class="text-help">* El goleador y otras menciones serán definidas exclusivamente en base a la determinación oficial del torneo.</p>
+                                    <ul class="list-rules">
+                                        <li class="content-text">Acertar el Campeón - 10 puntos.</li>
+                                        <li class="content-text">Acertar el SubCampeón - 7 puntos.</li>
+                                        <li class="content-text">Acertar el Tercer lugar - 5 puntos.</li>
+                                        <li class="content-text">Acertar el goleador del torneo - 5 puntos.</li>
+                                        <li class="content-text">Acertar el mejor jugador del torneo - 5 puntos.</li>
+                                    </ul> -->
+                                    <br>
+                                </ng-template>
+                                <!-- JUNIOR --->
+                                <div *ngIf="proValue === true; then contentPro else none"></div>
+                                <ng-template #contentPro>
+                                    <ul class="list-rules">
+                                        <li class="content-text">Resultado exacto del partido - 5 puntos por partido.</li>
+                                        <li class="content-text">Acertar el ganador del partido (o empate) pero no el resultado - 3
+                                            puntos.
+                                        </li>
+                                        <li class="content-text">Si el participante no acierta al ganador (o empate) - 0 puntos.</li>
+                                    </ul>
+                                    <!-- <p class="text-help">* En caso de que se este jugando un torneo.</p>
+                                    <p class="text-help">* El goleador y otras menciones serán definidas exclusivamente en base a la determinación oficial del torneo.</p>
+                
+                                    <ul class="list-rules">
+                                        <li class="content-text">Campeon - 10 puntos.</li>
+                                        <li class="content-text">SubCampeon - 7 puntos.</li>
+                                        <li class="content-text">Tecer lugar - 5 puntos.</li>
+                                        <li class="content-text">Goleador del torneo - 5 puntos.</li>
+                                        <li class="content-text">Mejor jugador del torneo - 5 puntos.</li>
+                                    </ul> -->
+                                    <br>
+                                </ng-template>
+                
+                                <!-- none -->
+                                <ng-template #none>
+                                </ng-template>
+                
+                            </div>
+                        </div>
+                    </div>
                 <p class="content-text"><span class="nOrder">2. </span> El ganador de la penka será quien acumule la
                     mayor cantidad de
                     puntos
@@ -95,114 +205,4 @@
     </div>
     <br>
     <br>
-    <div class="row">
-        <div class="col-xs-12 col-lg-12">
-            <div class="box">
-
-                <!--- JUNIOR -->
-                <!-- <div *ngIf="juniorValue === true; then btnJuniorActive else btnJuniorDisable"></div>
-                <ng-template #btnJuniorActive>
-                    <button mat-button (click)="junior()" class="btn active">
-                        JUNIOR
-                    </button>
-                </ng-template>
-                <ng-template #btnJuniorDisable>
-                    <button mat-button (click)="junior()" class="btn disable">
-                        JUNIOR
-                    </button>
-                </ng-template> -->
-
-                <!-- MEDIUM -->
-                <div *ngIf="mediumValue === true; then btnMediumActive else btnMediumDisable"></div>
-                <ng-template #btnMediumActive>
-                    <button mat-button (click)="medium()" class="btn active">
-                        MEDIUM
-                    </button>
-                </ng-template>
-                <ng-template #btnMediumDisable>
-                    <button mat-button (click)="medium()" class="btn disable">
-                        MEDIUM
-                    </button>
-                </ng-template>
-
-                <!-- PRO --->
-                <div *ngIf="proValue === true; then btnProActive else btnProDisable"></div>
-                <ng-template #btnProActive>
-                    <button mat-button (click)="pro()" class="btn active">
-                        PRO
-                    </button>
-                </ng-template>
-                <ng-template #btnProDisable>
-                    <button mat-button (click)="pro()" class="btn disable">
-                        PRO
-                    </button>
-                </ng-template>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-xs-12 col-lg-12">
-            <div class="box">
-                <!-- JUNIOR --->
-                <!-- <div *ngIf="juniorValue === true; then contentJunior else none"></div> -->
-                <!-- <ng-template #contentJunior>
-                    <ul class="list-rules">
-                        <li class="content-text">Campeon - 10 puntos.</li>
-                        <li class="content-text">SubCampeon - 7 puntos.</li>
-                        <li class="content-text">Tecer lugar - 5 puntos.</li>
-                        <li class="content-text">Goleador del torneo - 5 puntos.</li>
-                        <li class="content-text">Mejor jugador del torneo - 5 puntos.</li>
-                    </ul>
-                </ng-template> -->
-
-                <!-- MEDIUM --->
-                <div *ngIf="mediumValue === true; then contentMedium else none"></div>
-                <ng-template #contentMedium>
-                    <ul class="list-rules">
-                        <li class="content-text">Ganador del partido (o empate) - 3 puntos.</li>
-                        <li class="content-text">Si el participante no acierta el ganador (o empate) - 0 puntos.</li>
-                    </ul>
-
-                    <!-- <p class="text-help">* En caso de que se este jugando un torneo.</p>
-                    <p class="text-help">* El goleador y otras menciones serán definidas exclusivamente en base a la determinación oficial del torneo.</p>
-                    <ul class="list-rules">
-                        <li class="content-text">Acertar el Campeón - 10 puntos.</li>
-                        <li class="content-text">Acertar el SubCampeón - 7 puntos.</li>
-                        <li class="content-text">Acertar el Tercer lugar - 5 puntos.</li>
-                        <li class="content-text">Acertar el goleador del torneo - 5 puntos.</li>
-                        <li class="content-text">Acertar el mejor jugador del torneo - 5 puntos.</li>
-                    </ul> -->
-                    <br>
-                </ng-template>
-                <!-- JUNIOR --->
-                <div *ngIf="proValue === true; then contentPro else none"></div>
-                <ng-template #contentPro>
-                    <ul class="list-rules">
-                        <li class="content-text">Resultado exacto del partido - 5 puntos por partido.</li>
-                        <li class="content-text">Acertar el ganador del partido (o empate) pero no el resultado - 3
-                            puntos.
-                        </li>
-                        <li class="content-text">Si el participante no acierta al ganador (o empate) - 0 puntos.</li>
-                    </ul>
-                    <!-- <p class="text-help">* En caso de que se este jugando un torneo.</p>
-                    <p class="text-help">* El goleador y otras menciones serán definidas exclusivamente en base a la determinación oficial del torneo.</p>
-
-                    <ul class="list-rules">
-                        <li class="content-text">Campeon - 10 puntos.</li>
-                        <li class="content-text">SubCampeon - 7 puntos.</li>
-                        <li class="content-text">Tecer lugar - 5 puntos.</li>
-                        <li class="content-text">Goleador del torneo - 5 puntos.</li>
-                        <li class="content-text">Mejor jugador del torneo - 5 puntos.</li>
-                    </ul> -->
-                    <br>
-                </ng-template>
-
-                <!-- none -->
-                <ng-template #none>
-                </ng-template>
-
-            </div>
-        </div>
-    </div>
 </div>
