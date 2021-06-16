@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { PenkaRequest } from 'src/app/core/interfaces/penkaRequest';
 import { PenkaRequestService } from 'src/app/core/services/penka-request.service';
 import { RequestNotificationComponent } from 'src/app/inbox/components/request-notification/request-notification.component';
+import { ParticipantsService } from 'src/app/core/services/participants.service';
 
 @Component({
   selector: 'app-view',
@@ -34,13 +35,15 @@ export class ViewComponent implements OnInit, OnDestroy {
     private penkasService: PenkasService,
     private listMatchesService: ListMatchesService,
     private penkasRequestService: PenkaRequestService,
+    private participantsService: ParticipantsService,
+    private router: Router,
     private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
     this.getUser();
     this.getCodePenka();
-    this.getPenka();
+    this.checkParticipant();
   }
 
   ngOnDestroy(): void {
@@ -56,6 +59,22 @@ export class ViewComponent implements OnInit, OnDestroy {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.penkaId = params.codePenka;
     });
+  }
+
+  private checkParticipant(): void {
+    this.participantsService.getAllParticipantByUserId(this.user.uid)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        res => {
+          const participantsId = res.map(p => p.codePenka);
+          if (participantsId.includes(this.penkaId)) {
+            // user is already playing this penka, redirect to dashboard. /view is only for non participants
+            this.router.navigate(['/penka/dashboard/' + this.penkaId], { replaceUrl: true }).catch();
+          } else {
+            this.getPenka();
+          }
+        }
+      );
   }
 
   private getPenka(): void {
@@ -94,44 +113,44 @@ export class ViewComponent implements OnInit, OnDestroy {
     if (confirm('Deseas unirte a la penka: ' + this.penka.name)) {
 
       this.penkasRequestService.getPenkaByUserAndCodePenka(this.user.uid, this.penka.codePenka)
-      .pipe(first())
-      .subscribe(
-        res => {
-          ifExist = res;
-          if (ifExist.length > 0) {
-            if (counter === 1) {
-              alert('Ya has enviado una solicitud de union a la Penka:' + this.penka.name);
-              counter++;
-            }
-          } else {
-            if (counter === 1) {
-              this.newPenkaRequest.penkaName = this.penka.name;
-              this.newPenkaRequest.penkaId = this.penkaId;
-              this.newPenkaRequest.codePenka = this.penka.codePenka;
-              this.newPenkaRequest.makerId = this.penka.makerId;
-              this.newPenkaRequest.makerName = this.penka.makerName;
-              this.newPenkaRequest.makerEmail = this.penka.makerEmail;
-              this.newPenkaRequest.makerPhoto = this.penka.makerPhoto;
-              this.newPenkaRequest.userId = this.user.uid;
-              this.newPenkaRequest.userName = this.user.displayName;
-              this.newPenkaRequest.userEmail = this.user.email;
-              this.newPenkaRequest.userPhoto = this.user.photoURL;
-              this.newPenkaRequest.date = today;
-              this.newPenkaRequest.status = '1';
-              this.newPenkaRequest.timesShow = 0;
-              this.penkasRequestService.addPenkaRequest(this.newPenkaRequest);
+        .pipe(first())
+        .subscribe(
+          res => {
+            ifExist = res;
+            if (ifExist.length > 0) {
+              if (counter === 1) {
+                alert('Ya has enviado una solicitud de union a la Penka:' + this.penka.name);
+                counter++;
+              }
+            } else {
+              if (counter === 1) {
+                this.newPenkaRequest.penkaName = this.penka.name;
+                this.newPenkaRequest.penkaId = this.penkaId;
+                this.newPenkaRequest.codePenka = this.penka.codePenka;
+                this.newPenkaRequest.makerId = this.penka.makerId;
+                this.newPenkaRequest.makerName = this.penka.makerName;
+                this.newPenkaRequest.makerEmail = this.penka.makerEmail;
+                this.newPenkaRequest.makerPhoto = this.penka.makerPhoto;
+                this.newPenkaRequest.userId = this.user.uid;
+                this.newPenkaRequest.userName = this.user.displayName;
+                this.newPenkaRequest.userEmail = this.user.email;
+                this.newPenkaRequest.userPhoto = this.user.photoURL;
+                this.newPenkaRequest.date = today;
+                this.newPenkaRequest.status = '1';
+                this.newPenkaRequest.timesShow = 0;
+                this.penkasRequestService.addPenkaRequest(this.newPenkaRequest);
 
-              this._snackBar.openFromComponent(RequestNotificationComponent, {
-                duration: 5000,
-                horizontalPosition: 'end',
-                verticalPosition: 'top',
-                panelClass: 'request-notification'
-              });
-              counter++;
+                this._snackBar.openFromComponent(RequestNotificationComponent, {
+                  duration: 5000,
+                  horizontalPosition: 'end',
+                  verticalPosition: 'top',
+                  panelClass: 'request-notification'
+                });
+                counter++;
+              }
             }
-          }
-        },
-        error => console.log(error));
+          },
+          error => console.log(error));
     }
   }
 }
