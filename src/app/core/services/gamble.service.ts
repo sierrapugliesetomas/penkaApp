@@ -30,7 +30,7 @@ export class GambleService {
     getGambleByCodePenka(codePenka): any {
         return this.afs.collection<Gamble>('gambles', ref => ref
             .where('codePenka', '==', codePenka)
-            .orderBy('startDate', 'asc')
+            .orderBy('startDate', 'desc')
             .orderBy('homeTeamAlias', 'desc')
             .orderBy('visitTeamAlias','desc'))
             .snapshotChanges().pipe(map(actions => actions.map(a => {
@@ -44,7 +44,7 @@ export class GambleService {
     getGambleByUserId(userId): any {
         return this.afs.collection<Gamble>('gambles', ref => ref
             .where('userId', '==', userId)
-            .orderBy('startDate', 'asc'))
+            .orderBy('startDate', 'desc'))
             .snapshotChanges().pipe(map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as Gamble;
                     const id = a.payload.doc.id;
@@ -98,7 +98,8 @@ export class GambleService {
         return this.afs.collection<Gamble>('gambles', ref => ref
         .where('userId', '==', userId)
         .where('codePenka', '==', codePenka)
-        .where('status', '==', '1'))
+        .where('status', '==', '1')
+        .orderBy('startDate', 'desc'))
         .snapshotChanges()
         .pipe(map(actions => actions.map(a => {
                 const data = a.payload.doc.data() as Gamble;
